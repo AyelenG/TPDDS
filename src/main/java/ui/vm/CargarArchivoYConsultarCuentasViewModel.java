@@ -1,6 +1,7 @@
 package ui.vm;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -10,28 +11,24 @@ import model.Empresa;
 import model.Periodo;
 import model.repositories.Repositorios;
 
-
 @Observable
 public class CargarArchivoYConsultarCuentasViewModel {
-	private List<Cuenta> cuentasSeleccionadas;
-	private List<Periodo> periodosSeleccionados;
-	private Periodo periodoSeleccionado;
-	private Empresa empresaSeleccionada;
 	private String ruta = "";
 	private boolean botonCargarDatos = true;
 	private boolean botonConsultarCuentas = false;
 	private boolean selectorPeriodo = false;
 	private List<Empresa> empresas = Repositorios.empresasRepo.getEmpresas();
+	private Empresa empresaSeleccionada;
+	private List<Periodo> periodosSeleccionados;
+	private Periodo periodoSeleccionado;
+	private List<Cuenta> cuentasSeleccionadas;
 
-	// Carga las empresas al repositorio
-	// Ver lo de la exception
 	public void cargarCuentas() {
 		// ManipuladorArchivo manipulador = new ManipuladorArchivo(this.ruta);
 		// List<Empresa> empresas = manipulador.deArchivoAEmpresas();
-
 		DataLoader.cargarDatosDesdeArchivo(ruta);
-		this.setEmpresas(null);
-		this.setEmpresas(Repositorios.empresasRepo.getEmpresas());
+		this.setEmpresas(Repositorios.empresasRepo.getEmpresas()
+				.stream().sorted().collect(Collectors.toList()));
 		this.setBotonCargarDatos(false);
 	}
 
@@ -65,7 +62,8 @@ public class CargarArchivoYConsultarCuentasViewModel {
 
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
-		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos());
+		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos()
+				.stream().sorted().collect(Collectors.toList()));
 		this.setSelectorPeriodo(true);
 	}
 
@@ -89,7 +87,7 @@ public class CargarArchivoYConsultarCuentasViewModel {
 	public List<Cuenta> getCuentasSeleccionadas() {
 		return this.cuentasSeleccionadas;
 	}
-	
+
 	public void setCuentasSeleccionadas(List<Cuenta> cuentas) {
 		this.cuentasSeleccionadas = cuentas;
 	}

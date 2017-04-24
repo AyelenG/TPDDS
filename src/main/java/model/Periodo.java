@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Periodo {
+public class Periodo implements Comparable<Periodo>{
 	private Integer año;
 	private List<Cuenta> cuentas = new LinkedList<>();
 
@@ -52,6 +52,11 @@ public class Periodo {
 	@Override
 	public String toString() {
 		return getAño().toString();
+	}
+
+	@Override
+	public int compareTo(Periodo o) {
+		return this.año.compareTo(o.año);
 	}
 
 }

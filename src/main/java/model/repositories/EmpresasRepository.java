@@ -12,21 +12,23 @@ public class EmpresasRepository {
 	public List<Empresa> getEmpresas() {
 		return empresas;
 	}
+
 	public void setEmpresas(List<Empresa> empresas) {
 		this.empresas = empresas;
 	}
+
 	public void agregarEmpresa(Empresa empresa) {
 		empresas.add(empresa);
 	}
-	//Ver que hacer si devuelve nulo!
-	public Empresa buscarEmpresa(String nombreEmpresa){
-		List<Empresa> emps = empresas.stream().filter(emp-> emp.esIgual(nombreEmpresa)).collect(Collectors.toList());
-		if(emps.isEmpty()){
+
+	public Empresa buscarEmpresa(String nombreEmpresa) {
+		List<Empresa> emps = empresas.stream().filter(emp -> emp.esIgual(nombreEmpresa)).collect(Collectors.toList());
+		if (emps.isEmpty()) {
 			Empresa nueva = new Empresa(nombreEmpresa);
-			this.agregarEmpresa(nueva);		
+			this.agregarEmpresa(nueva);
 			return nueva;
 		}
 		return emps.get(0);
 	}
-	
+
 }

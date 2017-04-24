@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Empresa {
+public class Empresa implements Comparable<Empresa> {
 	private String nombreEmpresa;
 	private List<Periodo> periodos = new LinkedList<>();
 
@@ -52,6 +52,11 @@ public class Empresa {
 	@Override
 	public String toString() {
 		return getNombreEmpresa();
+	}
+
+	@Override
+	public int compareTo(Empresa o) {
+		return this.nombreEmpresa.compareTo(o.nombreEmpresa);
 	}
 
 }

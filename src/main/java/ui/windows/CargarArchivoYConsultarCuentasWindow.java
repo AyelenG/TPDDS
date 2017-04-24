@@ -36,29 +36,6 @@ public class CargarArchivoYConsultarCuentasWindow extends SimpleWindow<CargarArc
 
 		@Override
 		protected void createFormPanel(Panel mainPanel) {
-		/*	this.setTitle("Cargar Archivo y Consultar Cuentas");
-			mainPanel.setLayout(new VerticalLayout());
-			
-			//Carga de Archivo
-			new Label(mainPanel).setText("Ingrese ruta del archivo");
-			new TextBox(mainPanel).bindValueToProperty("ruta");
-			new Button(mainPanel)
-			.setCaption("Cargar")
-			.onClick(()->cargarArchivoDeEmpresas());
-			
-			//Busqueda de lista de cuentas
-			new Label (mainPanel).setText("Filtro de búsqueda");
-			new Label (mainPanel).setText("Empresa:");
-			new TextBox(mainPanel).bindValueToProperty("empresa");
-			new Label (mainPanel).setText("Periodo:");
-			new TextBox(mainPanel).bindValueToProperty("periodo");
-			new Button(mainPanel)
-			.setCaption("Buscar")
-			.onClick(()->getModelObject().buscarCuentas());
-			
-			List<Cuenta> listaCuentas = new List<>(mainPanel);
-			listaCuentas.bindItemsToProperty("cuentas").toString();
-			*/
 			
 			mainPanel.setLayout(new VerticalLayout());
 			Panel cargaPanel = new Panel(mainPanel);

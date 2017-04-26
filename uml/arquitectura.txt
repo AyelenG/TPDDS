@@ -1,0 +1,10 @@
+@startuml
+
+left to right direction
+
+actor Usuario
+node AplicacionDesktop
+
+Usuario --> AplicacionDesktop
+
+@enduml

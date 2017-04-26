@@ -65,14 +65,25 @@ public class DataLoader {
 			return;
 		}
 		Periodo periodo = empresa.buscarPeriodo(año);
+		if(periodo == null){
+			periodo = new Periodo(año);
+			empresa.agregarPeriodo(periodo);
+		}
 		Cuenta cuenta = periodo.buscarCuenta(nombreCuenta);
+		if(cuenta == null){
+			cuenta = new Cuenta(nombreCuenta);
+			periodo.agregarCuenta(cuenta);
+		}
 		cuenta.setValor(valor);
-		return;
 	}
 
 	private static Empresa obtenerEmpresaDesdeLinea(String[] campos) {
 		String nombreEmpresa = campos[Registro.EMPRESA.getIndex()].trim();
 		Empresa empresa = empresas.buscarEmpresa(nombreEmpresa);
+		if(empresa == null){
+			empresa = new Empresa(nombreEmpresa);
+			empresas.agregarEmpresa(empresa);
+		}
 		return empresa;
 	}
 }

@@ -9,6 +9,7 @@ import model.Cuenta;
 import model.DataLoader;
 import model.Empresa;
 import model.Periodo;
+import model.exceptions.ErrorConsultaException;
 import model.repositories.Repositorios;
 
 @Observable
@@ -24,16 +25,17 @@ public class CargarArchivoYConsultarCuentasViewModel {
 	private List<Cuenta> cuentasSeleccionadas;
 
 	public void cargarCuentas() {
-		// ManipuladorArchivo manipulador = new ManipuladorArchivo(this.ruta);
-		// List<Empresa> empresas = manipulador.deArchivoAEmpresas();
+
 		DataLoader.cargarDatosDesdeArchivo(ruta);
-		this.setEmpresas(Repositorios.empresasRepo.getEmpresas()
-				.stream().sorted().collect(Collectors.toList()));
+		this.setEmpresas(Repositorios.empresasRepo.getEmpresas().stream().sorted().collect(Collectors.toList()));
 		this.setBotonCargarDatos(false);
 	}
 
 	public void consultarCuentas() {
-		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas());
+		if(periodoSeleccionado == null){
+			throw new ErrorConsultaException();
+		}
+		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas().stream().sorted().collect(Collectors.toList()));
 	}
 
 	public String getRuta() {
@@ -62,8 +64,7 @@ public class CargarArchivoYConsultarCuentasViewModel {
 
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
-		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos()
-				.stream().sorted().collect(Collectors.toList()));
+		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos().stream().sorted().collect(Collectors.toList()));
 		this.setSelectorPeriodo(true);
 	}
 

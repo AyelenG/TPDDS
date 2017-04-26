@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Cuenta {
+public class Cuenta implements Comparable<Cuenta> {
 	private String nombreCuenta;
 	private BigDecimal valor;
-	
+
 	public Cuenta(String nombre) {
 		this.nombreCuenta = nombre;
 	}
@@ -29,11 +29,16 @@ public class Cuenta {
 		this.valor = valor;
 	}
 
-	public String toString(){
+	public boolean esIgual(String nombre) {
+		return this.nombreCuenta.equals(nombre);
+	}
+
+	public String toString() {
 		return this.nombreCuenta;
 	}
 
-	public boolean esIgual(String nombre) {
-		return this.nombreCuenta.equals(nombre) ;
+	@Override
+	public int compareTo(Cuenta o) {
+		return this.nombreCuenta.compareTo(o.nombreCuenta);
 	}
 }

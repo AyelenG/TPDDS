@@ -1,7 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,14 +9,12 @@ import model.Periodo;
 import model.repositories.Repositorios;
 
 public class cargaDeArchivoTest {
-	private DataLoader data;
 	private Empresa empresa;
 	private Periodo periodo;
 	
 	@Before 
 	public void inicio(){
-		this.data = new DataLoader();
-		this.data.cargarDatosDesdeArchivo("data/ArchivoPrueba.txt");
+		DataLoader.cargarDatosDesdeArchivo("data/ArchivoPrueba.txt");
 	}
 	@Test
 	public void verificarNombreDeLaPrimerEmpresa(){
@@ -31,11 +27,11 @@ public class cargaDeArchivoTest {
 		assertTrue(empresa.getPeriodos().get(0).esIgual(2016));
 	}
 	@Test
-	public void verificarQueDevuelveLasCuentas() {
+	public void verificarSegundaCuentaPrimeraEmpresaPrimerPeriodo() {
 		
 		empresa=Repositorios.empresasRepo.getEmpresas().get(0);
 		periodo=empresa.getPeriodos().get(0);
-		System.out.println(periodo.getCuentas());
+		assertTrue(periodo.getCuentas().get(1).esIgual("Free Cash Flow"));
 	}
 
 }

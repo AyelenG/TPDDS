@@ -2,7 +2,6 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -16,13 +15,7 @@ public class Empresa implements Comparable<Empresa> {
 	}
 
 	public Periodo buscarPeriodo(Integer año) {
-		List<Periodo> pdos = periodos.stream().filter(p -> p.esIgual(año)).collect(Collectors.toList());
-		if (pdos.isEmpty()) {
-			Periodo nuevo = new Periodo(año);
-			this.agregarPeriodo(nuevo);
-			return nuevo;
-		}
-		return pdos.get(0);
+		return periodos.stream().filter(p -> p.esIgual(año)).findFirst().orElse(null);
 	}
 
 	public String getNombreEmpresa() {

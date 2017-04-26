@@ -2,12 +2,11 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Periodo implements Comparable<Periodo>{
+public class Periodo implements Comparable<Periodo> {
 	private Integer año;
 	private List<Cuenta> cuentas = new LinkedList<>();
 
@@ -35,18 +34,12 @@ public class Periodo implements Comparable<Periodo>{
 		cuentas.add(cuenta);
 	}
 
-	public boolean esIgual(Integer año) {
-		return this.año.equals(año);
+	public Cuenta buscarCuenta(String nombreCuenta) {
+		return cuentas.stream().filter(c -> c.esIgual(nombreCuenta)).findFirst().orElse(null);
 	}
 
-	public Cuenta buscarCuenta(String nombreCuenta) {
-		List<Cuenta> ctas = cuentas.stream().filter(c -> c.esIgual(nombreCuenta)).collect(Collectors.toList());
-		if (ctas.isEmpty()) {
-			Cuenta nueva = new Cuenta(nombreCuenta);
-			this.agregarCuenta(nueva);
-			return nueva;
-		}
-		return ctas.get(0);
+	public boolean esIgual(Integer año) {
+		return this.año.equals(año);
 	}
 
 	@Override

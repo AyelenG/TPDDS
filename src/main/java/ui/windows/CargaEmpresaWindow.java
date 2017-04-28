@@ -33,22 +33,28 @@ public class CargaEmpresaWindow  extends SimpleWindow<CargaEmpresaViewModel> {
 		datosPanel.setLayout(new ColumnLayout(2));
 		
 		new Label(datosPanel).setText("Simbolo");
-		new TextBox(datosPanel)			
-			.bindValueToProperty("empresa.symbol");
-				
+		TextBox tbSymbol = new TextBox(datosPanel);			
+		tbSymbol.bindValueToProperty("empresa.symbol");
+		tbSymbol.bindEnabledToProperty("habilitaCarga");
+		
 		new Label(datosPanel).setText("Nombre");
-		new TextBox(datosPanel)
-			.setWidth(200)
-			.bindValueToProperty("empresa.nombre");
+		TextBox tbNombre = new TextBox(datosPanel);
+		tbNombre.setWidth(200);
+		tbNombre.bindValueToProperty("empresa.nombre");
+		tbNombre.bindEnabledToProperty("habilitaCarga");
 
-		new Button(mainPanel).setCaption("Cargar")
-			.onClick(() -> this.cargarEmpresa());
+		new Button(mainPanel)
+			.setCaption("Cargar")
+			.onClick(() -> this.getModelObject().cargarEmpresa())
+			.bindEnabledToProperty("habilitaCarga");
 		new Label(mainPanel).setForeground(Color.GREEN).bindValueToProperty("mensajeExito");
-		new Label(mainPanel);
-	}
-
-	private void cargarEmpresa() {
-		this.getModelObject().cargarEmpresa();
-		this.close(); //se podria usar para cerrar la ventana automaticamente en lugar del mensaje verde
+		new Button(mainPanel)
+			.setCaption("Nueva Empresa")
+			.onClick(() -> this.getModelObject().nuevaEmpresa())
+			.bindVisibleToProperty("habilitaNueva");
+		new Button(mainPanel)
+			.setCaption("Cerrar")
+			.onClick(() -> this.close())
+			.bindVisibleToProperty("habilitaNueva");
 	}
 }

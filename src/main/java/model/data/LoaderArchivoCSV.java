@@ -1,4 +1,4 @@
-package model;
+package model.data;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +7,10 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.exceptions.ArchivoConErroresException;
+import exceptions.ArchivoConErroresException;
+import model.Cuenta;
+import model.Empresa;
+import model.Periodo;
 
 public class LoaderArchivoCSV extends LoaderArchivo {
 

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 //import model.DataLoader;
 import model.Empresa;
-import model.LoaderArchivoJSON;
+
 import model.Periodo;
 import model.repositories.Repositorios;
 
@@ -15,7 +15,7 @@ public class cargaDeArchivoTest {
 	
 	@Before 
 	public void inicio(){
-		Repositorios.empresas.agregarEmpresas(new LoaderArchivoJSON("data/Cuentas.json").getEmpresas());
+	//	Repositorios.empresas.agregarEmpresas(new ManipuladorArchivo("data/Cuentas.json").getEmpresas());
 	}
 	/*
 	@Test

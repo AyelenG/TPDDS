@@ -14,20 +14,16 @@ public class Cuenta {
 	}
 	
 	public Cuenta(String nombre, BigDecimal valor) {
-		super();
 		this.nombre = nombre;
 		this.valor = valor;
 	}
 	
 	public boolean esIgual(Cuenta cuenta) {
-		return this.getNombre().equals(cuenta.getNombre());// && this.getValor().equals(cuenta.getValor());
-	} //para mi es igual solo si el nombre coincide, 
-	 //asi si se quiere agregar una cuenta con el mismo nombre pero distinto valor
-	 //no las agrega varias veces,actualiza el valor
+		return this.getNombre().equals(cuenta.getNombre());
+	}
 	
-	@Override
 	public String toString(){
-		return getNombre();
+		return this.nombre;
 	}
 	
 	public Cuenta(String nombre) {

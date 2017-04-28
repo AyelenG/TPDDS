@@ -1,4 +1,4 @@
-package model.exceptions;
+package exceptions;
 
 import org.uqbar.commons.model.UserException;
 

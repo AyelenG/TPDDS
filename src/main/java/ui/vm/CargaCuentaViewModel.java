@@ -2,12 +2,12 @@ package ui.vm;
 
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
-import model.exceptions.CuentaVaciaException;
 import model.repositories.Repositorios;
 
 @Observable
@@ -15,16 +15,30 @@ public class CargaCuentaViewModel {
 	Cuenta cuenta = new Cuenta();
 	private Empresa empresaSeleccionada;
 	private List<Empresa> empresas = Repositorios.empresas.getEmpresas();
-	private Integer anio;
-	private boolean habilitaCarga = false;
+	private int anio;
+	
 	private String mensajeExito = "";
+	private boolean habilitaCarga = true;
+	private boolean habilitaNueva = false;
+	
+	public void nuevaCuenta() {		
+		this.setCuenta(new Cuenta());
+		this.setMensajeExito("");
+		this.setHabilitaCarga(true);
+		this.setHabilitaNueva(false);		
+	}
 	
 	public void cargarCuenta() {
-		if(anio == null || cuenta.getNombre() == null || cuenta.getValor() == null){
-			throw new CuentaVaciaException();
-		}
-		empresaSeleccionada.buscarPeriodoYAgregar(new Periodo(anio)).buscarCuentaYAgregarOModificar(cuenta);
-		this.setMensajeExito("Carga realizada Exitosamente"); //si esta la cuenta le cambia el valor, si no la agrega
+		if (empresaSeleccionada == null)
+			throw new UserException("Debe seleccionar una empresa.");
+		if ( cuenta.getNombre() == null || cuenta.getValor() == null)
+			throw new UserException("Complete los datos de la cuenta.");
+		if ( anio < 1000 || anio > 3000)
+			throw new UserException("Ingrese un período valido.");	
+		empresaSeleccionada.buscarPeriodoYAgregar(new Periodo(anio)).agregarCuenta(cuenta);
+		this.setMensajeExito("Carga realizada Exitosamente");
+		this.setHabilitaCarga(false);
+		this.setHabilitaNueva(true);
 	}
 
 	public Cuenta getCuenta() {
@@ -32,7 +46,7 @@ public class CargaCuentaViewModel {
 	}
 
 	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
+		this.cuenta = cuenta;		
 	}
 
 	public String getMensajeExito() {
@@ -43,11 +57,11 @@ public class CargaCuentaViewModel {
 		this.mensajeExito = mensajeExito;
 	}
 
-	public Integer getAnio() {
+	public int getAnio() {
 		return anio;
 	}
 
-	public void setAnio(Integer anio) {
+	public void setAnio(int anio) {
 		this.anio = anio;
 	}
 
@@ -57,7 +71,6 @@ public class CargaCuentaViewModel {
 
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
-		this.setHabilitaCarga(true);
 	}
 
 	public List<Empresa> getEmpresas() {
@@ -75,5 +88,13 @@ public class CargaCuentaViewModel {
 	public void setHabilitaCarga(boolean habilitaCarga) {
 		this.habilitaCarga = habilitaCarga;
 	}
-
+	
+	public boolean isHabilitaNueva() {
+		return habilitaNueva;
+	}
+	
+	public void setHabilitaNueva(boolean habilitaNueva) {
+		this.habilitaNueva = habilitaNueva;
+	}
+	
 }

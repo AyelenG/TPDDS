@@ -1,7 +1,8 @@
-package model.exceptions;
+package exceptions;
 
 import org.uqbar.commons.model.UserException;
 
+@SuppressWarnings("serial")
 public class ArchivoConErroresException extends UserException {
 
 	public ArchivoConErroresException(Exception e) {

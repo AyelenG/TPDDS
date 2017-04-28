@@ -27,38 +27,35 @@ public class Empresa {
 		this.agregarPeriodo(periodo);
 		return periodo;
 	}
-
+	
+	public void agregarPeriodos(List<Periodo> periodos) {
+		for (Object peridoObject : periodos) {			
+			Periodo periodo = (Periodo) peridoObject;
+			if (!existePeriodo(periodo))
+				this.agregarPeriodo(periodo);
+			else
+				this.buscarPeriodo(periodo).agregarCuentas(periodo.getCuentas());
+		}
+	}
+	
+	public void agregarPeriodo(Periodo periodo) {
+		periodos.add(periodo);
+	}
+	
 	public Periodo buscarPeriodo(Periodo periodo) {
 		return periodos.stream().filter(_periodo -> _periodo.esIgual(periodo)).findFirst().orElse(null);
-	}
-
-	public void agregarPeriodos(List<Periodo> periodos) {
-		for (Object periodoObject : periodos) {
-			Periodo periodo = (Periodo) periodoObject;
-			if (!existePeriodo(periodo)) {
-				this.agregarPeriodo(periodo);
-			} else {
-				this.buscarPeriodo(periodo).agregarCuentas(periodo.getCuentas());
-			}
-
-		}
 	}
 
 	public boolean existePeriodo(Periodo periodo) {
 		return periodos.stream().anyMatch(_periodo -> _periodo.esIgual(periodo));
 	}
 
-	public void agregarPeriodo(Periodo periodo) {
-		periodos.add(periodo);
-	}
-
 	public boolean esIgual(Empresa empresa) {
 		return this.getSymbol().equals(empresa.getSymbol());
 	}
-
-	@Override
+	
 	public String toString() {
-		return getSymbol() + " " + getNombre();
+		return getSymbol() + " - " + getNombre();
 	}
 
 	public String getSymbol() {
@@ -66,7 +63,7 @@ public class Empresa {
 	}
 
 	public void setSymbol(String symbol) {
-		this.symbol = symbol;
+		this.symbol = symbol.toUpperCase();
 	}
 
 	public String getNombre() {

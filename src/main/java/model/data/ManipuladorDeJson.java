@@ -1,10 +1,13 @@
-package model;
+package model.data;
 
 import java.math.BigDecimal;
 
 import org.json.simple.JSONObject;
 
-import model.exceptions.ArchivoConErroresException;
+import exceptions.ArchivoConErroresException;
+import model.Cuenta;
+import model.Empresa;
+import model.Periodo;
 
 public class ManipuladorDeJson {
 	public static Empresa crearEmpresa(Object jsonEmpresa) {

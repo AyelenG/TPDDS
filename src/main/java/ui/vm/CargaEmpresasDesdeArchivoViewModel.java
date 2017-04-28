@@ -7,26 +7,32 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
-import model.LoaderArchivoCSV;
-import model.LoaderArchivoJSON;
+import model.data.LoaderArchivoCSV;
+import model.data.LoaderArchivoJSON;
 import model.repositories.Repositorios;
+
 
 @Observable
 public class CargaEmpresasDesdeArchivoViewModel {
 
-	private List<String> extensiones = Arrays.asList("*.json", "*.txt");
+	private List<String> extensiones = Arrays.asList("*.json","*.txt","*.csv");
 	private String extensionSeleccionada = extensiones.get(0);
 	private String ruta = "";
 	private String mensajeExito = "";
 	private boolean habilitaSelector = true;
 	private boolean botonCargarCuentas = false;
-
+	private boolean botonCerrar = false;
+	
+	
 	/*****************************************
-	 * Este es el metodo que tiene que ser polimorfico La lista empresas recibe
-	 * lo que le devuelven los manipuladores y los añade al repositorio
+	 * Este es el metodo que tiene que ser polimorfico
+	 * La lista empresas recibe lo que le devuelven los
+	 * manipuladores y los añade al repositorio
 	 */
-	public void cargarCuentas() {
-		List<Empresa> empresas = new LinkedList<>();
+	public void cargarCuentas() {		
+		this.setBotonCargarCuentas(false);
+		this.setBotonCerrar(true);
+		List<Empresa> empresas = new LinkedList<>();		
 		if (extensionSeleccionada.equals(extensiones.get(0))) {
 			/* JSON */
 			LoaderArchivoJSON loaderJSON = new LoaderArchivoJSON(this.ruta);
@@ -39,8 +45,6 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		}
 		/* En este llamado ya esta chequeado los repetidos en el modelo */
 		Repositorios.empresas.agregarEmpresas(empresas);
-		this.setBotonCargarCuentas(false);
-		this.setHabilitaSelector(true);
 		this.setMensajeExito("Carga realizada Exitosamente");
 	}
 
@@ -67,9 +71,9 @@ public class CargaEmpresasDesdeArchivoViewModel {
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
 		this.setHabilitaSelector(false);
-		this.setBotonCargarCuentas(true);
+		this.setBotonCargarCuentas(true);		
 	}
-
+	
 	public boolean isBotonCargarCuentas() {
 		return botonCargarCuentas;
 	}
@@ -84,6 +88,14 @@ public class CargaEmpresasDesdeArchivoViewModel {
 
 	public void setHabilitaSelector(boolean habilitaSelector) {
 		this.habilitaSelector = habilitaSelector;
+	}
+
+	public boolean isBotonCerrar() {
+		return botonCerrar;
+	}
+
+	public void setBotonCerrar(boolean botonCerrar) {
+		this.botonCerrar = botonCerrar;
 	}
 
 	public String getMensajeExito() {

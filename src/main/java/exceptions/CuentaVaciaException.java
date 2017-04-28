@@ -1,7 +1,8 @@
-package model.exceptions;
+package exceptions;
 
 import org.uqbar.commons.model.UserException;
 
+@SuppressWarnings("serial")
 public class CuentaVaciaException extends UserException {
 
 	public CuentaVaciaException() {

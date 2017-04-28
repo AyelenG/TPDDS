@@ -1,4 +1,4 @@
-package model;
+package model.data;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,9 +7,11 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
-import model.exceptions.ArchivoConErroresException;
-import model.exceptions.ErrorCargaException;
-import model.exceptions.RutaIncorrectaException;
+import exceptions.ArchivoConErroresException;
+import exceptions.ErrorCargaException;
+import exceptions.RutaIncorrectaException;
+import model.Empresa;
+
 
 public abstract class LoaderArchivo {
 	private String ruta;
@@ -29,7 +31,7 @@ public abstract class LoaderArchivo {
 			List<Empresa> empresas = this.parse(archivo);
 			return empresas;
 		} catch (ArchivoConErroresException e) {
-			throw e;
+			throw new ArchivoConErroresException(e);
 		} catch (Exception e) {
 			throw new ErrorCargaException(e);
 		} finally {

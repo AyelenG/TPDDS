@@ -1,4 +1,4 @@
-package model;
+package model.data;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,6 +9,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import model.Cuenta;
+import model.Empresa;
+import model.Periodo;
 
 public class LoaderArchivoJSON extends LoaderArchivo {
 

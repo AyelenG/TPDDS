@@ -35,7 +35,12 @@ public class Empresa {
 	public void agregarPeriodos(List<Periodo> periodos) {
 		for (Object periodoObject : periodos) {
 			Periodo periodo = (Periodo) periodoObject;
-			buscarPeriodoYAgregar(periodo).agregarCuentas(periodo.getCuentas()); //simplifica
+			if (!existePeriodo(periodo)) {
+				this.agregarPeriodo(periodo);
+			} else {
+				this.buscarPeriodo(periodo).agregarCuentas(periodo.getCuentas());
+			}
+
 		}
 	}
 

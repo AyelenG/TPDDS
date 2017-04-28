@@ -33,7 +33,7 @@ public class Periodo {
 
 	public void agregarCuentas(List<Cuenta> cuentas) {
 		for (Object cuentaObject : cuentas) {
-			buscarCuentaYAgregarOModificar((Cuenta) cuentaObject); //para cambiarle el valor si la encuentra
+			this.buscarCuentaYAgregarOModificar((Cuenta) cuentaObject); //para cambiarle el valor si la encuentra
 		}
 	}
 

@@ -28,7 +28,7 @@ public class Empresas {
 	}
 
 	public void agregarEmpresa(Empresa empresa) {
-		if(existeEmpresa(empresa)){
+		if (existeEmpresa(empresa)) {
 			throw new EmpresaExistenteException();
 		}
 		this.empresas.add(empresa);

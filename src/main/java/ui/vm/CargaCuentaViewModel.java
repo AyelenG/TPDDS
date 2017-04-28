@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.Observable;
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
+import model.exceptions.CuentaVaciaException;
 import model.repositories.Repositorios;
 
 @Observable
@@ -14,14 +15,16 @@ public class CargaCuentaViewModel {
 	Cuenta cuenta = new Cuenta();
 	private Empresa empresaSeleccionada;
 	private List<Empresa> empresas = Repositorios.empresas.getEmpresas();
-	private int anio;
-	
-	private String mensajeExito = "";
+	private Integer anio;
 	private boolean habilitaCarga = false;
+	private String mensajeExito = "";
 	
 	public void cargarCuenta() {
-		empresaSeleccionada.buscarPeriodoYAgregar(new Periodo(anio)).agregarCuenta(cuenta);
-		this.setMensajeExito("Carga realizada Exitosamente");
+		if(anio == null || cuenta.getNombre() == null || cuenta.getValor() == null){
+			throw new CuentaVaciaException();
+		}
+		empresaSeleccionada.buscarPeriodoYAgregar(new Periodo(anio)).buscarCuentaYAgregarOModificar(cuenta);
+		this.setMensajeExito("Carga realizada Exitosamente"); //si esta la cuenta le cambia el valor, si no la agrega
 	}
 
 	public Cuenta getCuenta() {
@@ -40,11 +43,11 @@ public class CargaCuentaViewModel {
 		this.mensajeExito = mensajeExito;
 	}
 
-	public int getAnio() {
+	public Integer getAnio() {
 		return anio;
 	}
 
-	public void setAnio(int anio) {
+	public void setAnio(Integer anio) {
 		this.anio = anio;
 	}
 
@@ -72,4 +75,5 @@ public class CargaCuentaViewModel {
 	public void setHabilitaCarga(boolean habilitaCarga) {
 		this.habilitaCarga = habilitaCarga;
 	}
+
 }

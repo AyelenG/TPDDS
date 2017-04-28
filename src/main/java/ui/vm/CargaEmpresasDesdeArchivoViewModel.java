@@ -41,6 +41,7 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		/*En este llamado ya esta chequeado los repetidos en el modelo */
 		Repositorios.empresas.agregarEmpresas(empresas);		
 		this.setBotonCargarCuentas(false);
+		this.setHabilitaSelector(true);
 		this.setMensajeExito("Carga realizada Exitosamente");
 	}
 

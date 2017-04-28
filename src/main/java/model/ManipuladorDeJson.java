@@ -21,7 +21,7 @@ public class ManipuladorDeJson {
 	public static Cuenta crearCuenta(Object jsonCuenta) {
 		Cuenta cuenta = new Cuenta();
 		cuenta.setNombre(((JSONObject) jsonCuenta).get("nombreCuenta").toString());
-		cuenta.setValor((new BigDecimal ( (String)((JSONObject) jsonCuenta).get("valor"))));
+		cuenta.setValor((new BigDecimal (((JSONObject) jsonCuenta).get("valor").toString())));
 		return cuenta;
 	}
 }

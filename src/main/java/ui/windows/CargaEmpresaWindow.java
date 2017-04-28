@@ -42,8 +42,13 @@ public class CargaEmpresaWindow  extends SimpleWindow<CargaEmpresaViewModel> {
 			.bindValueToProperty("empresa.nombre");
 
 		new Button(mainPanel).setCaption("Cargar")
-			.onClick(() -> this.getModelObject().cargarEmpresa());
+			.onClick(() -> this.cargarEmpresa());
 		new Label(mainPanel).setForeground(Color.GREEN).bindValueToProperty("mensajeExito");
 		new Label(mainPanel);
+	}
+
+	private void cargarEmpresa() {
+		this.getModelObject().cargarEmpresa();
+		this.close(); //se podria usar para cerrar la ventana automaticamente en lugar del mensaje verde
 	}
 }

@@ -9,43 +9,43 @@
 						"cuentas" : [
 							{
 								"nombreCuenta" : "EBITDA",
-								"valor" : "200"
+								"valor" : 200.999
 							},
 							{
-								"nombreCuenta" : "FDS",
-								"valor" : "500"
+								"nombreCuenta" : "FDSA",
+								"valor" : 500
 							},
 							{
 								"nombreCuenta" : "Free Cash Flow",
-								"valor" : "100"
+								"valor" : 100
 							}
 						]
 					},
 					{
-						"year" : "2011",
+						"year" : "2012",
 						"cuentas" : [
 							{
 								"nombreCuenta" : "EBITDA",
-								"valor" : "500"
+								"valor" : 500
 							},
 							{
 								"nombreCuenta" : "FDS",
-								"valor" : "600"
+								"valor" : 600
 							},
 							{
 								"nombreCuenta" : "Free Cash Flow",
-								"valor" : "300"
+								"valor" : 300
 							}
 						]
 					}
 				]
 			},
 			{
-				"symbol" : "GOOGL",
-				"nombreEmpresa" : "Google",
+				"symbol" : "APL",
+				"nombreEmpresa" : "Apple Inc.",
 				"periodos" : [
 					{
-						"year" : "2000",
+						"year" : 2000,
 						"cuentas" : [
 							{
 								"nombreCuenta" : "Ingresos brutos",
@@ -59,7 +59,7 @@
 						]
 					},
 					{
-						"year" : "2001",
+						"year" : 2001,
 						"cuentas" : [
 							{
 								"nombreCuenta" : "EBITDA",
@@ -80,15 +80,15 @@
 						"cuentas" : [
 							{
 								"nombreCuenta" : "Ingresos brutos",
-								"valor" : "-500"
+								"valor" : -500
 							},
 							{
 								"nombreCuenta" : "FDS",
-								"valor" : "698.87"
+								"valor" : 698.87
 							},
 							{
 								"nombreCuenta" : "EBITDA",
-								"valor" : "890"
+								"valor" : 0
 							}
 						]
 					}

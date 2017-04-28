@@ -2,7 +2,6 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -11,47 +10,39 @@ public class Empresa {
 	private String symbol;
 	private String nombre;
 	private List<Periodo> periodos = new LinkedList<>();
-	
+
 	public Empresa() {
 
 	}
 
-	public Empresa(String symbol, String nombrenombre) {
-		super();
+	public Empresa(String symbol, String nombre) {
 		this.symbol = symbol;
-		this.nombre = nombrenombre;
+		this.nombre = nombre;
 	}
 
 	public Periodo buscarPeriodoYAgregar(Periodo periodo) {
-		Optional<Periodo> periodoEncontrado = periodos.stream().filter(_periodo -> _periodo.esIgual(periodo)).findFirst();		
-		if (periodoEncontrado.isPresent())
-			return periodoEncontrado.get();
-		Periodo periodoNuevo = new Periodo(periodo.getAnio());
-		this.agregarPeriodo(periodoNuevo);
-		return periodoNuevo;
+		Periodo periodoEncontrado = this.buscarPeriodo(periodo);
+		if (periodoEncontrado != null)
+			return periodoEncontrado;
+		this.agregarPeriodo(periodo);
+		return periodo;
 	}
 
-	public boolean existePeriodo(Periodo periodo){
-		return periodos.stream().anyMatch(_periodo -> _periodo.esIgual(periodo));		
+	public Periodo buscarPeriodo(Periodo periodo) {
+		return periodos.stream().filter(_periodo -> _periodo.esIgual(periodo)).findFirst().orElse(null);
 	}
-	
+
 	public void agregarPeriodos(List<Periodo> periodos) {
-		for (Object peridodoObject : periodos) {			
-			Periodo periodo = (Periodo) peridodoObject;
-			if (!existePeriodo(periodo)) {
-				this.agregarPeriodo(periodo);
-			}
-			else {
-				this.buscarPeriodo(periodo).agregarCuentas(periodo.getCuentas());
-			}
+		for (Object periodoObject : periodos) {
+			Periodo periodo = (Periodo) periodoObject;
+			buscarPeriodoYAgregar(periodo).agregarCuentas(periodo.getCuentas()); //simplifica
 		}
-	}	
-	
-	public Periodo buscarPeriodo(Periodo periodo){
-		Optional<Periodo> periodoEncontrado = periodos.stream().filter(_periodo -> _periodo.esIgual(periodo)).findFirst();
-		return periodoEncontrado.isPresent() ? periodoEncontrado.get() : null;
 	}
-	
+
+	public boolean existePeriodo(Periodo periodo) {
+		return periodos.stream().anyMatch(_periodo -> _periodo.esIgual(periodo));
+	}
+
 	public void agregarPeriodo(Periodo periodo) {
 		periodos.add(periodo);
 	}
@@ -64,7 +55,7 @@ public class Empresa {
 	public String toString() {
 		return getSymbol() + " " + getNombre();
 	}
-	
+
 	public String getSymbol() {
 		return symbol;
 	}

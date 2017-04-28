@@ -20,11 +20,14 @@ public class Cuenta {
 	}
 	
 	public boolean esIgual(Cuenta cuenta) {
-		return this.getNombre().equals(cuenta.getNombre()) && this.getValor().equals(cuenta.getValor());
-	}
+		return this.getNombre().equals(cuenta.getNombre());// && this.getValor().equals(cuenta.getValor());
+	} //para mi es igual solo si el nombre coincide, 
+	 //asi si se quiere agregar una cuenta con el mismo nombre pero distinto valor
+	 //no las agrega varias veces,actualiza el valor
 	
+	@Override
 	public String toString(){
-		return this.nombre;
+		return getNombre();
 	}
 	
 	public Cuenta(String nombre) {

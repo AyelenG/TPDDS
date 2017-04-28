@@ -5,6 +5,6 @@ import org.uqbar.commons.model.UserException;
 public class EmpresaExistenteException extends UserException {
 
 	public EmpresaExistenteException() {
-		super("Ya existe esta empresa");
+		super("Ya existe esta empresa.");
 	}
 }

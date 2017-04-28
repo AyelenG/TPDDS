@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>dds-2017-grupo-12</groupId>
-	<artifactId>TPA</artifactId>
+	<groupId>2017-jm-group-12</groupId>
+	<artifactId>2017-jm-group-12</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<dependencies>
@@ -16,11 +16,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -45,4 +40,3 @@
 	</build>
 
 </project>
->>>>>>> branch 'master' of https://github.com/JPfx/dds-2017-tp0.git

@@ -1,0 +1,14 @@
+[  
+    {  
+		"ticker":"PBR",
+		"nombre":"Petrobras Brasil"
+    },
+    {  
+		"ticker":"YPF",
+		"nombre":"Yacimientos Petroliferos Fiscales SA"
+    },
+	{  
+		"ticker":"EDN",
+		"nombre":"Edenor SA"
+    }
+]

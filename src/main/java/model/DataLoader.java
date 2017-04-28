@@ -5,15 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
 
 import model.exceptions.ErrorCargaException;
 import model.exceptions.RutaIncorrectaException;
-import model.repositories.EmpresasRepository;
 import model.repositories.Repositorios;
 
 public class DataLoader {
 
-	private static final EmpresasRepository empresas = Repositorios.empresasRepo;
+	private List<Empresa> empresas = new LinkedList<>();
 
 	private static enum Registro {
 		EMPRESA(0), CUENTA(1), PERIODO(2), VALOR(3);
@@ -29,26 +30,26 @@ public class DataLoader {
 		}
 	}
 
-	public static void cargarDatosDesdeArchivo(String archivo) {
+	public static void cargarDatosDesdeArchivo(String ruta) {
 
 		String linea;
 		FileReader f;
 
 		try {
-			f = new FileReader(archivo);
+			f = new FileReader(ruta);
 		} catch (FileNotFoundException e) {
-			throw new RutaIncorrectaException();
+			throw new RutaIncorrectaException(e);
 		}
 		BufferedReader b = new BufferedReader(f);
 		try {
 			while ((linea = b.readLine()) != null) {
 				String[] campos = linea.split(",");
-				Empresa empresa = obtenerEmpresaDesdeLinea(campos);
-				crearOModificarCuentaDesdeLinea(empresa, campos);
+	//			Empresa empresa = obtenerEmpresaDesdeLinea(campos);
+	//			crearOModificarCuentaDesdeLinea(empresa, campos);
 			}
 			b.close();
 		} catch (IOException e) {
-			throw new ErrorCargaException();
+			throw new ErrorCargaException(e);
 		}
 	}
 
@@ -64,26 +65,18 @@ public class DataLoader {
 		} catch (NumberFormatException e) {
 			return;
 		}
-		Periodo periodo = empresa.buscarPeriodo(año);
-		if(periodo == null){
-			periodo = new Periodo(año);
-			empresa.agregarPeriodo(periodo);
-		}
-		Cuenta cuenta = periodo.buscarCuenta(nombreCuenta);
-		if(cuenta == null){
-			cuenta = new Cuenta(nombreCuenta);
-			periodo.agregarCuenta(cuenta);
-		}
-		cuenta.setValor(valor);
+	//	Periodo periodo = empresa.buscarPeriodoYAgregar(año);
+	//	Cuenta cuenta = periodo.buscarCuentaYAgregar(nombreCuenta);
+	//	cuenta.setValor(valor);
 	}
-
+/*
 	private static Empresa obtenerEmpresaDesdeLinea(String[] campos) {
 		String nombreEmpresa = campos[Registro.EMPRESA.getIndex()].trim();
 		Empresa empresa = empresas.buscarEmpresa(nombreEmpresa);
 		if(empresa == null){
 			empresa = new Empresa(nombreEmpresa);
-			empresas.agregarEmpresa(empresa);
+			empresas.a(empresa);
 		}
 		return empresa;
-	}
+	}*/
 }

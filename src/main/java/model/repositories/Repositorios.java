@@ -1,7 +1,7 @@
 package model.repositories;
 
-import model.repositories.EmpresasRepository;
+import model.Empresas;
 
 public class Repositorios {
-	public static EmpresasRepository empresasRepo = new EmpresasRepository();
+	public static Empresas empresas = new Empresas();
 }

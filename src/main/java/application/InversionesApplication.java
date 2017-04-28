@@ -1,8 +1,7 @@
 package application;
 
 import org.uqbar.arena.Application;
-
-import ui.windows.CargarArchivoYConsultarCuentasWindow;
+import ui.windows.InicioWindow;
 
 public class InversionesApplication extends Application {
 
@@ -12,8 +11,8 @@ public class InversionesApplication extends Application {
 	}
 
 	@Override
-	protected CargarArchivoYConsultarCuentasWindow createMainWindow() {
-		return new CargarArchivoYConsultarCuentasWindow(this);
+	protected InicioWindow createMainWindow() {
+		return new InicioWindow(this);
 	}
 
 }

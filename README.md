@@ -1,2 +1,4 @@
-# 2017-jm-group-12
-Repositorio de TPs del grupo 12
+# Diseño de Sistemas
+## 2017 - TP Anual
+## Jueves Mañana
+## Grupo 12

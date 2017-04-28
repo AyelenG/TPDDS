@@ -1,49 +1,28 @@
 package ui.vm;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
-import model.DataLoader;
 import model.Empresa;
 import model.Periodo;
-import model.exceptions.ErrorConsultaException;
 import model.repositories.Repositorios;
 
 @Observable
-public class CargarArchivoYConsultarCuentasViewModel {
-	private String ruta = "";
-	private boolean botonCargarDatos = true;
-	private boolean botonConsultarCuentas = false;
-	private boolean selectorPeriodo = false;
-	private List<Empresa> empresas = Repositorios.empresasRepo.getEmpresas();
+public class AnalisisViewModel {
+	private List<Empresa> empresas = Repositorios.empresas.getEmpresas();
 	private Empresa empresaSeleccionada;
 	private List<Periodo> periodosSeleccionados;
 	private Periodo periodoSeleccionado;
 	private List<Cuenta> cuentasSeleccionadas;
+	
+	private boolean selectorPeriodo = false;
+	private boolean botonConsultarCuentas = false;
 
-	public void cargarCuentas() {
-
-		DataLoader.cargarDatosDesdeArchivo(ruta);
-		this.setEmpresas(Repositorios.empresasRepo.getEmpresas().stream().sorted().collect(Collectors.toList()));
-		this.setBotonCargarDatos(false);
-	}
 
 	public void consultarCuentas() {
-		if(periodoSeleccionado == null){
-			throw new ErrorConsultaException();
-		}
-		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas().stream().sorted().collect(Collectors.toList()));
-	}
-
-	public String getRuta() {
-		return ruta;
-	}
-
-	public void setRuta(String ruta) {
-		this.ruta = ruta;
+		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas());
 	}
 
 	public List<Cuenta> getCuentas() {
@@ -55,7 +34,7 @@ public class CargarArchivoYConsultarCuentasViewModel {
 	}
 
 	public void setEmpresas(List<Empresa> empresas) {
-		this.empresas = empresas;
+		this.empresas = empresas;		
 	}
 
 	public Empresa getEmpresaSeleccionada() {
@@ -64,8 +43,9 @@ public class CargarArchivoYConsultarCuentasViewModel {
 
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
-		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos().stream().sorted().collect(Collectors.toList()));
+		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos());
 		this.setSelectorPeriodo(true);
+		this.setBotonConsultarCuentas(false);
 	}
 
 	public List<Periodo> getPeriodosSeleccionados() {
@@ -93,12 +73,12 @@ public class CargarArchivoYConsultarCuentasViewModel {
 		this.cuentasSeleccionadas = cuentas;
 	}
 
-	public boolean isBotonCargarDatos() {
-		return botonCargarDatos;
+	public boolean isSelectorPeriodo() {
+		return selectorPeriodo;
 	}
 
-	public void setBotonCargarDatos(boolean botonCargarDatos) {
-		this.botonCargarDatos = botonCargarDatos;
+	public void setSelectorPeriodo(boolean selectorPeriodo) {
+		this.selectorPeriodo = selectorPeriodo;
 	}
 
 	public boolean isBotonConsultarCuentas() {
@@ -107,14 +87,6 @@ public class CargarArchivoYConsultarCuentasViewModel {
 
 	public void setBotonConsultarCuentas(boolean botonConsultarCuentas) {
 		this.botonConsultarCuentas = botonConsultarCuentas;
-	}
-
-	public boolean isSelectorPeriodo() {
-		return selectorPeriodo;
-	}
-
-	public void setSelectorPeriodo(boolean selectorPeriodo) {
-		this.selectorPeriodo = selectorPeriodo;
 	}
 
 }

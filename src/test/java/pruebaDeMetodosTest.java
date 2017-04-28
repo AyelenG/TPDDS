@@ -11,10 +11,11 @@ public class pruebaDeMetodosTest {
 	private Periodo periodo;
 	private Cuenta fds;
 	private Cuenta EDITBA;
-
+/*
 	@Before
 	public void inicio() {
-		this.empresa = new Empresa("Metrogas");
+		this.empresa = new Empresa();
+		this.empresa.setNombreEmpresa("Metrogas");
 		this.periodo = new Periodo(2017);
 		this.fds = new Cuenta("FDS");
 		this.EDITBA = new Cuenta("EDITBA");
@@ -29,12 +30,8 @@ public class pruebaDeMetodosTest {
 	}
 
 	@Test
-	public void verificarBuscarCuentaSiNoEsta() {
-		Assert.assertEquals(null, periodo.buscarCuenta("Free Cash Flow"));
+	public void verificarBuscarCuentaYAgregarSiNoEsta() {
+		Assert.assertEquals(fds, periodo.buscarCuentaYAgregar("FDS"));
 	}
-
-	@Test
-	public void verificarBuscarCuentaSiEsta() {
-		Assert.assertEquals(fds, periodo.buscarCuenta("FDS"));
-	}
+*/
 }

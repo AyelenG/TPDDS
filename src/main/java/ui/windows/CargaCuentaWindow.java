@@ -73,7 +73,10 @@ public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 		nfValor.setWidth(200);
 		nfValor.bindValueToProperty("cuenta.valor");
 		nfValor.bindEnabledToProperty("habilitaCarga");
-		new Label(mainPanel).setForeground(Color.GREEN).bindValueToProperty("mensajeExito");
+		Label labelExito = new Label(mainPanel);
+		labelExito.setForeground(Color.GREEN);
+		labelExito.setText("Carga realizada Exitosamente");
+		labelExito.bindVisibleToProperty("habilitaNueva");
 		new Label(mainPanel);
 	}
 }

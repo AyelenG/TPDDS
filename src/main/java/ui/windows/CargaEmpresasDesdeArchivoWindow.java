@@ -49,7 +49,10 @@ public class CargaEmpresasDesdeArchivoWindow  extends SimpleWindow<CargaEmpresas
 			.setCaption("Cargar")
 			.onClick(() -> this.getModelObject().cargarCuentas())
 			.bindEnabledToProperty("botonCargarCuentas");
-		new Label(mainPanel).setForeground(Color.GREEN).bindValueToProperty("mensajeExito");
+		Label labelExito = new Label(mainPanel);
+		labelExito.setForeground(Color.GREEN);
+		labelExito.setText("Carga realizada Exitosamente");
+		labelExito.bindVisibleToProperty("botonCerrar");
 		new Button(mainPanel)
 			.setCaption("Cerrar")
 			.onClick(() -> this.close())

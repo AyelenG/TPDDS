@@ -41,17 +41,15 @@ public class Periodo {
 */
 	
 	public void agregarCuentas(List<Cuenta> cuentas) {
-		for (Object cuentaObject : cuentas) {			
-			Cuenta cuenta = (Cuenta) cuentaObject;
-			if (!existeCuenta(cuenta))
-				this.agregarCuenta(cuenta);
-			else
-				this.buscarCuenta(cuenta).setValor(cuenta.getValor());
-		}					
+		for (Object cuentaObject : cuentas)
+			this.agregarCuenta((Cuenta) cuentaObject);
 	}	
 	
 	public void agregarCuenta(Cuenta cuenta) {
-		cuentas.add(cuenta);
+		if (!existeCuenta(cuenta))
+			cuentas.add(cuenta);
+		else
+			this.buscarCuenta(cuenta).setValor(cuenta.getValor());
 	}
 	
 	public Cuenta buscarCuenta(Cuenta cuenta) {

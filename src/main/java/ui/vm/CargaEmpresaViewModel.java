@@ -10,13 +10,11 @@ import model.repositories.Repositorios;
 public class CargaEmpresaViewModel {
 
 	Empresa empresa = new Empresa();
-	private String mensajeExito = "";
 	private boolean habilitaCarga = true;
 	private boolean habilitaNueva = false;
 	
 	public void nuevaEmpresa() {		
 		this.setEmpresa(new Empresa());
-		this.setMensajeExito("");		
 		this.setHabilitaCarga(true);
 		this.setHabilitaNueva(false);
 	}
@@ -28,7 +26,6 @@ public class CargaEmpresaViewModel {
 			throw new UserException("Complete los datos de la empresa.");
 		}
 		Repositorios.empresas.agregarEmpresa(empresa);
-		this.setMensajeExito("Carga realizada Exitosamente");
 		this.setHabilitaCarga(false);
 		this.setHabilitaNueva(true);
 	}
@@ -39,14 +36,6 @@ public class CargaEmpresaViewModel {
 
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
-	}
-
-	public String getMensajeExito() {
-		return mensajeExito;
-	}
-
-	public void setMensajeExito(String mensajeExito) {
-		this.mensajeExito = mensajeExito;
 	}
 
 	public boolean isHabilitaCarga() {

@@ -18,7 +18,6 @@ public class CargaEmpresasDesdeArchivoViewModel {
 	private List<String> extensiones = Arrays.asList("*.json","*.txt","*.csv");
 	private String extensionSeleccionada = extensiones.get(0);
 	private String ruta = "";
-	private String mensajeExito = "";
 	private boolean habilitaSelector = true;
 	private boolean botonCargarCuentas = false;
 	private boolean botonCerrar = false;
@@ -45,7 +44,6 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		}
 		/* En este llamado ya esta chequeado los repetidos en el modelo */
 		Repositorios.empresas.agregarEmpresas(empresas);
-		this.setMensajeExito("Carga realizada Exitosamente");
 	}
 
 	public List<String> getExtensiones() {
@@ -97,13 +95,5 @@ public class CargaEmpresasDesdeArchivoViewModel {
 	public void setBotonCerrar(boolean botonCerrar) {
 		this.botonCerrar = botonCerrar;
 	}
-
-	public String getMensajeExito() {
-		return mensajeExito;
-	}
-
-	public void setMensajeExito(String mensajeExito) {
-		this.mensajeExito = mensajeExito;
-	}
-
+	
 }

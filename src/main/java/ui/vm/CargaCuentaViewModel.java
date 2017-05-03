@@ -16,16 +16,14 @@ public class CargaCuentaViewModel {
 	private Empresa empresaSeleccionada;
 	private List<Empresa> empresas = Repositorios.empresas.getEmpresas();
 	private int anio;
-	
-	private String mensajeExito = "";
+
 	private boolean habilitaCarga = true;
 	private boolean habilitaNueva = false;
-	
+
 	public void nuevaCuenta() {		
 		this.setCuenta(new Cuenta());
-		this.setMensajeExito("");
 		this.setHabilitaCarga(true);
-		this.setHabilitaNueva(false);		
+		this.setHabilitaNueva(false);
 	}
 	
 	public void cargarCuenta() {
@@ -36,7 +34,6 @@ public class CargaCuentaViewModel {
 		if ( anio < 1000 || anio > 3000)
 			throw new UserException("Ingrese un período valido.");	
 		empresaSeleccionada.buscarPeriodoYAgregar(new Periodo(anio)).agregarCuenta(cuenta);
-		this.setMensajeExito("Carga realizada Exitosamente");
 		this.setHabilitaCarga(false);
 		this.setHabilitaNueva(true);
 	}
@@ -47,14 +44,6 @@ public class CargaCuentaViewModel {
 
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;		
-	}
-
-	public String getMensajeExito() {
-		return mensajeExito;
-	}
-
-	public void setMensajeExito(String mensajeExito) {
-		this.mensajeExito = mensajeExito;
 	}
 
 	public int getAnio() {

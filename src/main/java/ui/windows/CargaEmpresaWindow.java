@@ -33,7 +33,7 @@ public class CargaEmpresaWindow  extends SimpleWindow<CargaEmpresaViewModel> {
 		datosPanel.setLayout(new ColumnLayout(2));
 		
 		new Label(datosPanel).setText("Simbolo");
-		TextBox tbSymbol = new TextBox(datosPanel);			
+		TextBox tbSymbol = new TextBox(datosPanel);
 		tbSymbol.bindValueToProperty("empresa.symbol");
 		tbSymbol.bindEnabledToProperty("habilitaCarga");
 		
@@ -47,7 +47,10 @@ public class CargaEmpresaWindow  extends SimpleWindow<CargaEmpresaViewModel> {
 			.setCaption("Cargar")
 			.onClick(() -> this.getModelObject().cargarEmpresa())
 			.bindEnabledToProperty("habilitaCarga");
-		new Label(mainPanel).setForeground(Color.GREEN).bindValueToProperty("mensajeExito");
+		Label labelExito = new Label(mainPanel);
+		labelExito.setForeground(Color.GREEN);
+		labelExito.setText("Carga realizada Exitosamente");
+		labelExito.bindVisibleToProperty("habilitaNueva");
 		new Button(mainPanel)
 			.setCaption("Nueva Empresa")
 			.onClick(() -> this.getModelObject().nuevaEmpresa())

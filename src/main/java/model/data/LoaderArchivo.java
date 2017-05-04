@@ -31,7 +31,7 @@ public abstract class LoaderArchivo {
 			List<Empresa> empresas = this.parse(archivo);
 			return empresas;
 		} catch (ArchivoConErroresException e) {
-			throw new ArchivoConErroresException(e);
+			throw e;
 		} catch (Exception e) {
 			throw new ErrorCargaException(e);
 		} finally {

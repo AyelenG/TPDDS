@@ -11,27 +11,22 @@ import model.data.LoaderArchivoCSV;
 import model.data.LoaderArchivoJSON;
 import model.repositories.Repositorios;
 
-
 @Observable
 public class CargaEmpresasDesdeArchivoViewModel {
 
-	private List<String> extensiones = Arrays.asList("*.json","*.txt","*.csv");
+	private List<String> extensiones = Arrays.asList("*.json", "*.txt", "*.csv");
 	private String extensionSeleccionada = extensiones.get(0);
 	private String ruta = "";
 	private boolean habilitaSelector = true;
 	private boolean botonCargarCuentas = false;
 	private boolean botonCerrar = false;
-	
-	
+
 	/*****************************************
-	 * Este es el metodo que tiene que ser polimorfico
-	 * La lista empresas recibe lo que le devuelven los
-	 * manipuladores y los añade al repositorio
+	 * Este es el metodo que tiene que ser polimorfico La lista empresas recibe
+	 * lo que le devuelven los manipuladores y los añade al repositorio
 	 */
-	public void cargarCuentas() {		
-		this.setBotonCargarCuentas(false);
-		this.setBotonCerrar(true);
-		List<Empresa> empresas = new LinkedList<>();		
+	public void cargarCuentas() {
+		List<Empresa> empresas = new LinkedList<>();
 		if (extensionSeleccionada.equals(extensiones.get(0))) {
 			/* JSON */
 			LoaderArchivoJSON loaderJSON = new LoaderArchivoJSON(this.ruta);
@@ -44,6 +39,9 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		}
 		/* En este llamado ya esta chequeado los repetidos en el modelo */
 		Repositorios.empresas.agregarEmpresas(empresas);
+		this.setHabilitaSelector(false);
+		this.setBotonCargarCuentas(false);
+		this.setBotonCerrar(true);
 	}
 
 	public List<String> getExtensiones() {
@@ -68,10 +66,9 @@ public class CargaEmpresasDesdeArchivoViewModel {
 
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
-		this.setHabilitaSelector(false);
-		this.setBotonCargarCuentas(true);		
+		this.setBotonCargarCuentas(true);
 	}
-	
+
 	public boolean isBotonCargarCuentas() {
 		return botonCargarCuentas;
 	}
@@ -95,5 +92,5 @@ public class CargaEmpresasDesdeArchivoViewModel {
 	public void setBotonCerrar(boolean botonCerrar) {
 		this.botonCerrar = botonCerrar;
 	}
-	
+
 }

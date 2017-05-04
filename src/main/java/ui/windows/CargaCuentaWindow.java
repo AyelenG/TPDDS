@@ -19,8 +19,8 @@ import ui.vm.CargaCuentaViewModel;
 @SuppressWarnings("serial")
 public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 	
-	public CargaCuentaWindow(WindowOwner parent) {
-		super(parent, new CargaCuentaViewModel());
+	public CargaCuentaWindow(WindowOwner parent, Empresa empresaSeleccionada) {
+		super(parent, new CargaCuentaViewModel(empresaSeleccionada));
 	}
 	
 	@Override
@@ -67,12 +67,12 @@ public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 		nfAnio.bindEnabledToProperty("habilitaCarga");
 		TextBox tbNombre = new TextBox(cuentasPanel);		
 		tbNombre.setWidth(200);
-		tbNombre.bindValueToProperty("cuenta.nombre");
+		tbNombre.bindValueToProperty("nombre");
 		tbNombre.bindEnabledToProperty("habilitaCarga");
-		NumericField nfValor = new NumericField(cuentasPanel);
-		nfValor.setWidth(200);
-		nfValor.bindValueToProperty("cuenta.valor");
-		nfValor.bindEnabledToProperty("habilitaCarga");
+		TextBox tbValor = new TextBox(cuentasPanel);
+		tbValor.setWidth(200);
+		tbValor.bindValueToProperty("valor");
+		tbValor.bindEnabledToProperty("habilitaCarga");
 		Label labelExito = new Label(mainPanel);
 		labelExito.setForeground(Color.GREEN);
 		labelExito.setText("Carga realizada Exitosamente");

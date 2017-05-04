@@ -11,7 +11,6 @@ import model.repositories.Repositorios;
 
 @Observable
 public class AnalisisViewModel {
-	private List<Empresa> empresas = Repositorios.empresas.getEmpresas();
 	private Empresa empresaSeleccionada;
 	private List<Periodo> periodosSeleccionados;
 	private Periodo periodoSeleccionado;
@@ -25,16 +24,8 @@ public class AnalisisViewModel {
 		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas());
 	}
 
-	public List<Cuenta> getCuentas() {
-		return cuentasSeleccionadas;
-	}
-
 	public List<Empresa> getEmpresas() {
-		return empresas;
-	}
-
-	public void setEmpresas(List<Empresa> empresas) {
-		this.empresas = empresas;		
+		return Repositorios.empresas.getEmpresas();
 	}
 
 	public Empresa getEmpresaSeleccionada() {

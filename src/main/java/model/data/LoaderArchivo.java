@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-import org.json.simple.parser.ParseException;
-
 import exceptions.ArchivoConErroresException;
 import exceptions.ErrorCargaException;
 import exceptions.RutaIncorrectaException;
@@ -43,5 +41,5 @@ public abstract class LoaderArchivo {
 		}
 	}
 
-	protected abstract List<Empresa> parse(FileReader archivo) throws IOException, ParseException;
+	protected abstract List<Empresa> parse(FileReader archivo) throws IOException;
 }

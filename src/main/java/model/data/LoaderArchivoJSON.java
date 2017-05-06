@@ -4,8 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.simple.parser.ParseException;
 import model.Empresa;
+
 import org.codehaus.jackson.map.ObjectMapper;
 
 
@@ -16,7 +16,7 @@ public class LoaderArchivoJSON extends LoaderArchivo {
 	}
 	
 	@Override
-	protected List<Empresa> parse(FileReader archivo) throws IOException, ParseException {
+	protected List<Empresa> parse(FileReader archivo) throws IOException {
 				
 		ObjectMapper mapper = new ObjectMapper();
 		ArrayList<Empresa> empresas = mapper.readValue(new BufferedReader(archivo),

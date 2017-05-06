@@ -3,6 +3,7 @@ package ui.vm;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
@@ -20,7 +21,6 @@ public class CargaCuentaViewModel {
 	private int anio;
 
 	private boolean habilitaCarga = true;
-	private boolean habilitaNueva = false;
 
 	public CargaCuentaViewModel(Empresa empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
@@ -30,7 +30,6 @@ public class CargaCuentaViewModel {
 		this.setNombre("");
 		this.setValor("");
 		this.setHabilitaCarga(true);
-		this.setHabilitaNueva(false);
 	}
 
 	public void cargarCuenta() {
@@ -48,7 +47,6 @@ public class CargaCuentaViewModel {
 		}
 		empresaSeleccionada.buscarPeriodoYAgregar(new Periodo(anio)).agregarCuenta(new Cuenta(this.getNombre(), valor));
 		this.setHabilitaCarga(false);
-		this.setHabilitaNueva(true);
 	}
 
 	public String getNombre() {
@@ -93,14 +91,11 @@ public class CargaCuentaViewModel {
 
 	public void setHabilitaCarga(boolean habilitaCarga) {
 		this.habilitaCarga = habilitaCarga;
+		ObservableUtils.firePropertyChanged(this, "habilitaNueva");
 	}
 
 	public boolean isHabilitaNueva() {
-		return habilitaNueva;
-	}
-
-	public void setHabilitaNueva(boolean habilitaNueva) {
-		this.habilitaNueva = habilitaNueva;
+		return !habilitaCarga;
 	}
 
 }

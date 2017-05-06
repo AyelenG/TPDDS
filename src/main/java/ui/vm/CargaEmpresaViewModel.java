@@ -1,5 +1,6 @@
 package ui.vm;
 
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
@@ -11,14 +12,12 @@ public class CargaEmpresaViewModel {
 
 	Empresa empresa = new Empresa();
 	private boolean habilitaCarga = true;
-	private boolean habilitaNueva = false;
-	
+
 	public void nuevaEmpresa() {		
 		this.setEmpresa(new Empresa());
 		this.setHabilitaCarga(true);
-		this.setHabilitaNueva(false);
 	}
-	
+
 	public void cargarEmpresa() {		
 		if (Repositorios.empresas.existeEmpresa(empresa))
 			throw new UserException("La empresa ingresada ya existe.");
@@ -27,7 +26,6 @@ public class CargaEmpresaViewModel {
 		}
 		Repositorios.empresas.agregarEmpresa(empresa);
 		this.setHabilitaCarga(false);
-		this.setHabilitaNueva(true);
 	}
 	
 	public Empresa getEmpresa() {
@@ -44,14 +42,11 @@ public class CargaEmpresaViewModel {
 
 	public void setHabilitaCarga(boolean habilitaCarga) {
 		this.habilitaCarga = habilitaCarga;
+		ObservableUtils.firePropertyChanged(this, "habilitaNueva");
 	}
 
 	public boolean isHabilitaNueva() {
-		return habilitaNueva;
-	}
-
-	public void setHabilitaNueva(boolean habilitaNueva) {
-		this.habilitaNueva = habilitaNueva;
+		return !habilitaCarga;
 	}
 
 }

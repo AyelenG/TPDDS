@@ -1,98 +1,95 @@
-{
-	"empresas": [
+[
+	{
+		"symbol": "FB",
+		"nombre": "Facebook",
+		"periodos": [
 			{
-				"symbol" : "FB",
-				"nombreEmpresa" : "Facebook",
-				"periodos" : [
+				"anio": "2010",
+				"cuentas": [
 					{
-						"year" : "2010",
-						"cuentas" : [
-							{
-								"nombreCuenta" : "EBITDA",
-								"valor" : "200"
-							},
-							{
-								"nombreCuenta" : "FDS",
-								"valor" : "500"
-							},
-							{
-								"nombreCuenta" : "Free Cash Flow",
-								"valor" : "100"
-							}
-						]
+						"nombre": "EBITDA",
+						"valor": "200"
 					},
 					{
-						"year" : "2011",
-						"cuentas" : [
-							{
-								"nombreCuenta" : "EBITDA",
-								"valor" : "500"
-							},
-							{
-								"nombreCuenta" : "FDS",
-								"valor" : "600"
-							},
-							{
-								"nombreCuenta" : "Free Cash Flow",
-								"valor" : "300"
-							}
-						]
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
 					}
 				]
 			},
 			{
-				"symbol" : "GOOGL",
-				"nombreEmpresa" : "Google",
-				"periodos" : [
+				"anio": "2011",
+				"cuentas": [
 					{
-						"year" : "2000",
-						"cuentas" : [
-							{
-								"nombreCuenta" : "Ingresos brutos",
-								"valor" : "-500"
-							},
-							{
-								"nombreCuenta" : "FDS",
-								"valor" : "698.87"
-							}
-							
-						]
+						"nombre": "EBITDA",
+						"valor": "500"
 					},
 					{
-						"year" : "2001",
-						"cuentas" : [
-							{
-								"nombreCuenta" : "EBITDA",
-								"valor" : "98700"
-							},
-							{
-								"nombreCuenta" : "FDS",
-								"valor" : "10"
-							},
-							{
-								"nombreCuenta" : "Free Cash Flow",
-								"valor" : "350"
-							}
-						]
+						"nombre": "FDS",
+						"valor": "600"
 					},
 					{
-						"year" : "2002",
-						"cuentas" : [
-							{
-								"nombreCuenta" : "Ingresos brutos",
-								"valor" : "-500"
-							},
-							{
-								"nombreCuenta" : "FDS",
-								"valor" : "698.87"
-							},
-							{
-								"nombreCuenta" : "EBITDA",
-								"valor" : "890"
-							}
-						]
+						"nombre": "Free Cash Flow",
+						"valor": "300"
 					}
-				]	
+				]
 			}
-	]
-}
+		]
+	},
+	{
+		"symbol": "GOOGL",
+		"nombre": "Google",
+		"periodos": [
+			{
+				"anio": "2000",
+				"cuentas": [
+					{
+						"nombre": "Ingresos brutos",
+						"valor": "-500"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "698.87"
+					}
+				]
+			},
+			{
+				"anio": "2001",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "98700"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "10"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "350"
+					}
+				]
+			},
+			{
+				"anio": "2002",
+				"cuentas": [
+					{
+						"nombre": "Ingresos brutos",
+						"valor": "-500"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "698.87"
+					},
+					{
+						"nombre": "EBITDA",
+						"valor": "890"
+					}
+				]
+			}
+		]
+	}
+]

@@ -49,7 +49,12 @@ public class Empresa {
 	public boolean existePeriodo(Periodo periodo) {
 		return periodos.stream().anyMatch(_periodo -> _periodo.esIgual(periodo));
 	}
-
+	
+	/* Agrega una cuenta en el periodo correspondiente, si no existe el periodo en la empresa lo agrega */
+	public void agregarCuenta(Periodo periodo, Cuenta cuenta) {
+		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
+	}
+	
 	public boolean esIgual(Empresa empresa) {
 		return this.getSymbol().equals(empresa.getSymbol());
 	}

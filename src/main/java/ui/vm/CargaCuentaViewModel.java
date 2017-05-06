@@ -45,7 +45,7 @@ public class CargaCuentaViewModel {
 		} catch (NumberFormatException e) {
 			throw new UserException("Debe ingresar un valor válido.");
 		}
-		empresaSeleccionada.buscarPeriodoYAgregar(new Periodo(anio)).agregarCuenta(new Cuenta(this.getNombre(), valor));
+		empresaSeleccionada.agregarCuenta(new Periodo(anio), new Cuenta(this.getNombre(), valor));
 		this.setHabilitaCarga(false);
 	}
 

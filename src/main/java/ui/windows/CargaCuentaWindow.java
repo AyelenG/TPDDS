@@ -14,13 +14,14 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.Empresa;
+import ui.vm.AnalisisViewModel;
 import ui.vm.CargaCuentaViewModel;
 
 @SuppressWarnings("serial")
 public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 	
-	public CargaCuentaWindow(WindowOwner parent, Empresa empresaSeleccionada) {
-		super(parent, new CargaCuentaViewModel(empresaSeleccionada));
+	public CargaCuentaWindow(WindowOwner parent, AnalisisViewModel parentVM) {
+		super(parent, new CargaCuentaViewModel(parentVM));
 	}
 	
 	@Override

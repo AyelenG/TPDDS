@@ -19,11 +19,14 @@ public class CargaCuentaViewModel {
 	private String nombre = "";
 	private String valor = "";
 	private int anio;
-
 	private boolean habilitaCarga = true;
+	private AnalisisViewModel analisisVM;
 
-	public CargaCuentaViewModel(Empresa empresaSeleccionada) {
-		this.empresaSeleccionada = empresaSeleccionada;
+	public CargaCuentaViewModel(AnalisisViewModel analisisVM) {
+		if (analisisVM != null) {
+			this.analisisVM = analisisVM;
+			this.empresaSeleccionada = this.analisisVM.getEmpresaSeleccionada();
+		}
 	}
 
 	public void nuevaCuenta() {
@@ -41,12 +44,20 @@ public class CargaCuentaViewModel {
 			throw new UserException("Ingrese un período valido.");
 		BigDecimal valor;
 		try {
-			 valor = new BigDecimal(this.getValor());
+			valor = new BigDecimal(this.getValor());
 		} catch (NumberFormatException e) {
 			throw new UserException("Debe ingresar un valor válido.");
 		}
 		empresaSeleccionada.agregarCuenta(new Periodo(anio), new Cuenta(this.getNombre(), valor));
 		this.setHabilitaCarga(false);
+		/**
+		 * Con esto impacta los cambios en la ventana de analisis al momento de
+		 * cargar la nueva cuenta
+		 */
+		if (analisisVM != null) {
+			ObservableUtils.firePropertyChanged(this.analisisVM, "periodosSeleccionados");
+			ObservableUtils.firePropertyChanged(this.analisisVM, "cuentasSeleccionadas");
+		}
 	}
 
 	public String getNombre() {

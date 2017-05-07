@@ -1,6 +1,6 @@
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
-import java.math.BigDecimal;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,8 +18,8 @@ public class cargaDeArchivoJSONTest {
 	private Empresa empresa;
 	private Empresa primerEmpresa = new Empresa("FB","Facebook");
 	List<Empresa> empresas = new LinkedList<>();
-	LoaderArchivo loader = new LoaderArchivoJSON("data/Cuentas.json");
-	
+	LoaderArchivo loader = new LoaderArchivoJSON("data/CuentasPrueba.json");
+	private Periodo periodo;
 	@Before 
 	public void inicio(){
 		Repositorios.empresas.agregarEmpresas(loader.getEmpresas());
@@ -30,6 +30,17 @@ public class cargaDeArchivoJSONTest {
 		empresa = empresas.get(0);
 		assertTrue(empresa.esIgual(primerEmpresa));
 	}
+	@Test
+	public void verificarQueAgreguePeriodoSiNoExiste(){
+		empresa = empresas.get(0);
+		periodo = new Periodo(2015);
+		empresa.agregarPeriodo(periodo);
+		assertEquals(empresa.getPeriodos().size(),3);	
+	}
+	@Test
+	public void verificarQueNoEstaApple(){
+		empresa = new Empresa("AP","Apple");
+		assertFalse(Repositorios.empresas.existeEmpresa(empresa));
+	}
 }
 
-*/

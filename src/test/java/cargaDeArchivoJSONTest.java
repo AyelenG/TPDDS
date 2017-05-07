@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+/*import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
@@ -19,7 +19,7 @@ public class cargaDeArchivoJSONTest {
 	private Empresa primerEmpresa = new Empresa("FB","Facebook");
 	List<Empresa> empresas = new LinkedList<>();
 	LoaderArchivo loader = new LoaderArchivoJSON("data/Cuentas.json");
-/*	
+	
 	@Before 
 	public void inicio(){
 		Repositorios.empresas.agregarEmpresas(loader.getEmpresas());

@@ -21,7 +21,7 @@ public class cargaDeArchivoCSVTest {
 	private Empresa primerEmpresa = new Empresa("FB","Facebook");
 	List<Empresa> empresas = new LinkedList<>();
 	LoaderArchivo loader = new LoaderArchivoCSV("data/PruebaCuentas.csv");
-	private BigDecimal valorCuenta;
+	private BigDecimal valorCuenta = new BigDecimal(100);
 	private Periodo periodo;
 	@Before 
 	public void inicio(){
@@ -53,7 +53,7 @@ public class cargaDeArchivoCSVTest {
 	public void siLaCuentaYaExisteEnUnPeriodoCambiaElValor(){
 		empresa = empresas.get(0);
 		empresa.getPeriodos().get(0).agregarCuenta(new Cuenta("EBITDA", valorCuenta));
-		assertEquals(empresa.getPeriodos().get(0).getCuentas().get(0).getValor(),null);
+		assertEquals(empresa.getPeriodos().get(0).getCuentas().get(0).getValor(),valorCuenta);
 	}
 	@Test
 	public void verificarQueAgreguePeriodoSiNoExiste(){

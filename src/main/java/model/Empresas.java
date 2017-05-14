@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Empresas {
+	
 	private List<Empresa> empresas = new LinkedList<>();
 
 	public void agregarEmpresas(List<Empresa> empresas) {
@@ -35,6 +36,10 @@ public class Empresas {
 	public Empresa get(int i){
 		return empresas.get(i);
 	}	
+	
+	public int indexOf(Empresa empresa) {
+		return empresas.indexOf(empresa);
+	}
 	
 	public int size() {
 		return empresas.size();

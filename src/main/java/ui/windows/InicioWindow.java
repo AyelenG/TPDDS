@@ -22,7 +22,7 @@ public class InicioWindow extends Window<InicioViewModel> {
 		this.setTitle("¿Dónde Invierto? v1.0");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		new Label(mainPanel).setHeight(30).setWidth(500);
+		new Label(mainPanel).setHeight(30).setWidth(400);
 		
 		new Button(mainPanel)
 			.setCaption("Cargar Datos")

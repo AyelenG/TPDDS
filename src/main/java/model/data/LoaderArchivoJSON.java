@@ -8,7 +8,6 @@ import model.Empresa;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-
 public class LoaderArchivoJSON extends LoaderArchivo {
 
 	public LoaderArchivoJSON(String ruta) {

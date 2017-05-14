@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig.Feature;
 
 import model.Cuenta;
 import model.Empresa;
@@ -47,10 +48,11 @@ public abstract class CuentasPredeterminadas {
 		
 		/* Del Repositorio al Archivo JSON */
 		try {
-			new ObjectMapper().writeValue(new File(RUTA), Repositorios.cuentasPredeterminadas.getCuentas());
+			new ObjectMapper().enable(Feature.INDENT_OUTPUT).writeValue(new File(RUTA), Repositorios.cuentasPredeterminadas.getCuentas());
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
-
-	}	
+		}
+		
+	}
+	
 }

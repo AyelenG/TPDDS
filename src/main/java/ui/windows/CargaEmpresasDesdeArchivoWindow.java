@@ -20,7 +20,13 @@ public class CargaEmpresasDesdeArchivoWindow  extends SimpleWindow<CargaEmpresas
 	
 	@Override
 	protected void addActions(Panel actionsPanel) {
-		
+		new Button(actionsPanel)
+		.setCaption("Cargar")
+		.onClick(() -> this.getModelObject().cargarCuentas())
+		.bindEnabledToProperty("botonCargarCuentas");
+		new Button(actionsPanel)
+		.setCaption("Cerrar")
+		.onClick(() -> this.close());
 	}
 	
 	@Override
@@ -45,18 +51,12 @@ public class CargaEmpresasDesdeArchivoWindow  extends SimpleWindow<CargaEmpresas
 		fileSelector.bindEnabledToProperty("habilitaSelector");
 		new Label(mainPanel).bindValueToProperty("ruta");
 		
-		new Button(mainPanel)
-			.setCaption("Cargar")
-			.onClick(() -> this.getModelObject().cargarCuentas())
-			.bindEnabledToProperty("botonCargarCuentas");
+
 		Label labelExito = new Label(mainPanel);
 		labelExito.setForeground(Color.GREEN);
 		labelExito.setText("Carga realizada Exitosamente");
 		labelExito.bindVisibleToProperty("botonCerrar");
-		new Button(mainPanel)
-			.setCaption("Cerrar")
-			.onClick(() -> this.close())
-			.bindVisibleToProperty("botonCerrar");
+
 		new Label(mainPanel);
 		
 	}

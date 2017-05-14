@@ -29,6 +29,7 @@ public class CargaEmpresaWindow  extends SimpleWindow<CargaEmpresaViewModel> {
 		
 		this.setTitle("Cargar nueva Empresa");
 		mainPanel.setLayout(new VerticalLayout());		
+		new Label(mainPanel).setHeight(30);
 		Panel datosPanel = new Panel(mainPanel);
 		datosPanel.setLayout(new ColumnLayout(2));
 		

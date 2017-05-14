@@ -14,7 +14,7 @@ public class Cuentas {
 	
 	public void agregarCuenta(Cuenta cuenta) {
 		if (!existeCuenta(cuenta))
-			cuentas.add(new Cuenta(cuenta.getNombre(), null));
+			cuentas.add(new Cuenta(cuenta.getNombre()));
 	}
 	
 	public Cuenta buscarCuenta(Cuenta cuenta) {
@@ -33,7 +33,12 @@ public class Cuentas {
 		return cuentas.get(i);
 	}	
 	
+	public int indexOf(Cuenta cuenta) {
+		return cuentas.indexOf(cuenta);
+	}
+	
 	public int size() {
 		return cuentas.size();
 	}
+	
 }

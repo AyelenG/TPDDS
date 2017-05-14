@@ -32,12 +32,11 @@ public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 			.onClick(() -> this.getModelObject().cargarCuenta())
 			.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel)
+			.setCaption("Cerrar")
+			.onClick(() -> this.close());
+		new Button(actionsPanel)
 			.setCaption("Nueva Cuenta")
 			.onClick(() -> this.getModelObject().nuevaCuenta())
-			.bindVisibleToProperty("habilitaNueva");
-		new Button(actionsPanel)
-			.setCaption("Cerrar")
-			.onClick(() -> this.close())
 			.bindVisibleToProperty("habilitaNueva");
 	}
 	
@@ -48,46 +47,42 @@ public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 		mainPanel.setLayout(new VerticalLayout());
 		
 		new Label(mainPanel).setHeight(30);
-		new Label(mainPanel).setText("Elija la empresa");
+		new Label(mainPanel).setText("Elija la empresa").setFontSize(12);
 		Selector<Empresa> selectorEmpresa = new Selector<Empresa>(mainPanel).allowNull(true);
 		selectorEmpresa.bindItemsToProperty("empresas");
 		selectorEmpresa.bindValueToProperty("empresaSeleccionada");
 		selectorEmpresa.bindEnabledToProperty("habilitaCarga");
 		
-		new Label(mainPanel);
-		new Label(mainPanel).setText("Ingrese los datos de la cuenta");
+		new Label(mainPanel).setHeight(30);
+		new Label(mainPanel).setText("Ingrese los datos de la cuenta").setFontSize(12);
 		
 		Panel cuentasPanel = new Panel(mainPanel);
-		cuentasPanel.setLayout(new ColumnLayout(3));
-		
+		cuentasPanel.setLayout(new ColumnLayout(2));
+
 		new Label(cuentasPanel).setText("Periodo");
-		new Label(cuentasPanel).setText("Cuenta");
-		new Label(cuentasPanel).setText("Valor");
+		
 		NumericField nfAnio = new NumericField(cuentasPanel);
 		nfAnio.setWidth(50);
 		nfAnio.bindValueToProperty("anio");
 		nfAnio.bindEnabledToProperty("habilitaCarga");
-		
-		Selector<Cuenta> selectorCuenta = new Selector<Cuenta>(cuentasPanel).allowNull(true);
+
+		new Label(cuentasPanel).setText("Cuenta");
+		Selector<Cuenta> selectorCuenta = new Selector<Cuenta>(cuentasPanel);//.allowNull(true);
 		selectorCuenta.bindEnabledToProperty("habilitaCarga");
 		selectorCuenta.bindItemsToProperty("cuentas");
 		selectorCuenta.bindValueToProperty("cuentaSeleccionada");
-		
-		/*
-		TextBox tbNombre = new TextBox(cuentasPanel);		
-		tbNombre.setWidth(200);
-		tbNombre.bindValueToProperty("nombre");
-		tbNombre.bindEnabledToProperty("habilitaCarga");
-		*/
-		
+
+		new Label(cuentasPanel).setText("Valor");
 		TextBox tbValor = new TextBox(cuentasPanel);
-		tbValor.setWidth(200);
+		tbValor.setWidth(100);
 		tbValor.bindValueToProperty("valor");
 		tbValor.bindEnabledToProperty("habilitaCarga");
+		
 		Label labelExito = new Label(mainPanel);
 		labelExito.setForeground(Color.GREEN);
 		labelExito.setText("Carga realizada Exitosamente");
 		labelExito.bindVisibleToProperty("habilitaNueva");
+		
 		new Label(mainPanel);
 	}
 }

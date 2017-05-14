@@ -3,16 +3,23 @@ package model;
 import java.math.BigDecimal;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
 @JsonIgnoreProperties({"changeSupport"})
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Cuenta {
+	
 	private String nombre;
 	private BigDecimal valor;
 	
 	public Cuenta() {
 		
+	}
+	
+	public Cuenta(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	public Cuenta(String nombre, BigDecimal valor) {
@@ -26,10 +33,6 @@ public class Cuenta {
 	
 	public String toString(){
 		return this.nombre;
-	}
-	
-	public Cuenta(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public String getNombre() {

@@ -17,20 +17,21 @@ public class CargaCuentaViewModel {
 
 	private Empresa empresaSeleccionada;
 	private Cuenta cuentaSeleccionada;
-	private String valor = "";
+	private String valor;
 	private int anio;
 	private boolean habilitaCarga = true;
 	private AnalisisViewModel analisisVM;
 
-	public CargaCuentaViewModel(AnalisisViewModel analisisVM) {
-		if (analisisVM != null) {
-			this.analisisVM = analisisVM;
-			this.empresaSeleccionada = this.analisisVM.getEmpresaSeleccionada();
+	public CargaCuentaViewModel(AnalisisViewModel _analisisVM) {
+		if (_analisisVM != null) {
+			this.analisisVM = _analisisVM;
+			this.empresaSeleccionada = _analisisVM.getEmpresaSeleccionada();
 		}
 	}
 
 	public void nuevaCuenta() {
-		this.setValor("");
+		this.setCuentaSeleccionada(null);
+		this.setValor(null);
 		this.setHabilitaCarga(true);
 	}
 
@@ -49,9 +50,10 @@ public class CargaCuentaViewModel {
 		}
 		empresaSeleccionada.agregarCuenta(new Periodo(anio), new Cuenta(cuentaSeleccionada.getNombre(), valor));
 		this.setHabilitaCarga(false);
+		
 		/**
-		 * Con esto impacta los cambios en la ventana de analisis al momento de
-		 * cargar la nueva cuenta
+		 * Con esto impacta los cambios en la ventana de analisis
+		 * al momento de cargar la nueva cuenta
 		 */
 		if (analisisVM != null) {
 			ObservableUtils.firePropertyChanged(this.analisisVM, "periodosSeleccionados");

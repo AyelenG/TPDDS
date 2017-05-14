@@ -2,9 +2,11 @@ package model;
 
 import java.math.BigDecimal;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
+@JsonIgnoreProperties({"changeSupport"})
 public class Cuenta {
 	private String nombre;
 	private BigDecimal valor;

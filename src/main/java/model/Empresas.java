@@ -31,5 +31,13 @@ public class Empresas {
 	public List<Empresa> getEmpresas() {
 		return empresas;
 	}
+	
+	public Empresa get(int i){
+		return empresas.get(i);
+	}	
+	
+	public int size() {
+		return empresas.size();
+	}
 
 }

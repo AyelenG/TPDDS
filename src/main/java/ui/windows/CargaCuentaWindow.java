@@ -13,6 +13,7 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import model.Cuenta;
 import model.Empresa;
 import ui.vm.AnalisisViewModel;
 import ui.vm.CargaCuentaViewModel;
@@ -66,10 +67,19 @@ public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 		nfAnio.setWidth(50);
 		nfAnio.bindValueToProperty("anio");
 		nfAnio.bindEnabledToProperty("habilitaCarga");
+		
+		Selector<Cuenta> selectorCuenta = new Selector<Cuenta>(cuentasPanel).allowNull(true);
+		selectorCuenta.bindEnabledToProperty("habilitaCarga");
+		selectorCuenta.bindItemsToProperty("cuentas");
+		selectorCuenta.bindValueToProperty("cuentaSeleccionada");
+		
+		/*
 		TextBox tbNombre = new TextBox(cuentasPanel);		
 		tbNombre.setWidth(200);
 		tbNombre.bindValueToProperty("nombre");
 		tbNombre.bindEnabledToProperty("habilitaCarga");
+		*/
+		
 		TextBox tbValor = new TextBox(cuentasPanel);
 		tbValor.setWidth(200);
 		tbValor.bindValueToProperty("valor");

@@ -8,7 +8,7 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
-import model.data.LoaderArchivo;
+import model.data.CuentasPredeterminadas;
 import model.data.LoaderArchivoCSV;
 import model.data.LoaderArchivoJSON;
 import model.repositories.Repositorios;
@@ -29,23 +29,20 @@ public class CargaEmpresasDesdeArchivoViewModel {
 	 */
 	public void cargarCuentas() {
 		List<Empresa> empresas = new LinkedList<>();
-		LoaderArchivo loader;
-		
-		if (extensionSeleccionada.equals(extensiones.get(0)) && ruta.endsWith(".json")) {
-			/* JSON */
-			loader = new LoaderArchivoJSON(this.ruta);
-		} else if ( (extensionSeleccionada.equals(extensiones.get(1)) && ruta.endsWith(".txt")) 
-					|| (extensionSeleccionada.equals(extensiones.get(2)) && ruta.endsWith(".csv")) )
-		{
-			/* CSV o TXT */
-			loader = new LoaderArchivoCSV(this.ruta);
-		}
-		else{
+		if (extensionSeleccionada.equals(extensiones.get(0)) && ruta.endsWith(".json"))			
+			empresas = new LoaderArchivoJSON(this.ruta).getEmpresas();
+		else if ( (extensionSeleccionada.equals(extensiones.get(1)) && ruta.endsWith(".txt")) 
+					|| (extensionSeleccionada.equals(extensiones.get(2)) && ruta.endsWith(".csv")) )			
+			empresas = new LoaderArchivoCSV(this.ruta).getEmpresas();
+		else
 			throw new UserException("El archivo no tiena la extensión correcta");
-		}
-		empresas = loader.getEmpresas();
+		
 		/* En este llamado ya esta chequeado los repetidos en el modelo */
 		Repositorios.empresas.agregarEmpresas(empresas);
+		
+		/* Agrega las cuentas nuevas al Repositorio de Cuentas Predeterminadas */
+		CuentasPredeterminadas.agregarDistintas(empresas);
+		
 		this.setHabilitaSelector(false);
 		this.setBotonCargarCuentas(false);
 		this.setBotonCerrar(true);

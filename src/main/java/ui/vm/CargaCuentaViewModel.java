@@ -16,7 +16,7 @@ import model.repositories.Repositorios;
 public class CargaCuentaViewModel {
 
 	private Empresa empresaSeleccionada;
-	private String nombre = "";
+	private Cuenta cuentaSeleccionada;
 	private String valor = "";
 	private int anio;
 	private boolean habilitaCarga = true;
@@ -30,7 +30,6 @@ public class CargaCuentaViewModel {
 	}
 
 	public void nuevaCuenta() {
-		this.setNombre("");
 		this.setValor("");
 		this.setHabilitaCarga(true);
 	}
@@ -38,7 +37,7 @@ public class CargaCuentaViewModel {
 	public void cargarCuenta() {
 		if (empresaSeleccionada == null)
 			throw new UserException("Debe seleccionar una empresa.");
-		if (this.getNombre() == "" || this.getValor() == "")
+		if (this.cuentaSeleccionada == null || this.getValor() == "")
 			throw new UserException("Complete los datos de la cuenta.");
 		if (anio < 1000 || anio > 3000)
 			throw new UserException("Ingrese un período valido.");
@@ -48,7 +47,7 @@ public class CargaCuentaViewModel {
 		} catch (NumberFormatException e) {
 			throw new UserException("Debe ingresar un valor válido.");
 		}
-		empresaSeleccionada.agregarCuenta(new Periodo(anio), new Cuenta(this.getNombre(), valor));
+		empresaSeleccionada.agregarCuenta(new Periodo(anio), new Cuenta(cuentaSeleccionada.getNombre(), valor));
 		this.setHabilitaCarga(false);
 		/**
 		 * Con esto impacta los cambios en la ventana de analisis al momento de
@@ -58,14 +57,6 @@ public class CargaCuentaViewModel {
 			ObservableUtils.firePropertyChanged(this.analisisVM, "periodosSeleccionados");
 			ObservableUtils.firePropertyChanged(this.analisisVM, "cuentasSeleccionadas");
 		}
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public String getValor() {
@@ -96,6 +87,18 @@ public class CargaCuentaViewModel {
 		return Repositorios.empresas.getEmpresas();
 	}
 
+	public Cuenta getCuentaSeleccionada() {
+		return cuentaSeleccionada;
+	}
+
+	public void setCuentaSeleccionada(Cuenta cuentaSeleccionada) {
+		this.cuentaSeleccionada = cuentaSeleccionada;
+	}
+
+	public List<Cuenta> getCuentas() {
+		return Repositorios.cuentasPredeterminadas.getCuentas();
+	}
+	
 	public boolean isHabilitaCarga() {
 		return habilitaCarga;
 	}

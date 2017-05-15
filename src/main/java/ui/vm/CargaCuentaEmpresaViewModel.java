@@ -20,12 +20,12 @@ public class CargaCuentaEmpresaViewModel {
 	private String valor;
 	private int anio;
 	private boolean habilitaCarga = true;
-	private AnalisisViewModel analisisVM;
+	private AnalisisViewModel parentVM;
 
-	public CargaCuentaEmpresaViewModel(AnalisisViewModel _analisisVM) {
-		if (_analisisVM != null) {
-			this.analisisVM = _analisisVM;
-			this.empresaSeleccionada = _analisisVM.getEmpresaSeleccionada();
+	public CargaCuentaEmpresaViewModel(AnalisisViewModel parentVM) {
+		if (parentVM != null) {
+			this.parentVM = parentVM;
+			this.empresaSeleccionada = parentVM.getEmpresaSeleccionada();
 		}
 	}
 
@@ -55,9 +55,9 @@ public class CargaCuentaEmpresaViewModel {
 		 * Con esto impacta los cambios en la ventana de analisis
 		 * al momento de cargar la nueva cuenta
 		 */
-		if (analisisVM != null) {
-			ObservableUtils.firePropertyChanged(this.analisisVM, "periodosSeleccionados");
-			ObservableUtils.firePropertyChanged(this.analisisVM, "cuentasSeleccionadas");
+		if (parentVM != null) {
+			ObservableUtils.firePropertyChanged(this.parentVM, "periodosSeleccionados");
+			ObservableUtils.firePropertyChanged(this.parentVM, "cuentasSeleccionadas");
 		}
 	}
 

@@ -11,7 +11,7 @@ import org.uqbar.commons.utils.Observable;
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Cuenta {
 	
-	private String nombre;
+	private String nombre = "";
 	private BigDecimal valor;
 	
 	public Cuenta() {
@@ -19,12 +19,12 @@ public class Cuenta {
 	}
 	
 	public Cuenta(String nombre) {
-		this.nombre = nombre;
+		this.setNombre(nombre);
 	}
 	
 	public Cuenta(String nombre, BigDecimal valor) {
-		this.nombre = nombre;
-		this.valor = valor;
+		this.setNombre(nombre);
+		this.setValor(valor);
 	}
 	
 	public boolean esIgual(Cuenta cuenta) {
@@ -32,7 +32,7 @@ public class Cuenta {
 	}
 	
 	public String toString(){
-		return this.nombre;
+		return this.getNombre();
 	}
 
 	public String getNombre() {

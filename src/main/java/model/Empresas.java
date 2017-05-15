@@ -8,8 +8,7 @@ public class Empresas {
 	private List<Empresa> empresas = new LinkedList<>();
 
 	public void agregarEmpresas(List<Empresa> empresas) {
-		for (Object empresaObject : empresas) {
-			Empresa empresa = (Empresa) empresaObject;
+		for (Empresa empresa : empresas) {
 			if (!existeEmpresa(empresa))
 				this.agregarEmpresa(empresa);
 			else

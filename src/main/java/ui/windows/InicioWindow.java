@@ -30,7 +30,7 @@ public class InicioWindow extends Window<InicioViewModel> {
 		
 		new Button(mainPanel)
 			.setCaption("Cargar Nueva Cuenta")
-			.onClick(()-> new CargaNuevaCuentaWindow(this).open());
+			.onClick(()-> new CargaNuevaCuentaWindow(this,null).open());
 
 		new Button(mainPanel)
 			.setCaption("Cargar Nuevo Indicador");

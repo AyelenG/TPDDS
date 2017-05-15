@@ -16,8 +16,8 @@ public class Empresa {
 	}
 
 	public Empresa(String symbol, String nombre) {
-		this.symbol = symbol;
-		this.nombre = nombre;
+		this.setSymbol(symbol);
+		this.setNombre(nombre);
 	}
 
 	public Periodo buscarPeriodoYAgregar(Periodo periodo) {
@@ -29,8 +29,7 @@ public class Empresa {
 	}
 	
 	public void agregarPeriodos(List<Periodo> periodos) {
-		for (Object periodoObject : periodos) {			
-			Periodo periodo = (Periodo) periodoObject;
+		for (Periodo periodo : periodos) {			
 			if (!existePeriodo(periodo))
 				this.agregarPeriodo(periodo);
 			else

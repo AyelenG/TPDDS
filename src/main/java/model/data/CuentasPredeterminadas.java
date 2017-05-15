@@ -13,7 +13,7 @@ import model.Empresa;
 import model.Periodo;
 import model.repositories.Repositorios;
 
-public abstract class CuentasPredeterminadas {
+public class CuentasPredeterminadas {
 	
 	private static final String RUTA = "data/CuentasPredeterminadas.json";
 	
@@ -42,10 +42,10 @@ public abstract class CuentasPredeterminadas {
 	/* Agregar al Repositorio las cuentas distintas */
 	public static void agregarDistintas(List<Empresa> empresas) {
 		
-		for (Object empresa : empresas)
-			for (Object periodo : (List<Periodo>) ((Empresa)empresa).getPeriodos())
+		for (Empresa empresa : empresas)
+			for (Periodo periodo : empresa.getPeriodos())
 				Repositorios.cuentasPredeterminadas
-					.agregarCuentas(((Periodo)periodo).getCuentas());
+					.agregarCuentas(periodo.getCuentas());
 		actualizarJSON();
 	}
 	

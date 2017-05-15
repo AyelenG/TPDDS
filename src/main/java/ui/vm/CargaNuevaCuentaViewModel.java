@@ -14,7 +14,15 @@ public class CargaNuevaCuentaViewModel {
 	Cuenta cuenta = new Cuenta();
 	private boolean habilitaCarga = true;
 
-	public void nuevaCuenta() {		
+	private CargaCuentaEmpresaViewModel parentVM;
+
+	public CargaNuevaCuentaViewModel(CargaCuentaEmpresaViewModel parentVM) {
+		if (parentVM != null) {
+			this.parentVM = parentVM;
+		}
+	}
+
+	public void nuevaCuenta() {
 		this.setCuenta(new Cuenta());
 		this.setHabilitaCarga(true);
 	}
@@ -22,12 +30,14 @@ public class CargaNuevaCuentaViewModel {
 	public void cargarCuenta() {
 		if (Repositorios.cuentasPredeterminadas.existeCuenta(cuenta))
 			throw new UserException("La cuenta ingresada ya existe.");
-		if(cuenta.getNombre().isEmpty() || cuenta.getNombre() == null){
+		if (cuenta.getNombre().isEmpty()) {
 			throw new UserException("Complete el nombre de la Cuenta.");
 		}
 		Repositorios.cuentasPredeterminadas.agregarCuenta(cuenta);
 		CuentasPredeterminadas.actualizarJSON();
 		this.setHabilitaCarga(false);
+		if (parentVM != null)
+			ObservableUtils.firePropertyChanged(this.parentVM, "cuentas");
 	}
 
 	public Cuenta getCuenta() {

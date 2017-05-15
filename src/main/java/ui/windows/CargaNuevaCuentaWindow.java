@@ -10,13 +10,14 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import ui.vm.CargaCuentaEmpresaViewModel;
 import ui.vm.CargaNuevaCuentaViewModel;
 
 @SuppressWarnings("serial")
 public class CargaNuevaCuentaWindow extends SimpleWindow<CargaNuevaCuentaViewModel> {
 	
-	public CargaNuevaCuentaWindow(WindowOwner parent) {
-		super(parent, new CargaNuevaCuentaViewModel());
+	public CargaNuevaCuentaWindow(WindowOwner parent, CargaCuentaEmpresaViewModel parentVM) {
+		super(parent, new CargaNuevaCuentaViewModel(parentVM));
 	}
 	
 	@Override

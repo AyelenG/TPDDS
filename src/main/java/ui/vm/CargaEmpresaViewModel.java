@@ -10,7 +10,7 @@ import model.repositories.Repositorios;
 @Observable
 public class CargaEmpresaViewModel {
 
-	Empresa empresa = new Empresa();
+	private Empresa empresa = new Empresa();
 	private boolean habilitaCarga = true;
 
 	public void nuevaEmpresa() {		
@@ -19,11 +19,10 @@ public class CargaEmpresaViewModel {
 	}
 
 	public void cargarEmpresa() {		
+		if (empresa.getSymbol().isEmpty() || empresa.getNombre().isEmpty())
+			throw new UserException("Complete los datos de la empresa.");
 		if (Repositorios.empresas.existeEmpresa(empresa))
 			throw new UserException("La empresa ingresada ya existe.");
-		if(empresa.getSymbol().isEmpty() || empresa.getNombre().isEmpty()){
-			throw new UserException("Complete los datos de la empresa.");
-		}
 		Repositorios.empresas.agregarEmpresa(empresa);
 		this.setHabilitaCarga(false);
 	}

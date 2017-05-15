@@ -1,18 +1,22 @@
 package model;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
+import model.repositories.Repositorios;
+
 @Observable
 public class Empresa {
-	private String symbol = "";
-	private String nombre = "";
+	private String symbol;
+	private String nombre;
 	private List<Periodo> periodos = new LinkedList<>();
 
 	public Empresa() {
-
+		this.setSymbol(new String());
+		this.setNombre(new String());
 	}
 
 	public Empresa(String symbol, String nombre) {
@@ -56,6 +60,14 @@ public class Empresa {
 	
 	public boolean esIgual(Empresa empresa) {
 		return this.getSymbol().equals(empresa.getSymbol());
+	}
+	
+	/* Devuelve el valor de la cuenta segun su indice en un periodo dado */
+	/* En caso de no existir devuelve null */
+	public BigDecimal getValorCuentaEnPeriodoConIndice(int anio, int index) {
+		return this.buscarPeriodo(new Periodo(anio))
+					.buscarCuenta(Repositorios.cuentasPredeterminadas.get(index))
+					.getValor();
 	}
 	
 	public String toString() {

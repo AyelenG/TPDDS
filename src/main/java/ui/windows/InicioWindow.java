@@ -29,11 +29,11 @@ public class InicioWindow extends Window<InicioViewModel> {
 			.onClick(()-> new CargaDatosWindow(this).open());
 		
 		new Button(mainPanel)
-			.setCaption("Cargar Nueva Cuenta")
+			.setCaption("Agregar Cuenta Disponible")
 			.onClick(()-> new CargaNuevaCuentaWindow(this,null).open());
 
 		new Button(mainPanel)
-			.setCaption("Cargar Nuevo Indicador");
+			.setCaption("Agregar Indicador Disponible");
 		
 		new Label(mainPanel).setHeight(30);
 		

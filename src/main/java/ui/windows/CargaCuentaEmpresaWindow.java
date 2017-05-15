@@ -32,7 +32,7 @@ public class CargaCuentaEmpresaWindow  extends SimpleWindow<CargaCuentaEmpresaVi
 			.onClick(() -> this.getModelObject().cargarCuenta())
 			.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel)
-			.setCaption("Cargar Nueva Cuenta al Listado")
+			.setCaption("Agregar Cuenta al Listado")
 			.onClick(()-> new CargaNuevaCuentaWindow(this,this.getModelObject()).open());
 		new Button(actionsPanel)
 			.setCaption("Cerrar")

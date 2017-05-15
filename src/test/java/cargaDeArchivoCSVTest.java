@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import model.Cuenta;
 import model.Empresa;
-import model.Empresas;
 import model.Periodo;
 import model.data.LoaderArchivo;
 import model.data.LoaderArchivoCSV;

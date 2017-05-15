@@ -38,21 +38,25 @@ public abstract class CuentasPredeterminadas {
 	 * el archivo en disco
 	 * @param empresas
 	 */
+	
+	/* Agregar al Repositorio las cuentas distintas */
 	public static void agregarDistintas(List<Empresa> empresas) {
 		
-		/* Agregar al Repositorio */
 		for (Object empresa : empresas)
 			for (Object periodo : (List<Periodo>) ((Empresa)empresa).getPeriodos())
 				Repositorios.cuentasPredeterminadas
 					.agregarCuentas(((Periodo)periodo).getCuentas());
-		
-		/* Del Repositorio al Archivo JSON */
+		actualizarJSON();
+	}
+	
+	/* Del Repositorio al Archivo JSON */
+	public static void actualizarJSON() {
 		try {
-			new ObjectMapper().enable(Feature.INDENT_OUTPUT).writeValue(new File(RUTA), Repositorios.cuentasPredeterminadas.getCuentas());
+			new ObjectMapper().enable(Feature.INDENT_OUTPUT).writeValue(new File(RUTA),
+						Repositorios.cuentasPredeterminadas.getCuentas());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 }

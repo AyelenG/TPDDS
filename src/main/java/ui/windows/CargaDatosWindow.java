@@ -34,7 +34,7 @@ public class CargaDatosWindow  extends SimpleWindow<InicioViewModel> {
 		new Label(mainPanel);
 		new Button(mainPanel)
 			.setCaption("Cargar Cuenta a Empresa Existente")
-			.onClick(()-> new CargaCuentaWindow(this,null).open());
+			.onClick(()-> new CargaCuentaEmpresaWindow(this,null).open());
 		
 		new Label(mainPanel);
 		new Button(mainPanel)

@@ -21,7 +21,7 @@ public class CargaEmpresaViewModel {
 	public void cargarEmpresa() {		
 		if (Repositorios.empresas.existeEmpresa(empresa))
 			throw new UserException("La empresa ingresada ya existe.");
-		if(empresa.getSymbol() == null || empresa.getNombre() == null){
+		if(empresa.getSymbol().isEmpty() || empresa.getNombre().isEmpty()){
 			throw new UserException("Complete los datos de la empresa.");
 		}
 		Repositorios.empresas.agregarEmpresa(empresa);

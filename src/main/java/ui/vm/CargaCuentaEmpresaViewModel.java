@@ -13,7 +13,7 @@ import model.Periodo;
 import model.repositories.Repositorios;
 
 @Observable
-public class CargaCuentaViewModel {
+public class CargaCuentaEmpresaViewModel {
 
 	private Empresa empresaSeleccionada;
 	private Cuenta cuentaSeleccionada;
@@ -22,7 +22,7 @@ public class CargaCuentaViewModel {
 	private boolean habilitaCarga = true;
 	private AnalisisViewModel analisisVM;
 
-	public CargaCuentaViewModel(AnalisisViewModel _analisisVM) {
+	public CargaCuentaEmpresaViewModel(AnalisisViewModel _analisisVM) {
 		if (_analisisVM != null) {
 			this.analisisVM = _analisisVM;
 			this.empresaSeleccionada = _analisisVM.getEmpresaSeleccionada();

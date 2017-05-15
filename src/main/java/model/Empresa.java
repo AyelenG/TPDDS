@@ -7,8 +7,8 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class Empresa {
-	private String symbol;
-	private String nombre;
+	private String symbol = "";
+	private String nombre = "";
 	private List<Periodo> periodos = new LinkedList<>();
 
 	public Empresa() {

@@ -30,7 +30,7 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel>{
 			*/  
 			new Button(actionsPanel)
 				.setCaption("Cargar Cuenta a Empresa Existente")
-				.onClick(()-> new CargaCuentaWindow
+				.onClick(()-> new CargaCuentaEmpresaWindow
 					(this,this.getModelObject()).open());
 			/*
 			new Button(actionsPanel)

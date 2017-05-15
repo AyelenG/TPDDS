@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
@@ -21,7 +22,6 @@ public class CargaEmpresasDesdeArchivoViewModel {
 	private String ruta = "";
 	private boolean habilitaSelector = true;
 	private boolean botonCargarCuentas = false;
-	private boolean botonCerrar = false;
 
 	/*****************************************
 	 * Este es el metodo que tiene que ser polimorfico La lista empresas recibe
@@ -45,7 +45,6 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		
 		this.setHabilitaSelector(false);
 		this.setBotonCargarCuentas(false);
-		this.setBotonCerrar(true);
 	}
 
 	public List<String> getExtensiones() {
@@ -87,14 +86,11 @@ public class CargaEmpresasDesdeArchivoViewModel {
 
 	public void setHabilitaSelector(boolean habilitaSelector) {
 		this.habilitaSelector = habilitaSelector;
+		ObservableUtils.firePropertyChanged(this, "exito");
 	}
-
-	public boolean isBotonCerrar() {
-		return botonCerrar;
-	}
-
-	public void setBotonCerrar(boolean botonCerrar) {
-		this.botonCerrar = botonCerrar;
+	
+	public boolean getExito() {
+		return !habilitaSelector;
 	}
 
 }

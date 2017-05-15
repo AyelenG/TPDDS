@@ -16,13 +16,13 @@ import org.uqbar.arena.windows.WindowOwner;
 import model.Cuenta;
 import model.Empresa;
 import ui.vm.AnalisisViewModel;
-import ui.vm.CargaCuentaViewModel;
+import ui.vm.CargaCuentaEmpresaViewModel;
 
 @SuppressWarnings("serial")
-public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
+public class CargaCuentaEmpresaWindow  extends SimpleWindow<CargaCuentaEmpresaViewModel> {
 	
-	public CargaCuentaWindow(WindowOwner parent, AnalisisViewModel parentVM) {
-		super(parent, new CargaCuentaViewModel(parentVM));
+	public CargaCuentaEmpresaWindow(WindowOwner parent, AnalisisViewModel parentVM) {
+		super(parent, new CargaCuentaEmpresaViewModel(parentVM));
 	}
 	
 	@Override
@@ -32,12 +32,16 @@ public class CargaCuentaWindow  extends SimpleWindow<CargaCuentaViewModel> {
 			.onClick(() -> this.getModelObject().cargarCuenta())
 			.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel)
+			.setCaption("Cargar Nueva Cuenta al Listado")
+			.onClick(()-> new CargaNuevaCuentaWindow(this).open());
+		new Button(actionsPanel)
 			.setCaption("Cerrar")
 			.onClick(() -> this.close());
 		new Button(actionsPanel)
 			.setCaption("Nueva Cuenta")
 			.onClick(() -> this.getModelObject().nuevaCuenta())
 			.bindVisibleToProperty("habilitaNueva");
+
 	}
 	
 	@Override

@@ -6,8 +6,10 @@ import model.Indicador;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.Cuentas;
+import org.uqbar.commons.utils.Observable;
 
+import model.Cuentas;
+@Observable
 public class Repositorios {
 	public static Empresas empresas = new Empresas();
 	public static Cuentas cuentasPredeterminadas = new Cuentas();

@@ -3,6 +3,8 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.uqbar.commons.utils.Observable;
+@Observable
 public class Cuentas {
 
 	private List<Cuenta> cuentas = new LinkedList<>();
@@ -39,6 +41,10 @@ public class Cuentas {
 
 	public int size() {
 		return cuentas.size();
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
 	}
 
 }

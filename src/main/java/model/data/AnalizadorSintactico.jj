@@ -1,0 +1,11 @@
+options {
+STATIC = false;
+}
+
+PARSE_BEGIN(AnalizadorSintactico)
+
+package model.data;
+
+public class AnalizadorSintactico {
+
+}

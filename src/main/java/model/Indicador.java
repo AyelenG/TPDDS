@@ -21,6 +21,15 @@ public class Indicador {
 		this.formula = formula;
 	}
 	
+	public boolean esIgual(Indicador indicador) {
+		return this.getNombre().equals(indicador.getNombre());
+	}
+	
+	@Override
+	public String toString(){
+		return this.nombre.toUpperCase();
+	}
+	
 	
 	
 }

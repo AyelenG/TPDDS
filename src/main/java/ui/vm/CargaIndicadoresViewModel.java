@@ -2,6 +2,8 @@ package ui.vm;
 
 import java.util.List;
 
+import org.apache.commons.lang.math.NumberUtils;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
@@ -12,15 +14,18 @@ import model.repositories.Repositorios;
 public class CargaIndicadoresViewModel {
 	
 	private List <Cuenta> cuentas = Repositorios.cuentasPredeterminadas.getCuentas();
-	private List<Indicador> indicadores;
+	private List<Indicador> indicadores = Repositorios.indicadores.getIndicadores();
 	private String ingresado = "";
 	private Indicador indicadorNuevo = new Indicador();
-	private String indicadorSeleccionado;
+	private Indicador indicadorSeleccionado;
 	private Cuenta cuentaSeleccionada; //trato la cuenta como un objeto y no como un string
 	private String constante;
 	
 	public void agregarSimbolo(String simbolo){
-		ingresado += " " + simbolo;
+		if(ingresado != "")
+			ingresado += " " + simbolo;
+		else
+			ingresado = simbolo;
 	}
 	
 	public void ingresarCuenta(){
@@ -28,18 +33,26 @@ public class CargaIndicadoresViewModel {
 	}
 	
 	public void ingresarIndicador(){
-		this.agregarSimbolo(indicadorSeleccionado);
+		this.agregarSimbolo(indicadorSeleccionado.getNombre().toUpperCase());
 	}
 	
 	public void ingresarConstante(){
-		this.agregarSimbolo(constante);
+		if(NumberUtils.isNumber(constante))
+			this.agregarSimbolo(constante);
+		else
+		throw new UserException("La constante debe ser numerica.");
+		
 	}
 	
+	
 	public void cargarIndicador(){
-		//HAcerlo
-		
-		
+			//AnalizadorSintactico analizador = new AnalizadorSintactico();
+			//analizador.ejecutarAnalisis(ingresado);
+			this.indicadorNuevo.setFormula(ingresado);
+			Repositorios.indicadores.agregarIndicador(indicadorNuevo);
 	}
+	
+	
 	public void borrarUltimo(){
 		//borra el ultimo token
 	}
@@ -76,11 +89,11 @@ public class CargaIndicadoresViewModel {
 		this.indicadorNuevo.setNombre(indicador);
 	}
 
-	public String getIndicadorSeleccionado() {
+	public Indicador getIndicadorSeleccionado() {
 		return indicadorSeleccionado;
 	}
 
-	public void setIndicadorSeleccionado(String indicadorIngresado) {
+	public void setIndicadorSeleccionado(Indicador indicadorIngresado) {
 		this.indicadorSeleccionado = indicadorIngresado;
 	}
 
@@ -96,7 +109,7 @@ public class CargaIndicadoresViewModel {
 		return constante;
 	}
 
-	public void setConstante(String constante) {
+	public void setConstante(String constante){
 		this.constante = constante;
 	}
 	

@@ -29,8 +29,8 @@ public class CuentasPredeterminadas {
 		}
 		
 		/* IMPRESION POR CONSOLA PARA CONTROL */	
-		for ( Object cuenta : Repositorios.cuentasPredeterminadas.getCuentas())			
-			System.out.println(((Cuenta) cuenta).getNombre());
+		/*for ( Object cuenta : Repositorios.cuentasPredeterminadas.getCuentas())			
+			System.out.println(((Cuenta) cuenta).getNombre());*/
 	}
 	
 	/** Desde una Lista de Empresas toma todas las cuentas e ingresa

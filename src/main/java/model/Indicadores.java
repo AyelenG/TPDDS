@@ -39,13 +39,12 @@ public class Indicadores {
 		return indicadores.get(i);
 	}
 
-	public int indexOf(Cuenta cuenta) {
-		return indicadores.indexOf(cuenta);
+	public int indexOf(Indicador indicador) {
+		return indicadores.indexOf(indicador);
 	}
 
 	public int size() {
 		return indicadores.size();
 	}
-
 
 }

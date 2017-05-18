@@ -1,11 +1,14 @@
 package ui.vm;
 
 import java.math.BigDecimal;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
+
+import com.ibm.icu.util.Calendar;
 
 import model.Cuenta;
 import model.Empresa;
@@ -34,13 +37,18 @@ public class CargaCuentaEmpresaViewModel {
 		this.setValor(null);
 		this.setHabilitaCarga(true);
 	}
+	
+	public boolean esAnioValido(int anio){
+		GregorianCalendar fecha = new GregorianCalendar();
+		return anio < 1000 || fecha.get(Calendar.YEAR) > 3000;
+	}
 
 	public void cargarCuenta() {
 		if (empresaSeleccionada == null)
 			throw new UserException("Debe seleccionar una empresa.");
 		if (this.cuentaSeleccionada == null || this.getValor() == "")
 			throw new UserException("Complete los datos de la cuenta.");
-		if (anio < 1000 || anio > 3000)
+		if (esAnioValido(anio))
 			throw new UserException("Ingrese un período valido.");
 		BigDecimal valor;
 		try {

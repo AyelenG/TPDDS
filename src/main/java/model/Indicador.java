@@ -1,8 +1,13 @@
 package model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
+@JsonIgnoreProperties({"changeSupport"})
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+
 public class Indicador {
 	//
 	private String nombre;

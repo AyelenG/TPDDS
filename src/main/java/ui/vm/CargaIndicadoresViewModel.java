@@ -8,6 +8,7 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
 import model.Indicador;
+import model.Indicadores;
 import model.repositories.Repositorios;
 
 @Observable
@@ -29,11 +30,11 @@ public class CargaIndicadoresViewModel {
 	}
 	
 	public void ingresarCuenta(){
-		this.agregarSimbolo(cuentaSeleccionada.getNombre());
+		this.agregarSimbolo("[" + cuentaSeleccionada.getNombre() + "]");
 	}
 	
 	public void ingresarIndicador(){
-		this.agregarSimbolo(indicadorSeleccionado.getNombre().toUpperCase());
+		this.agregarSimbolo("<" + indicadorSeleccionado.getNombre().toUpperCase() + ">");
 	}
 	
 	public void ingresarConstante(){
@@ -50,6 +51,7 @@ public class CargaIndicadoresViewModel {
 			//analizador.ejecutarAnalisis(ingresado);
 			this.indicadorNuevo.setFormula(ingresado);
 			Repositorios.indicadores.agregarIndicador(indicadorNuevo);
+			Indicadores.actualizarJSON();
 	}
 	
 	

@@ -1,11 +1,23 @@
-options {
-STATIC = false;
+PARSER_BEGIN(SyntaxChecker)
+
+public class SyntaxChecker {
+    public static void main(String[] args) {
+        try {
+            new SyntaxChecker(new java.io.StringReader(args[0])).S();
+            System.out.println("Syntax is okay");
+        } catch (Throwable e) {
+            // Catching Throwable is ugly but JavaCC throws Error objects!
+            System.out.println("Syntax check failed: " + e.getMessage());
+        }
+    }
 }
 
-PARSE_BEGIN(AnalizadorSintactico)
+PARSER_END(SyntaxChecker)
 
-package model.data;
+SKIP:  { " " | "\t" | "\n" | "\r"                    }
+TOKEN: { "(" | ")" | "+" | "*" | <NUM: (["0"-"9"])+> }
 
-public class AnalizadorSintactico {
-
-}
+void S(): {} { E() <EOF>           }
+void E(): {} { T() ("+" T())*      }
+void T(): {} { F() ("*" F())*      }
+void F(): {} { <NUM> | "(" E() ")" }

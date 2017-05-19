@@ -1,0 +1,10 @@
+[ {
+  "nombre" : "PAPA",
+  "formula" : "[EBITDA] + 43"
+}, {
+  "nombre" : "KAKA",
+  "formula" : "[EBITDA] + <PAPA>"
+}, {
+  "nombre" : "BABA",
+  "formula" : "<KAKA> - [FREE CASH FLOW] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"
+} ]

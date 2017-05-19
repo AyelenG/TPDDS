@@ -1,8 +1,10 @@
 package ui.vm;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
@@ -39,8 +41,8 @@ public class CargaCuentaEmpresaViewModel {
 	}
 	
 	public boolean esAnioValido(int anio){
-		GregorianCalendar fecha = new GregorianCalendar();
-		return anio < 1000 || fecha.get(Calendar.YEAR) > 3000;
+		LocalDate fecha = LocalDate.now();
+		return anio < 1000 || fecha.getYear() > 3000;
 	}
 
 	public void cargarCuenta() {

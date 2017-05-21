@@ -13,7 +13,6 @@ public class Periodo {
 	public Periodo(){
 		
 	}
-	
 	public Periodo(Integer anio) {
 		this.setAnio(anio);
 	}

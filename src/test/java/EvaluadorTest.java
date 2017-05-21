@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import model.data.Evaluador;
+import model.parser.evaluador.Evaluador;
 
 public class EvaluadorTest {	
 

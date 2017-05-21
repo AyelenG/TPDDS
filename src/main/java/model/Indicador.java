@@ -11,9 +11,19 @@ import org.uqbar.commons.utils.Observable;
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Indicador {
 
-	private String nombre;
-	private String formula;
+	private String nombre = "";
+	private String formula = "";
 	private BigDecimal valor;
+
+	public Indicador() {
+	}
+	public Indicador(String nombre) {
+		this.setNombre(nombre);
+	}
+	public Indicador(String nombre, String formula) {
+		this.setNombre(nombre);
+		this.formula = formula;
+	}
 
 	public boolean esIgual(Indicador indicador) {
 		return this.getNombre().equals(indicador.getNombre());
@@ -21,7 +31,7 @@ public class Indicador {
 	
 	@Override
 	public String toString(){
-		return this.nombre.toUpperCase();
+		return this.getNombre();
 	}
 	
 	public String getNombre() {

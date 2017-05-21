@@ -15,7 +15,7 @@ import model.repositories.Repositorios;
 public class Indicadores {
 
 	private List<Indicador> indicadores = new LinkedList<>();
-	private static final String RUTA = "data/indicadores.json";
+	private static final String RUTA = "data/Indicadores.json";
 
 	public void agregarIndicadores(List<Indicador> indicadores) {
 		for (Indicador indicador : indicadores)

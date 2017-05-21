@@ -2,15 +2,12 @@ package ui.vm;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.time.temporal.ChronoUnit;
 
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
-import com.ibm.icu.util.Calendar;
 
 import model.Cuenta;
 import model.Empresa;
@@ -40,9 +37,9 @@ public class CargaCuentaEmpresaViewModel {
 		this.setHabilitaCarga(true);
 	}
 	
-	public boolean esAnioValido(int anio){
+	private boolean esAnioValido(int anio){
 		LocalDate fecha = LocalDate.now();
-		return anio < 1000 || fecha.getYear() > 3000;
+		return anio >= 1000 && anio <= fecha.getYear();
 	}
 
 	public void cargarCuenta() {
@@ -50,7 +47,7 @@ public class CargaCuentaEmpresaViewModel {
 			throw new UserException("Debe seleccionar una empresa.");
 		if (this.cuentaSeleccionada == null || this.getValor() == "")
 			throw new UserException("Complete los datos de la cuenta.");
-		if (esAnioValido(anio))
+		if (!esAnioValido(anio))
 			throw new UserException("Ingrese un período valido.");
 		BigDecimal valor;
 		try {

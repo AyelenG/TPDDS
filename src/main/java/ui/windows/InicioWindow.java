@@ -8,7 +8,7 @@ import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
 import ui.vm.InicioViewModel;
-import ui.windows.CargaIndicadoresWindow;
+import ui.windows.CargaIndicadorWindow;
 
 @SuppressWarnings("serial")
 public class InicioWindow extends Window<InicioViewModel> {
@@ -35,7 +35,7 @@ public class InicioWindow extends Window<InicioViewModel> {
 
 		new Button(mainPanel)
 			.setCaption("Agregar Indicador Disponible")
-			.onClick(()-> new CargaIndicadoresWindow(this).open());
+			.onClick(()-> new CargaIndicadorWindow(this).open());
 		
 		new Label(mainPanel).setHeight(30);
 		

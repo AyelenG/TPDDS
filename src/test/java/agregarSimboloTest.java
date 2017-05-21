@@ -1,17 +1,14 @@
 import static org.junit.Assert.*;
 
-import java.util.LinkedList;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import model.Cuenta;
 import model.Indicador;
-import ui.vm.CargaIndicadoresViewModel;
+import ui.vm.CargaIndicadorViewModel;
 
 public class agregarSimboloTest {
 	
-	private CargaIndicadoresViewModel viewModel = new CargaIndicadoresViewModel();
+	private CargaIndicadorViewModel viewModel = new CargaIndicadorViewModel();
 	
 	
 	@Test

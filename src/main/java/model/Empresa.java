@@ -66,7 +66,7 @@ public class Empresa {
 	/* En caso de no existir devuelve null */
 	public BigDecimal getValorCuentaEnPeriodoConIndice(int anio, int index) {
 		return this.buscarPeriodo(new Periodo(anio))
-					.buscarCuenta(Repositorios.cuentasPredeterminadas.get(index))
+					.buscarCuenta(Repositorios.cuentasPredefinidas.get(index))
 					.getValor();
 	}
 	

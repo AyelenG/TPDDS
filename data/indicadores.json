@@ -7,4 +7,7 @@
 }, {
   "nombre" : "BABA",
   "formula" : "<KAKA> - [FREE CASH FLOW] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"
+}, {
+  "nombre" : "JACINTO",
+  "formula" : "[FDS] * [FREE CASH FLOW]"
 } ]

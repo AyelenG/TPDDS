@@ -28,12 +28,12 @@ public class CargaNuevaCuentaViewModel {
 	}
 
 	public void cargarCuenta() {
-		if (Repositorios.cuentasPredeterminadas.existeCuenta(cuenta))
+		if (Repositorios.cuentasPredefinidas.existeCuenta(cuenta))
 			throw new UserException("La cuenta ingresada ya existe.");
 		if (cuenta.getNombre().isEmpty()) {
 			throw new UserException("Complete el nombre de la Cuenta.");
 		}
-		Repositorios.cuentasPredeterminadas.agregarCuenta(cuenta);
+		Repositorios.cuentasPredefinidas.agregarCuenta(cuenta);
 		CuentasPredeterminadas.actualizarJSON();
 		this.setHabilitaCarga(false);
 		if (parentVM != null)

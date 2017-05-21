@@ -21,7 +21,7 @@ public class CuentasPredeterminadas {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Repositorios
-				.cuentasPredeterminadas
+				.cuentasPredefinidas
 				.agregarCuentas(mapper.readValue(new File(RUTA),
 					mapper.getTypeFactory().constructCollectionType(LinkedList.class, Cuenta.class)));
 		} catch (IOException e) {
@@ -44,7 +44,7 @@ public class CuentasPredeterminadas {
 		
 		for (Empresa empresa : empresas)
 			for (Periodo periodo : empresa.getPeriodos())
-				Repositorios.cuentasPredeterminadas
+				Repositorios.cuentasPredefinidas
 					.agregarCuentas(periodo.getCuentas());
 		actualizarJSON();
 	}
@@ -53,7 +53,7 @@ public class CuentasPredeterminadas {
 	public static void actualizarJSON() {
 		try {
 			new ObjectMapper().enable(Feature.INDENT_OUTPUT).writeValue(new File(RUTA),
-						Repositorios.cuentasPredeterminadas.getCuentas());
+						Repositorios.cuentasPredefinidas.getCuentas());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

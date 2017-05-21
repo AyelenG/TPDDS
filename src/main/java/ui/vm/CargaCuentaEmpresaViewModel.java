@@ -108,7 +108,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Cuenta> getCuentas() {
-		return Repositorios.cuentasPredeterminadas.getCuentas();
+		return Repositorios.cuentasPredefinidas.getCuentas();
 	}
 	
 	public boolean isHabilitaCarga() {

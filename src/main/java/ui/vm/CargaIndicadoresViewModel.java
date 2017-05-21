@@ -14,8 +14,8 @@ import model.repositories.Repositorios;
 @Observable
 public class CargaIndicadoresViewModel {
 	
-	private List <Cuenta> cuentas = Repositorios.cuentasPredeterminadas.getCuentas();
-	private List<Indicador> indicadores = Repositorios.indicadores.getIndicadores();
+	private List <Cuenta> cuentas = Repositorios.cuentasPredefinidas.getCuentas();
+	private List<Indicador> indicadores = Repositorios.indicadoresPredefinidos.getIndicadores();
 	private String ingresado = "";
 	private Indicador indicadorNuevo = new Indicador();
 	private Indicador indicadorSeleccionado;
@@ -50,7 +50,7 @@ public class CargaIndicadoresViewModel {
 			//AnalizadorSintactico analizador = new AnalizadorSintactico();
 			//analizador.ejecutarAnalisis(ingresado);
 			this.indicadorNuevo.setFormula(ingresado);
-			Repositorios.indicadores.agregarIndicador(indicadorNuevo);
+			Repositorios.indicadoresPredefinidos.agregarIndicador(indicadorNuevo);
 			Indicadores.actualizarJSON();
 	}
 	

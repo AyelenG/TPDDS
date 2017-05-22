@@ -15,7 +15,10 @@ public class Empresa {
 	private List<Periodo> periodos = new LinkedList<>();
 
 	public Empresa() {
+		this.setSymbol(new String());
+		this.setNombre(new String());
 	}
+	
 	public Empresa(String symbol, String nombre) {
 		this.setSymbol(symbol);
 		this.setNombre(nombre);

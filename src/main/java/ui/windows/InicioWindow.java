@@ -26,7 +26,7 @@ public class InicioWindow extends Window<InicioViewModel> {
 		new Label(mainPanel).setHeight(30).setWidth(400);
 		
 		new Button(mainPanel)
-			.setCaption("Cargar Datos")
+			.setCaption("Cargar Datos de Empresas")
 			.onClick(()-> new CargaDatosWindow(this).open());
 		
 		new Button(mainPanel)

@@ -5,7 +5,6 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
-import model.data.CuentasPredeterminadas;
 import model.repositories.Repositorios;
 
 @Observable
@@ -28,13 +27,13 @@ public class CargaNuevaCuentaViewModel {
 	}
 
 	public void cargarCuenta() {
-		if (Repositorios.cuentasPredefinidas.existeCuenta(cuenta))
+		if (Repositorios.repoCuentas.existeCuenta(cuenta))
 			throw new UserException("La cuenta ingresada ya existe.");
 		if (cuenta.getNombre().isEmpty()) {
 			throw new UserException("Complete el nombre de la Cuenta.");
 		}
-		Repositorios.cuentasPredefinidas.agregarCuenta(cuenta);
-		CuentasPredeterminadas.actualizarJSON();
+		Repositorios.repoCuentas.agregarCuenta(cuenta);
+		Repositorios.repoCuentas.guardar();
 		this.setHabilitaCarga(false);
 		if (parentVM != null)
 			ObservableUtils.firePropertyChanged(this.parentVM, "cuentas");

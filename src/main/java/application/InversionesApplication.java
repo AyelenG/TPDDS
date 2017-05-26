@@ -2,15 +2,14 @@ package application;
 
 import org.uqbar.arena.Application;
 
-import model.Indicadores;
-import model.data.CuentasPredeterminadas;
+import model.repositories.Repositorios;
 import ui.windows.InicioWindow;
 
 public class InversionesApplication extends Application {
 
 	public static void main(String[] args) {
-		CuentasPredeterminadas.cargar();
-		Indicadores.cargar();
+		Repositorios.repoCuentas.cargar();
+		Repositorios.repoIndicadores.cargar();
 		new InversionesApplication().start();
 	}
 	

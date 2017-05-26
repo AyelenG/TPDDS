@@ -10,4 +10,7 @@
 }, {
   "nombre" : "JACINTO",
   "formula" : "[FDS] * [FREE CASH FLOW]"
+}, {
+  "nombre" : "TEST",
+  "formula" : "<PAPA> - [FDS]"
 } ]

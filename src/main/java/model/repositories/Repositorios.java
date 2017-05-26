@@ -9,8 +9,8 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Repositorios {
 	
-	public static Empresas empresas = new Empresas();
-	public static Cuentas cuentasPredefinidas = new Cuentas();
-	public static Indicadores indicadoresPredefinidos = new Indicadores();
+	public static Empresas repoEmpresas = new Empresas();
+	public static Cuentas repoCuentas = new Cuentas();
+	public static Indicadores repoIndicadores = new Indicadores();
 	
 }

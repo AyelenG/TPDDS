@@ -19,7 +19,7 @@ public class CargaCuentaEmpresaViewModel {
 
 	private Empresa empresaSeleccionada;
 	private Cuenta cuentaSeleccionada;
-	private String valor;
+	private String valor = "";
 	private int anio;
 	private boolean habilitaCarga = true;
 	private AnalisisViewModel parentVM;
@@ -33,7 +33,7 @@ public class CargaCuentaEmpresaViewModel {
 
 	public void nuevaCuenta() {
 		this.setCuentaSeleccionada(null);
-		this.setValor(null);
+		this.setValor("");
 		this.setHabilitaCarga(true);
 	}
 	
@@ -45,7 +45,7 @@ public class CargaCuentaEmpresaViewModel {
 	public void cargarCuenta() {
 		if (empresaSeleccionada == null)
 			throw new UserException("Debe seleccionar una empresa.");
-		if (this.cuentaSeleccionada == null || this.getValor() == "")
+		if (this.getCuentaSeleccionada() == null || this.getValor().isEmpty())
 			throw new UserException("Complete los datos de la cuenta.");
 		if (!esAnioValido(anio))
 			throw new UserException("Ingrese un período valido.");
@@ -93,7 +93,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return Repositorios.empresas.getEmpresas();
+		return Repositorios.repoEmpresas.getEmpresas();
 	}
 
 	public Cuenta getCuentaSeleccionada() {
@@ -105,7 +105,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Cuenta> getCuentas() {
-		return Repositorios.cuentasPredefinidas.getCuentas();
+		return Repositorios.repoCuentas.getCuentas();
 	}
 	
 	public boolean isHabilitaCarga() {

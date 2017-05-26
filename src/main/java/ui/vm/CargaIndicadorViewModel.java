@@ -9,15 +9,14 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
 import model.Indicador;
-import model.Indicadores;
 import model.parser.analizadorSintactico.AnalizadorSintactico;
 import model.repositories.Repositorios;
 
 @Observable
 public class CargaIndicadorViewModel {
 
-	private List<Cuenta> cuentas = Repositorios.cuentasPredefinidas.getCuentas();
-	private List<Indicador> indicadores = Repositorios.indicadoresPredefinidos.getIndicadores();
+	private List<Cuenta> cuentas = Repositorios.repoCuentas.getCuentas();
+	private List<Indicador> indicadores = Repositorios.repoIndicadores.getIndicadores();
 	private String ingresado = "";
 	private Indicador indicadorNuevo = new Indicador();
 	private Indicador indicadorSeleccionado;
@@ -60,20 +59,20 @@ public class CargaIndicadorViewModel {
 	}
 
 	public void cargarIndicador() {
-		if (indicadorNuevo.getNombre().isEmpty()) {
+		if (indicadorNuevo.getNombre().isEmpty())
 			throw new UserException("Complete el nombre del indicador.");
-		}
-		if (ingresado.isEmpty()) {
+		if (Repositorios.repoIndicadores.existeIndicador(indicadorNuevo))
+			throw new UserException("El indicador ingresado ya existe.");
+		if (ingresado.isEmpty())
 			throw new UserException("Ingrese una formula para el indicador.");
-		}
 		if (new AnalizadorSintactico(ingresado).chequear() == false) {
-			this.limpiarTodo();
+//			this.limpiarTodo();
 			throw new UserException("Sintaxis de formula incorrecta.");
 		}
 
 		this.indicadorNuevo.setFormula(ingresado);
-		Repositorios.indicadoresPredefinidos.agregarIndicador(indicadorNuevo);
-		Indicadores.actualizarJSON();
+		Repositorios.repoIndicadores.agregarIndicador(indicadorNuevo);
+		Repositorios.repoIndicadores.guardar();
 		this.setHabilitaCarga(false);
 		ObservableUtils.firePropertyChanged(this, "indicadores");
 

@@ -9,7 +9,6 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
-import model.data.CuentasPredeterminadas;
 import model.data.LoaderArchivoCSV;
 import model.data.LoaderArchivoJSON;
 import model.repositories.Repositorios;
@@ -38,10 +37,11 @@ public class CargaEmpresasDesdeArchivoViewModel {
 			throw new UserException("El archivo no tiena la extensión correcta");
 		
 		/* En este llamado ya esta chequeado los repetidos en el modelo */
-		Repositorios.empresas.agregarEmpresas(empresas);
+		Repositorios.repoEmpresas.agregarEmpresas(empresas);
 		
 		/* Agrega las cuentas nuevas al Repositorio de Cuentas Predeterminadas */
-		CuentasPredeterminadas.agregarDistintas(empresas);
+		Repositorios.repoCuentas.agregarDesdeEmpresas(empresas);
+		Repositorios.repoCuentas.guardar();
 		
 		this.setHabilitaSelector(false);
 		this.setBotonCargarCuentas(false);

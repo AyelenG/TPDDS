@@ -6,15 +6,13 @@ import model.Cuenta;
 import model.Indicador;
 import model.Indicadores;
 import model.Periodo;
-import model.repositories.Repositorios;
 
 public class Evaluador {
 	/* Evalua un Indicador en un Periodo determinado */
-	public static BigDecimal evaluar(Indicador indicador, Periodo periodo) {
+	public static BigDecimal evaluar(Indicador indicador, Periodo periodo, Indicadores indicadores) {
 		try {
-			Indicadores indicadores = Repositorios.indicadoresPredefinidos;
 			String formula = indicador.getFormula();
-			
+
 			double result = (new Object() {
 				int pos = -1, ch;
 
@@ -129,7 +127,8 @@ public class Evaluador {
 					Indicador indicadorInterno = new Indicador(nombre);
 					BigDecimal x;
 					if (indicadores.existeIndicador(indicadorInterno)) {
-						if ((x = Evaluador.evaluar(indicadores.buscarIndicador(indicadorInterno), periodo)) != null)
+						x = Evaluador.evaluar(indicadores.buscarIndicador(indicadorInterno), periodo, indicadores);
+						if (x != null)
 							return x.doubleValue();
 						else
 							throw new RuntimeException("No se puede evaluar indicador: " + nombre);
@@ -145,11 +144,10 @@ public class Evaluador {
 						throw new RuntimeException("No existe cuenta: " + nombre);
 				}
 			}.parse());
-			
-			try{
+
+			try {
 				return new BigDecimal(result);
-			}
-			catch (NumberFormatException e){
+			} catch (NumberFormatException e) {
 				return null;
 			}
 		} catch (Exception e) {

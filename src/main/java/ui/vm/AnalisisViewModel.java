@@ -25,7 +25,7 @@ public class AnalisisViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return Repositorios.empresas.getEmpresas();
+		return Repositorios.repoEmpresas.getEmpresas();
 	}
 
 	public Empresa getEmpresaSeleccionada() {

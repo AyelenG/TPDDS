@@ -13,6 +13,7 @@ import org.uqbar.arena.windows.WindowOwner;
 
 import model.Cuenta;
 import model.Empresa;
+import model.Indicador;
 import ui.vm.AnalisisViewModel;
 
 @SuppressWarnings("serial")
@@ -59,8 +60,8 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel>{
 						
 			new Button(consultaPanel).setCaption("Consultar cuentas")
 			.onClick(() -> this.getModelObject().consultarCuentas()).bindEnabledToProperty("botonConsultarCuentas");
-			
-			new Label(consultaPanel).setHeight(30);
+						
+			new Label(consultaPanel).setHeight(20);
 			new Label(consultaPanel).setText("Cuentas").setFontSize(16);
 			Table<Cuenta> tablaCuentas = new Table<>(consultaPanel, Cuenta.class);
 			tablaCuentas.setNumberVisibleRows(10).bindItemsToProperty("cuentasSeleccionadas");
@@ -68,6 +69,18 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel>{
 			columnaNombre.setFont(12).setTitle("Nombre").setFixedSize(300).bindContentsToProperty("nombre");
 			Column<Cuenta> columnaValor = new Column<Cuenta>(tablaCuentas);
 			columnaValor.setFont(12).setTitle("Valor").setFixedSize(200).bindContentsToProperty("valor");			
+			
+			new Button(consultaPanel).setCaption("Consultar indicadores")
+			.onClick(() -> this.getModelObject().consultarIndicadores()).bindEnabledToProperty("botonConsultarIndicadores");
+				
+			new Label(consultaPanel).setHeight(20);
+			new Label(consultaPanel).setText("Indicadores").setFontSize(16);
+			Table<Indicador> tablaIndicadores = new Table<>(consultaPanel, Indicador.class);
+			tablaIndicadores.setNumberVisibleRows(10).bindItemsToProperty("indicadoresConValor");
+			Column<Indicador> columnaNombreIndicador = new Column<Indicador>(tablaIndicadores);
+			columnaNombreIndicador.setFont(12).setTitle("Nombre").setFixedSize(300).bindContentsToProperty("nombre");
+			Column<Indicador> columnaValorIndicador = new Column<Indicador>(tablaIndicadores);
+			columnaValorIndicador.setFont(12).setTitle("Valor").setFixedSize(200).bindContentsToProperty("valor");			
 			
 		}
 		

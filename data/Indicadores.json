@@ -13,4 +13,7 @@
 }, {
   "nombre" : "TEST",
   "formula" : "<PAPA> - [FDS]"
+}, {
+  "nombre" : "INDI",
+  "formula" : "30 + 20"
 } ]

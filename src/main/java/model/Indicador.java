@@ -24,6 +24,16 @@ public class Indicador {
 		this.setNombre(nombre);
 		this.formula = formula;
 	}
+	public Indicador(String nombre, String formula, BigDecimal nuevoValor){
+		this.setNombre(nombre);
+		this.formula = formula;
+		this.valor=nuevoValor;
+	}
+	public Indicador(String nombre, BigDecimal nuevoValor){
+		this.setNombre(nombre);
+		
+		this.valor=nuevoValor;
+	}
 
 	public boolean esIgual(Indicador indicador) {
 		return this.getNombre().equals(indicador.getNombre());

@@ -3,6 +3,7 @@ package ui.vm;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 
 import java.math.BigDecimal;
@@ -31,17 +32,14 @@ public class AnalisisViewModel {
 	private Indicador indicadorACargar;
 	
 	public void consultarCuentas() {
-		
 		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas());
+		this.agregarIndicadoresConValor(Repositorios.repoIndicadores.getIndicadores());
+		ObservableUtils.firePropertyChanged(this, "indicadoresConValor", this.cargaDeIndicadores);
+		this.setIndicadoresConValor(this.getCargaDeIndicadores());
+		
+		
 		
 	}
-	public void consultarIndicadores() {
-		this.indicadoresConValor.clear();
-		this.cargaDeIndicadores.clear();
-		this.agregarIndicadoresConValor(Repositorios.repoIndicadores.getIndicadores());
-		this.setIndicadoresConValor(this.getCargaDeIndicadores());
-	}
-	
 	public void agregarIndicadoresConValor(List<Indicador> indicadores){
 		for(Indicador indicador: indicadores){
 			this.setValor(Evaluador.evaluar(indicador, getPeriodoSeleccionado(), indicadoresP));
@@ -69,7 +67,6 @@ public class AnalisisViewModel {
 		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos());
 		this.setSelectorPeriodo(true);
 		this.setBotonConsultarCuentas(false);
-		this.setBotonConsultarIndicadores(false);
 	}
 
 	public List<Periodo> getPeriodosSeleccionados() {
@@ -86,8 +83,9 @@ public class AnalisisViewModel {
 
 	public void setPeriodoSeleccionado(Periodo periodoSeleccionado) {
 		this.periodoSeleccionado = periodoSeleccionado;
+		this.indicadoresConValor.clear();
+		this.cargaDeIndicadores.clear();
 		this.setBotonConsultarCuentas(true);
-		this.setBotonConsultarIndicadores(true);
 	}
 
 	public List<Cuenta> getCuentasSeleccionadas() {

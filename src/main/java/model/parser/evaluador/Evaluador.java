@@ -146,12 +146,12 @@ public class Evaluador {
 			}.parse());
 
 			try {
-				return new BigDecimal(result);
+				return BigDecimal.valueOf(result);
 			} catch (NumberFormatException e) {
-				return null;
+				return null; //division por 0, result = infinito o NaN
 			}
 		} catch (Exception e) {
-			return null;
+			return null; //no se pudo resolver la formula
 		}
 	}
 

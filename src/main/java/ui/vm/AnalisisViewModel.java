@@ -2,6 +2,7 @@ package ui.vm;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
@@ -19,41 +20,43 @@ import model.repositories.Repositorios;
 @Observable
 public class AnalisisViewModel {
 	private Empresa empresaSeleccionada;
-	private List<Periodo> periodosSeleccionados;
+	private List<Periodo> periodosSeleccionados = new LinkedList<>();
 	private Periodo periodoSeleccionado;
 	private List<Cuenta> cuentasSeleccionadas;
-	private List<Indicador> indicadoresConValor= new LinkedList<>();
-	private List<Indicador> cargaDeIndicadores= new LinkedList<>();
-	private BigDecimal valor;
-	private Indicadores indicadoresP=Repositorios.repoIndicadores;
+
+	private Indicadores indiceIndicadores = Repositorios.repoIndicadores;
+	private List<Indicador> indicadoresConValor = new LinkedList<>();
+
 	private boolean selectorPeriodo = false;
-	private boolean botonConsultarCuentas = false;
-	private boolean botonConsultarIndicadores = false;
-	private Indicador indicadorACargar;
-	
-	public void consultarCuentas() {
+	private boolean botonConsultar = false;
+
+	public void consultar() {
 		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas());
-		this.agregarIndicadoresConValor(Repositorios.repoIndicadores.getIndicadores());
-		ObservableUtils.firePropertyChanged(this, "indicadoresConValor", this.cargaDeIndicadores);
-		this.setIndicadoresConValor(this.getCargaDeIndicadores());
-		
-		
-		
+		this.cargarIndicadores();
 	}
-	public void agregarIndicadoresConValor(List<Indicador> indicadores){
-		for(Indicador indicador: indicadores){
-			this.setValor(Evaluador.evaluar(indicador, getPeriodoSeleccionado(), indicadoresP));
-			if(this.valor!=null){
-				indicadorACargar = new Indicador(indicador.getNombre(), indicador.getFormula(), this.valor);
+
+	public void cargarIndicadores() {
+		this.indicadoresConValor.clear();
+		this.agregarIndicadoresConValor(indiceIndicadores.getIndicadores());
+		ObservableUtils.firePropertyChanged(this, "indicadoresConValor");
+	}
+
+	private void agregarIndicadoresConValor(List<Indicador> indicadores) {
+		BigDecimal valor;
+		Indicador indicadorACargar;
+		for (Indicador indicador : indicadores) {
+			valor = Evaluador.evaluar(indicador, getPeriodoSeleccionado(), indiceIndicadores);
+			if (valor != null) {
+				indicadorACargar = new Indicador(indicador.getNombre(), indicador.getFormula(), valor);
 				this.agregarIndicador(indicadorACargar);
 			}
 		}
 	}
-	
-	public void agregarIndicador(Indicador indicador) {
-		this.cargaDeIndicadores.add(indicador);
+
+	private void agregarIndicador(Indicador indicador) {
+		this.indicadoresConValor.add(indicador);
 	}
-	
+
 	public List<Empresa> getEmpresas() {
 		return Repositorios.repoEmpresas.getEmpresas();
 	}
@@ -66,15 +69,15 @@ public class AnalisisViewModel {
 		this.empresaSeleccionada = empresaSeleccionada;
 		this.setPeriodosSeleccionados(empresaSeleccionada.getPeriodos());
 		this.setSelectorPeriodo(true);
-		this.setBotonConsultarCuentas(false);
+		this.setBotonConsultar(false);
 	}
 
 	public List<Periodo> getPeriodosSeleccionados() {
-		return periodosSeleccionados;
+		return periodosSeleccionados.stream().sorted().collect(Collectors.toList());
 	}
 
-	public void setPeriodosSeleccionados(List<Periodo> periodos) {
-		this.periodosSeleccionados = periodos;
+	public void setPeriodosSeleccionados(List<Periodo> periodosSeleccionados) {
+		this.periodosSeleccionados = periodosSeleccionados;
 	}
 
 	public Periodo getPeriodoSeleccionado() {
@@ -83,9 +86,7 @@ public class AnalisisViewModel {
 
 	public void setPeriodoSeleccionado(Periodo periodoSeleccionado) {
 		this.periodoSeleccionado = periodoSeleccionado;
-		this.indicadoresConValor.clear();
-		this.cargaDeIndicadores.clear();
-		this.setBotonConsultarCuentas(true);
+		this.setBotonConsultar(true);
 	}
 
 	public List<Cuenta> getCuentasSeleccionadas() {
@@ -104,36 +105,28 @@ public class AnalisisViewModel {
 		this.selectorPeriodo = selectorPeriodo;
 	}
 
-	public boolean isBotonConsultarCuentas() {
-		return botonConsultarCuentas;
+	public boolean isBotonConsultar() {
+		return botonConsultar;
 	}
 
-	public void setBotonConsultarCuentas(boolean botonConsultarCuentas) {
-		this.botonConsultarCuentas = botonConsultarCuentas;
+	public void setBotonConsultar(boolean botonConsultarCuentas) {
+		this.botonConsultar = botonConsultarCuentas;
 	}
 
 	public List<Indicador> getIndicadoresConValor() {
 		return indicadoresConValor;
 	}
-	public boolean isBotonConsultarIndicadores() {
-		return botonConsultarIndicadores;
-	}
 
-	public void setBotonConsultarIndicadores(boolean botonConsultarIndicadores) {
-		this.botonConsultarIndicadores = botonConsultarIndicadores;
-	}
-	public void setValor(BigDecimal nuevoValor){
-		this.valor= nuevoValor;
-	}
-	public List<Indicador> getCargaDeIndicadores() {
-		return cargaDeIndicadores;
-	}
-	public void setCargaDeIndicadores(List<Indicador> indicadores) {
-		this.cargaDeIndicadores = indicadores;
-	}
-	public void setIndicadoresConValor(List <Indicador> indicadores){
+	public void setIndicadoresConValor(List<Indicador> indicadores) {
 		this.indicadoresConValor = indicadores;
 	}
-	
+
+	public Indicadores getIndiceIndicadores() {
+		return indiceIndicadores;
+	}
+
+	public void setIndiceIndicadores(Indicadores indiceIndicadores) {
+		this.indiceIndicadores = indiceIndicadores;
+	}
 
 }

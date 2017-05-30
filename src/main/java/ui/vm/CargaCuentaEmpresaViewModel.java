@@ -28,6 +28,8 @@ public class CargaCuentaEmpresaViewModel {
 		if (parentVM != null) {
 			this.parentVM = parentVM;
 			this.empresaSeleccionada = parentVM.getEmpresaSeleccionada();
+			Periodo periodoSeleccionado = parentVM.getPeriodoSeleccionado();
+			this.anio = periodoSeleccionado != null? periodoSeleccionado.getAnio().intValue() : 0;
 		}
 	}
 
@@ -65,6 +67,7 @@ public class CargaCuentaEmpresaViewModel {
 		if (parentVM != null) {
 			ObservableUtils.firePropertyChanged(this.parentVM, "periodosSeleccionados");
 			ObservableUtils.firePropertyChanged(this.parentVM, "cuentasSeleccionadas");
+			parentVM.cargarIndicadores();
 		}
 	}
 

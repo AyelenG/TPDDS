@@ -59,7 +59,7 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel>{
 			selectorPeriodo.bindValueToProperty("periodoSeleccionado");
 						
 			new Button(consultaPanel).setCaption("Consultar cuentas e indicadores")
-			.onClick(() -> this.getModelObject().consultarCuentas()).bindEnabledToProperty("botonConsultarCuentas");
+			.onClick(() -> this.getModelObject().consultar()).bindEnabledToProperty("botonConsultar");
 						
 			new Label(consultaPanel).setHeight(20);
 			new Label(consultaPanel).setText("Cuentas").setFontSize(16);

@@ -1,12 +1,9 @@
 package model;
 
-import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
-
-import model.repositories.Repositorios;
 
 @Observable
 public class Empresa {
@@ -18,7 +15,7 @@ public class Empresa {
 		this.setSymbol(new String());
 		this.setNombre(new String());
 	}
-	
+
 	public Empresa(String symbol, String nombre) {
 		this.setSymbol(symbol);
 		this.setNombre(nombre);
@@ -31,20 +28,20 @@ public class Empresa {
 		this.agregarPeriodo(periodo);
 		return periodo;
 	}
-	
+
 	public void agregarPeriodos(List<Periodo> periodos) {
-		for (Periodo periodo : periodos) {			
+		for (Periodo periodo : periodos) {
 			if (!existePeriodo(periodo))
 				this.agregarPeriodo(periodo);
 			else
 				this.buscarPeriodo(periodo).agregarCuentas(periodo.getCuentas());
 		}
 	}
-	
+
 	public void agregarPeriodo(Periodo periodo) {
 		periodos.add(periodo);
 	}
-	
+
 	public Periodo buscarPeriodo(Periodo periodo) {
 		return periodos.stream().filter(_periodo -> _periodo.esIgual(periodo)).findFirst().orElse(null);
 	}
@@ -52,24 +49,19 @@ public class Empresa {
 	public boolean existePeriodo(Periodo periodo) {
 		return periodos.stream().anyMatch(_periodo -> _periodo.esIgual(periodo));
 	}
-	
-	/* Agrega una cuenta en el periodo correspondiente, si no existe el periodo en la empresa lo agrega */
+
+	/*
+	 * Agrega una cuenta en el periodo correspondiente, si no existe el periodo
+	 * en la empresa lo agrega
+	 */
 	public void agregarCuenta(Periodo periodo, Cuenta cuenta) {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
 	}
-	
+
 	public boolean esIgual(Empresa empresa) {
 		return this.getSymbol().equals(empresa.getSymbol());
 	}
-	
-	/* Devuelve el valor de la cuenta segun su indice en un periodo dado */
-	/* En caso de no existir devuelve null */
-	public BigDecimal getValorCuentaEnPeriodoConIndice(int anio, int index) {
-		return this.buscarPeriodo(new Periodo(anio))
-					.buscarCuenta(Repositorios.repoCuentas.get(index))
-					.getValor();
-	}
-	
+
 	public String toString() {
 		return getSymbol() + " - " + getNombre();
 	}

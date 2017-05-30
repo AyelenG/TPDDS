@@ -6,7 +6,7 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Periodo {
+public class Periodo implements Comparable<Periodo>{
 	private Integer anio;
 	private List<Cuenta> cuentas = new LinkedList<>();
 
@@ -16,22 +16,6 @@ public class Periodo {
 	public Periodo(Integer anio) {
 		this.setAnio(anio);
 	}
-
-	/******************************/
-	/** NO SE USA POR EL MOMENTO **/
-	/******************************/
-	/*
-	 * public void buscarCuentaYAgregarOModificar(Cuenta cuenta) { Cuenta
-	 * cuentaEncontrada = this.buscarCuenta(cuenta); if (cuentaEncontrada !=
-	 * null) { cuentaEncontrada.setValor(cuenta.getValor()); } else {
-	 * this.agregarCuenta(cuenta); } }
-	 * 
-	 * public Cuenta buscarCuentaYAgregar(Cuenta cuenta) { Cuenta
-	 * cuentaEncontrada = this.buscarCuentaYAgregar(cuenta); if
-	 * (cuentaEncontrada != null) return cuentaEncontrada; Cuenta cuentaNueva =
-	 * new Cuenta(cuenta.getNombre(), cuenta.getValor());
-	 * this.agregarCuenta(cuentaNueva); return cuentaNueva; }
-	 */
 
 	public void agregarCuentas(List<Cuenta> cuentas) {
 		for (Cuenta cuenta : cuentas)
@@ -57,8 +41,14 @@ public class Periodo {
 		return this.getAnio().equals(periodo.getAnio());
 	}
 
+	@Override
 	public String toString() {
 		return getAnio().toString();
+	}
+	
+	@Override
+	public int compareTo(Periodo o) {
+		return this.getAnio() - o.getAnio();
 	}
 
 	public Integer getAnio() {

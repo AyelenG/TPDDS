@@ -12,7 +12,7 @@ import model.Empresa;
 
 
 public abstract class LoaderArchivo {
-	private String ruta;
+	protected String ruta;
 
 	public LoaderArchivo(String ruta) {
 		this.ruta = ruta;

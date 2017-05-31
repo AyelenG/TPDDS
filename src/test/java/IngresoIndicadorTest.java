@@ -6,7 +6,7 @@ import model.Cuenta;
 import model.Indicador;
 import ui.vm.CargaIndicadorViewModel;
 
-public class agregarSimboloTest {
+public class IngresoIndicadorTest {
 	
 	private CargaIndicadorViewModel viewModel = new CargaIndicadorViewModel();
 	
@@ -14,14 +14,14 @@ public class agregarSimboloTest {
 	@Test
 	public void verificarAgregarSimboloPrimeraVez(){
 		viewModel.setIngresado("");
-		viewModel.agregarSimbolo("50");
+		viewModel.agregarToken("50");
 		assertEquals(viewModel.getIngresado(),"50");
 	}
 	
 	@Test
 	public void verificarAgregarSimbolo(){
 		viewModel.setIngresado("ABC +");
-		viewModel.agregarSimbolo("50");
+		viewModel.agregarToken("50");
 		assertEquals(viewModel.getIngresado(),"ABC + 50");
 	}
 	
@@ -42,5 +42,14 @@ public class agregarSimboloTest {
 		viewModel.ingresarCuenta();
 		assertEquals(viewModel.getIngresado(), "[PBI]");
 	} 
+	
+	@Test
+	public void verificarBorrarUltimo(){
+		viewModel.agregarToken("[ABC]");
+		viewModel.agregarToken("/");
+		viewModel.agregarToken("45.15");
+		viewModel.borrarUltimo();
+		assertEquals("[ABC] /" , viewModel.getIngresado());
+	}
 	
 }

@@ -1,15 +1,13 @@
 package model;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.uqbar.commons.utils.Observable;
+
+import model.data.LoaderArchivoJSON;
 
 @Observable
 public class Indicadores {
@@ -54,22 +52,11 @@ public class Indicadores {
 	}
 
 	public void cargar() {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			this.agregarIndicadores(mapper.readValue(new File(RUTA),
-					mapper.getTypeFactory().constructCollectionType(LinkedList.class, Indicador.class)));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		this.agregarIndicadores(new LoaderArchivoJSON(RUTA).loadIndicadores());
 	}
 
 	public void guardar() {
-		try {
-			new ObjectMapper().enable(Feature.INDENT_OUTPUT).writeValue(new File(RUTA), this.getIndicadoresDeUsuario());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		new LoaderArchivoJSON(RUTA).saveIndicadores(this.getIndicadoresDeUsuario());
 	}
 
 	public List<Indicador> getIndicadoresPredefinidos() {
@@ -77,8 +64,7 @@ public class Indicadores {
 	}
 
 	public List<Indicador> getIndicadoresDeUsuario() {
-		return indicadores.stream().filter(i -> !indicadoresPredefinidos.contains(i))
-				.collect(Collectors.toList());
+		return indicadores.stream().filter(i -> !indicadoresPredefinidos.contains(i)).collect(Collectors.toList());
 	}
 
 	public List<Indicador> getIndicadores() {

@@ -1,5 +1,6 @@
 package ui.vm;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang.math.NumberUtils;
@@ -8,16 +9,19 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
+import model.Cuentas;
 import model.Indicador;
+import model.Indicadores;
 import model.parser.analizadorSintactico.AnalizadorSintactico;
 import model.repositories.Repositorios;
 
 @Observable
 public class CargaIndicadorViewModel {
 
-	private List<Cuenta> cuentas = Repositorios.repoCuentas.getCuentas();
-	private List<Indicador> indicadores = Repositorios.repoIndicadores.getIndicadores();
+	private Cuentas cuentas = Repositorios.repoCuentas;
+	private Indicadores indicadores = Repositorios.repoIndicadores;
 	private String ingresado = "";
+	private List<String> tokens = new LinkedList<>();
 	private Indicador indicadorNuevo = new Indicador();
 	private Indicador indicadorSeleccionado;
 	private Cuenta cuentaSeleccionada; // trato la cuenta como un objeto y no
@@ -32,26 +36,33 @@ public class CargaIndicadorViewModel {
 		this.setHabilitaCarga(true);
 	}
 
-	public void agregarSimbolo(String simbolo) {
+	public void agregarToken(String token) {
 		if (ingresado != "")
-			ingresado += " " + simbolo;
+			ingresado += " " + token;
 		else
-			ingresado = simbolo;
+			ingresado = token;
+		tokens.add(token);
 	}
 
 	public void ingresarCuenta() {
-		this.agregarSimbolo("[" + cuentaSeleccionada.getNombre() + "]");
-		this.setCuentaSeleccionada(null);
+		if (cuentaSeleccionada != null) {
+			this.agregarToken("[" + cuentaSeleccionada.getNombre() + "]");
+			this.setCuentaSeleccionada(null);
+		} else
+			throw new UserException("Debe elegir una cuenta de la lista.");
 	}
 
 	public void ingresarIndicador() {
-		this.agregarSimbolo("<" + indicadorSeleccionado.getNombre() + ">");
-		this.setIndicadorSeleccionado(null);
+		if (indicadorSeleccionado != null) {
+			this.agregarToken("<" + indicadorSeleccionado.getNombre() + ">");
+			this.setIndicadorSeleccionado(null);
+		}else 
+			throw new UserException("Debe elegir un indicador de la lista.");
 	}
 
 	public void ingresarConstante() {
 		if (NumberUtils.isNumber(constante)) {
-			this.agregarSimbolo(constante);
+			this.agregarToken(constante);
 			this.setConstante("");
 		} else
 			throw new UserException("La constante debe ser numerica.");
@@ -61,18 +72,18 @@ public class CargaIndicadorViewModel {
 	public void cargarIndicador() {
 		if (indicadorNuevo.getNombre().isEmpty())
 			throw new UserException("Complete el nombre del indicador.");
-		if (Repositorios.repoIndicadores.existeIndicador(indicadorNuevo))
+		if (indicadores.existeIndicador(indicadorNuevo))
 			throw new UserException("El indicador ingresado ya existe.");
 		if (ingresado.isEmpty())
 			throw new UserException("Ingrese una formula para el indicador.");
 		if (new AnalizadorSintactico(ingresado).chequear() == false) {
-//			this.limpiarTodo();
+			// this.limpiarTodo();
 			throw new UserException("Sintaxis de formula incorrecta.");
 		}
 
 		this.indicadorNuevo.setFormula(ingresado);
-		Repositorios.repoIndicadores.agregarIndicador(indicadorNuevo);
-		Repositorios.repoIndicadores.guardar();
+		indicadores.agregarIndicador(indicadorNuevo);
+		indicadores.guardar();
 		this.setHabilitaCarga(false);
 		ObservableUtils.firePropertyChanged(this, "indicadores");
 
@@ -80,28 +91,34 @@ public class CargaIndicadorViewModel {
 
 	public void limpiarTodo() {
 		this.setIngresado("");
+		this.tokens.clear();
 		this.setCuentaSeleccionada(null);
 		this.setIndicadorSeleccionado(null);
 		this.setConstante("");
 	}
 
 	public void borrarUltimo() {
-		// borra el ultimo token
+		try {
+			tokens.remove(tokens.size() - 1);
+			ingresado = String.join(" ", tokens);
+		} catch (IndexOutOfBoundsException e) {
+			// si no hay tokens para borrar no hago nada
+		}
 	}
 
 	public List<Cuenta> getCuentas() {
-		return cuentas;
+		return cuentas.getCuentas();
 	}
 
-	public void setCuentas(List<Cuenta> cuentas) {
+	public void setCuentas(Cuentas cuentas) {
 		this.cuentas = cuentas;
 	}
 
 	public List<Indicador> getIndicadores() {
-		return indicadores;
+		return indicadores.getIndicadores();
 	}
 
-	public void setIndicadores(List<Indicador> indicadores) {
+	public void setIndicadores(Indicadores indicadores) {
 		this.indicadores = indicadores;
 	}
 
@@ -111,6 +128,15 @@ public class CargaIndicadorViewModel {
 
 	public void setIngresado(String ingresado) {
 		this.ingresado = ingresado;
+	}
+
+	// necesario poner getter/setter de tokens si no falla Arena
+	public List<String> getTokens() {
+		return tokens;
+	}
+
+	public void setTokens(List<String> tokens) {
+		this.tokens = tokens;
 	}
 
 	public Indicador getIndicadorNuevo() {

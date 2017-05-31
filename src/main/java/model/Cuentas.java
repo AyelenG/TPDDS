@@ -1,14 +1,11 @@
 package model;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.uqbar.commons.utils.Observable;
 
+import model.data.LoaderArchivoJSON;
 
 @Observable
 public class Cuentas {
@@ -39,6 +36,10 @@ public class Cuentas {
 		return cuentas;
 	}
 
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
+
 	public Cuenta get(int i) {
 		return cuentas.get(i);
 	}
@@ -51,18 +52,8 @@ public class Cuentas {
 		return cuentas.size();
 	}
 
-	public void setCuentas(List<Cuenta> cuentas) {
-		this.cuentas = cuentas;
-	}
-
 	public void cargar() {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			this.agregarCuentas(mapper.readValue(new File(RUTA),
-					mapper.getTypeFactory().constructCollectionType(LinkedList.class, Cuenta.class)));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.agregarCuentas(new LoaderArchivoJSON(RUTA).loadCuentas());
 
 		/* IMPRESION POR CONSOLA PARA CONTROL */
 		/*
@@ -89,12 +80,8 @@ public class Cuentas {
 
 	/* Del Repositorio al Archivo JSON */
 	public void guardar() {
-		try {
-			new ObjectMapper().enable(Feature.INDENT_OUTPUT).writeValue(new File(RUTA),
-					this.getCuentas());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		new LoaderArchivoJSON(RUTA).saveCuentas(this.getCuentas());
+
 	}
 
 }

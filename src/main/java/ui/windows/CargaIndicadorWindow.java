@@ -45,17 +45,17 @@ public class CargaIndicadorWindow extends SimpleWindow<CargaIndicadorViewModel> 
 		Panel simbolosPanel = new Panel(mainPanel);
 		simbolosPanel.setLayout(new HorizontalLayout());
 
-		new Button(simbolosPanel).setCaption("(").onClick(() -> this.getModelObject().agregarSimbolo("("));
+		new Button(simbolosPanel).setCaption("(").onClick(() -> this.getModelObject().agregarToken("("));
 
-		new Button(simbolosPanel).setCaption(")").onClick(() -> this.getModelObject().agregarSimbolo(")"));
+		new Button(simbolosPanel).setCaption(")").onClick(() -> this.getModelObject().agregarToken(")"));
 
-		new Button(simbolosPanel).setCaption("*").onClick(() -> this.getModelObject().agregarSimbolo("*"));
+		new Button(simbolosPanel).setCaption("*").onClick(() -> this.getModelObject().agregarToken("*"));
 
-		new Button(simbolosPanel).setCaption("+").onClick(() -> this.getModelObject().agregarSimbolo("+"));
+		new Button(simbolosPanel).setCaption("+").onClick(() -> this.getModelObject().agregarToken("+"));
 
-		new Button(simbolosPanel).setCaption("-").onClick(() -> this.getModelObject().agregarSimbolo("-"));
+		new Button(simbolosPanel).setCaption("-").onClick(() -> this.getModelObject().agregarToken("-"));
 
-		new Button(simbolosPanel).setCaption("/").onClick(() -> this.getModelObject().agregarSimbolo("/"));
+		new Button(simbolosPanel).setCaption("/").onClick(() -> this.getModelObject().agregarToken("/"));
 
 		// Cuentas
 		Panel cuentasPanel = new Panel(mainPanel);
@@ -98,16 +98,18 @@ public class CargaIndicadorWindow extends SimpleWindow<CargaIndicadorViewModel> 
 		Panel botonesPanel = new Panel(mainPanel);
 		botonesPanel.setLayout(new HorizontalLayout());
 
-		new Button(botonesPanel).setCaption("Borrar todo").onClick(() -> this.getModelObject().limpiarTodo());
-
+		new Button(botonesPanel).setCaption("Limpiar todo").onClick(() -> this.getModelObject().limpiarTodo())
+				.bindEnabledToProperty("habilitaCarga");
+		new Button(botonesPanel).setCaption("Borrar ultimo").onClick(() -> this.getModelObject().borrarUltimo())
+				.bindEnabledToProperty("habilitaCarga");
 		new Button(botonesPanel).setCaption("Cargar").onClick(() -> this.getModelObject().cargarIndicador())
 				.bindEnabledToProperty("habilitaCarga");
 
 		new Button(botonesPanel).setCaption("Cerrar").onClick(() -> this.close());
-		
+
 		new Button(botonesPanel).setCaption("Nuevo Indicador").onClick(() -> this.getModelObject().nuevoIndicador())
 				.bindVisibleToProperty("habilitaNuevo");
-		
+
 		Label labelExito = new Label(mainPanel);
 		labelExito.setForeground(Color.GREEN);
 		labelExito.setText("Carga realizada Exitosamente");

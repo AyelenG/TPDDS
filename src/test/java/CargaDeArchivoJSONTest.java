@@ -8,7 +8,6 @@ import model.Empresas;
 import model.Periodo;
 import model.data.LoaderArchivo;
 import model.data.LoaderArchivoJSON;
-import model.repositories.Repositorios;
 
 public class CargaDeArchivoJSONTest {
 	private Empresa empresa;
@@ -39,6 +38,6 @@ public class CargaDeArchivoJSONTest {
 	@Test
 	public void verificarQueNoEstaApple() {
 		empresa = new Empresa("AP", "Apple");
-		assertFalse(Repositorios.repoEmpresas.existeEmpresa(empresa));
+		assertFalse(empresas.existeEmpresa(empresa));
 	}
 }

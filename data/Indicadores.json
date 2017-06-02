@@ -19,4 +19,7 @@
 }, {
   "nombre" : "AFG",
   "formula" : "[EBITDA] * [INGRESO NETO EN OPERACIONES CONTINUAS] + 20"
+}, {
+  "nombre" : "IMPOSIBLE",
+  "formula" : "6 / 0"
 } ]

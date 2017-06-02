@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 
+import exceptions.NoSePuedeEvaluarException;
+
 import java.math.BigDecimal;
 
 import model.Cuenta;
@@ -14,7 +16,6 @@ import model.Empresa;
 import model.Indicador;
 import model.Indicadores;
 import model.Periodo;
-import model.parser.evaluador.Evaluador;
 import model.repositories.Repositorios;
 
 @Observable
@@ -25,10 +26,52 @@ public class AnalisisViewModel {
 	private List<Cuenta> cuentasSeleccionadas;
 
 	private Indicadores indiceIndicadores = Repositorios.repoIndicadores;
-	private List<Indicador> indicadoresConValor = new LinkedList<>();
+	private List<IndicadorVM> indicadoresConValor = new LinkedList<>();
+	private List<IndicadorVM> indicadoresSinValor = new LinkedList<>();
 
 	private boolean selectorPeriodo = false;
 	private boolean botonConsultar = false;
+
+	@Observable
+	public class IndicadorVM {
+		private String nombre;
+		private BigDecimal valor;
+		private String mensaje;
+
+		public IndicadorVM(String nombre, BigDecimal valor) {
+			this.nombre = nombre;
+			this.valor = valor;
+		}
+
+		public IndicadorVM(String nombre, String mensaje) {
+			this.nombre = nombre;
+			this.mensaje = mensaje;
+		}
+
+		public String getNombre() {
+			return nombre;
+		}
+
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+
+		public BigDecimal getValor() {
+			return valor;
+		}
+
+		public void setValor(BigDecimal valor) {
+			this.valor = valor;
+		}
+
+		public String getMensaje() {
+			return mensaje;
+		}
+
+		public void setMensaje(String mensaje) {
+			this.mensaje = mensaje;
+		}
+	}
 
 	public void consultar() {
 		this.setCuentasSeleccionadas(periodoSeleccionado.getCuentas());
@@ -37,24 +80,28 @@ public class AnalisisViewModel {
 
 	public void cargarIndicadores() {
 		this.indicadoresConValor.clear();
-		this.agregarIndicadoresConValor(indiceIndicadores.getIndicadores());
-		ObservableUtils.firePropertyChanged(this, "indicadoresConValor");
-	}
-
-	private void agregarIndicadoresConValor(List<Indicador> indicadores) {
-		BigDecimal valor;
-		Indicador indicadorACargar;
-		for (Indicador indicador : indicadores) {
-			valor = Evaluador.evaluar(indicador, getPeriodoSeleccionado(), indiceIndicadores);
-			if (valor != null) {
-				indicadorACargar = new Indicador(indicador.getNombre(), indicador.getFormula(), valor);
-				this.agregarIndicador(indicadorACargar);
-			}
+		this.indicadoresSinValor.clear();
+		if (this.getPeriodoSeleccionado() != null) {
+			this.agregarIndicadoresDePeriodo(indiceIndicadores.getIndicadores());
+			ObservableUtils.firePropertyChanged(this, "indicadoresConValor");
+			ObservableUtils.firePropertyChanged(this, "indicadoresSinValor");
 		}
 	}
 
-	private void agregarIndicador(Indicador indicador) {
-		this.indicadoresConValor.add(indicador);
+	private void agregarIndicadoresDePeriodo(List<Indicador> indicadores) {
+		BigDecimal valor;
+		IndicadorVM indicadorACargar;
+		for (Indicador indicador : indicadores) {
+			try {
+				valor = indicador.evaluar(this.getPeriodoSeleccionado(), indiceIndicadores);
+				indicadorACargar = new IndicadorVM(indicador.getNombre(), valor);
+				indicadoresConValor.add(indicadorACargar);
+			} catch (NoSePuedeEvaluarException e) {
+				indicadorACargar = new IndicadorVM(indicador.getNombre(), e.getMensaje());
+				indicadoresSinValor.add(indicadorACargar);
+			}
+
+		}
 	}
 
 	public List<Empresa> getEmpresas() {
@@ -113,12 +160,20 @@ public class AnalisisViewModel {
 		this.botonConsultar = botonConsultarCuentas;
 	}
 
-	public List<Indicador> getIndicadoresConValor() {
+	public List<IndicadorVM> getIndicadoresConValor() {
 		return indicadoresConValor;
 	}
 
-	public void setIndicadoresConValor(List<Indicador> indicadores) {
+	public void setIndicadoresConValor(List<IndicadorVM> indicadores) {
 		this.indicadoresConValor = indicadores;
+	}
+
+	public List<IndicadorVM> getIndicadoresSinValor() {
+		return indicadoresSinValor;
+	}
+
+	public void setIndicadoresSinValor(List<IndicadorVM> indicadoresSinValor) {
+		this.indicadoresSinValor = indicadoresSinValor;
 	}
 
 	public Indicadores getIndiceIndicadores() {

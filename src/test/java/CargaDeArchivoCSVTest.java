@@ -11,7 +11,6 @@ import model.Empresas;
 import model.Periodo;
 import model.data.LoaderArchivo;
 import model.data.LoaderArchivoCSV;
-import model.repositories.Repositorios;
 
 public class CargaDeArchivoCSVTest {
 	private Empresa empresa;
@@ -41,7 +40,7 @@ public class CargaDeArchivoCSVTest {
 	@Test
 	public void verificarQueNoEstaApple() {
 		empresa = new Empresa("AP", "Apple");
-		assertFalse(Repositorios.repoEmpresas.existeEmpresa(empresa));
+		assertFalse(empresas.existeEmpresa(empresa));
 	}
 
 	@Test

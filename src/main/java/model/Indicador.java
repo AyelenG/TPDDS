@@ -6,6 +6,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.uqbar.commons.utils.Observable;
 
+import model.parser.evaluador.Evaluador;
+
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
@@ -13,7 +15,6 @@ public class Indicador {
 
 	private String nombre = "";
 	private String formula = "";
-	private BigDecimal valor;
 
 	public Indicador() {
 	}
@@ -25,12 +26,6 @@ public class Indicador {
 	public Indicador(String nombre, String formula) {
 		this.setNombre(nombre);
 		this.formula = formula;
-	}
-
-	public Indicador(String nombre, String formula, BigDecimal valor) {
-		this.setNombre(nombre);
-		this.formula = formula;
-		this.valor = valor;
 	}
 
 	public boolean esIgual(Indicador indicador) {
@@ -58,12 +53,8 @@ public class Indicador {
 		this.formula = formula;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public BigDecimal evaluar(Periodo periodo, Indicadores indiceIndicadores) {
+		return Evaluador.evaluar(this, periodo, indiceIndicadores);
 	}
 
 }

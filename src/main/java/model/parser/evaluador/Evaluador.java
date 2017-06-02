@@ -126,8 +126,8 @@ public class Evaluador {
 			private double parseIndicador(String nombre) {
 				Indicador indicadorInterno = new Indicador(nombre);
 				BigDecimal x;
-				if (indicadores.existeIndicador(indicadorInterno)) {
-					x = Evaluador.evaluar(indicadores.buscarIndicador(indicadorInterno), periodo, indicadores);
+				if (indicadores.existeElemento(indicadorInterno)) {
+					x = Evaluador.evaluar(indicadores.buscarElemento(indicadorInterno), periodo, indicadores);
 					if (x != null)
 						return x.doubleValue();
 					else

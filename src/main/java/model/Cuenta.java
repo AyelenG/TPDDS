@@ -27,10 +27,6 @@ public class Cuenta {
 		this.setValor(valor);
 	}
 	
-	public boolean esIgual(Cuenta cuenta) {
-		return this.getNombre().equals(cuenta.getNombre());
-	}
-	
 	public String toString(){
 		return this.getNombre();
 	}
@@ -49,6 +45,10 @@ public class Cuenta {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public boolean esIgual(Cuenta cuenta) {
+		return this.getNombre().equals(cuenta.getNombre());
 	}
 
 }

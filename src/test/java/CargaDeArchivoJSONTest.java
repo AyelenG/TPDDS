@@ -6,25 +6,24 @@ import org.junit.Test;
 import model.Empresa;
 import model.Empresas;
 import model.Periodo;
-import model.data.LoaderArchivo;
-import model.data.LoaderArchivoJSON;
+import model.data.HandlerArchivo;
+import model.data.HandlerArchivoJSON;
 
 public class CargaDeArchivoJSONTest {
 	private Empresa empresa;
-	private Empresa primerEmpresa = new Empresa("FB", "Facebook");
 	private Empresas empresas = new Empresas();
-	LoaderArchivo loader = new LoaderArchivoJSON("data/CuentasPrueba.json");
+	HandlerArchivo loader = new HandlerArchivoJSON("data/CuentasPrueba.json");
 	private Periodo periodo;
 
 	@Before
 	public void inicio() {
-		empresas.agregarEmpresas(loader.getEmpresas());
+		empresas.agregarElementos(loader.loadEmpresas());
 	}
 
 	@Test
 	public void verificarPrimerEmpresa() {
 		empresa = empresas.get(0);
-		assertTrue(empresa.esIgual(primerEmpresa));
+		assertEquals("FB",empresa.getSymbol());
 	}
 
 	@Test
@@ -38,6 +37,6 @@ public class CargaDeArchivoJSONTest {
 	@Test
 	public void verificarQueNoEstaApple() {
 		empresa = new Empresa("AP", "Apple");
-		assertFalse(empresas.existeEmpresa(empresa));
+		assertFalse(empresas.existeElemento(empresa));
 	}
 }

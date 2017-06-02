@@ -9,26 +9,25 @@ import model.Cuenta;
 import model.Empresa;
 import model.Empresas;
 import model.Periodo;
-import model.data.LoaderArchivo;
-import model.data.LoaderArchivoCSV;
+import model.data.HandlerArchivo;
+import model.data.HandlerArchivoCSV;
 
 public class CargaDeArchivoCSVTest {
 	private Empresa empresa;
-	private Empresa primerEmpresa = new Empresa("FB", "Facebook");
 	Empresas empresas = new Empresas();
-	LoaderArchivo loader = new LoaderArchivoCSV("data/PruebaCuentas.csv");
+	HandlerArchivo loader = new HandlerArchivoCSV("data/PruebaCuentas.csv");
 	private BigDecimal valorCuenta = new BigDecimal(100);
 	private Periodo periodo;
 
 	@Before
 	public void inicio() {
-		empresas.agregarEmpresas(loader.getEmpresas());
+		empresas.agregarElementos(loader.loadEmpresas());
 	}
 
 	@Test
 	public void verificarPrimerEmpresa() {
 		empresa = empresas.get(0);
-		assertTrue(empresa.esIgual(primerEmpresa));
+		assertEquals("FB",empresa.getSymbol());
 	}
 
 	@Test
@@ -40,7 +39,7 @@ public class CargaDeArchivoCSVTest {
 	@Test
 	public void verificarQueNoEstaApple() {
 		empresa = new Empresa("AP", "Apple");
-		assertFalse(empresas.existeEmpresa(empresa));
+		assertFalse(empresas.existeElemento(empresa));
 	}
 
 	@Test

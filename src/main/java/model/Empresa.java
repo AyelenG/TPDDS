@@ -58,10 +58,6 @@ public class Empresa {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
 	}
 
-	public boolean esIgual(Empresa empresa) {
-		return this.getSymbol().equals(empresa.getSymbol());
-	}
-
 	public String toString() {
 		return getSymbol() + " - " + getNombre();
 	}

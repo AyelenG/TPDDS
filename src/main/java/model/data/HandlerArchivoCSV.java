@@ -12,9 +12,9 @@ import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
 
-public class LoaderArchivoCSV extends LoaderArchivo {
+public class HandlerArchivoCSV extends HandlerArchivo {
 
-	public LoaderArchivoCSV(String ruta) {
+	public HandlerArchivoCSV(String ruta) {
 		super(ruta);
 	}
 
@@ -37,7 +37,7 @@ public class LoaderArchivoCSV extends LoaderArchivo {
 	private final int CANT_REGISTROS = 5;
 	
 	@Override
-	protected List<Empresa> parse(FileReader archivo) throws IOException {
+	protected List<Empresa> parseEmpresas(FileReader archivo) throws IOException {
 
 		String linea;
 		BufferedReader br = new BufferedReader(archivo);

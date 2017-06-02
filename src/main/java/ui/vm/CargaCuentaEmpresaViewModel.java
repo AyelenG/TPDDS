@@ -96,7 +96,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return Repositorios.repoEmpresas.getEmpresas();
+		return Repositorios.repoEmpresas.getElementos();
 	}
 
 	public Cuenta getCuentaSeleccionada() {
@@ -108,7 +108,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Cuenta> getCuentas() {
-		return Repositorios.repoCuentas.getCuentas();
+		return Repositorios.repoCuentas.getElementos();
 	}
 	
 	public boolean isHabilitaCarga() {

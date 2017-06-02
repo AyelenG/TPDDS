@@ -25,8 +25,8 @@ public class EvaluadorTest {
 	public void inicio() {
 		periodo.agregarCuenta(cuenta1);
 		periodo.agregarCuenta(cuenta2);
-		indicadores.agregarIndicador(indicador1);
-		indicadores.agregarIndicador(indicador2);
+		indicadores.agregarElemento(indicador1);
+		indicadores.agregarElemento(indicador2);
 	}
 
 	@Test

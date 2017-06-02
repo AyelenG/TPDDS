@@ -11,14 +11,14 @@ import exceptions.RutaIncorrectaException;
 import model.Empresa;
 
 
-public abstract class LoaderArchivo {
+public abstract class HandlerArchivo {
 	protected String ruta;
 
-	public LoaderArchivo(String ruta) {
+	public HandlerArchivo(String ruta) {
 		this.ruta = ruta;
 	}
 
-	public List<Empresa> getEmpresas() {
+	public List<Empresa> loadEmpresas() {
 		FileReader archivo;
 		try {
 			archivo = new FileReader(this.ruta);
@@ -26,7 +26,7 @@ public abstract class LoaderArchivo {
 			throw new RutaIncorrectaException(e);
 		}
 		try {
-			List<Empresa> empresas = this.parse(archivo);
+			List<Empresa> empresas = this.parseEmpresas(archivo);
 			return empresas;
 		} catch (ArchivoConErroresException e) {
 			throw e;
@@ -41,5 +41,5 @@ public abstract class LoaderArchivo {
 		}
 	}
 
-	protected abstract List<Empresa> parse(FileReader archivo) throws IOException;
+	protected abstract List<Empresa> parseEmpresas(FileReader archivo) throws IOException;
 }

@@ -1,47 +1,23 @@
 package model;
 
-import java.util.LinkedList;
 import java.util.List;
 
-public class Empresas {
-	
-	private List<Empresa> empresas = new LinkedList<>();
+import model.repositories.Repositorio;
 
-	public void agregarEmpresas(List<Empresa> empresas) {
+public class Empresas extends Repositorio<Empresa> {
+
+	public boolean sonIguales(Empresa e1, Empresa e2) {
+		return e1.getSymbol().equals(e2.getSymbol());
+	}
+
+	@Override
+	public void agregarElementos(List<Empresa> empresas) {
 		for (Empresa empresa : empresas) {
-			if (!existeEmpresa(empresa))
-				this.agregarEmpresa(empresa);
+			if (!existeElemento(empresa))
+				this.agregarElemento(empresa);
 			else
-				this.buscarEmpresa(empresa).agregarPeriodos(empresa.getPeriodos());
+				this.buscarElemento(empresa).agregarPeriodos(empresa.getPeriodos());
 		}
-	}
-
-	public void agregarEmpresa(Empresa empresa) {
-		this.empresas.add(empresa);
-	}
-	
-	public Empresa buscarEmpresa(Empresa empresa) {
-		return empresas.stream().filter(_empresa -> _empresa.esIgual(empresa)).findFirst().orElse(null);
-	}
-	
-	public boolean existeEmpresa(Empresa empresa) {
-		return empresas.stream().anyMatch(_empresa -> _empresa.esIgual(empresa));
-	}
-
-	public List<Empresa> getEmpresas() {
-		return empresas;
-	}
-	
-	public Empresa get(int i){
-		return empresas.get(i);
-	}	
-	
-	public int indexOf(Empresa empresa) {
-		return empresas.indexOf(empresa);
-	}
-	
-	public int size() {
-		return empresas.size();
 	}
 
 }

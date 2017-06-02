@@ -72,7 +72,7 @@ public class CargaIndicadorViewModel {
 	public void cargarIndicador() {
 		if (indicadorNuevo.getNombre().isEmpty())
 			throw new UserException("Complete el nombre del indicador.");
-		if (indicadores.existeIndicador(indicadorNuevo))
+		if (indicadores.existeElemento(indicadorNuevo))
 			throw new UserException("El indicador ingresado ya existe.");
 		if (ingresado.isEmpty())
 			throw new UserException("Ingrese una formula para el indicador.");
@@ -82,7 +82,7 @@ public class CargaIndicadorViewModel {
 		}
 
 		this.indicadorNuevo.setFormula(ingresado);
-		indicadores.agregarIndicador(indicadorNuevo);
+		indicadores.agregarElemento(indicadorNuevo);
 		indicadores.guardar();
 		this.setHabilitaCarga(false);
 		ObservableUtils.firePropertyChanged(this, "indicadores");
@@ -107,7 +107,7 @@ public class CargaIndicadorViewModel {
 	}
 
 	public List<Cuenta> getCuentas() {
-		return cuentas.getCuentas();
+		return cuentas.getElementos();
 	}
 
 	public void setCuentas(Cuentas cuentas) {
@@ -115,7 +115,7 @@ public class CargaIndicadorViewModel {
 	}
 
 	public List<Indicador> getIndicadores() {
-		return indicadores.getIndicadores();
+		return indicadores.getElementos();
 	}
 
 	public void setIndicadores(Indicadores indicadores) {

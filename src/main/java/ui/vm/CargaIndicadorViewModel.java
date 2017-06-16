@@ -12,7 +12,6 @@ import model.Cuenta;
 import model.Cuentas;
 import model.Indicador;
 import model.Indicadores;
-import model.parser.analizadorSintactico.AnalizadorSintactico;
 import model.repositories.Repositorios;
 
 @Observable
@@ -76,12 +75,16 @@ public class CargaIndicadorViewModel {
 			throw new UserException("El indicador ingresado ya existe.");
 		if (ingresado.isEmpty())
 			throw new UserException("Ingrese una formula para el indicador.");
-		if (new AnalizadorSintactico(ingresado).chequear() == false) {
+		/*if (new AnalizadorSintactico(ingresado).chequear() == false) {
 			// this.limpiarTodo();
 			throw new UserException("Sintaxis de formula incorrecta.");
-		}
-
+		}*/
+		
 		this.indicadorNuevo.setFormula(ingresado);
+		//esto setea la formula, la parsea y verifica si es correcta
+		//si OK: construye los objetos para evaluarla y los guarda en el indicador
+		//si no: lanza excepcion
+		
 		indicadores.agregarElemento(indicadorNuevo);
 		indicadores.guardar();
 		this.setHabilitaCarga(false);

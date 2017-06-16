@@ -11,23 +11,28 @@ import model.Cuenta;
 import model.Indicador;
 import model.Indicadores;
 import model.Periodo;
+import model.evaluador.operaciones.*;
+import model.evaluador.terminales.*;
 
 @RunWith(Theories.class)
 public class EvaluadorTest {
 
-	Indicador indicador1 = new Indicador("PODER", "[FDS] * [EBITDA]");
-	Indicador indicador2 = new Indicador("INCALCULABLE", "[NO ESTA] / 5");
 	Periodo periodo = new Periodo();
-	Cuenta cuenta1 = new Cuenta("EBITDA", new BigDecimal(5));
-	Cuenta cuenta2 = new Cuenta("FDS", new BigDecimal(3));
-	Indicadores indicadores = new Indicadores();
+	Cuenta cuenta1 = new Cuenta("Ingreso neto en operaciones continuas", new BigDecimal(5));
+	Cuenta cuenta2 = new Cuenta("Ingreso neto en operaciones discontinuas", new BigDecimal(3));
+	Cuenta cuenta3 = new Cuenta("Dividendos", new BigDecimal(2.5));
+	Cuenta cuenta4 = new Cuenta("Capital total", new BigDecimal(-2.75));
+
+	static Indicadores indicadores = new Indicadores();
+	// indicadores.get(0); //Ingreso Neto -- ING. NETO EN OP. CONTINUAS + ING. NETO EN OP. DISC.
+	// indicadores.get(1); //Retorno Sobre Capital Total -- (ING. NETO - DIVIDENDOS) / CAP. TOTAL
 
 	@Before
 	public void inicio() {
 		periodo.agregarCuenta(cuenta1);
 		periodo.agregarCuenta(cuenta2);
-		indicadores.agregarElemento(indicador1);
-		indicadores.agregarElemento(indicador2);
+		periodo.agregarCuenta(cuenta3);
+		periodo.agregarCuenta(cuenta4);
 	}
 
 	static class Pair {
@@ -41,38 +46,56 @@ public class EvaluadorTest {
 	}
 
 	@DataPoints
-	public static Pair[] pairs = { 
-			new Pair(new Indicador("1", "<PODER> + 5"), 20),
-			new Pair(new Indicador("2", "([FDS]+[EBITDA]+1)/3"), 3),
-			new Pair(new Indicador("3", "5+2-3"), 4),
-			new Pair(new Indicador("4", "0/2"), 0)
-	};
+	public static Pair[] pairs = {
+			new Pair(indicadores.get(0), 8), new Pair(indicadores.get(1), -2) };
 
 	@Test
 	public void compruebaValoresDeCuentas() {
-		assertEquals(3, periodo.buscarCuenta(new Cuenta("FDS")).getValor().doubleValue(), 0);
-		assertEquals(5, periodo.buscarCuenta(new Cuenta("EBITDA")).getValor().doubleValue(), 0);
+		assertEquals(5,
+				periodo.buscarCuenta(new Cuenta("Ingreso neto en operaciones continuas")).getValor().doubleValue(), 0);
+		assertEquals(3,
+				periodo.buscarCuenta(new Cuenta("Ingreso neto en operaciones discontinuas")).getValor().doubleValue(),
+				0);
+		assertEquals(2.5, periodo.buscarCuenta(new Cuenta("Dividendos")).getValor().doubleValue(), 0);
+		assertEquals(-2.75, periodo.buscarCuenta(new Cuenta("Capital total")).getValor().doubleValue(), 0);
 	}
 
 	@Test(expected = NoSePuedeEvaluarException.class)
-	public void mensajeDeErrorSiCuentaNoEstaEnPeriodo() {
-		new Indicador("5", "[FDS]+[NO ESTA]+1").evaluar(periodo, indicadores);
+	public void mensajeDeErrorSiCuentaNoEstaEnPeriodo() {	
+		new Indicador("5", "[NO ESTA] + 1", new Suma(new TerminalCuenta("NO ESTA"),
+													 new TerminalLiteral(new BigDecimal(1))
+													 )).evaluar(periodo, indicadores);
+	}
+	
+	@Test(expected = NoSePuedeEvaluarException.class)
+	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoExiste() {
+		new Indicador("6", "8 * <INCALCULABLE>",new Multiplicacion
+														(new TerminalLiteral(new BigDecimal(8)),
+														 new TerminalIndicador("INCALCULABLE"))
+														).evaluar(periodo, indicadores);
 	}
 
 	@Test(expected = NoSePuedeEvaluarException.class)
-	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcular() {
-		new Indicador("6", "8 * <INCALCULABLE>").evaluar(periodo, indicadores);
+	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoTieneCuenta() {
+		Indicador ind = new Indicador("PAPA","[EBITDA]",new TerminalCuenta("EBITDA"));
+		indicadores.agregarElemento(ind);
+		new Indicador("7", "8 * <PAPA>",new Multiplicacion
+														(new TerminalLiteral(new BigDecimal(8)),
+														 new TerminalIndicador("PAPA"))
+														).evaluar(periodo, indicadores);
+	}
+	
+	@Test(expected = NoSePuedeEvaluarException.class)
+	public void mensajeDeErrorSiDividePor0() {
+		new Indicador("8", "5/0",new Division
+									(new TerminalLiteral(new BigDecimal(5)),
+									 new TerminalLiteral(new BigDecimal(0))
+									 )).evaluar(null, indicadores);
 	}
 
 	@Theory
 	public void verificarEvaluacion(Pair pair) {
-		assertEquals(pair.valor, pair.ind.evaluar(periodo, indicadores).doubleValue(),0);
+		assertEquals(pair.valor, pair.ind.evaluar(periodo, indicadores).doubleValue(), 0);
 	}
-
-	@Test(expected = NoSePuedeEvaluarException.class)
-	public void mensajeDeErrorSiDividePor0() {
-		new Indicador("7", "5/0").evaluar(null, indicadores);
-	}
-
 
 }

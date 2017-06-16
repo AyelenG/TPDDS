@@ -6,7 +6,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.uqbar.commons.utils.Observable;
 
-import model.parser.evaluador.Evaluador;
+import model.evaluador.Expresion;
 
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
@@ -15,6 +15,7 @@ public class Indicador {
 
 	private String nombre = "";
 	private String formula = "";
+	private Expresion expresion;
 
 	public Indicador() {
 	}
@@ -23,9 +24,10 @@ public class Indicador {
 		this.setNombre(nombre);
 	}
 
-	public Indicador(String nombre, String formula) {
+	public Indicador(String nombre, String formula, Expresion expresion) {
 		this.setNombre(nombre);
-		this.formula = formula;
+		this.setFormula(formula);
+		this.setExpresion(expresion);
 	}
 
 	public boolean esIgual(Indicador indicador) {
@@ -51,10 +53,19 @@ public class Indicador {
 
 	public void setFormula(String formula) {
 		this.formula = formula;
+		//this.expresion = new ExpresionBuilder(formula);
+	}
+
+	public Expresion getExpresion() {
+		return expresion;
+	}
+
+	public void setExpresion(Expresion expresion) {
+		this.expresion = expresion;
 	}
 
 	public BigDecimal evaluar(Periodo periodo, Indicadores indiceIndicadores) {
-		return Evaluador.evaluar(this, periodo, indiceIndicadores);
+		return expresion.getValor(periodo, indiceIndicadores);
 	}
 
 }

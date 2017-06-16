@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import model.parser.analizadorSintactico.AnalizadorSintactico;
+import model.parser.AnalizadorSintactico;
 
 public class AnalizadorSintacticoTest {
 	private final String formulaCorrecta = "6.876 * ((<PEPE> + -0.41) / ([INGRESOS BRUTOS] - 124))" ;

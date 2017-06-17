@@ -103,7 +103,10 @@ public class CargaIndicadorViewModel {
 	public void borrarUltimo() {
 		try {
 			tokens.remove(tokens.size() - 1);
-			ingresado = String.join(" ", tokens);
+			if(tokens.size() == 0)
+				ingresado = "";
+			else
+				ingresado = String.join(" ", tokens);
 		} catch (IndexOutOfBoundsException e) {
 			// si no hay tokens para borrar no hago nada
 		}

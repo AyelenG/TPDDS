@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.uqbar.commons.utils.Observable;
 
 import model.data.HandlerArchivoJSON;
-import model.evaluador.operaciones.*;
-import model.evaluador.terminales.*;
 import model.repositories.Repositorio;
 
 @Observable
@@ -19,22 +17,10 @@ public class Indicadores extends Repositorio<Indicador> {
 	private final List<Indicador> indicadoresPredefinidos = Arrays.asList(
 			new Indicador(
 			"Ingreso Neto",
-			"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]",
-			new Suma
-					(new TerminalCuenta("INGRESO NETO EN OPERACIONES CONTINUAS"),
-					 new TerminalCuenta("INGRESO NETO EN OPERACIONES DISCONTINUAS")
-					)
-				),
+			"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"),
 			new Indicador(
 			"Retorno sobre capital total",
-			"(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]",
-			new Division(
-						new Resta(new TerminalIndicador("INGRESO NETO"),
-								new TerminalCuenta("DIVIDENDOS")),
-						new TerminalCuenta("CAPITAL TOTAL")
-						)
-					)
-			);
+			"(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"));
 
 	public Indicadores() {
 		this.agregarElementos(indicadoresPredefinidos);

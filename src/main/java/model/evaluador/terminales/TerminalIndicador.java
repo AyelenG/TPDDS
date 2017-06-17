@@ -13,8 +13,7 @@ public class TerminalIndicador implements Expresion {
 	private String nombreIndicador;
 
 	public TerminalIndicador(String nombreIndicador) {
-		super();
-		this.nombreIndicador = nombreIndicador;
+		this.nombreIndicador = nombreIndicador.replace(">", "").replace("<", "");
 	}
 
 	@Override
@@ -25,5 +24,4 @@ public class TerminalIndicador implements Expresion {
 			("No existe indicador <" + nombreIndicador + "> en el sistema");
 		return indicador.evaluar(periodo, indiceIndicadores);
 	}
-
 }

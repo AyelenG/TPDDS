@@ -7,9 +7,10 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.uqbar.commons.utils.Observable;
 
 import model.evaluador.Expresion;
+import model.parser.ExpresionBuilder;
 
 @Observable
-@JsonIgnoreProperties({ "changeSupport" })
+@JsonIgnoreProperties({ "changeSupport", "expresion" })
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Indicador {
 
@@ -24,14 +25,9 @@ public class Indicador {
 		this.setNombre(nombre);
 	}
 
-	public Indicador(String nombre, String formula, Expresion expresion) {
+	public Indicador(String nombre, String formula) {
 		this.setNombre(nombre);
 		this.setFormula(formula);
-		this.setExpresion(expresion);
-	}
-
-	public boolean esIgual(Indicador indicador) {
-		return this.getNombre().equals(indicador.getNombre());
 	}
 
 	@Override
@@ -53,7 +49,7 @@ public class Indicador {
 
 	public void setFormula(String formula) {
 		this.formula = formula;
-		//this.expresion = new ExpresionBuilder(formula);
+		this.setExpresion(new ExpresionBuilder(formula).build());
 	}
 
 	public Expresion getExpresion() {

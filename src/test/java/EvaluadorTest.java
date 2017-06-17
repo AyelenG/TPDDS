@@ -11,8 +11,6 @@ import model.Cuenta;
 import model.Indicador;
 import model.Indicadores;
 import model.Periodo;
-import model.evaluador.operaciones.*;
-import model.evaluador.terminales.*;
 
 @RunWith(Theories.class)
 public class EvaluadorTest {
@@ -62,35 +60,24 @@ public class EvaluadorTest {
 
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiCuentaNoEstaEnPeriodo() {	
-		new Indicador("5", "[NO ESTA] + 1", new Suma(new TerminalCuenta("NO ESTA"),
-													 new TerminalLiteral(new BigDecimal(1))
-													 )).evaluar(periodo, indicadores);
+		new Indicador("5", "[NO ESTA] + 1").evaluar(periodo, indicadores);
 	}
 	
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoExiste() {
-		new Indicador("6", "8 * <INCALCULABLE>",new Multiplicacion
-														(new TerminalLiteral(new BigDecimal(8)),
-														 new TerminalIndicador("INCALCULABLE"))
-														).evaluar(periodo, indicadores);
+		new Indicador("6", "8 * <INCALCULABLE>").evaluar(periodo, indicadores);
 	}
 
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoTieneCuenta() {
-		Indicador ind = new Indicador("PAPA","[EBITDA]",new TerminalCuenta("EBITDA"));
+		Indicador ind = new Indicador("PAPA","[EBITDA]");
 		indicadores.agregarElemento(ind);
-		new Indicador("7", "8 * <PAPA>",new Multiplicacion
-														(new TerminalLiteral(new BigDecimal(8)),
-														 new TerminalIndicador("PAPA"))
-														).evaluar(periodo, indicadores);
+		new Indicador("7", "8 * <PAPA>").evaluar(periodo, indicadores);
 	}
 	
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiDividePor0() {
-		new Indicador("8", "5/0",new Division
-									(new TerminalLiteral(new BigDecimal(5)),
-									 new TerminalLiteral(new BigDecimal(0))
-									 )).evaluar(null, indicadores);
+		new Indicador("8", "5/0").evaluar(null, indicadores);
 	}
 
 	@Theory

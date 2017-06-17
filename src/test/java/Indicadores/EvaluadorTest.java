@@ -1,3 +1,4 @@
+package Indicadores;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.junit.experimental.theories.*;
@@ -82,7 +83,6 @@ public class EvaluadorTest {
 
 	@Theory
 	public void verificarEvaluacion(Pair pair) {
-		pair.ind.generarFormula();
 		assertEquals(pair.valor, pair.ind.evaluar(periodo, indicadores).doubleValue(), 0);
 	}
 

@@ -24,4 +24,8 @@ public class TerminalIndicador implements Expresion {
 			("No existe indicador <" + nombreIndicador + "> en el sistema");
 		return indicador.evaluar(periodo, indiceIndicadores);
 	}
+	
+	public String getNombreIndicador(){
+		return nombreIndicador;
+	}
 }

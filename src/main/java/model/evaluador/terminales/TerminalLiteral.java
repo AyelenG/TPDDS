@@ -18,5 +18,9 @@ public class TerminalLiteral implements Expresion {
 	public BigDecimal getValor(Periodo periodo, Indicadores indicadores) {
 		return literal;
 	}
+	
+	public String getLiteral(){
+		return literal.toString();
+	}
 
 }

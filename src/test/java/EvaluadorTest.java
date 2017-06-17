@@ -82,6 +82,7 @@ public class EvaluadorTest {
 
 	@Theory
 	public void verificarEvaluacion(Pair pair) {
+		pair.ind.generarFormula();
 		assertEquals(pair.valor, pair.ind.evaluar(periodo, indicadores).doubleValue(), 0);
 	}
 

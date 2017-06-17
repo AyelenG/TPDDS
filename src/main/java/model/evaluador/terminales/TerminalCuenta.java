@@ -25,5 +25,10 @@ public class TerminalCuenta implements Expresion {
 		return cuenta.getValor();
 
 	}
+	
+	
+	public String getNombreCuenta(){
+		return nombreCuenta;
+	}
 
 }

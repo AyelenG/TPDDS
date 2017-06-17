@@ -22,5 +22,13 @@ public abstract class Operacion implements Expresion {
 	}
 
 	protected abstract BigDecimal calcular(BigDecimal opIzq, BigDecimal opDer);
+	
+	public Expresion getOpIzq(){
+		return opIzq;
+	}
+	
+	public Expresion getOpDer(){
+		return opDer;
+	}
 
 }

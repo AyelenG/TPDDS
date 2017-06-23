@@ -22,7 +22,7 @@ public class EvaluadorTest {
 	Cuenta cuenta3 = new Cuenta("Dividendos", new BigDecimal(2.5));
 	Cuenta cuenta4 = new Cuenta("Capital total", new BigDecimal(-2.75));
 
-	static Indicadores indicadores = new Indicadores();
+	private static Indicadores indicadores = new Indicadores();
 	// indicadores.get(0); //Ingreso Neto -- ING. NETO EN OP. CONTINUAS + ING. NETO EN OP. DISC.
 	// indicadores.get(1); //Retorno Sobre Capital Total -- (ING. NETO - DIVIDENDOS) / CAP. TOTAL
 

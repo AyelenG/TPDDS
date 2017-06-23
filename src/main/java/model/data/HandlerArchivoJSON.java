@@ -32,6 +32,13 @@ public class HandlerArchivoJSON extends HandlerArchivo {
 		return empresas;
 	}
 
+	/**
+	 * Carga los elementos de un repositorio genérico desde archivo JSON
+	 * 
+	 * @param clase del repositorio
+	 * @return elementos cargados
+	 * @throws excepcion de IO si no se puede cargar
+	 */
 	public <T> List<T> load(Class<T> elementClass ) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -42,6 +49,12 @@ public class HandlerArchivoJSON extends HandlerArchivo {
 		}
 	}
 
+	/**
+	 * Guarda los elementos un repositorio genérico en un archivo JSON
+	 * 
+	 * @param elementos del repositorio
+	 * @throws excepcion de IO si no se puede guardar
+	 */
 	public <T> void save(List<T> elements) {
 		try {
 			new ObjectMapper().enable(Feature.INDENT_OUTPUT).writeValue(new File(ruta), elements);

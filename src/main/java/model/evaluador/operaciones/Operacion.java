@@ -8,8 +8,8 @@ import model.evaluador.Expresion;
 
 public abstract class Operacion implements Expresion {
 
-	protected Expresion opIzq; // operando izquierdo
-	protected Expresion opDer; // operando derecho
+	private Expresion opIzq; // operando izquierdo
+	private Expresion opDer; // operando derecho
 
 	public Operacion(Expresion opIzq, Expresion opDer) {
 		this.opIzq = opIzq;

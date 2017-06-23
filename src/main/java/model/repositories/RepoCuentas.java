@@ -1,21 +1,30 @@
-package model;
+package model.repositories;
 
 import java.util.List;
 
-import org.uqbar.commons.utils.Observable;
-
+import model.Cuenta;
+import model.Empresa;
+import model.Periodo;
 import model.data.HandlerArchivoJSON;
-import model.repositories.Repositorio;
 
-@Observable
-public class Cuentas extends Repositorio<Cuenta> {
+public class RepoCuentas extends Repositorio<Cuenta> {
 
-	private static final String RUTA = "data/CuentasPredeterminadas.json";
+	private static final RepoCuentas instance = new RepoCuentas();
+
+	private final String RUTA = "data/CuentasPredeterminadas.json";
+
+	private RepoCuentas() {
+
+	}
+
+	public static RepoCuentas getInstance() {
+		return instance;
+	}
 
 	public boolean sonIguales(Cuenta c1, Cuenta c2) {
 		return c1.getNombre().equals(c2.getNombre());
 	}
-
+	
 	/* Carga desde archivo JSON */
 	public void cargar() {
 		this.agregarElementos(new HandlerArchivoJSON(RUTA).<Cuenta>load(Cuenta.class));
@@ -28,7 +37,7 @@ public class Cuentas extends Repositorio<Cuenta> {
 		 */
 	}
 
-	/* Guardado en archivo JSON*/
+	/* Guardado en archivo JSON */
 	public void guardar() {
 		new HandlerArchivoJSON(RUTA).<Cuenta>save(this.getElementos());
 	}

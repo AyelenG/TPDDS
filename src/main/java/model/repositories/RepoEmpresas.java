@@ -1,11 +1,21 @@
-package model;
+package model.repositories;
 
 import java.util.List;
 
-import model.repositories.Repositorio;
+import model.Empresa;
 
-public class Empresas extends Repositorio<Empresa> {
+public class RepoEmpresas extends Repositorio<Empresa> {
 
+	private static final RepoEmpresas instance = new RepoEmpresas();
+
+	private RepoEmpresas() {
+
+	}
+
+	public static RepoEmpresas getInstance() {
+		return instance;
+	}
+	
 	public boolean sonIguales(Empresa e1, Empresa e2) {
 		return e1.getSymbol().equals(e2.getSymbol());
 	}

@@ -12,7 +12,8 @@ import org.uqbar.commons.utils.Observable;
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
-import model.repositories.Repositorios;
+import model.repositories.RepoCuentas;
+import model.repositories.RepoEmpresas;
 
 @Observable
 public class CargaCuentaEmpresaViewModel {
@@ -96,7 +97,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return Repositorios.repoEmpresas.getElementos();
+		return RepoEmpresas.getInstance().getElementos();
 	}
 
 	public Cuenta getCuentaSeleccionada() {
@@ -108,7 +109,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Cuenta> getCuentas() {
-		return Repositorios.repoCuentas.getElementos();
+		return RepoCuentas.getInstance().getElementos();
 	}
 	
 	public boolean isHabilitaCarga() {

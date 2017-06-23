@@ -25,4 +25,7 @@
 }, {
   "nombre" : "TESTREFACTOR2",
   "formula" : "<INGRESO NETO> / <INGRESO NETO> - ( ( 5 / [FDS] ) * 8 ) * ( 4.5 - [EBITDA] )"
+}, {
+  "nombre" : "SUPERPEPITO",
+  "formula" : "[PEPITO] * [PEPITO]"
 } ]

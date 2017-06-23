@@ -3,20 +3,21 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import model.Cuenta;
 import model.Empresa;
-import model.Empresas;
 import model.Periodo;
 import model.data.HandlerArchivo;
 import model.data.HandlerArchivoCSV;
+import model.repositories.RepoEmpresas;
 
 public class CargaDeArchivoCSVTest {
 	private Empresa empresa;
-	Empresas empresas = new Empresas();
-	HandlerArchivo loader = new HandlerArchivoCSV("data/PruebaCuentas.csv");
+	private RepoEmpresas empresas = RepoEmpresas.getInstance();
+	private HandlerArchivo loader = new HandlerArchivoCSV("data/PruebaCuentas.csv");
 	private BigDecimal valorCuenta = new BigDecimal(100);
 	private Periodo periodo;
 
@@ -63,6 +64,11 @@ public class CargaDeArchivoCSVTest {
 		periodo = new Periodo(2015);
 		empresa.agregarPeriodo(periodo);
 		assertEquals(empresa.getPeriodos().size(), 3);
+	}
+	
+	@After
+	public void limpiar() {
+		empresas.getElementos().clear();
 	}
 
 }

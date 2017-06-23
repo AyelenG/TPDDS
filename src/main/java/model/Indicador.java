@@ -11,6 +11,7 @@ import model.evaluador.terminales.*;
 import model.evaluador.operaciones.*;
 
 import model.parser.ExpresionBuilder;
+import model.repositories.RepoIndicadores;
 
 @Observable
 @JsonIgnoreProperties({ "changeSupport", "expresion" })
@@ -63,7 +64,7 @@ public class Indicador {
 		this.expresion = expresion;
 	}
 
-	public BigDecimal evaluar(Periodo periodo, Indicadores indiceIndicadores) {
+	public BigDecimal evaluar(Periodo periodo, RepoIndicadores indiceIndicadores) {
 		return expresion.getValor(periodo, indiceIndicadores);
 	}
 

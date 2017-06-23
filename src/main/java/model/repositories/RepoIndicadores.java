@@ -1,29 +1,29 @@
-package model;
+package model.repositories;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.uqbar.commons.utils.Observable;
-
+import model.Indicador;
 import model.data.HandlerArchivoJSON;
-import model.repositories.Repositorio;
 
-@Observable
-public class Indicadores extends Repositorio<Indicador> {
+public class RepoIndicadores extends Repositorio<Indicador> {
 
-	private static final String RUTA = "data/Indicadores.json";
+	private static final RepoIndicadores instance = new RepoIndicadores();
+
+	private final String RUTA = "data/Indicadores.json";
 
 	private final List<Indicador> indicadoresPredefinidos = Arrays.asList(
-			new Indicador(
-			"Ingreso Neto",
-			"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"),
-			new Indicador(
-			"Retorno sobre capital total",
-			"(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"));
+			new Indicador("Ingreso Neto",
+					"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"),
+			new Indicador("Retorno sobre capital total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"));
 
-	public Indicadores() {
+	private RepoIndicadores() {
 		this.agregarElementos(indicadoresPredefinidos);
+	}
+
+	public static RepoIndicadores getInstance() {
+		return instance;
 	}
 
 	public boolean sonIguales(Indicador i1, Indicador i2) {

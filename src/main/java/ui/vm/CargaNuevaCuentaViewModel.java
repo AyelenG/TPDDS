@@ -5,7 +5,7 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
-import model.repositories.Repositorios;
+import model.repositories.RepoCuentas;
 
 @Observable
 public class CargaNuevaCuentaViewModel {
@@ -27,13 +27,14 @@ public class CargaNuevaCuentaViewModel {
 	}
 
 	public void cargarCuenta() {
-		if (Repositorios.repoCuentas.existeElemento(cuenta))
+		RepoCuentas cuentas = RepoCuentas.getInstance();
+		if (cuentas.existeElemento(cuenta))
 			throw new UserException("La cuenta ingresada ya existe.");
 		if (cuenta.getNombre().isEmpty()) {
 			throw new UserException("Complete el nombre de la Cuenta.");
 		}
-		Repositorios.repoCuentas.agregarElemento(cuenta);
-		Repositorios.repoCuentas.guardar();
+		cuentas.agregarElemento(cuenta);
+		cuentas.guardar();
 		this.setHabilitaCarga(false);
 		if (parentVM != null)
 			ObservableUtils.firePropertyChanged(this.parentVM, "cuentas");

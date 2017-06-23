@@ -14,9 +14,9 @@ import java.math.BigDecimal;
 import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
-import model.Indicadores;
 import model.Periodo;
-import model.repositories.Repositorios;
+import model.repositories.RepoEmpresas;
+import model.repositories.RepoIndicadores;
 
 @Observable
 public class AnalisisViewModel {
@@ -25,7 +25,7 @@ public class AnalisisViewModel {
 	private Periodo periodoSeleccionado;
 	private List<Cuenta> cuentasSeleccionadas;
 
-	private Indicadores indiceIndicadores = Repositorios.repoIndicadores;
+	private RepoIndicadores indiceIndicadores = RepoIndicadores.getInstance();
 	private List<IndicadorVM> indicadoresConValor = new LinkedList<>();
 	private List<IndicadorVM> indicadoresSinValor = new LinkedList<>();
 
@@ -105,7 +105,7 @@ public class AnalisisViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return Repositorios.repoEmpresas.getElementos();
+		return RepoEmpresas.getInstance().getElementos();
 	}
 
 	public Empresa getEmpresaSeleccionada() {
@@ -176,11 +176,11 @@ public class AnalisisViewModel {
 		this.indicadoresSinValor = indicadoresSinValor;
 	}
 
-	public Indicadores getIndiceIndicadores() {
+	public RepoIndicadores getIndiceIndicadores() {
 		return indiceIndicadores;
 	}
 
-	public void setIndiceIndicadores(Indicadores indiceIndicadores) {
+	public void setIndiceIndicadores(RepoIndicadores indiceIndicadores) {
 		this.indiceIndicadores = indiceIndicadores;
 	}
 

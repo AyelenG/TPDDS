@@ -1,19 +1,20 @@
 package EmpresasYCuentas;
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import model.Empresa;
-import model.Empresas;
 import model.Periodo;
 import model.data.HandlerArchivo;
 import model.data.HandlerArchivoJSON;
+import model.repositories.RepoEmpresas;
 
 public class CargaDeArchivoJSONTest {
 	private Empresa empresa;
-	private Empresas empresas = new Empresas();
-	HandlerArchivo loader = new HandlerArchivoJSON("data/CuentasPrueba.json");
+	private RepoEmpresas empresas = RepoEmpresas.getInstance();
+	private HandlerArchivo loader = new HandlerArchivoJSON("data/CuentasPrueba.json");
 	private Periodo periodo;
 
 	@Before
@@ -39,5 +40,10 @@ public class CargaDeArchivoJSONTest {
 	public void verificarQueNoEstaApple() {
 		empresa = new Empresa("AP", "Apple");
 		assertFalse(empresas.existeElemento(empresa));
+	}
+	
+	@After
+	public void limpiar() {
+		empresas.getElementos().clear();
 	}
 }

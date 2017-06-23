@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 import exceptions.NoSePuedeEvaluarException;
 import model.Cuenta;
 import model.Indicador;
-import model.Indicadores;
 import model.Periodo;
+import model.repositories.RepoIndicadores;
 
 @RunWith(Theories.class)
 public class EvaluadorTest {
@@ -22,7 +22,7 @@ public class EvaluadorTest {
 	Cuenta cuenta3 = new Cuenta("Dividendos", new BigDecimal(2.5));
 	Cuenta cuenta4 = new Cuenta("Capital total", new BigDecimal(-2.75));
 
-	private static Indicadores indicadores = new Indicadores();
+	private static RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	// indicadores.get(0); //Ingreso Neto -- ING. NETO EN OP. CONTINUAS + ING. NETO EN OP. DISC.
 	// indicadores.get(1); //Retorno Sobre Capital Total -- (ING. NETO - DIVIDENDOS) / CAP. TOTAL
 

@@ -2,9 +2,9 @@ package model.evaluador;
 
 import java.math.BigDecimal;
 
-import model.Indicadores;
 import model.Periodo;
+import model.repositories.RepoIndicadores;
 
 public interface Expresion {
-	BigDecimal getValor(Periodo periodo, Indicadores indiceIndicadores);
+	BigDecimal getValor(Periodo periodo, RepoIndicadores indiceIndicadores);
 }

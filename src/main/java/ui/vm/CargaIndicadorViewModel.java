@@ -9,16 +9,15 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
-import model.Cuentas;
 import model.Indicador;
-import model.Indicadores;
-import model.repositories.Repositorios;
+import model.repositories.RepoCuentas;
+import model.repositories.RepoIndicadores;
 
 @Observable
 public class CargaIndicadorViewModel {
 
-	private Cuentas cuentas = Repositorios.repoCuentas;
-	private Indicadores indicadores = Repositorios.repoIndicadores;
+	private RepoCuentas cuentas = RepoCuentas.getInstance();
+	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private String ingresado = "";
 	private List<String> tokens = new LinkedList<>();
 	private Indicador indicadorNuevo = new Indicador();
@@ -116,7 +115,7 @@ public class CargaIndicadorViewModel {
 		return cuentas.getElementos();
 	}
 
-	public void setCuentas(Cuentas cuentas) {
+	public void setCuentas(RepoCuentas cuentas) {
 		this.cuentas = cuentas;
 	}
 
@@ -124,7 +123,7 @@ public class CargaIndicadorViewModel {
 		return indicadores.getElementos();
 	}
 
-	public void setIndicadores(Indicadores indicadores) {
+	public void setIndicadores(RepoIndicadores indicadores) {
 		this.indicadores = indicadores;
 	}
 

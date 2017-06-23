@@ -29,7 +29,7 @@ public class SumatoriaTest {
 	}
 	
 	@Test
-	public void sumatoriaDeListaDePeriodos(){
+	public void sumatoriaIntDeListaDePeriodos(){
 	
 	Periodo periodo1 = new Periodo();
 	Periodo periodo2 = new Periodo();
@@ -44,4 +44,23 @@ public class SumatoriaTest {
 	int sumatoria = lista.stream().mapToInt(periodo -> periodo.buscarCuenta(cuenta).getValor().intValue()).sum();
 	Assert.assertEquals (15, sumatoria);
 	}
+	
+	@Test
+	public void sumatoriaBigDecimalDeListaDePeriodos(){
+	
+	Periodo periodo1 = new Periodo();
+	Periodo periodo2 = new Periodo();
+	Periodo periodo3 = new Periodo();
+	Cuenta cuenta = new Cuenta("ROE", new BigDecimal(5));
+	periodo1.agregarCuenta(cuenta);
+	periodo2.agregarCuenta(cuenta);
+	periodo3.agregarCuenta(cuenta);
+	List<Periodo> lista = Arrays.asList(periodo1,periodo2,periodo3);
+	
+	
+	/*BigDecimal sumatoria = lista.stream().map(periodo -> periodo.buscarCuenta(cuenta).getValor()).sumarBigDecimal();
+	Assert.assertEquals (15, sumatoria);*/
+	}
+	
+	
 }

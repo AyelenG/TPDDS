@@ -1,27 +1,24 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Metodología {
-
 	
-	public boolean maximizarROE (Empresa empresa1, Empresa empresa2)
-	{
-		/*List <Periodo> periodos1 = empresa1.ultimosNPeriodos(10);
-		List <Periodo> periodos2 =empresa2.ultimosNPeriodos(10);
-		Cuenta ROE = new Cuenta("ROE");
-		
-		
-		boolean uno = periodos1.stream().allMatch(periodo -> periodo.existeCuenta(ROE));
-		boolean dos = periodos2.stream().allMatch(periodo -> periodo.existeCuenta(ROE));
-		
-		if ( uno && dos)
-		{
-			periodos1.stream().sum(periodo -> periodo.getValor(ROE));
-		}*/
-		return true;
-		
-		
+	private String nombre = "";
+	private List<CondicionNT> condicionesNT = new LinkedList<>();
+	private List<CondicionT> condicionesT = new LinkedList<>();
+	
+	public List<Empresa> filtrarPorCondicionesTaxativas(List<Empresa> empresas){
+		return null;
 	}
 	
+	public List<Empresa> ordenarPorCondicionesNT(List<Empresa> empresas){
+		return null;
+	}
+	
+	public int comparar(Empresa emp1, Empresa emp2){
+		// comparar por todas las condiciones y devolver 1, -1 o 0 
+		return 0;
+	}
 }

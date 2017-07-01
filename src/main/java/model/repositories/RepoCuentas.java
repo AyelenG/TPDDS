@@ -21,6 +21,7 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 		return instance;
 	}
 
+	@Override
 	public boolean sonIguales(Cuenta c1, Cuenta c2) {
 		return c1.getNombre().equals(c2.getNombre());
 	}

@@ -26,6 +26,7 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 		return instance;
 	}
 
+	@Override
 	public boolean sonIguales(Indicador i1, Indicador i2) {
 		return i1.getNombre().equals(i2.getNombre());
 	}

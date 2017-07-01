@@ -16,6 +16,7 @@ public class RepoEmpresas extends Repositorio<Empresa> {
 		return instance;
 	}
 	
+	@Override
 	public boolean sonIguales(Empresa e1, Empresa e2) {
 		return e1.getSymbol().equals(e2.getSymbol());
 	}

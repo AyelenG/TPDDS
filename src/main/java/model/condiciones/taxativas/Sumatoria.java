@@ -2,6 +2,8 @@ package model.condiciones.taxativas;
 
 import java.math.BigDecimal;
 
+import org.codehaus.jackson.annotate.JsonValue;
+
 import model.Empresa;
 
 public class Sumatoria implements TipoCondicionTaxativa {
@@ -15,5 +17,10 @@ public class Sumatoria implements TipoCondicionTaxativa {
 		return cond.getComparador().aplicar(sumatoria,cond.getValorDeReferencia()) > 0;
 	}
 	
+	@Override
+	@JsonValue
+	public String toString() {
+		return "Sumatoria";
+	}
 
 }

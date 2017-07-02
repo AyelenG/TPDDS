@@ -68,7 +68,7 @@ public class CargaDeArchivoCSVTest {
 	
 	@After
 	public void limpiar() {
-		empresas.getElementos().clear();
+		empresas.borrarElementos();
 	}
 
 }

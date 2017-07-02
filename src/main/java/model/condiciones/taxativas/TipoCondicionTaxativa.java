@@ -4,5 +4,5 @@ import model.Empresa;
 
 public interface TipoCondicionTaxativa {
 	
-	public boolean comparar(Empresa emp, CondicionTaxativa condicion);
+	public boolean aplicar(Empresa emp, CondicionTaxativa condicion);
 }

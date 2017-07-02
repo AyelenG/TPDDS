@@ -49,5 +49,9 @@ public class RepoMetodologias extends Repositorio<Metodologia> {
 		return this.getElementos().stream().filter(m -> !metodologiasPredefinidas.contains(m))
 				.collect(Collectors.toList());
 	}
+	
+	public void borrarMetodologiasDeUsuario() {
+		this.getElementos().removeIf(i-> !metodologiasPredefinidas.contains(i));
+	}
 
 }

@@ -1,19 +1,24 @@
 package model.condiciones.taxativas;
 
+import java.util.List;
+
 import model.Empresa;
+import model.Periodo;
 
 public class Simple implements TipoCondicionTaxativa {
 
 	@Override
-	public boolean comparar(Empresa empresa, CondicionTaxativa condicion) {
-		//
-		// empresa.getUltimosNAnios(cantidadAnios)
-		// 		.all(p -> comparador.aplicar(indicador.evaluar(p),valorDeReferencia) > 0)
-		/*En empresa: getUltimosNAnios(int n)
-		  return empresa.getPeriodos().stream()
-			.filter(p -> p.getAnio() > anioActual - n)
-			.collect(Collectors.toList());*/
-		return false;
+	public boolean aplicar(Empresa emp, CondicionTaxativa cond) {
+		//el indicador fue mayor o menor al valor de referencia en todos los anios
+		
+		List<Periodo> ultimosNAnios = emp.getUltimosNAnios(cond.getCantidadAnios());
+		int cantPeriodosEmp = ultimosNAnios.size();
+		
+		//si no tiene datos en todos los anios, no se cumple
+		if(cantPeriodosEmp != cond.getCantidadAnios()) return false;
+		
+		return ultimosNAnios.stream().allMatch(p -> cond.getComparador().
+				aplicar(cond.getIndicador().evaluar(p),cond.getValorDeReferencia()) > 0);
 	}
 
 }

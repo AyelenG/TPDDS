@@ -44,6 +44,6 @@ public class CargaDeArchivoJSONTest {
 	
 	@After
 	public void limpiar() {
-		empresas.getElementos().clear();
+		empresas.borrarElementos();
 	}
 }

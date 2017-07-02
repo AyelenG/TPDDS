@@ -45,5 +45,9 @@ public abstract class Repositorio<T> {
 		return this.elementos.stream().anyMatch(_e -> this.sonIguales(_e,e));
 	}
 	
+	public void borrarElementos(){
+		this.elementos.clear();
+	}
+	
 	public abstract boolean sonIguales(T e1, T e2);
 }

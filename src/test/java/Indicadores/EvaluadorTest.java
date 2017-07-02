@@ -61,29 +61,29 @@ public class EvaluadorTest {
 
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiCuentaNoEstaEnPeriodo() {	
-		new Indicador("5", "[NO ESTA] + 1").evaluar(periodo, indicadores);
+		new Indicador("5", "[NO ESTA] + 1").evaluar(periodo);
 	}
 	
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoExiste() {
-		new Indicador("6", "8 * <INCALCULABLE>").evaluar(periodo, indicadores);
+		new Indicador("6", "8 * <INCALCULABLE>").evaluar(periodo);
 	}
 
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoTieneCuenta() {
 		Indicador ind = new Indicador("PAPA","[EBITDA]");
 		indicadores.agregarElemento(ind);
-		new Indicador("7", "8 * <PAPA>").evaluar(periodo, indicadores);
+		new Indicador("7", "8 * <PAPA>").evaluar(periodo);
 	}
 	
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiDividePor0() {
-		new Indicador("8", "5/0").evaluar(null, indicadores);
+		new Indicador("8", "5/0").evaluar(null);
 	}
 
 	@Theory
 	public void verificarEvaluacion(Pair pair) {
-		assertEquals(pair.valor, pair.ind.evaluar(periodo, indicadores).doubleValue(), 0);
+		assertEquals(pair.valor, pair.ind.evaluar(periodo).doubleValue(), 0);
 	}
 
 }

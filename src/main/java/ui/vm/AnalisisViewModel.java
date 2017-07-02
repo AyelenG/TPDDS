@@ -93,7 +93,7 @@ public class AnalisisViewModel {
 		IndicadorVM indicadorACargar;
 		for (Indicador indicador : indicadores) {
 			try {
-				valor = indicador.evaluar(this.getPeriodoSeleccionado(), indiceIndicadores);
+				valor = indicador.evaluar(this.getPeriodoSeleccionado());
 				indicadorACargar = new IndicadorVM(indicador.getNombre(), valor);
 				indicadoresConValor.add(indicadorACargar);
 			} catch (NoSePuedeEvaluarException e) {

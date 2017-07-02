@@ -31,14 +31,6 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 		return i1.getNombre().equals(i2.getNombre());
 	}
 
-	/*
-	 * public void eliminarIndicadores(List<Indicador> indicadores) {
-	 * indicadores.forEach(i -> this.eliminarIndicador(i)); }
-	 * 
-	 * public void eliminarIndicador(Indicador indicador) {
-	 * this.indicadores.remove(indicador); }
-	 */
-
 	/* Carga desde archivo JSON */
 	public void cargar() {
 		this.agregarElementos(new HandlerArchivoJSON(RUTA).<Indicador>load(Indicador.class));
@@ -56,6 +48,10 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 	public List<Indicador> getIndicadoresDeUsuario() {
 		return this.getElementos().stream().filter(i -> !indicadoresPredefinidos.contains(i))
 				.collect(Collectors.toList());
+	}
+	
+	public void borrarIndicadoresDeUsuario() {
+		this.getElementos().removeIf(i-> !indicadoresPredefinidos.contains(i));
 	}
 
 }

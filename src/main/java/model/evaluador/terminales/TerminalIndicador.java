@@ -22,7 +22,7 @@ public class TerminalIndicador implements Expresion {
 		if (indicador == null)
 			throw new NoSePuedeEvaluarException
 			("No existe indicador <" + nombreIndicador + "> en el sistema");
-		return indicador.evaluar(periodo, indiceIndicadores);
+		return indicador.evaluar(periodo);
 	}
 	
 	public String getNombreIndicador(){

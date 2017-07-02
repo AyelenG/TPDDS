@@ -1,13 +1,22 @@
 package model.condiciones.taxativas;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import model.Empresa;
 
 public class Mediana implements TipoCondicionTaxativa {
 
 	@Override
-	public boolean comparar(Empresa empresa, CondicionTaxativa condicion) {
+	public boolean aplicar(Empresa emp, CondicionTaxativa cond) {
 		// la mediana de los ultimos N anios al comparar con valorDeReferencia es > 0
-		return false;
+		List<BigDecimal> valoresOrd = emp.getUltimosNAnios(cond.getCantidadAnios()).stream()
+				.map(p-> cond.getIndicador().evaluar(p))
+				.sorted().collect(Collectors.toList());
+		int cant = valoresOrd.size();
+		if(cant == 0) return false;
+		return cond.getComparador().aplicar(valoresOrd.get(cant/2), cond.getValorDeReferencia()) > 0;
 	}
 
 }

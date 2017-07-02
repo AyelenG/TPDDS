@@ -1,7 +1,9 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -48,6 +50,12 @@ public class Empresa {
 
 	public boolean existePeriodo(Periodo periodo) {
 		return periodos.stream().anyMatch(_periodo -> _periodo.esIgual(periodo));
+	}
+
+	public List<Periodo> getUltimosNAnios(int n) {
+		return this.getPeriodos().stream()
+					.filter(p -> p.getAnio() > LocalDate.now().getYear() - n).sorted()
+					.collect(Collectors.toList());
 	}
 
 	/*

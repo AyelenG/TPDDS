@@ -64,8 +64,8 @@ public class Indicador {
 		this.expresion = expresion;
 	}
 
-	public BigDecimal evaluar(Periodo periodo, RepoIndicadores indiceIndicadores) {
-		return expresion.getValor(periodo, indiceIndicadores);
+	public BigDecimal evaluar(Periodo periodo) {
+		return expresion.getValor(periodo, RepoIndicadores.getInstance());
 	}
 
 	public String generarFormula(){

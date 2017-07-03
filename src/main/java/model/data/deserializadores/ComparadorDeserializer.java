@@ -28,9 +28,9 @@ public class ComparadorDeserializer extends StdDeserializer<Comparador> {
 			throws IOException, JsonProcessingException {
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
 		JsonNode root = mapper.readTree(jp);
-		if (root.toString().contains("Mayor")) {
+		if (root.toString().equals("\"Mayor\"")) {
 			return new Mayor();
-		} else if (root.toString().contains("Menor")) {
+		} else if (root.toString().equals("\"Menor\"")) {
 			return new Menor();
 		}
 		return null;

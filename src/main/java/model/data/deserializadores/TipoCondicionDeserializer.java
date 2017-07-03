@@ -31,15 +31,15 @@ public class TipoCondicionDeserializer extends StdDeserializer<TipoCondicionTaxa
 			throws IOException, JsonProcessingException {
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
 		JsonNode root = mapper.readTree(jp);
-		if (root.toString().contains("Simple")) {
+		if (root.toString().equals("\"Simple\"")) {
 			return new Simple();
-		} else if (root.toString().contains("Promedio")) {
+		} else if (root.toString().equals("\"Promedio\"")) {
 			return new Promedio();
-		}else if (root.toString().contains("Mediana")) {
+		}else if (root.toString().equals("\"Mediana\"")) {
 			return new Mediana();
-		}else if (root.toString().contains("Sumatoria")) {
+		}else if (root.toString().equals("\"Sumatoria\"")) {
 			return new Sumatoria();
-		}else if (root.toString().contains("Tendencia")) {
+		}else if (root.toString().equals("\"Tendencia\"")) {
 			return new Tendencia();
 		}
 		return null;

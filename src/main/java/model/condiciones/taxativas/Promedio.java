@@ -7,19 +7,20 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonValue;
 
 import model.Empresa;
+import model.Indicador;
 import model.Periodo;
 
 public class Promedio implements TipoCondicionTaxativa {
 
 	@Override
-	public boolean aplicar(Empresa emp, CondicionTaxativa cond) {
+	public boolean aplicar(Empresa emp, CondicionTaxativaConfigurable cond, Indicador indicador) {
 		// el promedio de los ultimos N anios al comparar con valorDeReferencia
 		// es > 0
 		List<Periodo> ultimosNAnios = emp.getUltimosNAnios(cond.getCantidadAnios());
 		if (ultimosNAnios.isEmpty())
 			return false;
-		BigDecimal sumatoria = ultimosNAnios.stream().map(p -> cond.getIndicador().evaluar(p)).reduce(BigDecimal.ZERO,
-				BigDecimal::add);
+		
+		BigDecimal sumatoria = sumatoria(indicador, ultimosNAnios);
 		BigDecimal cant = BigDecimal.valueOf(ultimosNAnios.size());
 		BigDecimal promedio = sumatoria.divide(cant, 5, RoundingMode.HALF_UP);
 		return cond.getComparador().aplicar(promedio, cond.getValorDeReferencia()) > 0;

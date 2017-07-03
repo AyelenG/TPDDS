@@ -60,6 +60,10 @@ public class Empresa {
 					.collect(Collectors.toList());
 	}
 
+	public int antiguedad(){
+		Periodo primerPeriodo = this.getPeriodos().stream().sorted().collect(Collectors.toList()).get(0);
+		return LocalDate.now().getYear() - primerPeriodo.getAnio() + 1;
+	}
 	/*
 	 * Agrega una cuenta en el periodo correspondiente, si no existe el periodo
 	 * en la empresa lo agrega

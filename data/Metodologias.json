@@ -4,41 +4,29 @@
     "nombre" : "Max.TEST - 3 años",
     "peso" : 10,
     "comparador" : "Mayor",
-    "indicador" : {
-      "nombre" : "TEST",
-      "formula" : "[EBITDA]"
-    },
-    "cantidadAnios" : 3
+    "cantidadAnios" : 3,
+    "indicador" : "Test"
   }, {
     "nombre" : "Min.TEST - 4 años",
     "peso" : 20,
     "comparador" : "Menor",
-    "indicador" : {
-      "nombre" : "TEST",
-      "formula" : "[EBITDA]"
-    },
-    "cantidadAnios" : 4
+    "cantidadAnios" : 4,
+    "indicador" : "Test"
   } ],
   "condicionesT" : [ {
     "nombre" : "Promedio TEST - 5 años > 50",
     "comparador" : "Mayor",
     "tipo" : "Promedio",
-    "indicador" : {
-      "nombre" : "TEST",
-      "formula" : "[EBITDA]"
-    },
     "cantidadAnios" : 5,
-    "valorDeReferencia" : 50
+    "valorDeReferencia" : 50,
+    "indicador" : "Test"
   }, {
     "nombre" : "Simple TEST - 2 años < 120",
     "comparador" : "Menor",
     "tipo" : "Simple",
-    "indicador" : {
-      "nombre" : "TEST",
-      "formula" : "[EBITDA]"
-    },
     "cantidadAnios" : 2,
-    "valorDeReferencia" : 120
+    "valorDeReferencia" : 120,
+    "indicador" : "Test"
   } ],
-  "condicionesComb" : [ ]
+  "condicionesComb" : [ "Longevidad" ]
 } ]

@@ -3,6 +3,7 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
@@ -52,20 +53,20 @@ public class Metodologia {
 		// filtrar por las condicionesT y por las condicionesComb y devolver la
 		// lista resultante
 		List<Empresa> empresasFiltradas = empresas;
-		empresasFiltradas = empresasFiltradas.stream()
-				.filter(emp -> this.condicionesT.stream().allMatch(cond -> cond.convieneInvertirEn(emp)))
+		
+		//uno las condiciones taxativas  con las combinadas (ambas comparten interfaz)
+		List<CondicionTaxativa> condiciones = Stream.concat(condicionesT.stream(), condicionesComb.stream())
 				.collect(Collectors.toList());
+		
 		empresasFiltradas = empresasFiltradas.stream()
-				.filter(emp -> this.condicionesComb.stream().allMatch(cond -> cond.convieneInvertirEn(emp)))
+				.filter(emp -> condiciones.stream().allMatch(cond -> cond.convieneInvertirEn(emp)))
 				.collect(Collectors.toList());
 		return empresasFiltradas;
 	}
 
 	public List<Empresa> obtenerOrdenadas(List<Empresa> empresas) {
 		// ordenar segun metodo comparar y devolver la lista resultante
-		return empresas.stream()
-				.sorted(this::comparar)
-				.collect(Collectors.toList());
+		return empresas.stream().sorted(this::comparar).collect(Collectors.toList());
 	}
 
 	private int comparar(Empresa emp1, Empresa emp2) {
@@ -76,14 +77,11 @@ public class Metodologia {
 		int puntajeEmp2 = 0;
 		int r;
 
-		for (CondicionNoTaxativa cond : condicionesNT) {
-			r = cond.comparar(emp1, emp2);
-			if (r >= 0)
-				puntajeEmp1 += r;
-			else
-				puntajeEmp2 += -r;
-		}
-		for (CondicionCombinada cond : condicionesComb) {
+		//uno las condiciones no taxativas  con las combinadas (ambas comparten interfaz)
+		List<CondicionNoTaxativa> condiciones = Stream.concat(condicionesNT.stream(), condicionesComb.stream())
+				.collect(Collectors.toList());
+
+		for (CondicionNoTaxativa cond : condiciones) {
 			r = cond.comparar(emp1, emp2);
 			if (r >= 0)
 				puntajeEmp1 += r;
@@ -91,8 +89,8 @@ public class Metodologia {
 				puntajeEmp2 += -r;
 		}
 
-		return puntajeEmp1 < puntajeEmp2? 1 : puntajeEmp1 > puntajeEmp2? -1 : 0; 
-		//de mayor a menor;
+		return puntajeEmp1 < puntajeEmp2 ? 1 : puntajeEmp1 > puntajeEmp2 ? -1 : 0;
+		// de mayor a menor;
 	}
 
 	@Override

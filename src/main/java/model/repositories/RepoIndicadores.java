@@ -16,10 +16,13 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 	private final List<Indicador> indicadoresPredefinidos = Arrays.asList(
 			new Indicador("Ingreso Neto",
 					"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"),
-			new Indicador("Retorno sobre capital total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"));
+			new Indicador("Retorno sobre capital total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"),
+			new Indicador("Nivel de deuda", "[DEUDA] * [DEUDA]"),
+			new Indicador("Margen", "<INGRESO NETO> - [DEUDA]"));
 
 	private RepoIndicadores() {
 		this.agregarElementos(indicadoresPredefinidos);
+		this.cargar();
 	}
 
 	public static RepoIndicadores getInstance() {
@@ -49,9 +52,9 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 		return this.getElementos().stream().filter(i -> !indicadoresPredefinidos.contains(i))
 				.collect(Collectors.toList());
 	}
-	
+
 	public void borrarIndicadoresDeUsuario() {
-		this.getElementos().removeIf(i-> !indicadoresPredefinidos.contains(i));
+		this.getElementos().removeIf(i -> !indicadoresPredefinidos.contains(i));
 	}
 
 }

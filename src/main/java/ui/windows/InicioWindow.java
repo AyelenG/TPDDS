@@ -37,11 +37,19 @@ public class InicioWindow extends Window<InicioViewModel> {
 			.setCaption("Agregar Indicador Disponible")
 			.onClick(()-> new CargaIndicadorWindow(this).open());
 		
+		new Button(mainPanel)
+			.setCaption("Agregar Metodología Disponible")
+			.onClick(()-> new CargaMetodologiaWindow(this).open());
+		
 		new Label(mainPanel).setHeight(30);
 		
 		new Button(mainPanel)
 			.setCaption("Analizar Empresa")
 			.onClick(()-> new AnalisisWindow(this).open());
+		
+		new Button(mainPanel)
+			.setCaption("Analizar Metodología");
+			//.onClick(()-> new AnalisisMetodologiaWindow(this).open());
 
 		new Label(mainPanel).setHeight(30);
 		new Label(mainPanel).setText("Desarrolladores").setFontSize(12);

@@ -25,8 +25,12 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 
 	@Override
 	protected void addActions(Panel actionsPanel) {
-		new Button(actionsPanel).setCaption("Cargar Cuenta a Empresa Existente")
-				.onClick(() -> new CargaCuentaEmpresaWindow(this, this.getModelObject()).open());
+		new Button(actionsPanel)
+			.setCaption("Cargar Cuenta a Empresa Existente")
+			.onClick(() -> new CargaCuentaEmpresaWindow(this, this.getModelObject()).open());
+		new Button(actionsPanel)
+			.setCaption("Cerrar")
+			.onClick(() -> this.close());
 	}
 
 	@Override

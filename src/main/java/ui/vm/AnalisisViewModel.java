@@ -11,7 +11,7 @@ import exceptions.NoSePuedeEvaluarException;
 
 import java.math.BigDecimal;
 
-import model.Cuenta;
+import model.CuentaEmpresa;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
@@ -23,7 +23,7 @@ public class AnalisisViewModel {
 	private Empresa empresaSeleccionada;
 	private List<Periodo> periodosSeleccionados = new LinkedList<>();
 	private Periodo periodoSeleccionado;
-	private List<Cuenta> cuentasSeleccionadas;
+	private List<CuentaEmpresa> cuentasSeleccionadas;
 
 	private RepoIndicadores indiceIndicadores = RepoIndicadores.getInstance();
 	private List<IndicadorVM> indicadoresConValor = new LinkedList<>();
@@ -136,11 +136,11 @@ public class AnalisisViewModel {
 		this.setBotonConsultar(true);
 	}
 
-	public List<Cuenta> getCuentasSeleccionadas() {
+	public List<CuentaEmpresa> getCuentasSeleccionadas() {
 		return this.cuentasSeleccionadas;
 	}
 
-	public void setCuentasSeleccionadas(List<Cuenta> cuentas) {
+	public void setCuentasSeleccionadas(List<CuentaEmpresa> cuentas) {
 		this.cuentasSeleccionadas = cuentas;
 	}
 

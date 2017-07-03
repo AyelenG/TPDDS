@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 import exceptions.NoSePuedeEvaluarException;
 import model.Cuenta;
+import model.CuentaEmpresa;
 import model.Indicador;
 import model.Periodo;
 import model.repositories.RepoIndicadores;
@@ -17,10 +18,10 @@ import model.repositories.RepoIndicadores;
 public class EvaluadorTest {
 
 	Periodo periodo = new Periodo();
-	Cuenta cuenta1 = new Cuenta("Ingreso neto en operaciones continuas", new BigDecimal(5));
-	Cuenta cuenta2 = new Cuenta("Ingreso neto en operaciones discontinuas", new BigDecimal(3));
-	Cuenta cuenta3 = new Cuenta("Dividendos", new BigDecimal(2.5));
-	Cuenta cuenta4 = new Cuenta("Capital total", new BigDecimal(-2.75));
+	CuentaEmpresa cuenta1 = new CuentaEmpresa("Ingreso neto en operaciones continuas", new BigDecimal(5));
+	CuentaEmpresa cuenta2 = new CuentaEmpresa("Ingreso neto en operaciones discontinuas", new BigDecimal(3));
+	CuentaEmpresa cuenta3 = new CuentaEmpresa("Dividendos", new BigDecimal(2.5));
+	CuentaEmpresa cuenta4 = new CuentaEmpresa("Capital total", new BigDecimal(-2.75));
 
 	private static RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	// indicadores.get(0); //Ingreso Neto -- ING. NETO EN OP. CONTINUAS + ING. NETO EN OP. DISC.

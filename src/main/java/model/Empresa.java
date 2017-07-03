@@ -5,9 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
+@JsonIgnoreProperties({ "changeSupport" })
 public class Empresa {
 	private String symbol;
 	private String nombre;
@@ -62,7 +64,7 @@ public class Empresa {
 	 * Agrega una cuenta en el periodo correspondiente, si no existe el periodo
 	 * en la empresa lo agrega
 	 */
-	public void agregarCuenta(Periodo periodo, Cuenta cuenta) {
+	public void agregarCuenta(Periodo periodo, CuentaEmpresa cuenta) {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
 	}
 

@@ -3,7 +3,6 @@ package model;
 import java.math.BigDecimal;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.uqbar.commons.utils.Observable;
 
 import model.evaluador.Expresion;
@@ -15,7 +14,6 @@ import model.repositories.RepoIndicadores;
 
 @Observable
 @JsonIgnoreProperties({ "changeSupport", "expresion" })
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Indicador {
 
 	private String nombre = "";

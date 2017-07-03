@@ -12,7 +12,7 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import model.Cuenta;
+import model.CuentaEmpresa;
 import model.Empresa;
 import ui.vm.AnalisisViewModel;
 
@@ -60,11 +60,11 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 
 		new Label(consultaPanel).setHeight(20);
 		new Label(consultaPanel).setText("Cuentas").setFontSize(16);
-		Table<Cuenta> tablaCuentas = new Table<>(consultaPanel, Cuenta.class);
+		Table<CuentaEmpresa> tablaCuentas = new Table<>(consultaPanel, CuentaEmpresa.class);
 		tablaCuentas.setNumberVisibleRows(10).bindItemsToProperty("cuentasSeleccionadas");
-		Column<Cuenta> columnaNombre = new Column<Cuenta>(tablaCuentas);
+		Column<CuentaEmpresa> columnaNombre = new Column<CuentaEmpresa>(tablaCuentas);
 		columnaNombre.setFont(12).setTitle("Nombre").setFixedSize(300).bindContentsToProperty("nombre");
-		Column<Cuenta> columnaValor = new Column<Cuenta>(tablaCuentas);
+		Column<CuentaEmpresa> columnaValor = new Column<CuentaEmpresa>(tablaCuentas);
 		columnaValor.setFont(12).setTitle("Valor").setFixedSize(200).bindContentsToProperty("valor");
 
 		new Label(consultaPanel).setHeight(20);

@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Cuenta;
+import model.CuentaEmpresa;
 import model.Empresa;
 import model.Periodo;
 import model.data.HandlerArchivo;
@@ -47,14 +47,14 @@ public class CargaDeArchivoCSVTest {
 	@Test
 	public void siLaCuentaYaExisteNoLaDuplica() {
 		empresa = empresas.get(0);
-		empresa.getPeriodos().get(0).agregarCuenta(new Cuenta("EBITDA"));
+		empresa.getPeriodos().get(0).agregarCuenta(new CuentaEmpresa("EBITDA"));
 		assertEquals(empresa.getPeriodos().get(0).getCuentas().size(), 2);
 	}
 
 	@Test
 	public void siLaCuentaYaExisteEnUnPeriodoCambiaElValor() {
 		empresa = empresas.get(0);
-		empresa.getPeriodos().get(0).agregarCuenta(new Cuenta("EBITDA", valorCuenta));
+		empresa.getPeriodos().get(0).agregarCuenta(new CuentaEmpresa("EBITDA", valorCuenta));
 		assertEquals(empresa.getPeriodos().get(0).getCuentas().get(0).getValor(), valorCuenta);
 	}
 

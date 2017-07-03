@@ -11,10 +11,6 @@ import model.condiciones.combinadas.CondicionCombinada;
 import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
 
-/**
- * @author Damian
- *
- */
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Metodologia {

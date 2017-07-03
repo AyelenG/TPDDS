@@ -1,6 +1,7 @@
 package model.repositories;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import model.Cuenta;
 import model.Empresa;
@@ -54,8 +55,12 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 	public void agregarDesdeEmpresas(List<Empresa> empresas) {
 
 		for (Empresa empresa : empresas)
-			for (Periodo periodo : empresa.getPeriodos())
-				this.agregarElementos(periodo.getCuentas());
+			for (Periodo periodo : empresa.getPeriodos()){
+				List<Cuenta> cuentas = periodo.getCuentas().stream()
+														.map(c->new Cuenta(c.getNombre()))
+														.collect(Collectors.toList());
+				this.agregarElementos(cuentas);
+			}
 	}
 
 }

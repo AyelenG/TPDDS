@@ -3,12 +3,14 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
+@JsonIgnoreProperties({ "changeSupport" })
 public class Periodo implements Comparable<Periodo>{
 	private Integer anio;
-	private List<Cuenta> cuentas = new LinkedList<>();
+	private List<CuentaEmpresa> cuentas = new LinkedList<>();
 
 	public Periodo(){
 		
@@ -17,19 +19,19 @@ public class Periodo implements Comparable<Periodo>{
 		this.setAnio(anio);
 	}
 
-	public void agregarCuentas(List<Cuenta> cuentas) {
-		for (Cuenta cuenta : cuentas)
+	public void agregarCuentas(List<CuentaEmpresa> cuentas) {
+		for (CuentaEmpresa cuenta : cuentas)
 			this.agregarCuenta(cuenta);
 	}
 
-	public void agregarCuenta(Cuenta cuenta) {
+	public void agregarCuenta(CuentaEmpresa cuenta) {
 		if (!existeCuenta(cuenta))
 			cuentas.add(cuenta);
 		else
 			this.buscarCuenta(cuenta).setValor(cuenta.getValor());
 	}
 
-	public Cuenta buscarCuenta(Cuenta cuenta) {
+	public CuentaEmpresa buscarCuenta(Cuenta cuenta) {
 		return cuentas.stream().filter(_cuenta -> _cuenta.esIgual(cuenta)).findFirst().orElse(null);
 	}
 
@@ -55,16 +57,16 @@ public class Periodo implements Comparable<Periodo>{
 		return anio;
 	}
 
-	public List<Cuenta> getCuentas() {
+	public void setAnio(Integer anio) {
+		this.anio = anio;
+	}
+	
+	public List<CuentaEmpresa> getCuentas() {
 		return cuentas;
 	}
 
-	public void setCuentas(List<Cuenta> cuentas) {
+	public void setCuentas(List<CuentaEmpresa> cuentas) {
 		this.cuentas = cuentas;
-	}
-
-	public void setAnio(Integer anio) {
-		this.anio = anio;
 	}
 
 }

@@ -44,7 +44,6 @@ public class RepoMetodologias extends Repositorio<Metodologia> {
 
 	private RepoMetodologias() {
 		this.agregarElementos(metodologiasPredefinidas);
-		this.cargar();
 	}
 
 	public static RepoMetodologias getInstance() {

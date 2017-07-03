@@ -22,7 +22,6 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 
 	private RepoIndicadores() {
 		this.agregarElementos(indicadoresPredefinidos);
-		this.cargar();
 	}
 
 	public static RepoIndicadores getInstance() {

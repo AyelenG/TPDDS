@@ -15,7 +15,6 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 	private final String RUTA = "data/CuentasPredeterminadas.json";
 
 	private RepoCuentas() {
-		this.cargar();
 	}
 
 	public static RepoCuentas getInstance() {

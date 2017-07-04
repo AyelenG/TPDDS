@@ -11,6 +11,7 @@ import org.uqbar.commons.utils.Observable;
 import model.condiciones.combinadas.CondicionCombinada;
 import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
+import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
@@ -55,8 +56,9 @@ public class Metodologia {
 		List<Empresa> empresasFiltradas = empresas;
 		
 		//uno las condiciones taxativas  con las combinadas (ambas comparten interfaz)
-		List<CondicionTaxativa> condiciones = Stream.concat(condicionesT.stream(), condicionesComb.stream())
-				.collect(Collectors.toList());
+		List<CondicionTaxativa> condiciones = new LinkedList<>();
+		condiciones.addAll(condicionesT);
+		condiciones.addAll(condicionesComb);
 		
 		empresasFiltradas = empresasFiltradas.stream()
 				.filter(emp -> condiciones.stream().allMatch(cond -> cond.convieneInvertirEn(emp)))

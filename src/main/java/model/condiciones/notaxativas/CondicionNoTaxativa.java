@@ -9,4 +9,5 @@ public interface CondicionNoTaxativa {
 
 	int comparar(Empresa emp1, Empresa emp2);
 
+	String getTitulo();
 }

@@ -14,8 +14,8 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.Metodologia;
-import model.condiciones.taxativas.CondicionTaxativa;
 import ui.vm.metodologia.CargaMetodologiaViewModel;
+import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionVM;
 
 @SuppressWarnings("serial")
 public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewModel> {
@@ -56,19 +56,11 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 		
 		// Condiciones
 		new Label(mainPanel).setText("Condiciones");
-		Panel condicionesPanel = new Panel(mainPanel).setLayout(new ColumnLayout(3));
 		
-//		Table<CondicionTaxativa> tablaCondicionesTaxativas = new Table<>(condicionesPanel, CondicionTaxativa.class);
-//		tablaCondicionesTaxativas.setNumberVisibleRows(6).bindItemsToProperty("metodologia.condicionesT");
-//		Column<CondicionTaxativa> columnaTaxativas = new Column<CondicionTaxativa>(tablaCondicionesTaxativas);
-//		columnaTaxativas.setTitle("Taxativas").bindContentsToProperty("metodologia.condicionesT");
-//		
-//		Column<Metodologia> columnaNoTaxativas = new Column<Metodologia>(tablaCondiciones);
-//		columnaNoTaxativas.setTitle("No Taxativas").bindContentsToProperty("metodologia.condicionesNT");
-//		
-//		Column<Metodologia> columnaCombinadas = new Column<Metodologia>(tablaCondiciones);
-//		columnaCombinadas.setTitle("Combinadas").bindContentsToProperty("metodologia.condicionesComb");
-				
+		Table<CondicionVM> tablaCondiciones = new Table<CondicionVM>(mainPanel, CondicionVM.class);
+		tablaCondiciones.setNumberVisibleRows(15).bindItemsToProperty("condiciones");
+		Column<CondicionVM> columna = new Column<CondicionVM>(tablaCondiciones);
+		columna.setTitle("Titulo").bindContentsToProperty("titulo");
 		
 		Label labelExito = new Label(mainPanel);
 		labelExito.setForeground(Color.GREEN);

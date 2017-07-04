@@ -10,4 +10,5 @@ public interface CondicionTaxativa {
 
 	boolean convieneInvertirEn(Empresa emp);
 
+	String getTitulo();
 }

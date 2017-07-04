@@ -1,11 +1,13 @@
 package model.condiciones.combinadas;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
 import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
 
+@Observable
 @JsonDeserialize(as = CondicionCombinadaCompuesta.class)
 public class CondicionCombinadaCompuesta implements CondicionCombinada {
 
@@ -60,6 +62,11 @@ public class CondicionCombinadaCompuesta implements CondicionCombinada {
 
 	public void setCondT(CondicionTaxativa condT) {
 		this.condT = condT;
+	}
+
+	@Override
+	public String getTitulo() {
+		return this.getNombre();
 	}
 
 }

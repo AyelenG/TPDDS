@@ -23,4 +23,9 @@ public class Longevidad implements CondicionCombinada {
 	public String toString() {
 		return "Longevidad";
 	}
+
+	@Override
+	public String getTitulo() {
+		return "Longevidad";
+	}
 }

@@ -15,6 +15,7 @@ import model.condiciones.taxativas.Simple;
 public class NuevaCondicionNoTaxativaViewModel {
 
 	private CargaMetodologiaViewModel parentVM;
+	private CondicionNoTaxativaConfigurable condNoTaxativa;
 	
 	public NuevaCondicionNoTaxativaViewModel(CargaMetodologiaViewModel _parentVM) {
 			this.parentVM = _parentVM;
@@ -30,6 +31,14 @@ public class NuevaCondicionNoTaxativaViewModel {
 		parentVM.getMetodologia().getCondicionesNT().add(new CondicionNoTaxativaConfigurable("Vacio",15,new Menor(),"Pepe",5 ));
 		ObservableUtils.firePropertyChanged(this.parentVM, "condiciones");
 
+	}
+
+	public CondicionNoTaxativaConfigurable getCondNoTaxativa() {
+		return condNoTaxativa;
+	}
+
+	public void setCondNoTaxativa(CondicionNoTaxativaConfigurable condNoTaxativa) {
+		this.condNoTaxativa = condNoTaxativa;
 	}
 	
 	

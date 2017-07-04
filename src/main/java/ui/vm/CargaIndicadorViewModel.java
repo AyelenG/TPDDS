@@ -92,6 +92,7 @@ public class CargaIndicadorViewModel {
 	}
 
 	public void limpiarTodo() {
+		this.setIndicadorNuevo(new Indicador());
 		this.setIngresado("");
 		this.tokens.clear();
 		this.setCuentaSeleccionada(null);

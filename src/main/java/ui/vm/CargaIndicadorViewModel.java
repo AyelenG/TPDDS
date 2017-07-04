@@ -29,7 +29,6 @@ public class CargaIndicadorViewModel {
 	private boolean habilitaCarga = true;
 
 	public void nuevoIndicador() {
-		this.setIndicadorNuevo(new Indicador());
 		this.limpiarTodo();
 		this.setHabilitaCarga(true);
 	}

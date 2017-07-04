@@ -3,7 +3,6 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
@@ -11,7 +10,6 @@ import org.uqbar.commons.utils.Observable;
 import model.condiciones.combinadas.CondicionCombinada;
 import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
-import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })

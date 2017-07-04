@@ -1,12 +1,9 @@
 package model.condiciones;
 
-import org.uqbar.commons.utils.Observable;
-
 import exceptions.NoSePuedeAplicarException;
 import model.Indicador;
 import model.repositories.RepoIndicadores;
 
-@Observable
 public abstract class CondicionConfigurable {
 
 	protected String nombre;
@@ -36,6 +33,10 @@ public abstract class CondicionConfigurable {
 					+ "' por falta de indicador <" + nombreIndicador + ">.");
 		}
 		return indicador;
+	}
+	
+	public String getTitulo() {
+		return this.getNombre();
 	}
 	
 	public String getNombre() {

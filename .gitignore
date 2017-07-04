@@ -1,6 +1,5 @@
 /target/
 .classpath
 .project
-*bin*
 .settings
 Thumbs.db

@@ -78,8 +78,12 @@ public class Metodologia {
 		int r;
 
 		//uno las condiciones no taxativas  con las combinadas (ambas comparten interfaz)
-		List<CondicionNoTaxativa> condiciones = Stream.concat(condicionesNT.stream(), condicionesComb.stream())
-				.collect(Collectors.toList());
+//		List<CondicionNoTaxativa> condiciones = Stream.concat(condicionesNT.stream(), condicionesComb.stream())
+//				.collect(Collectors.toList());
+		List<CondicionNoTaxativa> condiciones = new LinkedList<>();
+		condiciones.addAll(condicionesNT);
+		condiciones.addAll(condicionesComb);
+		
 
 		for (CondicionNoTaxativa cond : condiciones) {
 			r = cond.comparar(emp1, emp2);

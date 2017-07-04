@@ -7,13 +7,11 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import ui.vm.InicioViewModel;
-
 @SuppressWarnings("serial")
-public class CargaDatosWindow  extends SimpleWindow<InicioViewModel> {
+public class CargaDatosWindow  extends SimpleWindow<Object> {
 	
 	public CargaDatosWindow(WindowOwner parent) {
-		super(parent, ((InicioWindow)parent).getModelObject());
+		super(parent, new Object());
 	}
 	
 	@Override

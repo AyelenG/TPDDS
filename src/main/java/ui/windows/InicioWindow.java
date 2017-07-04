@@ -7,14 +7,14 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
-import ui.vm.InicioViewModel;
 import ui.windows.CargaIndicadorWindow;
+import ui.windows.metodologia.CargaMetodologiaWindow;
 
 @SuppressWarnings("serial")
-public class InicioWindow extends Window<InicioViewModel> {
+public class InicioWindow extends Window<Object> {
 		
 	public InicioWindow(WindowOwner parent) {
-		super(parent, new InicioViewModel());
+		super(parent, new Object());
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package ui.vm;
+package ui.vm.metodologia;
 
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;

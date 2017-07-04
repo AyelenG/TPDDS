@@ -1,6 +1,7 @@
 package ui.vm.metodologia;
 
 import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
@@ -22,12 +23,14 @@ public class NuevaCondicionNoTaxativaViewModel {
 	private Integer peso;
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private Indicador indicadorSeleccionado;
-	private List <String> comparadores;
+	private List <String> comparadores = new LinkedList<String>();
 	private String comparadorSeleccionado;
 	private Integer anios;
 	
 	public NuevaCondicionNoTaxativaViewModel(CargaMetodologiaViewModel _parentVM) {
 			this.parentVM = _parentVM;
+			comparadores.add("Mayor");
+			comparadores.add("Menor");
 	}
 	
 	public void cargarCondicion() {

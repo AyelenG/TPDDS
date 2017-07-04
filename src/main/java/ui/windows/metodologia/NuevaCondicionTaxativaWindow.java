@@ -78,6 +78,7 @@ public class NuevaCondicionTaxativaWindow  extends Window<NuevaCondicionTaxativa
 
 				new Label(valorPanel).setText("Valor de referencia");
 				TextBox valor = new TextBox(valorPanel);
+				valor.bindEnabledToProperty("tendencia");
 				valor.bindValueToProperty("valorRef");
 				
 				

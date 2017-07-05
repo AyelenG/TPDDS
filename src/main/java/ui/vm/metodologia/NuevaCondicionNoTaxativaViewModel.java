@@ -11,9 +11,8 @@ import model.Indicador;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
-import model.condiciones.taxativas.CondicionTaxativaConfigurable;
-import model.condiciones.taxativas.Simple;
 import model.repositories.RepoIndicadores;
+import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionNoTaxativaVM;
 
 @Observable
 public class NuevaCondicionNoTaxativaViewModel {
@@ -40,8 +39,9 @@ public class NuevaCondicionNoTaxativaViewModel {
 	}
 
 	public void nueva() {
-		parentVM.getMetodologia().getCondicionesNT().add(new CondicionNoTaxativaConfigurable("Vacio",15,new Menor(),"Pepe",5 ));
-		ObservableUtils.firePropertyChanged(this.parentVM, "condiciones");
+		CondicionNoTaxativaConfigurable nueva = new CondicionNoTaxativaConfigurable("Vacio",15,new Menor(),"Pepe",5 );
+		parentVM.getCondicionesNT().add(new CondicionNoTaxativaVM(nueva.getTitulo(),nueva));
+//		ObservableUtils.firePropertyChanged(this.parentVM, "condicionesNT");
 
 	}
 

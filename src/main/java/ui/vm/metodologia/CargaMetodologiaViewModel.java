@@ -1,6 +1,5 @@
 package ui.vm.metodologia;
 
-import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,40 +12,134 @@ import model.Metodologia;
 import model.condiciones.combinadas.CondicionCombinada;
 import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
+import model.repositories.RepoMetodologias;
 
 @Observable
 public class CargaMetodologiaViewModel {
-	
-	private Metodologia metodologia = new Metodologia();
-	
-	private boolean habilitaCarga = true;
-	
-	@Observable
-	public class CondicionVM {
-		private String titulo;
 
-		public CondicionVM(String titulo) {
+	private Metodologia metodologia = new Metodologia();
+
+	private List<CondicionTaxativaVM> condicionesT = new LinkedList<>();
+	private List<CondicionNoTaxativaVM> condicionesNT = new LinkedList<>();
+	private List<CondicionCombinadaVM> condicionesComb = new LinkedList<>();
+
+	private CondicionTaxativaVM condicionTSeleccionada;
+	private CondicionNoTaxativaVM condicionNTSeleccionada;
+	private CondicionCombinadaVM condicionCombSeleccionada;
+
+	private boolean habilitaCarga = true;
+
+	@Observable
+	public static class CondicionTaxativaVM {
+		private String titulo;
+		private CondicionTaxativa condicion;
+
+		public CondicionTaxativaVM(String titulo, CondicionTaxativa condicion) {
 			this.titulo = titulo;
+			this.condicion = condicion;
 		}
 
 		public String getTitulo() {
 			return titulo;
 		}
 
-		public void setTitulo(String titulo) {
+		public CondicionTaxativa getCondicion() {
+			return condicion;
+		}
+
+	}
+
+	@Observable
+	public static class CondicionNoTaxativaVM {
+		private String titulo;
+		private CondicionNoTaxativa condicion;
+
+		public CondicionNoTaxativaVM(String titulo, CondicionNoTaxativa condicion) {
 			this.titulo = titulo;
+			this.condicion = condicion;
+		}
+
+		public String getTitulo() {
+			return titulo;
+		}
+
+		public CondicionNoTaxativa getCondicion() {
+			return condicion;
+		}
+
+	}
+
+	@Observable
+	public static class CondicionCombinadaVM {
+		private String titulo;
+		private CondicionCombinada condicion;
+
+		public CondicionCombinadaVM(String titulo, CondicionCombinada condicion) {
+			this.titulo = titulo;
+			this.condicion = condicion;
+		}
+
+		public String getTitulo() {
+			return titulo;
+		}
+
+		public CondicionCombinada getCondicion() {
+			return condicion;
 		}
 	}
-	
+
 	public void nuevaMetodologia() {
-		this.setMetodologia(new Metodologia());
+		this.limpiarTodo();
 		this.setHabilitaCarga(true);
 	}
-	
+
+	public void limpiarTodo() {
+		this.setMetodologia(new Metodologia());
+		this.condicionesT.clear();
+		this.condicionesNT.clear();
+		this.condicionesComb.clear();
+		//no hace falta esto para que se actualize
+		// ObservableUtils.firePropertyChanged(this, "condicionesT");
+		// ObservableUtils.firePropertyChanged(this, "condicionesNT");
+		// ObservableUtils.firePropertyChanged(this, "condicionesComb");
+	}
+
 	public void cargarMetodologia() {
 		if (metodologia.getNombre().isEmpty())
 			throw new UserException("Complete el nombre de la Metodología.");
+		if (RepoMetodologias.getInstance().existeElemento(metodologia)) {
+			throw new UserException("La Metodología ingresada ya existe.");
+		}
+
+		metodologia.setCondicionesT(condicionesT.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
+		metodologia
+				.setCondicionesNT(condicionesNT.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
+		metodologia.setCondicionesComb(
+				condicionesComb.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
+
+		RepoMetodologias.getInstance().agregarElemento(metodologia);
 		this.setHabilitaCarga(false);
+	}
+
+	public void borrarCondicionTaxativa() {
+		if (condicionTSeleccionada != null)
+			this.condicionesT.remove(condicionTSeleccionada);
+		else
+			throw new UserException("Debe seleccionar una condicion taxativa para borrar");
+	}
+
+	public void borrarCondicionNoTaxativa() {
+		if (condicionNTSeleccionada != null)
+			this.condicionesNT.remove(condicionNTSeleccionada);
+		else
+			throw new UserException("Debe seleccionar una condicion no taxativa para borrar");
+	}
+
+	public void borrarCondicionCombinada() {
+		if (condicionCombSeleccionada != null)
+			this.condicionesComb.remove(condicionCombSeleccionada);
+		else
+			throw new UserException("Debe seleccionar una condicion combinada para borrar");
 	}
 
 	public Metodologia getMetodologia() {
@@ -70,14 +163,52 @@ public class CargaMetodologiaViewModel {
 		return !habilitaCarga;
 	}
 
-	public List<CondicionVM> getCondiciones() {
-		List<CondicionVM> condiciones = new LinkedList<>();
-		condiciones.addAll(metodologia.getCondicionesNT().stream()
-					.map(m->new CondicionVM(m.getTitulo())).collect(Collectors.toList()));
-		condiciones.addAll(metodologia.getCondicionesT().stream()
-				.map(m->new CondicionVM(m.getTitulo())).collect(Collectors.toList()));
-		condiciones.addAll(metodologia.getCondicionesComb().stream()
-				.map(m->new CondicionVM(m.getTitulo())).collect(Collectors.toList()));
-		return condiciones;
+	public List<CondicionTaxativaVM> getCondicionesT() {
+		return condicionesT;
 	}
+
+	public void setCondicionesT(List<CondicionTaxativaVM> condicionesT) {
+		this.condicionesT = condicionesT;
+	}
+
+	public List<CondicionNoTaxativaVM> getCondicionesNT() {
+		return condicionesNT;
+	}
+
+	public void setCondicionesNT(List<CondicionNoTaxativaVM> condicionesNT) {
+		this.condicionesNT = condicionesNT;
+	}
+
+	public List<CondicionCombinadaVM> getCondicionesComb() {
+		return condicionesComb;
+	}
+
+	public void setCondicionesComb(List<CondicionCombinadaVM> condicionesComb) {
+		this.condicionesComb = condicionesComb;
+	}
+
+	public CondicionTaxativaVM getCondicionTSeleccionada() {
+		return condicionTSeleccionada;
+	}
+
+	public void setCondicionTSeleccionada(CondicionTaxativaVM condicionTSeleccionada) {
+		this.condicionTSeleccionada = condicionTSeleccionada;
+	}
+
+	public CondicionNoTaxativaVM getCondicionNTSeleccionada() {
+		return condicionNTSeleccionada;
+	}
+
+	public void setCondicionNTSeleccionada(CondicionNoTaxativaVM condicionNTSeleccionada) {
+		this.condicionNTSeleccionada = condicionNTSeleccionada;
+	}
+
+	public CondicionCombinadaVM getCondicionCombSeleccionada() {
+		return condicionCombSeleccionada;
+	}
+
+	public void setCondicionCombSeleccionada(CondicionCombinadaVM condicionCombSeleccionada) {
+		this.condicionCombSeleccionada = condicionCombSeleccionada;
+	}
+
 }

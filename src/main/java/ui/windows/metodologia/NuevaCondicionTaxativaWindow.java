@@ -7,7 +7,7 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
-import org.uqbar.arena.windows.Window;
+import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.Indicador;
@@ -15,19 +15,22 @@ import ui.vm.metodologia.CargaMetodologiaViewModel;
 import ui.vm.metodologia.NuevaCondicionTaxativaViewModel;
 
 @SuppressWarnings("serial")
-public class NuevaCondicionTaxativaWindow  extends Window<NuevaCondicionTaxativaViewModel> {
+public class NuevaCondicionTaxativaWindow  extends SimpleWindow<NuevaCondicionTaxativaViewModel> {
 			
 	public NuevaCondicionTaxativaWindow(WindowOwner parent, CargaMetodologiaViewModel _parentVM) {
 		super(parent, new NuevaCondicionTaxativaViewModel(_parentVM));	
 	}
 	
+	@Override
 	protected void addActions(Panel actionsPanel) {		
 		new Button(actionsPanel)
 		.setCaption("Cerrar")
 		.onClick(() -> this.close());
 	}
 	
-	public void createContents(Panel mainPanel) {
+
+	@Override
+	protected void createFormPanel(Panel mainPanel) {
 		this.setTitle("Agregar Condición Taxativa");
 		mainPanel.setLayout(new VerticalLayout());
 		new Label(mainPanel).setHeight(20);
@@ -94,6 +97,6 @@ public class NuevaCondicionTaxativaWindow  extends Window<NuevaCondicionTaxativa
 		
 		new Button(mainPanel)
 		.setCaption("nueva")
-		.onClick(()-> this.getModelObject().nueva());
+		.onClick(()-> this.getModelObject().nueva());		
 	}
 }

@@ -11,6 +11,7 @@ import model.Indicador;
 import model.condiciones.Comparador;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
+import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.Mediana;
 import model.condiciones.taxativas.Promedio;
@@ -19,53 +20,49 @@ import model.condiciones.taxativas.Sumatoria;
 import model.condiciones.taxativas.Tendencia;
 import model.condiciones.taxativas.TipoCondicionTaxativa;
 import model.repositories.RepoIndicadores;
+import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionTaxativaVM;
 
 @Observable
 public class NuevaCondicionTaxativaViewModel {
 
 	private CargaMetodologiaViewModel parentVM;
 	private CondicionTaxativaConfigurable condTaxativa;
-	private List <String> tipos = new LinkedList <String> ();
+	private List<String> tipos = new LinkedList<String>();
 	private String tipoSeleccionado;
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private Indicador indicadorSeleccionado;
-	private List <String> comparadores = new LinkedList <String> ();
+	private List<String> comparadores = new LinkedList<String>();
 	private String comparadorSeleccionado;
 	private BigDecimal valorRef;
 	private Integer anios;
 	private boolean tendencia = true;
-	
-	//por no poder poner observable en la interfaz
+
+	// por no poder poner observable en la interfaz
 	private Comparador comparadorObjetoso;
 	private TipoCondicionTaxativa tipoObjetoso;
-		
-	
 
-	
 	public NuevaCondicionTaxativaViewModel(CargaMetodologiaViewModel _parentVM) {
-			this.parentVM = _parentVM;
-			tipos.add("Mediana");
-			tipos.add("Promedio");
-			tipos.add("Simple");
-			tipos.add("Sumatoria");
-			tipos.add("Tendencia");
-			comparadores.add("Mayor");
-			comparadores.add("Menor");
+		this.parentVM = _parentVM;
+		tipos.add("Mediana");
+		tipos.add("Promedio");
+		tipos.add("Simple");
+		tipos.add("Sumatoria");
+		tipos.add("Tendencia");
+		comparadores.add("Mayor");
+		comparadores.add("Menor");
 	}
-	
+
 	public void cargarCondicion() {
 		if (parentVM != null) {
 			ObservableUtils.firePropertyChanged(this.parentVM, "metodologia");
 		}
 	}
 
-	
 	public void nueva() {
-		
-		parentVM.getMetodologia().getCondicionesT().add( new CondicionTaxativaConfigurable
-					("Chorizo", new Mayor(),
-							new Simple(), "Reinosa", 3, BigDecimal.valueOf(20)));
-		ObservableUtils.firePropertyChanged(this.parentVM, "condiciones");
+		CondicionTaxativaConfigurable nueva = new CondicionTaxativaConfigurable("Chorizo", new Mayor(), new Simple(),
+				"Reinosa", 3, BigDecimal.valueOf(20));
+		parentVM.getCondicionesT().add(new CondicionTaxativaVM(nueva.getTitulo(), nueva));
+//		ObservableUtils.firePropertyChanged(this.parentVM, "condicionesT");
 
 	}
 
@@ -103,8 +100,8 @@ public class NuevaCondicionTaxativaViewModel {
 			this.setTendencia(false);
 		else
 			this.setTendencia(true);
-		
-		switch (tipoSeleccionado){
+
+		switch (tipoSeleccionado) {
 		case "Mediana":
 			this.tipoObjetoso = new Mediana();
 		case "Promedio":
@@ -164,8 +161,8 @@ public class NuevaCondicionTaxativaViewModel {
 
 	public void setComparadorSeleccionado(String operadorSeleccionado) {
 		this.comparadorSeleccionado = operadorSeleccionado;
-		if(comparadorSeleccionado == "Mayor")
-			this.comparadorObjetoso = new Mayor(); 
+		if (comparadorSeleccionado == "Mayor")
+			this.comparadorObjetoso = new Mayor();
 		else
 			this.comparadorObjetoso = new Menor();
 	}
@@ -177,6 +174,5 @@ public class NuevaCondicionTaxativaViewModel {
 	public void setTendencia(boolean tendencia) {
 		this.tendencia = tendencia;
 	}
-	
-	
+
 }

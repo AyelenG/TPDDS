@@ -80,7 +80,7 @@ public class aplicarMetodologiaTest {
 				"Test", 2, BigDecimal.valueOf(120)));
 
 		List<CondicionCombinada> condicionesComb = Arrays.asList(new Longevidad());
-		
+
 		metodologias.agregarElemento(new Metodologia("Prueba", condicionesNT, condicionesT, condicionesComb));
 	}
 
@@ -167,12 +167,30 @@ public class aplicarMetodologiaTest {
 	}
 
 	@Test
+	public void verificarInvalidas() {
+		Empresa empresa = new Empresa("INV", "Invalida SA");
+		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.9)));
+		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.1)));
+		empresa.agregarCuenta(new Periodo(2017), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.4)));
+		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(25.8)));
+		empresas.agregarElemento(empresa);
+
+		List<Empresa> empresasValidas = new LinkedList<>();
+		empresasValidas.add(empresas.buscarElemento(new Empresa("FCB", "Facebook")));
+		empresasValidas.add(empresas.buscarElemento(new Empresa("APL", "Apple")));
+		empresasValidas.add(empresas.buscarElemento(new Empresa("IBM", "IBM")));
+		assertEquals(empresasValidas,
+				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerValidas(empresas.getElementos()));
+	}
+	
+	@Test
 	public void verificarAplicacionMetodologia() {
+		Metodologia prueba = metodologias.buscarElemento(new Metodologia("Prueba"));
 		List<Empresa> empresasOrdenadas = new LinkedList<>();
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("IBM", "IBM")));
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("FCB", "Facebook")));
 		assertEquals(empresasOrdenadas,
-				metodologias.buscarElemento(new Metodologia("Prueba")).aplicar(empresas.getElementos()));
+				prueba.aplicar(prueba.obtenerValidas(empresas.getElementos())));
 	}
 
 	@After

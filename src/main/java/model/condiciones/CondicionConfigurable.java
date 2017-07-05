@@ -34,7 +34,7 @@ public abstract class CondicionConfigurable {
 	protected Indicador obtenerIndicador(String nombreIndicador) {
 		Indicador indicador = RepoIndicadores.getInstance().buscarElemento(new Indicador(nombreIndicador));
 		if (indicador == null) {
-			throw new NoSePuedeAplicarException("No se puede aplicar la metodologia '" + nombre
+			throw new NoSePuedeAplicarException("No se puede aplicar la metodologia - condicion '" + nombre
 					+ "' por falta de indicador <" + nombreIndicador + ">.");
 		}
 		return indicador;

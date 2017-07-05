@@ -69,10 +69,16 @@ public class NuevaCondicionNoTaxativaViewModel {
 		} catch (NumberFormatException e) {
 			throw new UserException("Ingrese una cantidad de años valida");
 		}
+		if(!(anios > 0)){
+			throw new UserException("La cantidad de años debe ser mayor a 0");
+		}
 		try {
 			peso = Integer.valueOf(this.getPeso());
 		} catch (NumberFormatException e) {
 			throw new UserException("Ingrese un peso valido");
+		}
+		if(!(peso > 0)){
+			throw new UserException("El peso debe ser mayor a 0");
 		}
 		nueva.setComparador(this.getComparadorSeleccionado().getComparador());
 		nueva.setNombreIndicador(this.getIndicadorSeleccionado().getNombre());

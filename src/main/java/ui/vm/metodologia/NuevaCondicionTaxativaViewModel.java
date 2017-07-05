@@ -87,6 +87,9 @@ public class NuevaCondicionTaxativaViewModel {
 		} catch (NumberFormatException e) {
 			throw new UserException("Ingrese una cantidad de años valida");
 		}
+		if(!(anios > 0)){
+			throw new UserException("La cantidad de años debe ser mayor a 0");
+		}
 		if (this.isNotTendencia()) {
 			try {
 				valorDeRef = new BigDecimal(this.getValorRef());

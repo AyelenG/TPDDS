@@ -40,7 +40,7 @@ public class NuevaCondicionNoTaxativaViewModel {
 
 	public void nueva() {
 		CondicionNoTaxativaConfigurable nueva = new CondicionNoTaxativaConfigurable("Vacio",15,new Menor(),"Pepe",5 );
-		parentVM.getCondicionesNT().add(new CondicionNoTaxativaVM(nueva.getTitulo(),nueva));
+		parentVM.getCondicionesNT().add(new CondicionNoTaxativaVM(nueva.getNombre(),nueva));
 //		ObservableUtils.firePropertyChanged(this.parentVM, "condicionesNT");
 
 	}

@@ -61,7 +61,7 @@ public class NuevaCondicionTaxativaViewModel {
 	public void nueva() {
 		CondicionTaxativaConfigurable nueva = new CondicionTaxativaConfigurable("Chorizo", new Mayor(), new Simple(),
 				"Reinosa", 3, BigDecimal.valueOf(20));
-		parentVM.getCondicionesT().add(new CondicionTaxativaVM(nueva.getTitulo(), nueva));
+		parentVM.getCondicionesT().add(new CondicionTaxativaVM(nueva.getNombre(), nueva));
 //		ObservableUtils.firePropertyChanged(this.parentVM, "condicionesT");
 
 	}

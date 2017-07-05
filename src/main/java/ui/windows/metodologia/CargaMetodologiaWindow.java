@@ -74,13 +74,13 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 
 		Table<CondicionNoTaxativaVM> tablaCondicionesNT = new Table<>(condicionesPanel2, CondicionNoTaxativaVM.class);
 		tablaCondicionesNT.setNumberVisibleRows(15).bindItemsToProperty("condicionesNT");
-		tablaCondicionesNT.bindSelectionToProperty("condicionCombSeleccionada");
+		tablaCondicionesNT.bindSelectionToProperty("condicionNTSeleccionada");
 		Column<CondicionNoTaxativaVM> columnaNT = new Column<>(tablaCondicionesNT);
 		columnaNT.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
 
 		Table<CondicionCombinadaVM> tablaCondicionesComb = new Table<>(condicionesPanel2, CondicionCombinadaVM.class);
 		tablaCondicionesComb.setNumberVisibleRows(15).bindItemsToProperty("condicionesComb");
-		tablaCondicionesComb.bindSelectionToProperty("condicionTSeleccionada");
+		tablaCondicionesComb.bindSelectionToProperty("condicionCombSeleccionada");
 		Column<CondicionCombinadaVM> columnaComb = new Column<>(tablaCondicionesComb);
 		columnaComb.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
 

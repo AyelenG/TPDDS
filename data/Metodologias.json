@@ -54,4 +54,29 @@
     "valorDeReferencia" : 100
   } ],
   "condicionesComb" : [ ]
+}, {
+  "nombre" : "Metodologia Datos Reales",
+  "condicionesNT" : [ {
+    "nombre" : "Min. Gastos de Explot. a 4 años",
+    "comparador" : "Menor",
+    "nombreIndicador" : "TOTAL GASTOS DE EXPLOTACION",
+    "cantidadAnios" : 4,
+    "peso" : 10
+  } ],
+  "condicionesT" : [ {
+    "nombre" : "Promedio - Beneficio Bruto > 40K a 3 años ",
+    "comparador" : "Mayor",
+    "nombreIndicador" : "BENEFICIO BRUTO",
+    "cantidadAnios" : 3,
+    "tipo" : "Promedio",
+    "valorDeReferencia" : 40000
+  }, {
+    "nombre" : "Rtdo. Explotacion Decreciente a 3 años",
+    "comparador" : "Menor",
+    "nombreIndicador" : "RESULTADO DE EXPLOTACION",
+    "cantidadAnios" : 3,
+    "tipo" : "Tendencia",
+    "valorDeReferencia" : null
+  } ],
+  "condicionesComb" : [ ]
 } ]

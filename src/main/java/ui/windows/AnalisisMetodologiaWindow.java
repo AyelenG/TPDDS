@@ -1,6 +1,5 @@
 package ui.windows;
 
-import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -55,11 +54,15 @@ public class AnalisisMetodologiaWindow extends SimpleWindow<AnalisisMetodologiaV
 		
 		new Label(deseablesPanel).setText("Empresas en las que conviene invertir").setFontSize(15);
 				
-		Table<Empresa> empresasDeS = new Table<>(deseablesPanel, Empresa.class);
+		Table<Empresa> empresasDes = new Table<>(deseablesPanel, Empresa.class);
 
-		empresasDeS.setNumberVisibleRows(10).bindItemsToProperty("empresasDeseables");
-		Column<Empresa> columnaNombreEmpresaDeseable = new Column<>(empresasDeS);
-		columnaNombreEmpresaDeseable.setFixedSize(500).setFont(10).setTitle("Nombre").setFixedSize(200).bindContentsToProperty("nombre");
+		empresasDes.setNumberVisibleRows(10).bindItemsToProperty("empresasDeseables");
+		Column<Empresa> columnaSymbolEmpresaDes = new Column<>(empresasDes);
+		Column<Empresa> columnaNombreEmpresaDes = new Column<>(empresasDes);
+		columnaSymbolEmpresaDes.setFixedSize(80).setFont(10).setTitle("Symbol")
+				.bindContentsToProperty("symbol");
+		columnaNombreEmpresaDes.setFixedSize(170).setFont(10).setTitle("Nombre")
+				.bindContentsToProperty("nombre");
 
 		new Label(tablasPanel).setWidth(10);
 		//tabla no deseables
@@ -72,8 +75,11 @@ public class AnalisisMetodologiaWindow extends SimpleWindow<AnalisisMetodologiaV
 		Table<Empresa> empresasNoDes = new Table<>(noDeseablesPanel, Empresa.class);
 
 		empresasNoDes.setNumberVisibleRows(10).bindItemsToProperty("empresasNoDeseables");
-		Column<Empresa> columnaNombreEmpresaNoDeseable = new Column<>(empresasNoDes);
-		columnaNombreEmpresaNoDeseable.setFixedSize(500).setFont(10).setTitle("Nombre").setFixedSize(200)
+		Column<Empresa> columnaSymbolEmpresaNoDes = new Column<>(empresasNoDes);
+		Column<Empresa> columnaNombreEmpresaNoDes = new Column<>(empresasNoDes);
+		columnaSymbolEmpresaNoDes.setFixedSize(80).setFont(10).setTitle("Symbol")
+				.bindContentsToProperty("symbol");
+		columnaNombreEmpresaNoDes.setFixedSize(170).setFont(10).setTitle("Nombre")
 				.bindContentsToProperty("nombre");
 
 		new Label(tablasPanel).setWidth(10);
@@ -87,9 +93,13 @@ public class AnalisisMetodologiaWindow extends SimpleWindow<AnalisisMetodologiaV
 		Table<Empresa> empresasInv = new Table<>(sinInfoPanel, Empresa.class);
 		
 		empresasInv.setNumberVisibleRows(10).bindItemsToProperty("empresasInvalidas");
+		Column<Empresa> columnaSymbolEmpresaInvalida = new Column<>(empresasInv);
 		Column<Empresa> columnaNombreEmpresaInvalida = new Column<>(empresasInv);
-		columnaNombreEmpresaInvalida.setFixedSize(500).setFont(10).setTitle("Nombre").setFixedSize(200)
+		columnaSymbolEmpresaInvalida.setFixedSize(80).setFont(10).setTitle("Symbol")
+				.bindContentsToProperty("symbol");
+		columnaNombreEmpresaInvalida.setFixedSize(170).setFont(10).setTitle("Nombre")
 				.bindContentsToProperty("nombre");
+
 	}
 
 }

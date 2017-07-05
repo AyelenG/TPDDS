@@ -11,8 +11,11 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.Indicador;
+import model.condiciones.taxativas.TipoCondicionTaxativa;
 import ui.vm.metodologia.CargaMetodologiaViewModel;
 import ui.vm.metodologia.NuevaCondicionTaxativaViewModel;
+import ui.vm.metodologia.NuevaCondicionTaxativaViewModel.ComparadorVM;
+import ui.vm.metodologia.NuevaCondicionTaxativaViewModel.TipoVM;
 
 @SuppressWarnings("serial")
 public class NuevaCondicionTaxativaWindow  extends SimpleWindow<NuevaCondicionTaxativaViewModel> {
@@ -49,7 +52,7 @@ public class NuevaCondicionTaxativaWindow  extends SimpleWindow<NuevaCondicionTa
 			tipoPanel.setLayout(new VerticalLayout());
 			
 			new Label(tipoPanel).setText("Tipo");
-			Selector<String> selectorTipo = new Selector<String>(tipoPanel).allowNull(true);
+			Selector<TipoVM> selectorTipo = new Selector<TipoVM>(tipoPanel).allowNull(true);
 			selectorTipo.bindItemsToProperty("tipos");
 			selectorTipo.bindValueToProperty("tipoSeleccionado");
 
@@ -71,7 +74,7 @@ public class NuevaCondicionTaxativaWindow  extends SimpleWindow<NuevaCondicionTa
 				operadorPanel.setLayout(new VerticalLayout());
 
 				new Label(operadorPanel).setText("Comparador");
-				Selector<String> selectorOperador = new Selector<String>(operadorPanel).allowNull(true);
+				Selector<ComparadorVM> selectorOperador = new Selector<ComparadorVM>(operadorPanel).allowNull(true);
 				selectorOperador.bindItemsToProperty("comparadores");
 				selectorOperador.bindValueToProperty("comparadorSeleccionado");
 

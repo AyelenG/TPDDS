@@ -1,0 +1,51 @@
+options {
+    STATIC = false;
+}
+
+PARSER_BEGIN(ExpresionBuilder)
+
+public class ExpresionBuilder {
+    public Expresion build() {
+        try {
+            return S();
+        } catch (Throwable e) {
+            throw new UserException("Sintaxis de formula incorrecta.");
+        }
+    }
+}
+
+PARSER_END(ExpresionBuilder)
+
+SKIP:  { " " | "\t" | "\n" | "\r" }
+TOKEN: { "(" | ")" | "+" | "*" | "-" | "/" | "<" | ">" | "[" | "]" |
+		< NUM : (("-")? ["0"-"9"])+ ("." (["0"-"9"])+)? > |
+		< CUENTA : "[" <ID> "]" > |
+		< INDICADOR : "<" <ID> ">" > |
+		< #ID: ( ["A"-"Z"] | ["0"-"9"] ) ( " " | ["A"-"Z"] | ["0"-"9"] )* >
+		}		
+
+Expresion S(): {Expresion exp;}
+{
+  exp=E() <EOF> {return exp;}
+}
+
+Expresion E(): {Expresion e1; Expresion e2;}
+{
+  e1=T() ("+" e2=T() {e1 = new Suma(e1,e2);} | "-" e2=T() {e1 = new Resta(e1,e2);} )* {return e1;}
+}
+
+Expresion T(): {Expresion e1; Expresion e2;}
+{
+  e1=F() ("*" e2=F() {e1 = new Multiplicacion(e1,e2);} | "/" e2 = F() {e1 = new Division(e1,e2);} )* {return e1;}
+}
+
+Expresion F(): {Expresion x; Token n;}
+{
+  n=<NUM> {return new TerminalLiteral(new BigDecimal(n.image));}
+|
+  n=<CUENTA> {return new TerminalCuenta(n.image);}
+|
+  n=<INDICADOR> {return new TerminalIndicador(n.image);}
+|
+  "(" x=E() ")" {return x;}
+}

@@ -59,26 +59,41 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 		new Label(mainPanel).setHeight(20);
 
 		// Condiciones
-		Panel condicionesPanel1 = new Panel(mainPanel).setLayout(new HorizontalLayout());
-		Panel condicionesPanel2 = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		Panel tablasPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		
+		//Panel condicionesPanel2 = new Panel(mainPanel).setLayout(new HorizontalLayout());
 
-		new Label(condicionesPanel1).setText("     Condiciones Taxativas       ").setFontSize(18);
-		new Label(condicionesPanel1).setText("     Condiciones No Taxativas    ").setFontSize(18);
-		new Label(condicionesPanel1).setText("   Condiciones Combinadas      ").setFontSize(18);
-
-		Table<CondicionTaxativaVM> tablaCondicionesT = new Table<>(condicionesPanel2, CondicionTaxativaVM.class);
+		//Taxativas
+		Panel taxativasPanel = new Panel(tablasPanel);
+		taxativasPanel.setLayout(new VerticalLayout());
+		
+		new Label(taxativasPanel).setText("     Condiciones Taxativas       ").setFontSize(15);
+		
+		Table<CondicionTaxativaVM> tablaCondicionesT = new Table<>(taxativasPanel, CondicionTaxativaVM.class);
 		tablaCondicionesT.setNumberVisibleRows(15).bindItemsToProperty("condicionesT");
 		tablaCondicionesT.bindSelectionToProperty("condicionTSeleccionada");
 		Column<CondicionTaxativaVM> columnaT = new Column<>(tablaCondicionesT);
 		columnaT.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
 
-		Table<CondicionNoTaxativaVM> tablaCondicionesNT = new Table<>(condicionesPanel2, CondicionNoTaxativaVM.class);
+		//no taxativas
+		Panel noTaxativasPanel = new Panel(tablasPanel);
+		noTaxativasPanel.setLayout(new VerticalLayout());
+		
+		new Label(noTaxativasPanel).setText("     Condiciones No Taxativas    ").setFontSize(15);
+		
+		Table<CondicionNoTaxativaVM> tablaCondicionesNT = new Table<>(noTaxativasPanel, CondicionNoTaxativaVM.class);
 		tablaCondicionesNT.setNumberVisibleRows(15).bindItemsToProperty("condicionesNT");
 		tablaCondicionesNT.bindSelectionToProperty("condicionNTSeleccionada");
 		Column<CondicionNoTaxativaVM> columnaNT = new Column<>(tablaCondicionesNT);
 		columnaNT.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
-
-		Table<CondicionCombinadaVM> tablaCondicionesComb = new Table<>(condicionesPanel2, CondicionCombinadaVM.class);
+		
+		//combinadas
+		Panel combinadasPanel = new Panel(tablasPanel);
+		combinadasPanel.setLayout(new VerticalLayout());
+		
+		new Label(combinadasPanel).setText("   Condiciones Combinadas      ").setFontSize(15);
+		
+		Table<CondicionCombinadaVM> tablaCondicionesComb = new Table<>(combinadasPanel, CondicionCombinadaVM.class);
 		tablaCondicionesComb.setNumberVisibleRows(15).bindItemsToProperty("condicionesComb");
 		tablaCondicionesComb.bindSelectionToProperty("condicionCombSeleccionada");
 		Column<CondicionCombinadaVM> columnaComb = new Column<>(tablaCondicionesComb);

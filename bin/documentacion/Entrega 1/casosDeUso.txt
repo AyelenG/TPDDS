@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+
+Usuario --> (cargarCuentas)
+Usuario --> (cargarIndicadores)
+Usuario --> (cargarMetodologias)
+Usuario --> (guardarIndicadores)
+Usuario --> (guardarMetodologias)
+Usuario --> (consultarCuentas)
+Usuario --> (consultarIndicadores)
+Usuario --> (analizarEmpresa)
+Usuario --> (visualizarGraficosComparativos)
+
+@enduml

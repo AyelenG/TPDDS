@@ -1,0 +1,95 @@
+[
+	{
+		"symbol": "FB",
+		"nombre": "Facebook",
+		"periodos": [
+			{
+				"anio": "2010",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": 200.999
+					},
+					{
+						"nombre": "FDSA",
+						"valor": 500
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": 100
+					}
+				]
+			},
+			{
+				"anio": "2012",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": 500
+					},
+					{
+						"nombre": "FDS",
+						"valor": 600
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": 300
+					}
+				]
+			}
+		]
+	},
+	{
+		"symbol": "APL",
+		"nombre": "Apple Inc.",
+		"periodos": [
+			{
+				"anio": 2000,
+				"cuentas": [
+					{
+						"nombre": "Ingresos brutos",
+						"valor": "-500"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "698.87"
+					}
+				]
+			},
+			{
+				"anio": 2001,
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "98700"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "10"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "350"
+					}
+				]
+			},
+			{
+				"anio": "2002",
+				"cuentas": [
+					{
+						"nombre": "Ingresos brutos",
+						"valor": -500
+					},
+					{
+						"nombre": "FDS",
+						"valor": 698.87
+					},
+					{
+						"nombre": "EBITDA",
+						"valor": 0
+					}
+				]
+			}
+		]
+	}
+]

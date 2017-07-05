@@ -34,14 +34,7 @@ public class AnalisisMetodologiaWindow extends SimpleWindow<AnalisisMetodologiaV
 
 		Panel consultaPanel = new Panel(mainPanel);
 		consultaPanel.setLayout(new VerticalLayout());
-		Panel metodologiasPanel = new Panel(mainPanel);
-		Panel empresasTot = new Panel(metodologiasPanel);
-		Panel empresasTot2 = new Panel(metodologiasPanel);
-		empresasTot.setLayout(new ColumnLayout(3));
-		empresasTot2.setLayout(new HorizontalLayout());
-		empresasTot.setWidth(200);
-		empresasTot2.setWidth(200);
-
+		
 		new Label(consultaPanel).setHeight(30);
 		new Label(consultaPanel).setText("Elija la metodología");
 		Selector<Metodologia> selectorMetodologia = new Selector<Metodologia>(consultaPanel).allowNull(true);
@@ -52,28 +45,46 @@ public class AnalisisMetodologiaWindow extends SimpleWindow<AnalisisMetodologiaV
 				.bindEnabledToProperty("botonAnalizar");
 
 		new Label(consultaPanel).setHeight(30);
-		new Label(empresasTot).setText("Empresas en las que conviene invertir").setFontSize(10);
-		new Label(empresasTot).setText("Empresas en las que no conviene invertir").setFontSize(10);
-		new Label(empresasTot).setText("Empresas sin la información necesaria").setFontSize(10);
 		
-		Table<Empresa> empresasDeS = new Table<>(empresasTot2, Empresa.class);
+		Panel tablasPanel = new Panel(mainPanel);
+		tablasPanel.setLayout(new HorizontalLayout());
+		
+		//tabla deseables
+		Panel deseablesPanel = new Panel(tablasPanel);
+		deseablesPanel.setLayout(new VerticalLayout());
+		
+		new Label(deseablesPanel).setText("Empresas en las que conviene invertir").setFontSize(15);
+				
+		Table<Empresa> empresasDeS = new Table<>(deseablesPanel, Empresa.class);
 
 		empresasDeS.setNumberVisibleRows(10).bindItemsToProperty("empresasDeseables");
 		Column<Empresa> columnaNombreEmpresaDeseable = new Column<>(empresasDeS);
 		columnaNombreEmpresaDeseable.setFixedSize(500).setFont(10).setTitle("Nombre").setFixedSize(200).bindContentsToProperty("nombre");
 
-		new Label(empresasTot2).setWidth(100);
+		new Label(tablasPanel).setWidth(10);
+		//tabla no deseables
 		
-		Table<Empresa> empresasNoDes = new Table<>(empresasTot2, Empresa.class);
+		Panel noDeseablesPanel = new Panel(tablasPanel);
+		noDeseablesPanel.setLayout(new VerticalLayout());
+		
+		new Label(noDeseablesPanel).setText("Empresas en las que no conviene invertir").setFontSize(15);
+		
+		Table<Empresa> empresasNoDes = new Table<>(noDeseablesPanel, Empresa.class);
 
 		empresasNoDes.setNumberVisibleRows(10).bindItemsToProperty("empresasNoDeseables");
 		Column<Empresa> columnaNombreEmpresaNoDeseable = new Column<>(empresasNoDes);
 		columnaNombreEmpresaNoDeseable.setFixedSize(500).setFont(10).setTitle("Nombre").setFixedSize(200)
 				.bindContentsToProperty("nombre");
 
-		new Label(empresasTot2).setWidth(100);
+		new Label(tablasPanel).setWidth(10);
+		//tabla con los sin info
 		
-		Table<Empresa> empresasInv = new Table<>(empresasTot2, Empresa.class);
+		Panel sinInfoPanel = new Panel(tablasPanel);
+		sinInfoPanel.setLayout(new VerticalLayout());
+		
+		new Label(sinInfoPanel).setText("Empresas sin la información necesaria").setFontSize(15);
+		
+		Table<Empresa> empresasInv = new Table<>(sinInfoPanel, Empresa.class);
 		
 		empresasInv.setNumberVisibleRows(10).bindItemsToProperty("empresasInvalidas");
 		Column<Empresa> columnaNombreEmpresaInvalida = new Column<>(empresasInv);

@@ -1,0 +1,96 @@
+@startuml
+
+class Metodologia [[java:model.Metodologia]] {
+	-String nombre
+	-List<CondicionNoTaxativa> condicionesNT
+	-List<CondicionTaxativa> condicionesT
+	-List<CondicionCombinada> condicionesComb
+	+List<Empresa> aplicar(List<Empresa> empresas)
+	+List<Empresa> obtenerFiltradas(List<Empresa> empresas)
+	+List<Empresa> obtenerOrdenadas(List<Empresa> empresas)
+	-int comparar(Empresa emp1, Empresa emp2)
+}
+
+interface CondicionNoTaxativa [[java:model.condiciones.notaxativas.CondicionNoTaxativa]] {
+	int comparar(Empresa emp1, Empresa emp2)
+}
+interface CondicionTaxativa [[java:model.condiciones.taxativas.CondicionTaxativa]] {
+	boolean convieneInvertirEn(Empresa emp)
+}
+interface CondicionCombinada [[java:model.condiciones.combinadas.CondicionCombinada]] {
+}
+CondicionTaxativa <|-- CondicionCombinada
+CondicionNoTaxativa <|-- CondicionCombinada
+
+abstract class CondicionConfigurable [[java:model.condiciones.CondicionConfigurable]] {
+	#String nombre
+	#Comparador comparador
+	#String nombreIndicador
+	#Integer cantidadAnios
+}
+class CondicionNoTaxativaConfigurable [[java:model.condiciones.notaxativas.CondicionNoTaxativaConfigurable]] {
+	-Integer peso
+}
+CondicionConfigurable <|-- CondicionNoTaxativaConfigurable
+CondicionNoTaxativa <|.. CondicionNoTaxativaConfigurable
+
+class CondicionTaxativaConfigurable [[java:model.condiciones.taxativas.CondicionTaxativaConfigurable]] {
+	-TipoCondicionTaxativa tipo
+	-BigDecimal valorDeReferencia
+}
+CondicionConfigurable <|-- CondicionTaxativaConfigurable
+CondicionTaxativa <|.. CondicionTaxativaConfigurable
+
+class CondicionCombinadaCompuesta [[java:model.condiciones.combinadas.CondicionCombinadaCompuesta]] {
+	-String nombre
+	-CondicionNoTaxativa condNT
+	-CondicionTaxativa condT
+}
+CondicionCombinada <|.. CondicionCombinadaCompuesta
+CondicionCombinadaCompuesta --> CondicionNoTaxativa : contiene
+CondicionCombinadaCompuesta --> CondicionTaxativa : contiene
+
+class Longevidad [[java:model.condiciones.combinadas.Longevidad]] {
+}
+CondicionCombinada <|.. Longevidad
+
+interface Comparador [[java:model.condiciones.Comparador]] {
+	int aplicar(BigDecimal valor1, BigDecimal valor2)
+}
+class Mayor [[java:model.condiciones.Mayor]] {
+}
+Comparador <|.. Mayor
+class Menor [[java:model.condiciones.Menor]] {
+}
+interface Comparador [[java:model.condiciones.Comparador]] {
+}
+Comparador <|.. Menor
+
+CondicionConfigurable --> Comparador : contiene
+
+interface TipoCondicionTaxativa [[java:model.condiciones.taxativas.TipoCondicionTaxativa]] {
+	boolean aplicar(Empresa emp, CondicionTaxativaConfigurable condicion, Indicador indicador)
+}
+class Simple [[java:model.condiciones.taxativas.Simple]] {
+}
+TipoCondicionTaxativa <|.. Simple
+class Sumatoria [[java:model.condiciones.taxativas.Sumatoria]] {
+}
+TipoCondicionTaxativa <|.. Sumatoria
+class Promedio [[java:model.condiciones.taxativas.Promedio]] {
+}
+TipoCondicionTaxativa <|.. Promedio
+class Mediana [[java:model.condiciones.taxativas.Mediana]] {
+}
+TipoCondicionTaxativa <|.. Mediana
+class Tendencia [[java:model.condiciones.taxativas.Tendencia]] {
+}
+TipoCondicionTaxativa <|.. Tendencia
+
+CondicionTaxativaConfigurable --> TipoCondicionTaxativa : contiene
+
+Metodologia --> "*" CondicionNoTaxativa : contiene
+Metodologia --> "*" CondicionTaxativa : contiene
+Metodologia --> "*" CondicionCombinada : contiene
+
+@enduml

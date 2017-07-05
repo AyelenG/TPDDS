@@ -165,9 +165,11 @@ class Metodologia [[java:model.Metodologia]] {
 
 interface CondicionNoTaxativa [[java:model.condiciones.notaxativas.CondicionNoTaxativa]] {
 	int comparar(Empresa emp1, Empresa emp2)
+	boolean esValida(Empresa emp)
 }
 interface CondicionTaxativa [[java:model.condiciones.taxativas.CondicionTaxativa]] {
 	boolean convieneInvertirEn(Empresa emp)
+	boolean esValida(Empresa emp)
 }
 interface CondicionCombinada [[java:model.condiciones.combinadas.CondicionCombinada]] {
 }
@@ -179,6 +181,7 @@ abstract class CondicionConfigurable [[java:model.condiciones.CondicionConfigura
 	#Comparador comparador
 	#String nombreIndicador
 	#Integer cantidadAnios
+	+boolean esValida(Empresa emp)
 }
 class CondicionNoTaxativaConfigurable [[java:model.condiciones.notaxativas.CondicionNoTaxativaConfigurable]] {
 	-Integer peso

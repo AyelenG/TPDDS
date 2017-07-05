@@ -79,7 +79,11 @@ public class Empresa {
 	public String getSymbol() {
 		return symbol;
 	}
-
+	
+	public boolean noEstaEn(List<Empresa> empresas){
+		return empresas.contains(this);
+	}
+	
 	public void setSymbol(String symbol) {
 		this.symbol = symbol.toUpperCase();
 	}

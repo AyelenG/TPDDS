@@ -48,8 +48,8 @@ public class InicioWindow extends Window<Object> {
 			.onClick(()-> new AnalisisWindow(this).open());
 		
 		new Button(mainPanel)
-			.setCaption("Analizar Metodología");
-			//.onClick(()-> new AnalisisMetodologiaWindow(this).open());
+			.setCaption("Analizar Metodología")
+			.onClick(()-> new AnalisisMetodologiaWindow(this).open());
 
 		new Label(mainPanel).setHeight(30);
 		new Label(mainPanel).setText("Desarrolladores").setFontSize(12);

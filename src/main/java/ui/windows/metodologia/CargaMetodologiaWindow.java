@@ -27,7 +27,7 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 
 	@Override
 	protected void addActions(Panel actionsPanel) {
-		new Button(actionsPanel).setCaption("Cargar").onClick(() -> this.getModelObject().cargarMetodologia())
+		new Button(actionsPanel).setCaption("Cargar Metodologia").onClick(() -> this.getModelObject().cargarMetodologia())
 				.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel).setCaption("Agregar Condición")
 				.onClick(() -> new CargaCondicionWindow(this, this.getModelObject()).open())
@@ -55,7 +55,7 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 		// Nombre
 		Panel nombrePanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		new Label(nombrePanel).setText("Nombre:  ").setFontSize(18);
-		new TextBox(nombrePanel).setFontSize(12).setWidth(700).bindValueToProperty("metodologia.nombre");
+		new TextBox(nombrePanel).setFontSize(12).setWidth(300).bindValueToProperty("metodologia.nombre");
 		new Label(mainPanel).setHeight(20);
 
 		// Condiciones

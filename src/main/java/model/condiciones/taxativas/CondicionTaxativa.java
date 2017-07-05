@@ -9,6 +9,4 @@ import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 public interface CondicionTaxativa {
 
 	boolean convieneInvertirEn(Empresa emp);
-
-	String getTitulo();
 }

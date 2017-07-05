@@ -62,10 +62,4 @@ public class CondicionCombinadaCompuesta implements CondicionCombinada {
 		this.condT = condT;
 	}
 
-	@Override
-	public String getTitulo() {
-		return this.getNombre() + " [" + 
-				this.getCondT().getTitulo() + " - " + this.getCondNT().getTitulo() + "]";
-	}
-
 }

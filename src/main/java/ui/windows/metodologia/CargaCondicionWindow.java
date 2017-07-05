@@ -33,7 +33,7 @@ public class CargaCondicionWindow extends Window<Object> {
 			.onClick(()-> new NuevaCondicionNoTaxativaWindow(this, parentVM).open());
 		new Button(mainPanel)
 			.setCaption("Combinada")
-			.onClick(()-> new NuevaCondicionCombinadaWindow(this, parentVM).open());
+			.onClick(()-> new NuevaCondicionPrimitivaWindow(this, parentVM).open());
 		
 		new Label(mainPanel).setHeight(20);
 		

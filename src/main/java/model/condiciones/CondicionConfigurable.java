@@ -34,11 +34,7 @@ public abstract class CondicionConfigurable {
 		}
 		return indicador;
 	}
-	
-	public String getTitulo() {
-		return this.getNombre();
-	}
-	
+		
 	public String getNombre() {
 		return nombre;
 	}

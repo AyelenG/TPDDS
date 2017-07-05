@@ -41,8 +41,24 @@ public class NuevaCondicionTaxativaViewModel {
 	private String valorRef = "";
 	private String anios = "";
 
+	private boolean habilitaCarga = true;
+
 	public NuevaCondicionTaxativaViewModel(CargaMetodologiaViewModel _parentVM) {
 		this.parentVM = _parentVM;
+	}
+
+	public void nuevaCondicion() {
+		this.limpiarTodo();
+		this.setHabilitaCarga(true);
+	}
+
+	public void limpiarTodo() {
+		this.setNueva(new CondicionTaxativaConfigurable());
+		this.setAnios("");
+		this.setValorRef("");
+		this.setIndicadorSeleccionado(null);
+		this.setComparadorSeleccionado(null);
+		this.setTipoSeleccionado(null);
 	}
 
 	public void cargarCondicion() {
@@ -51,19 +67,19 @@ public class NuevaCondicionTaxativaViewModel {
 		}
 	}
 
-	public void nueva() {
+	public void agregar() {
 		Integer anios = null;
 		BigDecimal valorDeRef = null;
-		if(this.getNueva().getNombre().isEmpty()){
+		if (this.getNueva().getNombre().isEmpty()) {
 			throw new UserException("Ingrese un nombre de condicion");
 		}
-		if(this.getTipoSeleccionado() == null){
+		if (this.getTipoSeleccionado() == null) {
 			throw new UserException("Ingrese un tipo de condicion");
 		}
-		if(this.getIndicadorSeleccionado() == null){
+		if (this.getIndicadorSeleccionado() == null) {
 			throw new UserException("Ingrese un indicador");
 		}
-		if(this.getComparadorSeleccionado() == null){
+		if (this.getComparadorSeleccionado() == null) {
 			throw new UserException("Ingrese un comparador");
 		}
 		try {
@@ -83,8 +99,9 @@ public class NuevaCondicionTaxativaViewModel {
 		nueva.setNombreIndicador(this.getIndicadorSeleccionado().getNombre());
 		nueva.setCantidadAnios(anios);
 		nueva.setValorDeReferencia(valorDeRef);
-		
+
 		parentVM.getCondicionesT().add(new CondicionTaxativaVM(nueva.getNombre(), nueva));
+		this.setHabilitaCarga(false);
 		// ObservableUtils.firePropertyChanged(this.parentVM, "condicionesT");
 	}
 
@@ -171,7 +188,22 @@ public class NuevaCondicionTaxativaViewModel {
 	}
 
 	public boolean isNotTendencia() {
-		return tipoSeleccionado.toString() != "Tendencia";
+		if (tipoSeleccionado != null)
+			return tipoSeleccionado.toString() != "Tendencia";
+		return true;
+	}
+
+	public boolean isHabilitaCarga() {
+		return habilitaCarga;
+	}
+
+	public void setHabilitaCarga(boolean habilitaCarga) {
+		this.habilitaCarga = habilitaCarga;
+		ObservableUtils.firePropertyChanged(this, "habilitaNueva");
+	}
+
+	public boolean isHabilitaNueva() {
+		return !habilitaCarga;
 	}
 
 }

@@ -1,15 +1,18 @@
 package ui.vm.metodologia;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
+import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.repositories.RepoIndicadores;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
 import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
@@ -18,39 +21,78 @@ import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
 public class NuevaCondicionNoTaxativaViewModel {
 
 	private CargaMetodologiaViewModel parentVM;
-	private CondicionNoTaxativaConfigurable nueva;
-	private String peso;
+	private CondicionNoTaxativaConfigurable nueva = new CondicionNoTaxativaConfigurable();
+	private String peso = "";
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private Indicador indicadorSeleccionado;
-	private List <ComparadorVM> comparadores = new LinkedList<ComparadorVM>();
+	private List<ComparadorVM> comparadores = Arrays.asList(new ComparadorVM(new Mayor()),
+			new ComparadorVM(new Menor()));
 	private ComparadorVM comparadorSeleccionado;
-	private String anios;
-	
+	private String anios = "";
+	private boolean habilitaCarga = true;
+
 	public NuevaCondicionNoTaxativaViewModel(CargaMetodologiaViewModel _parentVM) {
-			this.parentVM = _parentVM;
-			comparadores.add(new ComparadorVM (new Mayor()));
-			comparadores.add(new ComparadorVM (new Menor()));
+		this.parentVM = _parentVM;
 	}
 	
+	public void nuevaCondicion() {
+		this.limpiarTodo();
+		this.setHabilitaCarga(true);
+	}
+	
+	public void limpiarTodo() {
+		this.setNueva(new CondicionNoTaxativaConfigurable());
+		this.setAnios("");
+		this.setIndicadorSeleccionado(null);
+		this.setComparadorSeleccionado(null);
+		this.setPeso("");
+	}
+
 	public void cargarCondicion() {
 		if (parentVM != null) {
 			ObservableUtils.firePropertyChanged(this.parentVM, "metodologia");
 		}
 	}
 
-	public void nueva() {
-		CondicionNoTaxativaConfigurable nueva = new CondicionNoTaxativaConfigurable("Vacio",15,new Menor(),"Pepe",5 );
-		parentVM.getCondicionesNT().add(new CondicionNoTaxativaVM(nueva.getNombre(),nueva));
-//		ObservableUtils.firePropertyChanged(this.parentVM, "condicionesNT");
+	public void agregar() {
+		Integer anios = null;
+		Integer peso = null;
+		if (this.getNueva().getNombre().isEmpty()) {
+			throw new UserException("Ingrese un nombre de condicion");
+		}
+		if (this.getIndicadorSeleccionado() == null) {
+			throw new UserException("Ingrese un indicador");
+		}
+		if (this.getComparadorSeleccionado() == null) {
+			throw new UserException("Ingrese un comparador");
+		}
+		try {
+			anios = Integer.valueOf(this.getAnios());
+		} catch (NumberFormatException e) {
+			throw new UserException("Ingrese una cantidad de años valida");
+		}
+		try {
+			peso = Integer.valueOf(this.getPeso());
+		} catch (NumberFormatException e) {
+			throw new UserException("Ingrese un peso valido");
+		}
+		nueva.setComparador(this.getComparadorSeleccionado().getComparador());
+		nueva.setNombreIndicador(this.getIndicadorSeleccionado().getNombre());
+		nueva.setCantidadAnios(anios);
+		nueva.setPeso(peso);
+
+		parentVM.getCondicionesNT().add(new CondicionNoTaxativaVM(nueva.getNombre(), nueva));
+		this.setHabilitaCarga(false);
+		// ObservableUtils.firePropertyChanged(this.parentVM, "condicionesNT");
 
 	}
 
-	public CondicionNoTaxativaConfigurable getCondNoTaxativa() {
+	public CondicionNoTaxativaConfigurable getNueva() {
 		return nueva;
 	}
 
-	public void setCondNoTaxativa(CondicionNoTaxativaConfigurable condNoTaxativa) {
-		this.nueva = condNoTaxativa;
+	public void setNueva(CondicionNoTaxativaConfigurable nueva) {
+		this.nueva = nueva;
 	}
 
 	public String getPeso() {
@@ -77,7 +119,6 @@ public class NuevaCondicionNoTaxativaViewModel {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
 
-
 	public String getAnios() {
 		return anios;
 	}
@@ -101,6 +142,17 @@ public class NuevaCondicionNoTaxativaViewModel {
 	public void setComparadorSeleccionado(ComparadorVM comparadorSeleccionado) {
 		this.comparadorSeleccionado = comparadorSeleccionado;
 	}
-	
-	
+
+	public boolean isHabilitaCarga() {
+		return habilitaCarga;
+	}
+
+	public void setHabilitaCarga(boolean habilitaCarga) {
+		this.habilitaCarga = habilitaCarga;
+		ObservableUtils.firePropertyChanged(this, "habilitaNueva");
+	}
+
+	public boolean isHabilitaNueva() {
+		return !habilitaCarga;
+	}
 }

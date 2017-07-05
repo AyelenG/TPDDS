@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.uqbar.commons.model.ObservableUtils;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
+import exceptions.NoSePuedeAplicarException;
+import exceptions.NoSePuedeEvaluarException;
 import model.Empresa;
 import model.Metodologia;
 import model.repositories.RepoEmpresas;
@@ -33,11 +36,19 @@ public class AnalisisMetodologiaViewModel {
 	public void analizar(){
 		this.empresasDeseables.clear();
 		this.empresasNoDeseables.clear();
-		this.setEmpresasDeseables(metodologiaSeleccionada.aplicar(this.empresas));
-		this.setEmpresasNoDeseables(empresas.stream().filter(emp->emp.noEstaEn(this.empresasDeseables)).collect(Collectors.toList()));
 		ObservableUtils.firePropertyChanged(this, "empresasDeseables");
 		ObservableUtils.firePropertyChanged(this, "empresasNoDeseables");
 		
+		if(this.empresas.isEmpty()){
+			throw new UserException("No hay empresas cargadas");
+		}
+		try{
+		this.setEmpresasDeseables(metodologiaSeleccionada.aplicar(this.empresas));
+		}
+		catch(NoSePuedeEvaluarException e){
+			throw new NoSePuedeAplicarException("No se puede aplicar metodologia - " + e.getMensaje());
+		}
+		this.setEmpresasNoDeseables(empresas.stream().filter(emp->emp.noEstaEn(this.empresasDeseables)).collect(Collectors.toList()));
 	}
 	public List<Empresa> getEmpresasNoDeseables() {
 		return empresasNoDeseables;

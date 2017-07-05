@@ -25,7 +25,13 @@ public class NuevaCondicionTaxativaWindow extends SimpleWindow<NuevaCondicionTax
 
 	@Override
 	protected void addActions(Panel actionsPanel) {
+		new Button(actionsPanel).setCaption("Agregar").onClick(() -> this.getModelObject().agregar())
+				.bindEnabledToProperty("habilitaCarga");
+		new Button(actionsPanel).setCaption("Limpiar Todo").onClick(() -> this.getModelObject().limpiarTodo())
+				.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel).setCaption("Cerrar").onClick(() -> this.close());
+		new Button(actionsPanel).setCaption("Nueva Condicion").onClick(() -> this.getModelObject().nuevaCondicion())
+				.bindVisibleToProperty("habilitaNueva");
 	}
 
 	@Override
@@ -40,6 +46,7 @@ public class NuevaCondicionTaxativaWindow extends SimpleWindow<NuevaCondicionTax
 
 		new Label(nombrePanel).setText("Nombre de la condición  ");
 		TextBox nombre = new TextBox(nombrePanel);
+		nombre.setWidth(300);
 		nombre.bindValueToProperty("nueva.nombre");
 
 		// Tipo
@@ -87,6 +94,5 @@ public class NuevaCondicionTaxativaWindow extends SimpleWindow<NuevaCondicionTax
 		TextBox anios = new TextBox(anioPanel);
 		anios.bindValueToProperty("anios");
 
-		new Button(mainPanel).setCaption("nueva").onClick(() -> this.getModelObject().nueva());
 	}
 }

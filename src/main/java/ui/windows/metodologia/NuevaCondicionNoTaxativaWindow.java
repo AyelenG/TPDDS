@@ -23,7 +23,14 @@ public class NuevaCondicionNoTaxativaWindow extends SimpleWindow<NuevaCondicionN
 
 	@Override
 	protected void addActions(Panel actionsPanel) {
+		new Button(actionsPanel).setCaption("Agregar").onClick(() -> this.getModelObject().agregar())
+				.bindEnabledToProperty("habilitaCarga");
+		new Button(actionsPanel).setCaption("Limpiar Todo").onClick(() -> this.getModelObject().limpiarTodo())
+				.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel).setCaption("Cerrar").onClick(() -> this.close());
+		new Button(actionsPanel).setCaption("Nueva Condicion").onClick(() -> this.getModelObject().nuevaCondicion())
+				.bindVisibleToProperty("habilitaNueva");
+
 	}
 
 	@Override
@@ -38,10 +45,14 @@ public class NuevaCondicionNoTaxativaWindow extends SimpleWindow<NuevaCondicionN
 
 		new Label(nombrePanel).setText("Nombre de la condición  ");
 		TextBox nombre = new TextBox(nombrePanel);
+		nombre.setWidth(300);
 		nombre.bindValueToProperty("nueva.nombre");
 
-		new Label(nombrePanel).setText("Peso");
-		TextBox peso = new TextBox(nombrePanel);
+		//Peso
+		Panel pesoPanel = new Panel(mainPanel);
+		pesoPanel.setLayout(new VerticalLayout());
+		new Label(pesoPanel).setText("Peso");
+		TextBox peso = new TextBox(pesoPanel);
 		peso.bindValueToProperty("peso");
 
 		// Indicadores

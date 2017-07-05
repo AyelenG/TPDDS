@@ -39,6 +39,7 @@ public class NuevaCondicionPrimitivaWindow  extends SimpleWindow<NuevaCondicionP
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		
+		this.setTitle("Agregar Condicion Primitiva");
 		new Label(mainPanel).setHeight(20).setWidth(200);
 		
 		new Label(mainPanel).setText("Elija una condicion primitiva combinada:").setFontSize(14);

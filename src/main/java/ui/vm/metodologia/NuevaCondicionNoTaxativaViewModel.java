@@ -1,6 +1,5 @@
 package ui.vm.metodologia;
 
-import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,24 +11,25 @@ import model.condiciones.Mayor;
 import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.repositories.RepoIndicadores;
-import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionNoTaxativaVM;
+import ui.vm.metodologia.auxiliares.ComparadorVM;
+import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
 
 @Observable
 public class NuevaCondicionNoTaxativaViewModel {
 
 	private CargaMetodologiaViewModel parentVM;
-	private CondicionNoTaxativaConfigurable condNoTaxativa;
-	private Integer peso;
+	private CondicionNoTaxativaConfigurable nueva;
+	private String peso;
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private Indicador indicadorSeleccionado;
-	private List <String> comparadores = new LinkedList<String>();
-	private String comparadorSeleccionado;
-	private Integer anios;
+	private List <ComparadorVM> comparadores = new LinkedList<ComparadorVM>();
+	private ComparadorVM comparadorSeleccionado;
+	private String anios;
 	
 	public NuevaCondicionNoTaxativaViewModel(CargaMetodologiaViewModel _parentVM) {
 			this.parentVM = _parentVM;
-			comparadores.add("Mayor");
-			comparadores.add("Menor");
+			comparadores.add(new ComparadorVM (new Mayor()));
+			comparadores.add(new ComparadorVM (new Menor()));
 	}
 	
 	public void cargarCondicion() {
@@ -46,18 +46,18 @@ public class NuevaCondicionNoTaxativaViewModel {
 	}
 
 	public CondicionNoTaxativaConfigurable getCondNoTaxativa() {
-		return condNoTaxativa;
+		return nueva;
 	}
 
 	public void setCondNoTaxativa(CondicionNoTaxativaConfigurable condNoTaxativa) {
-		this.condNoTaxativa = condNoTaxativa;
+		this.nueva = condNoTaxativa;
 	}
 
-	public Integer getPeso() {
+	public String getPeso() {
 		return peso;
 	}
 
-	public void setPeso(Integer peso) {
+	public void setPeso(String peso) {
 		this.peso = peso;
 	}
 
@@ -77,28 +77,29 @@ public class NuevaCondicionNoTaxativaViewModel {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
 
-	public List<String> getComparadores() {
-		return comparadores;
-	}
 
-	public void setComparadores(List<String> comparadores) {
-		this.comparadores = comparadores;
-	}
-
-	public String getComparadorSeleccionado() {
-		return comparadorSeleccionado;
-	}
-
-	public void setComparadorSeleccionado(String comparadorSeleccionado) {
-		this.comparadorSeleccionado = comparadorSeleccionado;
-	}
-
-	public Integer getAnios() {
+	public String getAnios() {
 		return anios;
 	}
 
-	public void setAnios(Integer anios) {
+	public void setAnios(String anios) {
 		this.anios = anios;
+	}
+
+	public List<ComparadorVM> getComparadores() {
+		return comparadores;
+	}
+
+	public void setComparadores(List<ComparadorVM> comparadores) {
+		this.comparadores = comparadores;
+	}
+
+	public ComparadorVM getComparadorSeleccionado() {
+		return comparadorSeleccionado;
+	}
+
+	public void setComparadorSeleccionado(ComparadorVM comparadorSeleccionado) {
+		this.comparadorSeleccionado = comparadorSeleccionado;
 	}
 	
 	

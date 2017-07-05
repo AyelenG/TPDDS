@@ -38,7 +38,7 @@ public class NuevaCondicionNoTaxativaWindow extends SimpleWindow<NuevaCondicionN
 
 		new Label(nombrePanel).setText("Nombre de la condición  ");
 		TextBox nombre = new TextBox(nombrePanel);
-		nombre.bindValueToProperty("condNoTaxativa.nombre");
+		nombre.bindValueToProperty("nueva.nombre");
 
 		new Label(nombrePanel).setText("Peso");
 		TextBox peso = new TextBox(nombrePanel);

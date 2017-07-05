@@ -81,7 +81,7 @@ public class Empresa {
 	}
 	
 	public boolean noEstaEn(List<Empresa> empresas){
-		return empresas.contains(this);
+		return !empresas.contains(this);
 	}
 	
 	public void setSymbol(String symbol) {

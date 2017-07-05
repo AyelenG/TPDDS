@@ -3,12 +3,15 @@ package model.condiciones.notaxativas;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.uqbar.commons.utils.Observable;
+
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
 
+@Observable
 public class CondicionNoTaxativaConfigurable extends CondicionConfigurable implements CondicionNoTaxativa {
 
 	private Integer peso;

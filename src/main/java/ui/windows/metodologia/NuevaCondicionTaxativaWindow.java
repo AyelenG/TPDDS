@@ -11,95 +11,82 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.Indicador;
-import model.condiciones.taxativas.TipoCondicionTaxativa;
 import ui.vm.metodologia.CargaMetodologiaViewModel;
 import ui.vm.metodologia.NuevaCondicionTaxativaViewModel;
-import ui.vm.metodologia.NuevaCondicionTaxativaViewModel.ComparadorVM;
-import ui.vm.metodologia.NuevaCondicionTaxativaViewModel.TipoVM;
+import ui.vm.metodologia.auxiliares.ComparadorVM;
+import ui.vm.metodologia.auxiliares.TipoCondicionVM;
 
 @SuppressWarnings("serial")
-public class NuevaCondicionTaxativaWindow  extends SimpleWindow<NuevaCondicionTaxativaViewModel> {
-			
+public class NuevaCondicionTaxativaWindow extends SimpleWindow<NuevaCondicionTaxativaViewModel> {
+
 	public NuevaCondicionTaxativaWindow(WindowOwner parent, CargaMetodologiaViewModel _parentVM) {
-		super(parent, new NuevaCondicionTaxativaViewModel(_parentVM));	
+		super(parent, new NuevaCondicionTaxativaViewModel(_parentVM));
 	}
-	
+
 	@Override
-	protected void addActions(Panel actionsPanel) {		
-		new Button(actionsPanel)
-		.setCaption("Cerrar")
-		.onClick(() -> this.close());
+	protected void addActions(Panel actionsPanel) {
+		new Button(actionsPanel).setCaption("Cerrar").onClick(() -> this.close());
 	}
-	
 
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		this.setTitle("Agregar Condición Taxativa");
 		mainPanel.setLayout(new VerticalLayout());
 		new Label(mainPanel).setHeight(20);
-		
+
 		// Nombre de la condicion
-			Panel nombrePanel = new Panel(mainPanel);
-			nombrePanel.setLayout(new HorizontalLayout());
+		Panel nombrePanel = new Panel(mainPanel);
+		nombrePanel.setLayout(new HorizontalLayout());
 
-			new Label(nombrePanel).setText("Nombre de la condición  ");
-			TextBox nombre = new TextBox(nombrePanel);
-			nombre.bindValueToProperty("condTaxativa.nombre");
-			
-			
-			// Tipo
-			Panel tipoPanel = new Panel(mainPanel);
-			tipoPanel.setLayout(new VerticalLayout());
-			
-			new Label(tipoPanel).setText("Tipo");
-			Selector<TipoVM> selectorTipo = new Selector<TipoVM>(tipoPanel).allowNull(true);
-			selectorTipo.bindItemsToProperty("tipos");
-			selectorTipo.bindValueToProperty("tipoSeleccionado");
+		new Label(nombrePanel).setText("Nombre de la condición  ");
+		TextBox nombre = new TextBox(nombrePanel);
+		nombre.bindValueToProperty("nueva.nombre");
 
-			// Indicadores
+		// Tipo
+		Panel tipoPanel = new Panel(mainPanel);
+		tipoPanel.setLayout(new VerticalLayout());
 
-			Panel comparadorPanel = new Panel(mainPanel);
-			comparadorPanel.setLayout(new HorizontalLayout());
-			
-				Panel indicadorPanel = new Panel(comparadorPanel);
-				indicadorPanel.setLayout(new VerticalLayout());
+		new Label(tipoPanel).setText("Tipo");
+		Selector<TipoCondicionVM> selectorTipo = new Selector<TipoCondicionVM>(tipoPanel).allowNull(true);
+		selectorTipo.bindItemsToProperty("tipos");
+		selectorTipo.bindValueToProperty("tipoSeleccionado");
 
-				new Label(indicadorPanel).setText("Indicadores");
-				Selector<Indicador> selectorIndicador = new Selector<Indicador>(indicadorPanel).allowNull(true);
-				selectorIndicador.bindItemsToProperty("indicadores");
-				selectorIndicador.bindValueToProperty("indicadorSeleccionado");
+		// Indicadores
 
-			
-				Panel operadorPanel = new Panel(comparadorPanel);
-				operadorPanel.setLayout(new VerticalLayout());
+		Panel comparadorPanel = new Panel(mainPanel);
+		comparadorPanel.setLayout(new HorizontalLayout());
 
-				new Label(operadorPanel).setText("Comparador");
-				Selector<ComparadorVM> selectorOperador = new Selector<ComparadorVM>(operadorPanel).allowNull(true);
-				selectorOperador.bindItemsToProperty("comparadores");
-				selectorOperador.bindValueToProperty("comparadorSeleccionado");
+		Panel indicadorPanel = new Panel(comparadorPanel);
+		indicadorPanel.setLayout(new VerticalLayout());
 
-				
-				Panel valorPanel = new Panel(comparadorPanel);
-				valorPanel.setLayout(new VerticalLayout());
+		new Label(indicadorPanel).setText("Indicadores");
+		Selector<Indicador> selectorIndicador = new Selector<Indicador>(indicadorPanel).allowNull(true);
+		selectorIndicador.bindItemsToProperty("indicadores");
+		selectorIndicador.bindValueToProperty("indicadorSeleccionado");
 
-				new Label(valorPanel).setText("Valor de referencia");
-				TextBox valor = new TextBox(valorPanel);
-				valor.bindEnabledToProperty("tendencia");
-				valor.bindValueToProperty("valorRef");
-				
-				
-			Panel anioPanel = new Panel(mainPanel);
-			anioPanel.setLayout(new VerticalLayout());
-			
-			new Label(anioPanel).setText("Años a aplicar contando desde el último");
-			TextBox anios = new TextBox(anioPanel);
-			anios.bindValueToProperty("anios");
-		
-		
-		
-		
-		new Button(mainPanel)
-		.setCaption("nueva")
-		.onClick(()-> this.getModelObject().nueva());		
+		Panel operadorPanel = new Panel(comparadorPanel);
+		operadorPanel.setLayout(new VerticalLayout());
+
+		new Label(operadorPanel).setText("Comparador");
+		Selector<ComparadorVM> selectorOperador = new Selector<ComparadorVM>(operadorPanel).allowNull(true);
+		selectorOperador.bindItemsToProperty("comparadores");
+		selectorOperador.bindValueToProperty("comparadorSeleccionado");
+
+		Panel valorPanel = new Panel(comparadorPanel);
+		valorPanel.setLayout(new VerticalLayout());
+
+		new Label(valorPanel).setText("Valor de referencia");
+		TextBox valor = new TextBox(valorPanel);
+		valor.bindEnabledToProperty("notTendencia");
+		valor.bindValueToProperty("valorRef");
+
+		Panel anioPanel = new Panel(mainPanel);
+		anioPanel.setLayout(new VerticalLayout());
+
+		new Label(anioPanel).setText("Años a aplicar contando desde el último");
+		TextBox anios = new TextBox(anioPanel);
+		anios.bindValueToProperty("anios");
+
+		new Button(mainPanel).setCaption("nueva").onClick(() -> this.getModelObject().nueva());
 	}
 }

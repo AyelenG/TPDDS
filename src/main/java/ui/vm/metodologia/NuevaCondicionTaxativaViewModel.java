@@ -1,14 +1,14 @@
 package ui.vm.metodologia;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
-import model.condiciones.Comparador;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
@@ -17,102 +17,32 @@ import model.condiciones.taxativas.Promedio;
 import model.condiciones.taxativas.Simple;
 import model.condiciones.taxativas.Sumatoria;
 import model.condiciones.taxativas.Tendencia;
-import model.condiciones.taxativas.TipoCondicionTaxativa;
 import model.repositories.RepoIndicadores;
-
+import ui.vm.metodologia.auxiliares.ComparadorVM;
+import ui.vm.metodologia.auxiliares.CondicionTaxativaVM;
+import ui.vm.metodologia.auxiliares.TipoCondicionVM;
 
 @Observable
 public class NuevaCondicionTaxativaViewModel {
 
 	private CargaMetodologiaViewModel parentVM;
-	private CondicionTaxativaVM condTaxativa;
-	private List<TipoVM> tipos = new LinkedList<TipoVM>();
-	private TipoVM tipoSeleccionado;
+	private CondicionTaxativaConfigurable nueva = new CondicionTaxativaConfigurable();
+	private List<TipoCondicionVM> tipos = Arrays.asList(new TipoCondicionVM(new Promedio()),
+			new TipoCondicionVM(new Simple()), new TipoCondicionVM(new Sumatoria()), new TipoCondicionVM(new Mediana()),
+			new TipoCondicionVM(new Tendencia()));
+	private TipoCondicionVM tipoSeleccionado;
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private Indicador indicadorSeleccionado;
-	
-	private List<Comparador> comparadores = new LinkedList<Comparador>();
-	private Comparador comparadorSeleccionado;
-	
-	private String valorRef;
-	private String anios;
-	private boolean tendencia = true;
 
+	private List<ComparadorVM> comparadores = Arrays.asList(new ComparadorVM(new Mayor()),
+			new ComparadorVM(new Menor()));
+	private ComparadorVM comparadorSeleccionado;
 
+	private String valorRef = "";
+	private String anios = "";
 
 	public NuevaCondicionTaxativaViewModel(CargaMetodologiaViewModel _parentVM) {
 		this.parentVM = _parentVM;
-		tipos.add(new TipoVM(new Mediana()));
-		tipos.add(new TipoVM(new Promedio()));
-		tipos.add(new TipoVM(new Simple()));
-		tipos.add(new TipoVM(new Sumatoria()));
-		tipos.add(new TipoVM(new Tendencia()));		
-		comparadores.add(new Mayor());
-		comparadores.add(new Menor());
-	}
-	
-	public static class CondicionTaxativaVM{
-		private String nombre;
-		private CondicionTaxativaConfigurable condicionTaxativa = new CondicionTaxativaConfigurable();
-
-		public CondicionTaxativaConfigurable getCondicionTaxativa() {
-			return condicionTaxativa;
-		}
-
-		public void setCondicionTaxativa(CondicionTaxativaConfigurable condicionTaxativa) {
-			this.condicionTaxativa = condicionTaxativa;
-		}
-
-		public String getNombre() {
-			return nombre;
-		}
-
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-		
-	}
-	
-	public static class ComparadorVM{
-		private String nombre;
-		private Comparador comparador;
-		public String getNombre() {
-			return nombre;
-		}
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-		public Comparador getComparador() {
-			return comparador;
-		}
-		public void setComparador(Comparador comparador) {
-			this.comparador = comparador;
-		}
-		
-	}
-	
-	public static class TipoVM{
-		
-		private TipoCondicionTaxativa tipoCondicionTaxativa;
-		
-		public TipoVM(TipoCondicionTaxativa tipo)
-		{
-			this.setTipoCondicionTaxativa(tipo);
-		}
-		
-		public void setTipoCondicionTaxativa(TipoCondicionTaxativa tipo){
-			tipoCondicionTaxativa = tipo;
-		}
-
-		public TipoCondicionTaxativa getTipoCondicionTaxativa() {
-			return tipoCondicionTaxativa;
-		}
-		
-		@Override
-		public String toString(){
-			return tipoCondicionTaxativa.toString();
-		}
-		
 	}
 
 	public void cargarCondicion() {
@@ -122,11 +52,40 @@ public class NuevaCondicionTaxativaViewModel {
 	}
 
 	public void nueva() {
-		CondicionTaxativaConfigurable nueva = new CondicionTaxativaConfigurable("Chorizo", new Mayor(), new Simple(),
-				"Reinosa", 3, BigDecimal.valueOf(20));
-		//parentVM.getCondicionesT().add(new CondicionTaxativaVM());
-//		ObservableUtils.firePropertyChanged(this.parentVM, "condicionesT");
-
+		Integer anios = null;
+		BigDecimal valorDeRef = null;
+		if(this.getNueva().getNombre().isEmpty()){
+			throw new UserException("Ingrese un nombre de condicion");
+		}
+		if(this.getTipoSeleccionado() == null){
+			throw new UserException("Ingrese un tipo de condicion");
+		}
+		if(this.getIndicadorSeleccionado() == null){
+			throw new UserException("Ingrese un indicador");
+		}
+		if(this.getComparadorSeleccionado() == null){
+			throw new UserException("Ingrese un comparador");
+		}
+		try {
+			anios = Integer.valueOf(this.getAnios());
+		} catch (NumberFormatException e) {
+			throw new UserException("Ingrese una cantidad de años valida");
+		}
+		if (this.isNotTendencia()) {
+			try {
+				valorDeRef = new BigDecimal(this.getValorRef());
+			} catch (NumberFormatException e) {
+				throw new UserException("Ingrese un valor de referencia valido");
+			}
+		}
+		nueva.setTipo(this.getTipoSeleccionado().getTipoCondicionTaxativa());
+		nueva.setComparador(this.getComparadorSeleccionado().getComparador());
+		nueva.setNombreIndicador(this.getIndicadorSeleccionado().getNombre());
+		nueva.setCantidadAnios(anios);
+		nueva.setValorDeReferencia(valorDeRef);
+		
+		parentVM.getCondicionesT().add(new CondicionTaxativaVM(nueva.getNombre(), nueva));
+		// ObservableUtils.firePropertyChanged(this.parentVM, "condicionesT");
 	}
 
 	public CargaMetodologiaViewModel getParentVM() {
@@ -137,32 +96,29 @@ public class NuevaCondicionTaxativaViewModel {
 		this.parentVM = parentVM;
 	}
 
-	public CondicionTaxativaVM getCondTaxativa() {
-		return condTaxativa;
+	public CondicionTaxativaConfigurable getNueva() {
+		return nueva;
 	}
 
-	public void setCondTaxativa(CondicionTaxativaVM condTaxativa) {
-		this.condTaxativa = condTaxativa;
+	public void setNueva(CondicionTaxativaConfigurable nueva) {
+		this.nueva = nueva;
 	}
 
-	public List<TipoVM> getTipos() {
+	public List<TipoCondicionVM> getTipos() {
 		return tipos;
 	}
 
-	public void setTipos(List<TipoVM> tipos) {
+	public void setTipos(List<TipoCondicionVM> tipos) {
 		this.tipos = tipos;
 	}
 
-	public TipoVM getTipoSeleccionado() {
+	public TipoCondicionVM getTipoSeleccionado() {
 		return tipoSeleccionado;
 	}
 
-	public void setTipoSeleccionado(TipoVM tipoSeleccionado) {
+	public void setTipoSeleccionado(TipoCondicionVM tipoSeleccionado) {
 		this.tipoSeleccionado = tipoSeleccionado;
-		if (tipoSeleccionado.toString() == "Tendencia")
-			this.setTendencia(false);
-		else
-			this.setTendencia(true);
+		ObservableUtils.firePropertyChanged(this, "notTendencia");
 
 	}
 
@@ -182,11 +138,11 @@ public class NuevaCondicionTaxativaViewModel {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
 
-	public List<Comparador> getComparadores() {
+	public List<ComparadorVM> getComparadores() {
 		return comparadores;
 	}
 
-	public void setComparadores(List<Comparador> operadores) {
+	public void setComparadores(List<ComparadorVM> operadores) {
 		this.comparadores = operadores;
 	}
 
@@ -206,20 +162,16 @@ public class NuevaCondicionTaxativaViewModel {
 		this.anios = anios;
 	}
 
-	public Comparador getComparadorSeleccionado() {
+	public ComparadorVM getComparadorSeleccionado() {
 		return comparadorSeleccionado;
 	}
 
-	public void setComparadorSeleccionado(Comparador operadorSeleccionado) {
+	public void setComparadorSeleccionado(ComparadorVM operadorSeleccionado) {
 		this.comparadorSeleccionado = operadorSeleccionado;
 	}
 
-	public boolean isTendencia() {
-		return tendencia;
-	}
-
-	public void setTendencia(boolean tendencia) {
-		this.tendencia = tendencia;
+	public boolean isNotTendencia() {
+		return tipoSeleccionado.toString() != "Tendencia";
 	}
 
 }

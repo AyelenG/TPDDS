@@ -2,11 +2,14 @@ package model.condiciones.taxativas;
 
 import java.math.BigDecimal;
 
+import org.uqbar.commons.utils.Observable;
+
 import model.Empresa;
 import model.Indicador;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
 
+@Observable
 public class CondicionTaxativaConfigurable extends CondicionConfigurable implements CondicionTaxativa {
 
 	private TipoCondicionTaxativa tipo;

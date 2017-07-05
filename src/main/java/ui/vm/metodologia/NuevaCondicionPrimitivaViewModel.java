@@ -10,9 +10,9 @@ import model.condiciones.combinadas.CondicionCombinada;
 import model.condiciones.combinadas.Longevidad;
 import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
-import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionCombinadaVM;
-import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionNoTaxativaVM;
-import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionCombinadaVM;
+import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionTaxativaVM;
 
 @Observable
 public class NuevaCondicionPrimitivaViewModel {

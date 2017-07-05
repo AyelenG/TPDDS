@@ -9,10 +9,10 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Metodologia;
-import model.condiciones.combinadas.CondicionCombinada;
-import model.condiciones.notaxativas.CondicionNoTaxativa;
-import model.condiciones.taxativas.CondicionTaxativa;
 import model.repositories.RepoMetodologias;
+import ui.vm.metodologia.auxiliares.CondicionCombinadaVM;
+import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionTaxativaVM;
 
 @Observable
 public class CargaMetodologiaViewModel {
@@ -28,65 +28,6 @@ public class CargaMetodologiaViewModel {
 	private CondicionCombinadaVM condicionCombSeleccionada;
 
 	private boolean habilitaCarga = true;
-
-	@Observable
-	public static class CondicionTaxativaVM {
-		private String titulo;
-		private CondicionTaxativa condicion;
-
-		public CondicionTaxativaVM(String titulo, CondicionTaxativa condicion) {
-			this.titulo = titulo;
-			this.condicion = condicion;
-		}
-
-		public String getTitulo() {
-			return titulo;
-		}
-
-		public CondicionTaxativa getCondicion() {
-			return condicion;
-		}
-
-	}
-
-	@Observable
-	public static class CondicionNoTaxativaVM {
-		private String titulo;
-		private CondicionNoTaxativa condicion;
-
-		public CondicionNoTaxativaVM(String titulo, CondicionNoTaxativa condicion) {
-			this.titulo = titulo;
-			this.condicion = condicion;
-		}
-
-		public String getTitulo() {
-			return titulo;
-		}
-
-		public CondicionNoTaxativa getCondicion() {
-			return condicion;
-		}
-
-	}
-
-	@Observable
-	public static class CondicionCombinadaVM {
-		private String titulo;
-		private CondicionCombinada condicion;
-
-		public CondicionCombinadaVM(String titulo, CondicionCombinada condicion) {
-			this.titulo = titulo;
-			this.condicion = condicion;
-		}
-
-		public String getTitulo() {
-			return titulo;
-		}
-
-		public CondicionCombinada getCondicion() {
-			return condicion;
-		}
-	}
 
 	public void nuevaMetodologia() {
 		this.limpiarTodo();

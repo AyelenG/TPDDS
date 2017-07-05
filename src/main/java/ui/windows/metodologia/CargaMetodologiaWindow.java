@@ -14,9 +14,9 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import ui.vm.metodologia.CargaMetodologiaViewModel;
-import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionCombinadaVM;
-import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionNoTaxativaVM;
-import ui.vm.metodologia.CargaMetodologiaViewModel.CondicionTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionCombinadaVM;
+import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionTaxativaVM;
 
 @SuppressWarnings("serial")
 public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewModel> {

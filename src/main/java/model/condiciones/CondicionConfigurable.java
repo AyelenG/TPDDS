@@ -6,7 +6,7 @@ import model.repositories.RepoIndicadores;
 
 public abstract class CondicionConfigurable {
 
-	protected String nombre;
+	protected String nombre = "";
 
 	protected Comparador comparador;
 	protected String nombreIndicador;

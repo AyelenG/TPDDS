@@ -1,7 +1,12 @@
 package model.condiciones;
 
+import java.util.List;
+
 import exceptions.NoSePuedeAplicarException;
+import exceptions.NoSePuedeEvaluarException;
+import model.Empresa;
 import model.Indicador;
+import model.Periodo;
 import model.repositories.RepoIndicadores;
 
 public abstract class CondicionConfigurable {
@@ -33,6 +38,26 @@ public abstract class CondicionConfigurable {
 					+ "' por falta de indicador <" + nombreIndicador + ">.");
 		}
 		return indicador;
+	}
+	
+	public boolean esValida(Empresa emp) {
+		// obtengo indicador desde repositorio
+		Indicador indicador = obtenerIndicador(nombreIndicador);
+
+		// obtengo los periodos de los ultimos N anios de cada empresa
+		List<Periodo> ultimosNAnios = emp.getUltimosNAnios(cantidadAnios);
+		int cantPeriodosEmp = ultimosNAnios.size();
+		
+		if (cantPeriodosEmp != this.getCantidadAnios())
+			return false;
+		
+		try{
+		ultimosNAnios.forEach(p->indicador.evaluar(p));
+		}
+		catch(NoSePuedeEvaluarException e){
+			return false;
+		}
+		return true;
 	}
 		
 	public String getNombre() {

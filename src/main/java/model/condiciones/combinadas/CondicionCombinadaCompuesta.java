@@ -62,4 +62,9 @@ public class CondicionCombinadaCompuesta implements CondicionCombinada {
 		this.condT = condT;
 	}
 
+	@Override
+	public boolean esValida(Empresa emp) {
+		return condNT.esValida(emp) && condT.esValida(emp);
+	}
+
 }

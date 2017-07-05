@@ -17,8 +17,8 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 			new Indicador("Ingreso Neto",
 					"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"),
 			new Indicador("Retorno sobre capital total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"),
-			new Indicador("Nivel de deuda", "[DEUDA] * [DEUDA]"),
-			new Indicador("Margen", "<INGRESO NETO> - [DEUDA]"));
+			new Indicador("Nivel de deuda", "[FDS] * [FDS]"),
+			new Indicador("Margen", "<PAPA> - [FDS]"));
 
 	private RepoIndicadores() {
 		this.agregarElementos(indicadoresPredefinidos);

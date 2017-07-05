@@ -37,6 +37,27 @@ public class Metodologia {
 	}
 
 	/**
+	 * Retorna las listas validas para aplicar la metodologia
+	 * 
+	 * @param empresas
+	 *            - lista de empresas de entrada
+	 * @return lista de empresas de salida
+	 */
+	public List<Empresa> obtenerValidas(List<Empresa> empresas) {
+		List<Empresa> empresasValidas1 = new LinkedList<>();
+		List<Empresa> empresasValidas2 = new LinkedList<>();
+		List<Empresa> empresasValidas = new LinkedList<>();
+		
+		empresasValidas1.addAll(empresas.stream()
+				.filter(e -> condicionesT.stream().allMatch(c-> c.esValida(e))).collect(Collectors.toList()));
+		empresasValidas2.addAll(empresasValidas1.stream()
+				.filter(e -> condicionesNT.stream().allMatch(c-> c.esValida(e))).collect(Collectors.toList()));
+		empresasValidas.addAll(empresasValidas2.stream()
+				.filter(e -> condicionesComb.stream().allMatch(c-> c.esValida(e))).collect(Collectors.toList()));
+		return empresasValidas;
+	}
+	
+	/**
 	 * Aplica la metodologia a la lista de empresas de entrada y devuelve la
 	 * lista de empresas en las que es deseable invertir ordenadas por prioridad
 	 * 

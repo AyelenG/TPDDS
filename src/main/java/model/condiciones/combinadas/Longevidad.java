@@ -23,4 +23,9 @@ public class Longevidad implements CondicionCombinada {
 	public String toString() {
 		return "Longevidad";
 	}
+
+	@Override
+	public boolean esValida(Empresa emp) {
+		return true;
+	}
 }

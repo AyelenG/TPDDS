@@ -1,7 +1,6 @@
 package ui.vm.metodologia;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
@@ -12,7 +11,6 @@ import model.Indicador;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
-import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.repositories.RepoIndicadores;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
 import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;

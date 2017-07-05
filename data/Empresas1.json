@@ -21,6 +21,176 @@
 				]
 			},
 			{
+				"anio": "2013",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2014",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2015",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2016",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2017",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2012",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2009",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2008",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2007",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
+				"anio": "2006",
+				"cuentas": [
+					{
+						"nombre": "EBITDA",
+						"valor": "200"
+					},
+					{
+						"nombre": "FDS",
+						"valor": "500"
+					},
+					{
+						"nombre": "Free Cash Flow",
+						"valor": "100"
+					}
+				]
+			},
+			{
 				"anio": "2011",
 				"cuentas": [
 					{

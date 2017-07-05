@@ -48,4 +48,22 @@
   "nombre" : "BENEDETTO"
 }, {
   "nombre" : "DEUDA"
+}, {
+  "nombre" : "INGRESOS"
+}, {
+  "nombre" : "OTROS INGRESOS DE EXPLOTACION"
+}, {
+  "nombre" : "CONSUMOS Y OTROS GASTOS EXTERNOS"
+}, {
+  "nombre" : "GASTOS DE PERSONAL"
+}, {
+  "nombre" : "INVESTIGACION Y DESARROLLO"
+}, {
+  "nombre" : "AMORTIZACIONES"
+}, {
+  "nombre" : "GASTOS FINANCIEROS NETO DE OPERACIONES"
+}, {
+  "nombre" : "GASTOS EXTRAORDINARIOS"
+}, {
+  "nombre" : "OTROS GASTOS DE EXPLOTACION"
 } ]

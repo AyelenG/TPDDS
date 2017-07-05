@@ -43,7 +43,7 @@ public class CargaCuentaEmpresaViewModel {
 	
 	private boolean esAnioValido(int anio){
 		LocalDate fecha = LocalDate.now();
-		return anio >= 1000 && anio <= fecha.getYear();
+		return anio >= 1000 && anio < fecha.getYear();
 	}
 
 	public void cargarCuenta() {
@@ -52,7 +52,7 @@ public class CargaCuentaEmpresaViewModel {
 		if (this.getCuentaSeleccionada() == null || this.getValor().isEmpty())
 			throw new UserException("Complete los datos de la cuenta.");
 		if (!esAnioValido(anio))
-			throw new UserException("Ingrese un período valido.");
+			throw new UserException("Ingrese un período valido (1000-" + (LocalDate.now().getYear() - 1) + ").");
 		BigDecimal valor;
 		try {
 			valor = new BigDecimal(this.getValor());

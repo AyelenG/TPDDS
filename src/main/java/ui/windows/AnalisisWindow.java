@@ -63,13 +63,13 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 				.onClick(() -> this.getModelObject().consultar()).bindEnabledToProperty("botonConsultar");
 
 		new Label(consultaPanel).setHeight(20);
-		new Label(consultaPanel).setText("Cuentas").setFontSize(16);
+		new Label(consultaPanel).setText("Cuentas").setFontSize(12);
 		Table<CuentaEmpresa> tablaCuentas = new Table<>(consultaPanel, CuentaEmpresa.class);
 		tablaCuentas.setNumberVisibleRows(10).bindItemsToProperty("cuentasSeleccionadas");
 		Column<CuentaEmpresa> columnaNombre = new Column<CuentaEmpresa>(tablaCuentas);
-		columnaNombre.setFont(12).setTitle("Nombre").setFixedSize(300).bindContentsToProperty("nombre");
+		columnaNombre.setFont(10).setTitle("Nombre").setFixedSize(300).bindContentsToProperty("nombre");
 		Column<CuentaEmpresa> columnaValor = new Column<CuentaEmpresa>(tablaCuentas);
-		columnaValor.setFont(12).setTitle("Valor").setFixedSize(200).bindContentsToProperty("valor");
+		columnaValor.setFont(10).setTitle("Valor").setFixedSize(200).bindContentsToProperty("valor");
 
 		new Label(consultaPanel).setHeight(20);
 		new Label(indicadoresPanel1).setText("Indicadores evaluados").setFontSize(16);

@@ -56,13 +56,13 @@ public class Empresa {
 
 	public List<Periodo> getUltimosNAnios(int n) {
 		return this.getPeriodos().stream()
-					.filter(p -> p.getAnio() > LocalDate.now().getYear() - n).sorted()
+					.filter(p -> p.getAnio() >= LocalDate.now().getYear() - n).sorted()
 					.collect(Collectors.toList());
 	}
 
 	public int antiguedad(){
 		Periodo primerPeriodo = this.getPeriodos().stream().sorted().collect(Collectors.toList()).get(0);
-		return LocalDate.now().getYear() - primerPeriodo.getAnio() + 1;
+		return LocalDate.now().getYear() - primerPeriodo.getAnio();
 	}
 	/*
 	 * Agrega una cuenta en el periodo correspondiente, si no existe el periodo

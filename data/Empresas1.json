@@ -89,23 +89,6 @@
 				]
 			},
 			{
-				"anio": "2017",
-				"cuentas": [
-					{
-						"nombre": "EBITDA",
-						"valor": "200"
-					},
-					{
-						"nombre": "FDS",
-						"valor": "500"
-					},
-					{
-						"nombre": "Free Cash Flow",
-						"valor": "100"
-					}
-				]
-			},
-			{
 				"anio": "2012",
 				"cuentas": [
 					{

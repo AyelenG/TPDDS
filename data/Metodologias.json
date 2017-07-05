@@ -29,4 +29,29 @@
     "valorDeReferencia" : 120
   } ],
   "condicionesComb" : [ "Longevidad" ]
+}, {
+  "nombre" : "Metodologia Blanca Vitale ",
+  "condicionesNT" : [ {
+    "nombre" : "Max. INDI - 4 años",
+    "comparador" : "Mayor",
+    "nombreIndicador" : "INDI",
+    "cantidadAnios" : 4,
+    "peso" : 10
+  } ],
+  "condicionesT" : [ {
+    "nombre" : "PAPA < 500 - 3 años",
+    "comparador" : "Menor",
+    "nombreIndicador" : "PAPA",
+    "cantidadAnios" : 3,
+    "tipo" : "Promedio",
+    "valorDeReferencia" : 500
+  }, {
+    "nombre" : "TEST > 100 - 2 años",
+    "comparador" : "Mayor",
+    "nombreIndicador" : "TEST",
+    "cantidadAnios" : 2,
+    "tipo" : "Sumatoria",
+    "valorDeReferencia" : 100
+  } ],
+  "condicionesComb" : [ ]
 } ]

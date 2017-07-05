@@ -2,6 +2,7 @@ package model.condiciones.taxativas;
 
 import java.math.BigDecimal;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
@@ -10,6 +11,7 @@ import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
 
 @Observable
+@JsonIgnoreProperties({ "changeSupport" })
 public class CondicionTaxativaConfigurable extends CondicionConfigurable implements CondicionTaxativa {
 
 	private TipoCondicionTaxativa tipo;

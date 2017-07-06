@@ -44,7 +44,7 @@ public abstract class CondicionConfigurable {
 		// obtengo indicador desde repositorio
 		Indicador indicador = obtenerIndicador(nombreIndicador);
 
-		// obtengo los periodos de los ultimos N anios de cada empresa
+		// obtengo los periodos de los ultimos N anios de la empresa
 		List<Periodo> ultimosNAnios = emp.getUltimosNAnios(cantidadAnios);
 		int cantPeriodosEmp = ultimosNAnios.size();
 		

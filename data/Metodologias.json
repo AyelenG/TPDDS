@@ -71,8 +71,8 @@
     "tipo" : "Promedio",
     "valorDeReferencia" : 40000
   }, {
-    "nombre" : "Rtdo. Explotacion Decreciente a 3 años",
-    "comparador" : "Menor",
+    "nombre" : "Rtdo. Explotacion Creciente a 3 años",
+    "comparador" : "Mayor",
     "nombreIndicador" : "RESULTADO DE EXPLOTACION",
     "cantidadAnios" : 3,
     "tipo" : "Tendencia",

@@ -45,29 +45,29 @@ public class aplicarMetodologiaTest {
 		Empresa empresa;
 
 		empresa = new Empresa("FCB", "Facebook");
-		empresa.agregarCuenta(new Periodo(2017), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(98.1)));
-		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(91.9)));
-		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(74.3)));
-		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.05)));
-		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(23.8)));
-		empresa.agregarCuenta(new Periodo(2005), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(15.8)));
+		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(98.1)));
+		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(91.9)));
+		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(11.05)));
+		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(44.3)));
+		empresa.agregarCuenta(new Periodo(2012), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(23.8)));
+		empresa.agregarCuenta(new Periodo(2004), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(15.8)));
 		empresas.agregarElemento(empresa);
 
 		empresa = new Empresa("APL", "Apple");
-		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.9)));
-		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.1)));
-		empresa.agregarCuenta(new Periodo(2017), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.4)));
-		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(19.8)));
-		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(25.8)));
+		empresa.agregarCuenta(new Periodo(2012), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.9)));
+		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.1)));
+		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.4)));
+		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(19.8)));
+		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(25.8)));
 		empresas.agregarElemento(empresa);
 
 		empresa = new Empresa("IBM", "IBM");
-		empresa.agregarCuenta(new Periodo(2017), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(119)));
-		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(90.8)));
-		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(70.57)));
-		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(22.4)));
-		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(150.2)));
-		empresa.agregarCuenta(new Periodo(1990), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(32.8)));
+		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(119)));
+		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(90.8)));
+		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(70.57)));
+		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(22.4)));
+		empresa.agregarCuenta(new Periodo(2012), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(150.2)));
+		empresa.agregarCuenta(new Periodo(1989), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(32.8)));
 		empresas.agregarElemento(empresa);
 
 		List<CondicionNoTaxativa> condicionesNT = new LinkedList<>();
@@ -169,10 +169,10 @@ public class aplicarMetodologiaTest {
 	@Test
 	public void verificarInvalidas() {
 		Empresa empresa = new Empresa("INV", "Invalida SA");
-		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.9)));
-		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.1)));
-		empresa.agregarCuenta(new Periodo(2017), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.4)));
-		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(25.8)));
+		empresa.agregarCuenta(new Periodo(2012), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.9)));
+		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.1)));
+		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.4)));
+		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(25.8)));
 		empresas.agregarElemento(empresa);
 
 		List<Empresa> empresasValidas = new LinkedList<>();

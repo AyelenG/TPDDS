@@ -90,6 +90,9 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 		columnaNombreIndicadorSinValor.setFont(9).setTitle("Nombre").setFixedSize(200).bindContentsToProperty("nombre");
 		Column<AnalisisViewModel.IndicadorVM> columnaMensajeIndicador = new Column<>(tablaIndicadoresSinValor);
 		columnaMensajeIndicador.setFont(9).setTitle("Error").setFixedSize(500).bindContentsToProperty("mensaje");
+		
+		new Label(mainPanel);
+		new Label(mainPanel).setText("Montos en Millones de USD");
 	}
 
 }

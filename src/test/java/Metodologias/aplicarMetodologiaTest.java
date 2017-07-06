@@ -47,8 +47,8 @@ public class aplicarMetodologiaTest {
 		empresa = new Empresa("FCB", "Facebook");
 		empresa.agregarCuenta(new Periodo(2017), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(98.1)));
 		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(91.9)));
-		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(11.05)));
-		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(44.3)));
+		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(74.3)));
+		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.05)));
 		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(23.8)));
 		empresa.agregarCuenta(new Periodo(2005), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(15.8)));
 		empresas.agregarElemento(empresa);

@@ -178,7 +178,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 79919
+						"valor": 90272
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -186,31 +186,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41624
+						"valor": 35138
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19640
+						"valor": 17470
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5751
+						"valor": 13948
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 503
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 387
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1038
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 277
+						"valor": 0
 					}
 				]
 			},
@@ -219,7 +219,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 81741
+						"valor": 74989
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -227,31 +227,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41057
+						"valor": 28164
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19512
+						"valor": 15183
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5247
+						"valor": 12282
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 304
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 31
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 587
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -941
+						"valor": 0
 					}
 				]
 			},
@@ -260,7 +260,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 92793
+						"valor": 66001
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -268,31 +268,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 46386
+						"valor": 25313
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 21385
+						"valor": 13982
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5437
+						"valor": 9832
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 374
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 372
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1472
+						"valor": 378
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -1877
+						"valor": 0
 					}
 				]
 			},
@@ -301,7 +301,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 98367
+						"valor": 55519
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -309,201 +309,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 49683
+						"valor": 21993
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 22214
+						"valor": 10986
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5743
+						"valor": 7137
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 370
-					},
-					{
-						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": -287
-					},
-					{
-						"nombre": "Gastos extraordinarios",
-						"valor": 1031
-					},
-					{
-						"nombre": "Otros gastos de explotacion",
-						"valor": 191
-					}
-				]
-			}
-		]
-	},
-	{
-		"symbol": "PBR",
-		"nombre": "Petrobras",
-		"periodos": [
-			{
-				"anio": 2016,
-				"cuentas": [
-					{
-						"nombre": "Ingresos",
-						"valor": 79919
-					},
-					{
-						"nombre": "Otros ingresos de explotacion",
 						"valor": 0
 					},
 					{
-						"nombre": "Consumos y otros gastos externos",
-						"valor": 41624
-					},
-					{
-						"nombre": "Gastos de personal",
-						"valor": 19640
-					},
-					{
-						"nombre": "Investigacion y desarrollo",
-						"valor": 5751
-					},
-					{
-						"nombre": "Amortizaciones",
-						"valor": 503
-					},
-					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 387
-					},
-					{
-						"nombre": "Gastos extraordinarios",
-						"valor": 1038
-					},
-					{
-						"nombre": "Otros gastos de explotacion",
-						"valor": 277
-					}
-				]
-			},
-			{
-				"anio": 2015,
-				"cuentas": [
-					{
-						"nombre": "Ingresos",
-						"valor": 81741
-					},
-					{
-						"nombre": "Otros ingresos de explotacion",
 						"valor": 0
 					},
 					{
-						"nombre": "Consumos y otros gastos externos",
-						"valor": 41057
-					},
-					{
-						"nombre": "Gastos de personal",
-						"valor": 19512
-					},
-					{
-						"nombre": "Investigacion y desarrollo",
-						"valor": 5247
-					},
-					{
-						"nombre": "Amortizaciones",
-						"valor": 304
-					},
-					{
-						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 31
-					},
-					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 587
-					},
-					{
-						"nombre": "Otros gastos de explotacion",
-						"valor": -941
-					}
-				]
-			},
-			{
-				"anio": 2014,
-				"cuentas": [
-					{
-						"nombre": "Ingresos",
-						"valor": 92793
-					},
-					{
-						"nombre": "Otros ingresos de explotacion",
 						"valor": 0
 					},
 					{
-						"nombre": "Consumos y otros gastos externos",
-						"valor": 46386
-					},
-					{
-						"nombre": "Gastos de personal",
-						"valor": 21385
-					},
-					{
-						"nombre": "Investigacion y desarrollo",
-						"valor": 5437
-					},
-					{
-						"nombre": "Amortizaciones",
-						"valor": 374
-					},
-					{
-						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 372
-					},
-					{
-						"nombre": "Gastos extraordinarios",
-						"valor": 1472
-					},
-					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -1877
-					}
-				]
-			},
-			{
-				"anio": 2013,
-				"cuentas": [
-					{
-						"nombre": "Ingresos",
-						"valor": 98367
-					},
-					{
-						"nombre": "Otros ingresos de explotacion",
 						"valor": 0
-					},
-					{
-						"nombre": "Consumos y otros gastos externos",
-						"valor": 49683
-					},
-					{
-						"nombre": "Gastos de personal",
-						"valor": 22214
-					},
-					{
-						"nombre": "Investigacion y desarrollo",
-						"valor": 5743
-					},
-					{
-						"nombre": "Amortizaciones",
-						"valor": 370
-					},
-					{
-						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": -287
-					},
-					{
-						"nombre": "Gastos extraordinarios",
-						"valor": 1031
-					},
-					{
-						"nombre": "Otros gastos de explotacion",
-						"valor": 191
 					}
 				]
 			}
@@ -518,7 +348,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 79919
+						"valor": 37728
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -526,31 +356,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41624
+						"valor": 7469
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19640
+						"valor": 9373
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5751
+						"valor": 6159
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 503
+						"valor": 1451
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 387
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1038
+						"valor": 566
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 277
+						"valor": 0
 					}
 				]
 			},
@@ -559,7 +389,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 81741
+						"valor": 37047
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -567,31 +397,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41057
+						"valor": 38226
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19512
+						"valor": 8732
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5247
+						"valor": 5524
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 304
+						"valor": 2149
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 31
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 587
+						"valor": 418
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -941
+						"valor": 0
 					}
 				]
 			},
@@ -600,7 +430,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 92793
+						"valor": 38275
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -608,75 +438,34 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 46386
+						"valor": 7236
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 21385
+						"valor": 8605
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5437
+						"valor": 5151
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 374
+						"valor": 2300
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 372
-					},
-					{
-						"nombre": "Gastos extraordinarios",
-						"valor": 1472
-					},
-					{
-						"nombre": "Otros gastos de explotacion",
-						"valor": -1877
-					}
-				]
-			},
-			{
-				"anio": 2013,
-				"cuentas": [
-					{
-						"nombre": "Ingresos",
-						"valor": 98367
-					},
-					{
-						"nombre": "Otros ingresos de explotacion",
 						"valor": 0
 					},
 					{
-						"nombre": "Consumos y otros gastos externos",
-						"valor": 49683
-					},
-					{
-						"nombre": "Gastos de personal",
-						"valor": 22214
-					},
-					{
-						"nombre": "Investigacion y desarrollo",
-						"valor": 5743
-					},
-					{
-						"nombre": "Amortizaciones",
-						"valor": 370
-					},
-					{
-						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": -287
-					},
-					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1031
+						"valor": 224
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 191
+						"valor": 0
 					}
 				]
-			}
+			}			
 		]
 	},
 	{
@@ -688,7 +477,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 79919
+						"valor": 85320
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -696,31 +485,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41624
+						"valor": 32780
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19640
+						"valor": 19260
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5751
+						"valor": 11988
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 503
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 387
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1038
+						"valor": 1432
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 277
+						"valor": 0
 					}
 				]
 			},
@@ -729,7 +518,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 81741
+						"valor": 93580
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -737,31 +526,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41057
+						"valor": 33038
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19512
+						"valor": 20324
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5247
+						"valor": 12046
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 304
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 31
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 587
+						"valor": 10194
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -941
+						"valor": 0
 					}
 				]
 			},
@@ -770,7 +559,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 92793
+						"valor": 86833
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -778,31 +567,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 46386
+						"valor": 27078
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 21385
+						"valor": 20488
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5437
+						"valor": 11381
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 374
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 372
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1472
+						"valor": 233
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -1877
+						"valor": 0
 					}
 				]
 			},
@@ -811,7 +600,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 98367
+						"valor": 77849
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -819,31 +608,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 49683
+						"valor": 20385
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 22214
+						"valor": 20289
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5743
+						"valor": 10411
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 370
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": -287
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1031
+						"valor": 208
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 191
+						"valor": 0
 					}
 				]
 			}
@@ -858,7 +647,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 79919
+						"valor": 215639
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -866,31 +655,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41624
+						"valor": 131376
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19640
+						"valor": 14194
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5751
+						"valor": 10045
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 503
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 387
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1038
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 277
+						"valor": 0
 					}
 				]
 			},
@@ -899,7 +688,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 81741
+						"valor": 233715
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -907,31 +696,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41057
+						"valor": 140089
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19512
+						"valor": 14329
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5247
+						"valor": 8067
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 304
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 31
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 587
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -941
+						"valor": 0
 					}
 				]
 			},
@@ -940,7 +729,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 92793
+						"valor": 182795
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -948,31 +737,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 46386
+						"valor": 112258
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 21385
+						"valor": 11993
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5437
+						"valor": 6041
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 374
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 372
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1472
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -1877
+						"valor": 0
 					}
 				]
 			},
@@ -981,7 +770,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 98367
+						"valor": 170910
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -989,31 +778,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 49683
+						"valor": 106606
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 22214
+						"valor": 10830
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5743
+						"valor": 4475
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 370
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": -287
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1031
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 191
+						"valor": 0
 					}
 				]
 			}
@@ -1028,7 +817,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 79919
+						"valor": 135987
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1036,31 +825,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41624
+						"valor": 88265
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19640
+						"valor": 27284
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5751
+						"valor": 16085
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 503
+						"valor": 1716
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 387
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1038
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 277
+						"valor": -1549
 					}
 				]
 			},
@@ -1069,7 +858,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 81741
+						"valor": 107006
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1077,31 +866,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41057
+						"valor": 71651
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19512
+						"valor": 20411
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5247
+						"valor": 12540
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 304
+						"valor": 1381
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 31
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 587
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -941
+						"valor": -1210
 					}
 				]
 			},
@@ -1110,7 +899,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 92793
+						"valor": 88988
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1118,31 +907,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 46386
+						"valor": 62752
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 21385
+						"valor": 16650
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5437
+						"valor": 9275
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 374
+						"valor": 1146
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 372
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1472
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -1877
+						"valor": -1013
 					}
 				]
 			},
@@ -1151,7 +940,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 98367
+						"valor": 74452
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1159,31 +948,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 49683
+						"valor": 54181
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 22214
+						"valor": 12847
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5743
+						"valor": 6565
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 370
+						"valor": 753
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": -287
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1031
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 191
+						"valor": -639
 					}
 				]
 			}
@@ -1198,7 +987,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 79919
+						"valor": 27638
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1206,31 +995,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41624
+						"valor": 3789
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19640
+						"valor": 5503
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5751
+						"valor": 5919
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 503
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 387
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1038
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 277
+						"valor": 0
 					}
 				]
 			},
@@ -1239,7 +1028,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 81741
+						"valor": 17928
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1247,31 +1036,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 41057
+						"valor": 2867
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 19512
+						"valor": 4020
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5247
+						"valor": 4816
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 304
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 31
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 587
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -941
+						"valor": 0
 					}
 				]
 			},
@@ -1280,7 +1069,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 92793
+						"valor": 12466
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1288,31 +1077,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 46386
+						"valor": 2153
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 21385
+						"valor": 2653
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5437
+						"valor": 2666
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 374
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": 372
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1472
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": -1877
+						"valor": 0
 					}
 				]
 			},
@@ -1321,7 +1110,7 @@
 				"cuentas": [
 					{
 						"nombre": "Ingresos",
-						"valor": 98367
+						"valor": 7872
 					},
 					{
 						"nombre": "Otros ingresos de explotacion",
@@ -1329,31 +1118,31 @@
 					},
 					{
 						"nombre": "Consumos y otros gastos externos",
-						"valor": 49683
+						"valor": 1875
 					},
 					{
 						"nombre": "Gastos de personal",
-						"valor": 22214
+						"valor": 1778
 					},
 					{
 						"nombre": "Investigacion y desarrollo",
-						"valor": 5743
+						"valor": 1415
 					},
 					{
 						"nombre": "Amortizaciones",
-						"valor": 370
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos financieros Neto de Operaciones",
-						"valor": -287
+						"valor": 0
 					},
 					{
 						"nombre": "Gastos extraordinarios",
-						"valor": 1031
+						"valor": 0
 					},
 					{
 						"nombre": "Otros gastos de explotacion",
-						"valor": 191
+						"valor": 0
 					}
 				]
 			}

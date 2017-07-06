@@ -26,9 +26,6 @@
   "nombre" : "TEST",
   "formula" : "<PAPA> - [FDS]"
 }, {
-  "nombre" : "INDI",
-  "formula" : "30 + 20"
-}, {
   "nombre" : "AFG",
   "formula" : "[EBITDA] * [INGRESO NETO EN OPERACIONES CONTINUAS] + 20"
 }, {

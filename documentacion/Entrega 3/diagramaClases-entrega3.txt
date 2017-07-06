@@ -11,12 +11,17 @@ class Metodologia [[java:model.Metodologia]] {
 	-int comparar(Empresa emp1, Empresa emp2)
 }
 
+interface Validable [[java:model.condiciones.Validable]] {
+	boolean esValida(Empresa emp)
+}
 interface CondicionNoTaxativa [[java:model.condiciones.notaxativas.CondicionNoTaxativa]] {
 	int comparar(Empresa emp1, Empresa emp2)
 }
 interface CondicionTaxativa [[java:model.condiciones.taxativas.CondicionTaxativa]] {
 	boolean convieneInvertirEn(Empresa emp)
 }
+Validable <|-- CondicionNoTaxativa
+Validable <|-- CondicionTaxativa
 interface CondicionCombinada [[java:model.condiciones.combinadas.CondicionCombinada]] {
 }
 CondicionTaxativa <|-- CondicionCombinada

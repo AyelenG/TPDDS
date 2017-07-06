@@ -26,13 +26,13 @@ public class CargaCondicionWindow extends Window<Object> {
 		new Label(mainPanel).setHeight(20).setWidth(200);
 		
 		new Button(mainPanel)
-			.setCaption("Taxativa")
+			.setCaption("Taxativa Configurable")
 			.onClick(()-> new NuevaCondicionTaxativaWindow(this, parentVM).open());
 		new Button(mainPanel)
-			.setCaption("No Taxativa")
+			.setCaption("No Taxativa Configurable")
 			.onClick(()-> new NuevaCondicionNoTaxativaWindow(this, parentVM).open());
 		new Button(mainPanel)
-			.setCaption("Combinada")
+			.setCaption("Primitiva")
 			.onClick(()-> new NuevaCondicionPrimitivaWindow(this, parentVM).open());
 		
 		new Label(mainPanel).setHeight(20);

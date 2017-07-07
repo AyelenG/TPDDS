@@ -11,6 +11,7 @@ import model.Indicador;
 import model.Periodo;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
+import utils.UtilsListas;
 
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
@@ -45,11 +46,9 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable imple
 		List<Periodo> ultimosNAnios2 = emp2.getUltimosNAnios(cantidadAnios);
 
 		// obtengo la sumatoria de los valores de esos periodos
-		BigDecimal sumEmp1 = ultimosNAnios1.stream().map(p -> indicador.evaluar(p)).reduce(BigDecimal.ZERO,
-				BigDecimal::add);
-		BigDecimal sumEmp2 = ultimosNAnios2.stream().map(p -> indicador.evaluar(p)).reduce(BigDecimal.ZERO,
-				BigDecimal::add);
-
+		BigDecimal sumEmp1 = UtilsListas.sumatoria(ultimosNAnios1, p->indicador.evaluar(p));
+		BigDecimal sumEmp2 = UtilsListas.sumatoria(ultimosNAnios2, p->indicador.evaluar(p));
+		
 		return this.comparador.aplicar(sumEmp1, sumEmp2) * peso;
 	}
 

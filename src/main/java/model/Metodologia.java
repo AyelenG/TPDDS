@@ -47,16 +47,16 @@ public class Metodologia {
 		List<Empresa> empresasValidas1 = new LinkedList<>();
 		List<Empresa> empresasValidas2 = new LinkedList<>();
 		List<Empresa> empresasValidas = new LinkedList<>();
-		
-		empresasValidas1.addAll(empresas.stream()
-				.filter(e -> condicionesT.stream().allMatch(c-> c.esValida(e))).collect(Collectors.toList()));
+
+		empresasValidas1.addAll(empresas.stream().filter(e -> condicionesT.stream().allMatch(c -> c.esValida(e)))
+				.collect(Collectors.toList()));
 		empresasValidas2.addAll(empresasValidas1.stream()
-				.filter(e -> condicionesNT.stream().allMatch(c-> c.esValida(e))).collect(Collectors.toList()));
+				.filter(e -> condicionesNT.stream().allMatch(c -> c.esValida(e))).collect(Collectors.toList()));
 		empresasValidas.addAll(empresasValidas2.stream()
-				.filter(e -> condicionesComb.stream().allMatch(c-> c.esValida(e))).collect(Collectors.toList()));
+				.filter(e -> condicionesComb.stream().allMatch(c -> c.esValida(e))).collect(Collectors.toList()));
 		return empresasValidas;
 	}
-	
+
 	/**
 	 * Aplica la metodologia a la lista de empresas de entrada y devuelve la
 	 * lista de empresas en las que es deseable invertir ordenadas por prioridad
@@ -73,12 +73,13 @@ public class Metodologia {
 		// filtrar por las condicionesT y por las condicionesComb y devolver la
 		// lista resultante
 		List<Empresa> empresasFiltradas = empresas;
-		
-		//uno las condiciones taxativas  con las combinadas (ambas comparten interfaz)
+
+		// uno las condiciones taxativas con las combinadas (ambas comparten
+		// interfaz)
 		List<CondicionTaxativa> condiciones = new LinkedList<>();
 		condiciones.addAll(condicionesT);
 		condiciones.addAll(condicionesComb);
-		
+
 		empresasFiltradas = empresasFiltradas.stream()
 				.filter(emp -> condiciones.stream().allMatch(cond -> cond.convieneInvertirEn(emp)))
 				.collect(Collectors.toList());
@@ -98,13 +99,14 @@ public class Metodologia {
 		int puntajeEmp2 = 0;
 		int r;
 
-		//uno las condiciones no taxativas  con las combinadas (ambas comparten interfaz)
-//		List<CondicionNoTaxativa> condiciones = Stream.concat(condicionesNT.stream(), condicionesComb.stream())
-//				.collect(Collectors.toList());
+		// uno las condiciones no taxativas con las combinadas (ambas comparten
+		// interfaz)
+		// List<CondicionNoTaxativa> condiciones =
+		// Stream.concat(condicionesNT.stream(), condicionesComb.stream())
+		// .collect(Collectors.toList());
 		List<CondicionNoTaxativa> condiciones = new LinkedList<>();
 		condiciones.addAll(condicionesNT);
 		condiciones.addAll(condicionesComb);
-		
 
 		for (CondicionNoTaxativa cond : condiciones) {
 			r = cond.comparar(emp1, emp2);
@@ -136,8 +138,7 @@ public class Metodologia {
 	}
 
 	public void setCondicionesNT(List<CondicionNoTaxativa> condicionesNT) {
-		if (condicionesNT != null)
-			this.condicionesNT = condicionesNT;
+		this.condicionesNT = condicionesNT;
 	}
 
 	public List<CondicionTaxativa> getCondicionesT() {
@@ -145,8 +146,7 @@ public class Metodologia {
 	}
 
 	public void setCondicionesT(List<CondicionTaxativa> condicionesT) {
-		if (condicionesT != null)
-			this.condicionesT = condicionesT;
+		this.condicionesT = condicionesT;
 	}
 
 	public List<CondicionCombinada> getCondicionesComb() {
@@ -154,7 +154,6 @@ public class Metodologia {
 	}
 
 	public void setCondicionesComb(List<CondicionCombinada> condicionesComb) {
-		if (condicionesComb != null)
-			this.condicionesComb = condicionesComb;
+		this.condicionesComb = condicionesComb;
 	}
 }

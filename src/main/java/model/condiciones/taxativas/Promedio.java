@@ -1,7 +1,6 @@
 package model.condiciones.taxativas;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonValue;
@@ -9,6 +8,7 @@ import org.codehaus.jackson.annotate.JsonValue;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import utils.UtilsListas;
 
 public class Promedio implements TipoCondicionTaxativa {
 
@@ -20,9 +20,7 @@ public class Promedio implements TipoCondicionTaxativa {
 		if (ultimosNAnios.isEmpty())
 			return false;
 		
-		BigDecimal sumatoria = sumatoria(indicador, ultimosNAnios);
-		BigDecimal cant = BigDecimal.valueOf(ultimosNAnios.size());
-		BigDecimal promedio = sumatoria.divide(cant, 5, RoundingMode.HALF_UP);
+		BigDecimal promedio = UtilsListas.promedio(ultimosNAnios,p->indicador.evaluar(p));
 		return cond.getComparador().aplicar(promedio, cond.getValorDeReferencia()) > 0;
 	}
 

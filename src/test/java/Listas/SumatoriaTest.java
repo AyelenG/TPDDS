@@ -1,10 +1,8 @@
 package Listas;
 
-import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.runner.RunWith;
@@ -14,7 +12,6 @@ import model.Periodo;
 
 import org.junit.experimental.theories.*;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 @RunWith(Theories.class)
@@ -55,7 +52,7 @@ public class SumatoriaTest {
 	periodo1.agregarCuenta(cuenta);
 	periodo2.agregarCuenta(cuenta);
 	periodo3.agregarCuenta(cuenta);
-	List<Periodo> lista = Arrays.asList(periodo1,periodo2,periodo3);
+//	List<Periodo> lista = Arrays.asList(periodo1,periodo2,periodo3);
 	
 	
 	/*BigDecimal sumatoria = lista.stream().map(periodo -> periodo.buscarCuenta(cuenta).getValor()).sumarBigDecimal();

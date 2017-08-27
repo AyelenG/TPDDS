@@ -5,14 +5,28 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+@Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Empresa {
+	
+	
+	@Id
+	@GeneratedValue
+	private long empr_id;
 	private String symbol;
 	private String nombre;
+	@OneToMany
+	@JoinColumn(name = "empr_id")
 	private List<Periodo> periodos = new LinkedList<>();
 
 	public Empresa() {

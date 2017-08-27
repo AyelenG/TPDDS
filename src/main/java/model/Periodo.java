@@ -3,18 +3,32 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+@Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
-public class Periodo implements Comparable<Periodo>{
+public class Periodo implements Comparable<Periodo> {
+	
+	@Id
+	@GeneratedValue
+	private long peri_id;
 	private Integer anio;
+	@OneToMany
+	@JoinColumn(name = "peri_id")
 	private List<CuentaEmpresa> cuentas = new LinkedList<>();
 
-	public Periodo(){
+	public Periodo() {
 		
 	}
+	
 	public Periodo(Integer anio) {
 		this.setAnio(anio);
 	}

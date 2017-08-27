@@ -2,9 +2,12 @@ package model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+@Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class CuentaEmpresa extends Cuenta {

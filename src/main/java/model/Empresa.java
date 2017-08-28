@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,13 +21,13 @@ import org.uqbar.commons.utils.Observable;
 @JsonIgnoreProperties({ "changeSupport" })
 public class Empresa {
 	
-	
 	@Id
 	@GeneratedValue
 	private long empr_id;
 	private String symbol;
 	private String nombre;
-	@OneToMany
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "empr_id")
 	private List<Periodo> periodos = new LinkedList<>();
 
@@ -86,16 +88,16 @@ public class Empresa {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
 	}
 
+	public boolean noEstaEn(List<Empresa> empresas){
+		return !empresas.contains(this);
+	}
+	
 	public String toString() {
 		return getSymbol() + " - " + getNombre();
 	}
 
 	public String getSymbol() {
 		return symbol;
-	}
-	
-	public boolean noEstaEn(List<Empresa> empresas){
-		return !empresas.contains(this);
 	}
 	
 	public void setSymbol(String symbol) {

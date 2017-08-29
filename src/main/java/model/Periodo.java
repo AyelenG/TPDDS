@@ -21,7 +21,7 @@ public class Periodo implements Comparable<Periodo> {
 	
 	@Id
 	@GeneratedValue
-	private long peri_id;
+	private long id;
 	private Integer anio;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -41,11 +41,11 @@ public class Periodo implements Comparable<Periodo> {
 			this.agregarCuenta(cuenta);
 	}
 
-	public void agregarCuenta(CuentaEmpresa cuenta) {
-		if (!existeCuenta(cuenta))
-			cuentas.add(cuenta);
+	public void agregarCuenta(CuentaEmpresa cuentaEmpresa) {
+		if (!existeCuenta(cuentaEmpresa.getCuenta()))
+			cuentas.add(cuentaEmpresa);
 		else
-			this.buscarCuenta(cuenta).setValor(cuenta.getValor());
+			this.buscarCuenta(cuentaEmpresa.getCuenta()).setValor(cuentaEmpresa.getValor());
 	}
 
 	public CuentaEmpresa buscarCuenta(Cuenta cuenta) {

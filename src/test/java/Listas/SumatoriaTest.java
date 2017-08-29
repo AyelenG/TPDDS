@@ -38,7 +38,7 @@ public class SumatoriaTest {
 	List<Periodo> lista = Arrays.asList(periodo1,periodo2,periodo3);
 	
 	
-	int sumatoria = lista.stream().mapToInt(periodo -> periodo.buscarCuenta(cuenta).getValor().intValue()).sum();
+	int sumatoria = lista.stream().mapToInt(periodo -> periodo.buscarCuenta(cuenta.getCuenta()).getValor().intValue()).sum();
 	Assert.assertEquals (15, sumatoria);
 	}
 	

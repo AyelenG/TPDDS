@@ -10,14 +10,15 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Cuenta {
 
 	@Id
 	@GeneratedValue
-	private long cuen_id;
+	private long id;
+	
 	private String nombre = "";
 	
 	public Cuenta() {
@@ -39,9 +40,4 @@ public class Cuenta {
 	public void setNombre(String nombre) {
 		this.nombre = nombre.toUpperCase();
 	}
-
-	public boolean esIgual(Cuenta cuenta) {
-		return this.getNombre().equals(cuenta.getNombre());
-	}
-
 }

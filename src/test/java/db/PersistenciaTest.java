@@ -30,16 +30,26 @@ public class PersistenciaTest {
 
 	@Before
 	public void inicio() {
-		//entityManager.createStoredProcedureQuery("limpiarTablas").execute();
+		entityManager.createStoredProcedureQuery("limpiarTablas").execute();
 		empresas.agregarElementos(loader.loadEmpresas());
 	}
 
+//	@Test
+//	public void persistirUnaEmpresa() {
+//		empresa = empresas.buscarElemento(new Empresa("IBM","-")); //IBM
+//		tx = entityManager.getTransaction();
+//		tx.begin();
+//		entityManager.persist(empresa);
+//		tx.commit();
+//		
+//		System.out.println(entityManager.find(Empresa.class, new Long(1)));
+//	}
+	
 	@Test
-	public void persistirUnaEmpresa() {
-		empresa = empresas.buscarElemento(new Empresa("IBM","-")); //IBM
+	public void persistirTodasLasEmpresas() {
 		tx = entityManager.getTransaction();
 		tx.begin();
-		entityManager.persist(empresa);
+		empresas.getElementos().forEach(empresa -> entityManager.persist(empresa));
 		tx.commit();
 		
 		System.out.println(entityManager.find(Empresa.class, new Long(1)));

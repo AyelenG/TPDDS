@@ -23,7 +23,7 @@ public class Empresa {
 	
 	@Id
 	@GeneratedValue
-	private long empr_id;
+	private long id;
 	private String symbol;
 	private String nombre;
 	

@@ -41,9 +41,12 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		RepoEmpresas.getInstance().agregarElementos(empresas);
 		
 		/* Agrega las cuentas nuevas al Repositorio de Cuentas Predeterminadas */
-		RepoCuentas.getInstance().agregarDesdeEmpresas(empresas);
-		RepoCuentas.getInstance().guardar();
-		
+//		RepoCuentas.getInstance().agregarDesdeEmpresas(empresas);
+//		RepoCuentas.getInstance().guardar();
+		/*--NO HACE FALTA YA QUE AL CARGAR EL JSON DE EMPRESAS 
+		EL SETTER DE LAS CUENTAS DE EMPRESA ACTUALIZA EL REPO DE CUENTAS--*/
+
+
 		this.setHabilitaSelector(false);
 		this.setBotonCargarCuentas(false);
 	}

@@ -7,15 +7,15 @@
 				"anio": "2010",
 				"cuentas": [
 					{
-						"nombre": "EBITDA",
+						"cuenta": {"nombre": "EBITDA"},
 						"valor": "200"
 					},
 					{
-						"nombre": "FDS",
+						"cuenta": {"nombre": "FDS"},
 						"valor": "500"
 					},
 					{
-						"nombre": "Free Cash Flow",
+						"cuenta": {"nombre": "Free Cash Flow"},
 						"valor": "100"
 					}
 				]
@@ -24,15 +24,15 @@
 				"anio": "2011",
 				"cuentas": [
 					{
-						"nombre": "EBITDA",
+						"cuenta": {"nombre": "EBITDA"},
 						"valor": "500"
 					},
 					{
-						"nombre": "FDS",
+						"cuenta": {"nombre": "FDS"},
 						"valor": "600"
 					},
 					{
-						"nombre": "Free Cash Flow",
+						"cuenta": {"nombre": "Free Cash Flow"},
 						"valor": "300"
 					}
 				]
@@ -47,11 +47,11 @@
 				"anio": "2000",
 				"cuentas": [
 					{
-						"nombre": "Ingresos brutos",
+						"cuenta": {"nombre": "Ingresos Brutos"},
 						"valor": "-500"
 					},
 					{
-						"nombre": "FDS",
+						"cuenta": {"nombre": "FDS"},
 						"valor": "698.87"
 					}
 				]
@@ -60,15 +60,15 @@
 				"anio": "2001",
 				"cuentas": [
 					{
-						"nombre": "EBITDA",
+						"cuenta": {"nombre": "EBITDA"}, 
 						"valor": "98700"
 					},
 					{
-						"nombre": "FDS",
+						"cuenta": {"nombre": "FDS"},
 						"valor": "10"
 					},
 					{
-						"nombre": "Free Cash Flow",
+						"cuenta": {"nombre": "Free Cash Flow"},
 						"valor": "350"
 					}
 				]
@@ -77,15 +77,15 @@
 				"anio": "2002",
 				"cuentas": [
 					{
-						"nombre": "Ingresos brutos",
+						"cuenta": {"nombre": "Ingresos Brutos"},
 						"valor": "-500"
 					},
 					{
-						"nombre": "FDS",
+						"cuenta": {"nombre": "FDS"},
 						"valor": "698.87"
 					},
 					{
-						"nombre": "EBITDA",
+						"cuenta": {"nombre": "EBITDA"},
 						"valor": "890"
 					}
 				]

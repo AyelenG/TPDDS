@@ -2,12 +2,17 @@ package model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
+
+import model.repositories.RepoCuentas;
 
 @Entity
 @Observable
@@ -18,6 +23,7 @@ public class CuentaEmpresa{
 	@GeneratedValue
 	private long id;
 	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Cuenta cuenta;
 	private BigDecimal valor;
 
@@ -46,7 +52,14 @@ public class CuentaEmpresa{
 	}
 
 	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
+		Cuenta cuentaEncontrada = RepoCuentas.getInstance().buscarElemento(cuenta);
+		if(cuentaEncontrada == null){
+			RepoCuentas.getInstance().agregarElemento(cuenta);
+			RepoCuentas.getInstance().guardar();
+			this.cuenta = cuenta;
+		}
+		else
+			this.cuenta = cuentaEncontrada;
 	}
 	
 	public BigDecimal getValor() {

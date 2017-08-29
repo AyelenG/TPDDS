@@ -56,7 +56,7 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 		for (Empresa empresa : empresas)
 			for (Periodo periodo : empresa.getPeriodos()){
 				List<Cuenta> cuentas = periodo.getCuentas().stream()
-														.map(c->new Cuenta(c.getNombre()))
+														.map(c->c.getCuenta())
 														.collect(Collectors.toList());
 				this.agregarElementos(cuentas);
 			}

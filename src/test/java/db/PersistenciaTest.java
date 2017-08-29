@@ -1,5 +1,7 @@
 package db;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -26,7 +28,7 @@ public class PersistenciaTest {
 	private Cuenta cuenta;
 	
 	private RepoEmpresas empresas = RepoEmpresas.getInstance();
-	private HandlerArchivo loader = new HandlerArchivoJSON("data/Empresas.json");
+	private HandlerArchivo loader = new HandlerArchivoJSON("data/CuentasPrueba.json");
 
 	@Before
 	public void inicio() {
@@ -36,7 +38,15 @@ public class PersistenciaTest {
 
 //	@Test
 //	public void persistirUnaEmpresa() {
-//		empresa = empresas.buscarElemento(new Empresa("IBM","-")); //IBM
+//		empresa = empresas.buscarElemento(new Empresa("FB","-")); //FB
+//		tx = entityManager.getTransaction();
+//		tx.begin();
+//		entityManager.persist(empresa);
+//		tx.commit();
+//		
+//		empresa = new Empresa("IBM","IbeEme");
+//		empresa.agregarCuenta(new Periodo(2010), new CuentaEmpresa("EBITDA",BigDecimal.valueOf(55.55)));
+//		
 //		tx = entityManager.getTransaction();
 //		tx.begin();
 //		entityManager.persist(empresa);
@@ -63,8 +73,8 @@ public class PersistenciaTest {
 	
 //	@Test
 //	public void persistirUnPeriodo() {
-//		empresa = empresas.buscarElemento(new Empresa("IBM","-")); //IBM
-//		periodo = empresa.buscarPeriodo(new Periodo(2016));
+//		empresa = empresas.buscarElemento(new Empresa("FB","-")); //FB
+//		periodo = empresa.buscarPeriodo(new Periodo(2010));
 //		
 //		tx = entityManager.getTransaction();
 //		tx.begin();
@@ -74,9 +84,9 @@ public class PersistenciaTest {
 //	
 //	@Test
 //	public void persistirUnaCuentaEmpresa() {
-//		empresa = empresas.buscarElemento(new Empresa("IBM","-")); //IBM
-//		periodo = empresa.buscarPeriodo(new Periodo(2016));
-//		cuentaEmpresa = periodo.buscarCuenta(new Cuenta("Ingresos"));
+//		empresa = empresas.buscarElemento(new Empresa("FB","-")); //FB
+//		periodo = empresa.buscarPeriodo(new Periodo(2010));
+//		cuentaEmpresa = periodo.buscarCuenta(new Cuenta("EBITDA"));
 //		
 //		tx = entityManager.getTransaction();
 //		tx.begin();

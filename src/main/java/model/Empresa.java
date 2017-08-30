@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +18,10 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
+import model.repositories.RepoCuentas;
+import model.repositories.RepoEmpresas;
 
 @Entity
 @Observable
@@ -24,6 +31,7 @@ public class Empresa {
 	@Id
 	@GeneratedValue
 	private long id;
+	@Column(unique=true)
 	private String symbol;
 	private String nombre;
 	
@@ -59,7 +67,11 @@ public class Empresa {
 	}
 
 	public void agregarPeriodo(Periodo periodo) {
+		RepoEmpresas empresas = RepoEmpresas.getInstance();
 		periodos.add(periodo);
+		//empresas.agregarPeriodoABD(periodo, this);
+		
+		
 	}
 
 	public Periodo buscarPeriodo(Periodo periodo) {
@@ -86,6 +98,11 @@ public class Empresa {
 	 */
 	public void agregarCuenta(Periodo periodo, CuentaEmpresa cuenta) {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 	
+		EntityTransaction tx = entityManager.getTransaction();
+		tx.begin();
+		entityManager.persist(this);
+		tx.commit();
 	}
 
 	public boolean noEstaEn(List<Empresa> empresas){
@@ -120,4 +137,7 @@ public class Empresa {
 		this.periodos = periodos;
 	}
 
+	public long getId() {
+		return id;
+	}
 }

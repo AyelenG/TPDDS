@@ -47,6 +47,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public void cargarCuenta() {
+		
 		if (empresaSeleccionada == null)
 			throw new UserException("Debe seleccionar una empresa.");
 		if (this.getCuentaSeleccionada() == null || this.getValor().isEmpty())
@@ -59,6 +60,7 @@ public class CargaCuentaEmpresaViewModel {
 		} catch (NumberFormatException e) {
 			throw new UserException("Debe ingresar un valor válido.");
 		}
+		
 		empresaSeleccionada.agregarCuenta(new Periodo(anio), new CuentaEmpresa(cuentaSeleccionada.getNombre(), valor));
 		this.setHabilitaCarga(false);
 		

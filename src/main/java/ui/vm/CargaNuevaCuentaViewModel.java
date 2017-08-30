@@ -1,8 +1,12 @@
 package ui.vm;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Cuenta;
 import model.repositories.RepoCuentas;
@@ -35,10 +39,12 @@ public class CargaNuevaCuentaViewModel {
 		}
 		cuentas.agregarElemento(cuenta);
 		cuentas.guardar();
+		cuentas.insertarEnBD(cuenta);
 		this.setHabilitaCarga(false);
 		if (parentVM != null)
 			ObservableUtils.firePropertyChanged(this.parentVM, "cuentas");
 	}
+	
 
 	public Cuenta getCuenta() {
 		return cuenta;

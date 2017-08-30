@@ -3,6 +3,11 @@ package model.repositories;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 public abstract class Repositorio<T> {
 	
 	private List<T> elementos = new LinkedList<>();
@@ -34,9 +39,9 @@ public abstract class Repositorio<T> {
 	}
 
 	public void agregarElemento(T e) {
-		this.elementos.add(e);
-	}
-
+		this.elementos.add(e);		
+	}	
+	
 	public T buscarElemento(T e) {
 		return this.elementos.stream().filter(_e -> this.sonIguales(_e,e)).findFirst().orElse(null);
 	}

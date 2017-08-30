@@ -3,6 +3,11 @@ package model.repositories;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
@@ -13,6 +18,8 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 	private static final RepoCuentas instance = new RepoCuentas();
 
 	private final String RUTA = "data/CuentasPredeterminadas.json";
+	
+	
 
 	private RepoCuentas() {
 	}
@@ -29,7 +36,7 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 	/* Carga desde archivo JSON */
 	public void cargar() {
 		this.agregarElementos(new HandlerArchivoJSON(RUTA).<Cuenta>load(Cuenta.class));
-
+		
 		/* IMPRESION POR CONSOLA PARA CONTROL */
 		/*
 		 * for ( Object cuenta :
@@ -40,9 +47,27 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 
 	/* Guardado en archivo JSON */
 	public void guardar() {
-		new HandlerArchivoJSON(RUTA).<Cuenta>save(this.getElementos());
-	}
+		new HandlerArchivoJSON(RUTA).<Cuenta>save(this.getElementos());	
+	}	
 
+	public void insertarEnBD (Cuenta cuenta){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
+		EntityTransaction tx = entityManager.getTransaction();
+		
+		tx.begin();
+		entityManager.persist(cuenta);
+		tx.commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void findAllBD(){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 				
+		List<Cuenta> cuentas = entityManager.createQuery("from Cuenta").getResultList();		
+		this.setElementos(cuentas);
+		
+	}
+	
+	
 	/**
 	 * Desde una Lista de Empresas toma todas las cuentas e ingresa solo las que
 	 * no estan repetidas en el Repositorio y guarda el archivo en disco

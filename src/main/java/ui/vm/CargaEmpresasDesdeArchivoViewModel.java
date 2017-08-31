@@ -38,7 +38,7 @@ public class CargaEmpresasDesdeArchivoViewModel {
 			throw new UserException("El archivo no tiena la extensión correcta");
 		
 		/* En este llamado ya esta chequeado los repetidos en el modelo */
-		RepoEmpresas.getInstance().agregarElementos(empresas);
+		RepoEmpresas.getInstance().insertarVariosEnBD(empresas);
 		
 		/* Agrega las cuentas nuevas al Repositorio de Cuentas Predeterminadas */
 //		RepoCuentas.getInstance().agregarDesdeEmpresas(empresas);

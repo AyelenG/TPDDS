@@ -33,6 +33,7 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 		return c1.getNombre().equals(c2.getNombre());
 	}
 	
+	
 	/* Carga desde archivo JSON */
 	public void cargar() {
 		this.agregarElementos(new HandlerArchivoJSON(RUTA).<Cuenta>load(Cuenta.class));
@@ -49,22 +50,11 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 	public void guardar() {
 		new HandlerArchivoJSON(RUTA).<Cuenta>save(this.getElementos());	
 	}	
-
-	public void insertarEnBD (Cuenta cuenta){
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
-		EntityTransaction tx = entityManager.getTransaction();
-		
-		tx.begin();
-		entityManager.persist(cuenta);
-		tx.commit();
-	}
 	
 	@SuppressWarnings("unchecked")
-	public void findAllBD(){
+	public List<Cuenta> findAllBD(){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 				
-		List<Cuenta> cuentas = entityManager.createQuery("from Cuenta").getResultList();		
-		this.setElementos(cuentas);
-		
+		return entityManager.createQuery("from Cuenta").getResultList();			
 	}
 	
 	
@@ -85,6 +75,15 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 														.collect(Collectors.toList());
 				this.agregarElementos(cuentas);
 			}
+	}
+	
+	public void cargarBDDesdeArchivo(){
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		List<Cuenta> cuentas = new HandlerArchivoJSON(RUTA).<Cuenta>load(Cuenta.class);
+		tx.begin();
+		cuentas.forEach(elemento -> em.persist(elemento));
+		tx.commit();
 	}
 
 }

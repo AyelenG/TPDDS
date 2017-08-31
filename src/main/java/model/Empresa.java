@@ -67,11 +67,7 @@ public class Empresa {
 	}
 
 	public void agregarPeriodo(Periodo periodo) {
-		RepoEmpresas empresas = RepoEmpresas.getInstance();
 		periodos.add(periodo);
-		//empresas.agregarPeriodoABD(periodo, this);
-		
-		
 	}
 
 	public Periodo buscarPeriodo(Periodo periodo) {
@@ -98,11 +94,8 @@ public class Empresa {
 	 */
 	public void agregarCuenta(Periodo periodo, CuentaEmpresa cuenta) {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 	
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
-		entityManager.persist(this);
-		tx.commit();
+		
+		
 	}
 
 	public boolean noEstaEn(List<Empresa> empresas){

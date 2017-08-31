@@ -22,20 +22,11 @@ public class RepoEmpresas extends Repositorio<Empresa> {
 		return instance;
 	}
 	
-	public void insertarEnBD (Empresa empresa){
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
-		EntityTransaction tx = entityManager.getTransaction();
-		
-		tx.begin();
-		entityManager.persist(empresa);
-		tx.commit();
-	}
+	
 	@SuppressWarnings("unchecked")
-	public void findAllBD(){
+	public List<Empresa> findAllBD(){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 				
-		List<Empresa> empresas = entityManager.createQuery("from Empresa").getResultList();		
-		this.setElementos(empresas);
-		
+		return entityManager.createQuery("from Empresa").getResultList();
 	}
 	
 	@Override

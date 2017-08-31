@@ -54,13 +54,9 @@ public class RepoEmpresas extends Repositorio<Empresa> {
 	}
 
 	public void agregarPeriodoABD(Periodo periodo, Empresa empresa) {
-		empresa = new Empresa("ABC", "hola");
-		System.out.println("PASO");
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 	
-		System.out.println("PASO 2");
+		
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();		
 		entityManager.persist(periodo);
-		//entityManager.createNativeQuery(
-			//	"insert into Periodo values empr_id=" + empresa.getId() + ", anio=" + periodo.getAnio()).;
 		
 	}
 

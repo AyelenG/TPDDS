@@ -83,7 +83,7 @@ public class CargaIndicadorViewModel {
 		//si OK: construye los objetos para evaluarla y los guarda en el indicador
 		//si no: lanza excepcion
 		
-		indicadores.agregarElemento(indicadorNuevo);
+		indicadores.insertar(indicadorNuevo);
 		indicadores.guardar();
 		this.setHabilitaCarga(false);
 		ObservableUtils.firePropertyChanged(this, "indicadores");

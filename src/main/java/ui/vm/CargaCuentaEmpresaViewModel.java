@@ -14,7 +14,9 @@ import model.CuentaEmpresa;
 import model.Empresa;
 import model.Periodo;
 import model.repositories.RepoCuentas;
+import model.repositories.RepoCuentasBD;
 import model.repositories.RepoEmpresas;
+import model.repositories.RepoEmpresasBD;
 
 @Observable
 public class CargaCuentaEmpresaViewModel {
@@ -47,7 +49,7 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public void cargarCuenta() {
-		RepoEmpresas repositorio = RepoEmpresas.getInstance();
+		RepoEmpresasBD repositorio = new RepoEmpresasBD();
 		if (empresaSeleccionada == null)
 			throw new UserException("Debe seleccionar una empresa.");
 		if (this.getCuentaSeleccionada() == null || this.getValor().isEmpty())
@@ -61,7 +63,7 @@ public class CargaCuentaEmpresaViewModel {
 			throw new UserException("Debe ingresar un valor válido.");
 		}		
 		empresaSeleccionada.agregarCuenta(new Periodo(anio), new CuentaEmpresa(cuentaSeleccionada.getNombre(), valor));
-		repositorio.insertarEnBD(empresaSeleccionada);
+		repositorio.insertar(empresaSeleccionada);
 		this.setHabilitaCarga(false);
 		
 		/**
@@ -100,7 +102,11 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return RepoEmpresas.getInstance().findAllBD();
+		return new RepoEmpresasBD().findAll();
+	}
+	
+	public List<Cuenta> getCuentas() {
+		return new RepoCuentasBD().findAll();
 	}
 
 	public Cuenta getCuentaSeleccionada() {
@@ -111,9 +117,7 @@ public class CargaCuentaEmpresaViewModel {
 		this.cuentaSeleccionada = cuentaSeleccionada;
 	}
 
-	public List<Cuenta> getCuentas() {
-		return RepoCuentas.getInstance().findAllBD();
-	}
+	
 	
 	public boolean isHabilitaCarga() {
 		return habilitaCarga;

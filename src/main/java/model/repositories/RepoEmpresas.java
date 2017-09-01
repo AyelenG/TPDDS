@@ -1,16 +1,9 @@
 package model.repositories;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
 import model.Empresa;
-import model.Periodo;
 
-public class RepoEmpresas extends Repositorio<Empresa> {
+public class RepoEmpresas extends RepoArchivo<Empresa> {
 
 	private static final RepoEmpresas instance = new RepoEmpresas();
 
@@ -21,34 +14,20 @@ public class RepoEmpresas extends Repositorio<Empresa> {
 	public static RepoEmpresas getInstance() {
 		return instance;
 	}
-	
-	
-	@SuppressWarnings("unchecked")
-	public List<Empresa> findAllBD(){
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 				
-		return entityManager.createQuery("from Empresa").getResultList();
-	}
-	
+		
 	@Override
 	public boolean sonIguales(Empresa e1, Empresa e2) {
 		return e1.getSymbol().equals(e2.getSymbol());
 	}
 
 	@Override
-	public void agregarElementos(List<Empresa> empresas) {
+	public void insertarVarios(List<Empresa> empresas) {
 		for (Empresa empresa : empresas) {
 			if (!existeElemento(empresa))
-				this.agregarElemento(empresa);
+				this.insertar(empresa);
 			else
 				this.buscarElemento(empresa).agregarPeriodos(empresa.getPeriodos());
 		}
-	}
-
-	public void agregarPeriodoABD(Periodo periodo, Empresa empresa) {
-		
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();		
-		entityManager.persist(periodo);
-		
-	}
+	}	
 
 }

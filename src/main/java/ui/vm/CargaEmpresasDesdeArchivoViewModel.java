@@ -13,6 +13,7 @@ import model.data.HandlerArchivoCSV;
 import model.data.HandlerArchivoJSON;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
+import model.repositories.RepoEmpresasBD;
 
 @Observable
 public class CargaEmpresasDesdeArchivoViewModel {
@@ -38,7 +39,7 @@ public class CargaEmpresasDesdeArchivoViewModel {
 			throw new UserException("El archivo no tiena la extensión correcta");
 		
 		/* En este llamado ya esta chequeado los repetidos en el modelo */
-		RepoEmpresas.getInstance().insertarVariosEnBD(empresas);
+		new RepoEmpresasBD().insertarVarios(empresas);
 		
 		/* Agrega las cuentas nuevas al Repositorio de Cuentas Predeterminadas */
 //		RepoCuentas.getInstance().agregarDesdeEmpresas(empresas);

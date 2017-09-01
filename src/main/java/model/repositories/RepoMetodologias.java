@@ -14,7 +14,7 @@ import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.Tendencia;
 import model.data.HandlerArchivoJSON;
 
-public class RepoMetodologias extends Repositorio<Metodologia> {
+public class RepoMetodologias extends RepoArchivo<Metodologia> {
 
 	private static final RepoMetodologias instance = new RepoMetodologias();
 
@@ -37,7 +37,7 @@ public class RepoMetodologias extends Repositorio<Metodologia> {
 	}
 
 	private RepoMetodologias() {
-		this.agregarElementos(metodologiasPredefinidas);
+		this.insertarVarios(metodologiasPredefinidas);
 	}
 
 	public static RepoMetodologias getInstance() {
@@ -51,7 +51,7 @@ public class RepoMetodologias extends Repositorio<Metodologia> {
 
 	/* Carga desde archivo JSON */
 	public void cargar() {
-		this.agregarElementos(new HandlerArchivoJSON(RUTA).<Metodologia>load(Metodologia.class));
+		this.insertarVarios(new HandlerArchivoJSON(RUTA).<Metodologia>load(Metodologia.class));
 	}
 
 	/* Guardado en archivo JSON */

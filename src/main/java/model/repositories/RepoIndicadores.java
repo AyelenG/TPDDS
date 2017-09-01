@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import model.Indicador;
 import model.data.HandlerArchivoJSON;
 
-public class RepoIndicadores extends Repositorio<Indicador> {
+public class RepoIndicadores extends RepoArchivo<Indicador> {
 
 	private static final RepoIndicadores instance = new RepoIndicadores();
 
@@ -21,7 +21,7 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 			new Indicador("Margen", "<PAPA> - [FDS]"));
 
 	private RepoIndicadores() {
-		this.agregarElementos(indicadoresPredefinidos);
+		this.insertarVarios(indicadoresPredefinidos);
 	}
 
 	public static RepoIndicadores getInstance() {
@@ -35,7 +35,7 @@ public class RepoIndicadores extends Repositorio<Indicador> {
 
 	/* Carga desde archivo JSON */
 	public void cargar() {
-		this.agregarElementos(new HandlerArchivoJSON(RUTA).<Indicador>load(Indicador.class));
+		this.insertarVarios(new HandlerArchivoJSON(RUTA).<Indicador>load(Indicador.class));
 	}
 
 	/* Guardado en archivo JSON */

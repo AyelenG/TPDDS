@@ -3,12 +3,16 @@ package application;
 import org.uqbar.arena.Application;
 
 import model.repositories.RepoCuentas;
+import model.repositories.RepoCuentasBD;
+import model.repositories.RepoEmpresas;
+import model.repositories.RepoEmpresasBD;
 import ui.windows.InicioWindow;
 
 public class InicializarBDVaciaApplication extends Application {
 
 	public static void main(String[] args) {
-		RepoCuentas.getInstance().cargarBDDesdeArchivo();
+		new RepoCuentasBD().cargarBDDesdeArchivo();
+		new RepoEmpresasBD().cargarBDDesdeArchivo();
 		/*RepoIndicadores.getInstance().cargar();
 		RepoMetodologias.getInstance().cargar();
 		RepoEmpresas.getInstance().findAllBD();

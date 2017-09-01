@@ -54,7 +54,7 @@ public class CuentaEmpresa{
 	public void setCuenta(Cuenta cuenta) {
 		Cuenta cuentaEncontrada = RepoCuentas.getInstance().buscarElemento(cuenta);
 		if(cuentaEncontrada == null){
-			RepoCuentas.getInstance().agregarElemento(cuenta);
+			RepoCuentas.getInstance().insertar(cuenta);
 			RepoCuentas.getInstance().guardar();
 			this.cuenta = cuenta;
 		}

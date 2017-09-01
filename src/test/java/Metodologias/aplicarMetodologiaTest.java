@@ -37,7 +37,7 @@ public class aplicarMetodologiaTest {
 
 	@Before
 	public void inicializarDatos() {
-		indicadores.agregarElemento(new Indicador("TEST", "[EBITDA]"));
+		indicadores.insertar(new Indicador("TEST", "[EBITDA]"));
 
 		Empresa empresa;
 
@@ -48,7 +48,7 @@ public class aplicarMetodologiaTest {
 		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(44.3)));
 		empresa.agregarCuenta(new Periodo(2012), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(23.8)));
 		empresa.agregarCuenta(new Periodo(2004), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(15.8)));
-		empresas.agregarElemento(empresa);
+		empresas.insertar(empresa);
 
 		empresa = new Empresa("APL", "Apple");
 		empresa.agregarCuenta(new Periodo(2012), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.9)));
@@ -56,7 +56,7 @@ public class aplicarMetodologiaTest {
 		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.4)));
 		empresa.agregarCuenta(new Periodo(2014), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(19.8)));
 		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(25.8)));
-		empresas.agregarElemento(empresa);
+		empresas.insertar(empresa);
 
 		empresa = new Empresa("IBM", "IBM");
 		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(119)));
@@ -65,7 +65,7 @@ public class aplicarMetodologiaTest {
 		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(22.4)));
 		empresa.agregarCuenta(new Periodo(2012), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(150.2)));
 		empresa.agregarCuenta(new Periodo(1989), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(32.8)));
-		empresas.agregarElemento(empresa);
+		empresas.insertar(empresa);
 
 		List<Condicion> condiciones = new LinkedList<>();
 		condiciones.add(new CondicionNoTaxativaConfigurable("Max.TEST - 3 años", 10, new Mayor(), "Test", 3));
@@ -76,7 +76,8 @@ public class aplicarMetodologiaTest {
 				"Test", 2, BigDecimal.valueOf(120)));
 		condiciones.add(new Longevidad());
 
-		metodologias.agregarElemento(new Metodologia("Prueba", condiciones));
+		metodologias.insertar(new Metodologia("Prueba", condiciones));
+
 	}
 
 	@Test
@@ -95,16 +96,16 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarCondicionTaxativaTendencia() {
-		Condicion cond = new CondicionTaxativaConfigurable("Creciente TEST - 4 años", new Mayor(),
-				new Tendencia(), "Test", 4, null);
+		Condicion cond = new CondicionTaxativaConfigurable("Creciente TEST - 4 años", new Mayor(), new Tendencia(),
+				"Test", 4, null);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		assertTrue(cond.convieneInvertirEn(facebook));
 	}
 
 	@Test
 	public void verificarCondicionTaxativaMediana() {
-		Condicion cond = new CondicionTaxativaConfigurable("Mediana TEST - 5 años < 30.91", new Menor(),
-				new Mediana(), "Test", 5, BigDecimal.valueOf(30.91));
+		Condicion cond = new CondicionTaxativaConfigurable("Mediana TEST - 5 años < 30.91", new Menor(), new Mediana(),
+				"Test", 5, BigDecimal.valueOf(30.91));
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
 		assertTrue(cond.convieneInvertirEn(apple));
 	}
@@ -168,7 +169,7 @@ public class aplicarMetodologiaTest {
 		empresa.agregarCuenta(new Periodo(2015), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(30.1)));
 		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(31.4)));
 		empresa.agregarCuenta(new Periodo(2013), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(25.8)));
-		empresas.agregarElemento(empresa);
+		empresas.insertar(empresa);
 
 		List<Empresa> empresasValidas = new LinkedList<>();
 		empresasValidas.add(empresas.buscarElemento(new Empresa("FCB", "Facebook")));
@@ -177,15 +178,14 @@ public class aplicarMetodologiaTest {
 		assertEquals(empresasValidas,
 				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerValidas(empresas.getElementos()));
 	}
-	
+
 	@Test
 	public void verificarAplicacionMetodologia() {
 		Metodologia prueba = metodologias.buscarElemento(new Metodologia("Prueba"));
 		List<Empresa> empresasOrdenadas = new LinkedList<>();
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("IBM", "IBM")));
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("FCB", "Facebook")));
-		assertEquals(empresasOrdenadas,
-				prueba.aplicar(prueba.obtenerValidas(empresas.getElementos())));
+		assertEquals(empresasOrdenadas, prueba.aplicar(prueba.obtenerValidas(empresas.getElementos())));
 	}
 
 	@After

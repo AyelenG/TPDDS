@@ -19,7 +19,7 @@ public class CargaDeArchivoJSONTest {
 
 	@Before
 	public void inicio() {
-		empresas.agregarElementos(loader.loadEmpresas());
+		empresas.insertarVarios(loader.loadEmpresas());
 	}
 
 	@Test

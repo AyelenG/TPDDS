@@ -73,7 +73,7 @@ public class EvaluadorTest {
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoTieneCuenta() {
 		Indicador ind = new Indicador("PAPA","[EBITDA]");
-		indicadores.agregarElemento(ind);
+		indicadores.insertar(ind);
 		new Indicador("7", "8 * <PAPA>").evaluar(periodo);
 	}
 	

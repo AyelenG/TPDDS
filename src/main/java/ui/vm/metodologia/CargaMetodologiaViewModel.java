@@ -57,7 +57,7 @@ public class CargaMetodologiaViewModel {
 		condiciones.addAll(condicionesPrim.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
 		metodologia.setCondiciones(condiciones);
 		
-		RepoMetodologias.getInstance().agregarElemento(metodologia);
+		RepoMetodologias.getInstance().insertar(metodologia);
 		RepoMetodologias.getInstance().guardar();
 		this.setHabilitaCarga(false);
 	}

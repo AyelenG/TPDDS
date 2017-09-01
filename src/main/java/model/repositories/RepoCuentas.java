@@ -3,17 +3,12 @@ package model.repositories;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
 import model.data.HandlerArchivoJSON;
 
-public class RepoCuentas extends Repositorio<Cuenta> {
+public class RepoCuentas extends RepoArchivo<Cuenta> {
 
 	private static final RepoCuentas instance = new RepoCuentas();
 
@@ -36,7 +31,7 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 	
 	/* Carga desde archivo JSON */
 	public void cargar() {
-		this.agregarElementos(new HandlerArchivoJSON(RUTA).<Cuenta>load(Cuenta.class));
+		this.insertarVarios(new HandlerArchivoJSON(RUTA).<Cuenta>load(Cuenta.class));
 		
 		/* IMPRESION POR CONSOLA PARA CONTROL */
 		/*
@@ -51,13 +46,7 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 		new HandlerArchivoJSON(RUTA).<Cuenta>save(this.getElementos());	
 	}	
 	
-	@SuppressWarnings("unchecked")
-	public List<Cuenta> findAllBD(){
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 				
-		return entityManager.createQuery("from Cuenta").getResultList();			
-	}
-	
-	
+
 	/**
 	 * Desde una Lista de Empresas toma todas las cuentas e ingresa solo las que
 	 * no estan repetidas en el Repositorio y guarda el archivo en disco
@@ -73,17 +62,8 @@ public class RepoCuentas extends Repositorio<Cuenta> {
 				List<Cuenta> cuentas = periodo.getCuentas().stream()
 														.map(c->c.getCuenta())
 														.collect(Collectors.toList());
-				this.agregarElementos(cuentas);
+				this.insertarVarios(cuentas);
 			}
 	}
 	
-	public void cargarBDDesdeArchivo(){
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		List<Cuenta> cuentas = new HandlerArchivoJSON(RUTA).<Cuenta>load(Cuenta.class);
-		tx.begin();
-		cuentas.forEach(elemento -> em.persist(elemento));
-		tx.commit();
-	}
-
 }

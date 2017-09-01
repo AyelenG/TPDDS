@@ -33,7 +33,7 @@ public class PersistenciaTest {
 	@Before
 	public void inicio() {
 		//entityManager.createStoredProcedureQuery("limpiarTablas").execute();
-		empresas.agregarElementos(loader.loadEmpresas());
+		empresas.insertarVarios(loader.loadEmpresas());
 	}
 
 //	@Test

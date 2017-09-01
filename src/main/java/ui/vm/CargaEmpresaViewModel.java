@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.Observable;
 import model.Empresa;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
+import model.repositories.RepoEmpresasBD;
 
 @Observable
 public class CargaEmpresaViewModel {
@@ -21,12 +22,13 @@ public class CargaEmpresaViewModel {
 
 	public void cargarEmpresa() {
 		RepoEmpresas empresas = RepoEmpresas.getInstance();
+		RepoEmpresasBD repositorio = new RepoEmpresasBD();
 		if (empresa.getSymbol().isEmpty() || empresa.getNombre().isEmpty())
 			throw new UserException("Complete los datos de la empresa.");
 		if (RepoEmpresas.getInstance().existeElemento(empresa))
 			throw new UserException("La empresa ingresada ya existe.");
-		empresas.agregarElemento(empresa);
-		empresas.insertarEnBD(empresa);
+		empresas.insertar(empresa);
+		repositorio.insertar(empresa);
 		
 		this.setHabilitaCarga(false);
 	}

@@ -12,6 +12,14 @@ import model.data.HandlerArchivoJSON;
 
 public class RepoEmpresasBD extends RepoBD<Empresa> {
 	
+	private static final RepoEmpresasBD instance = new RepoEmpresasBD();
+	
+	private RepoEmpresasBD(){}
+	
+	public static RepoEmpresasBD getInstance() {
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Empresa> findAll(){					

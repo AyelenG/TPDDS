@@ -12,6 +12,14 @@ import model.data.HandlerArchivoJSON;
 
 public class RepoCuentasBD extends RepoBD<Cuenta>{
 	
+	private static final RepoCuentasBD instance = new RepoCuentasBD();
+	
+	private RepoCuentasBD(){}
+	
+	public static RepoCuentasBD getInstance() {
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cuenta> findAll(){					

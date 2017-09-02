@@ -8,5 +8,5 @@ import java.util.List;
 public interface Repositorio<T>{
 	
 	void insertar(T elemento);
-	void insertarVarios(List<?> elementos);
+	void insertarVarios(List<T> elementos);
 }

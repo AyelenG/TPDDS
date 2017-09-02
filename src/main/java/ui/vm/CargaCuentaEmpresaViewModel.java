@@ -49,7 +49,6 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public void cargarCuenta() {
-		RepoEmpresasBD repositorio = new RepoEmpresasBD();
 		if (empresaSeleccionada == null)
 			throw new UserException("Debe seleccionar una empresa.");
 		if (this.getCuentaSeleccionada() == null || this.getValor().isEmpty())
@@ -63,7 +62,7 @@ public class CargaCuentaEmpresaViewModel {
 			throw new UserException("Debe ingresar un valor válido.");
 		}		
 		empresaSeleccionada.agregarCuenta(new Periodo(anio), new CuentaEmpresa(cuentaSeleccionada.getNombre(), valor));
-		repositorio.insertar(empresaSeleccionada);
+		RepoEmpresasBD.getInstance().insertar(empresaSeleccionada);
 		this.setHabilitaCarga(false);
 		
 		/**
@@ -102,11 +101,11 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return new RepoEmpresasBD().findAll();
+		return RepoEmpresasBD.getInstance().findAll();
 	}
 	
 	public List<Cuenta> getCuentas() {
-		return new RepoCuentasBD().findAll();
+		return RepoCuentasBD.getInstance().findAll();
 	}
 
 	public Cuenta getCuentaSeleccionada() {

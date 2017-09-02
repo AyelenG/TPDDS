@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-public abstract class RepoBD <T> {
+public abstract class RepoBD <T> implements Repositorio<T> {
 	
 	protected EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
 	

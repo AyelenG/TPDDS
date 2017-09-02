@@ -11,8 +11,8 @@ import ui.windows.InicioWindow;
 public class InicializarBDVaciaApplication extends Application {
 
 	public static void main(String[] args) {
-		new RepoCuentasBD().cargarBDDesdeArchivo();
-		new RepoEmpresasBD().cargarBDDesdeArchivo();
+		RepoCuentasBD.getInstance().cargarBDDesdeArchivo();
+		RepoEmpresasBD.getInstance().cargarBDDesdeArchivo();
 		/*RepoIndicadores.getInstance().cargar();
 		RepoMetodologias.getInstance().cargar();
 		RepoEmpresas.getInstance().findAllBD();

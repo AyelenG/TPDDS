@@ -12,7 +12,7 @@ import model.Cuenta;
 import model.Empresa;
 import model.data.HandlerArchivoJSON;
 
-public abstract class RepoArchivo<T> {
+public abstract class RepoArchivo<T> implements Repositorio<T>{
 	
 	//final Class<T> claseDelTipoGenerico;
 	private List<T> elementos = new LinkedList<>();

@@ -22,13 +22,12 @@ public class CargaEmpresaViewModel {
 
 	public void cargarEmpresa() {
 		RepoEmpresas empresas = RepoEmpresas.getInstance();
-		RepoEmpresasBD repositorio = new RepoEmpresasBD();
 		if (empresa.getSymbol().isEmpty() || empresa.getNombre().isEmpty())
 			throw new UserException("Complete los datos de la empresa.");
 		if (RepoEmpresas.getInstance().existeElemento(empresa))
 			throw new UserException("La empresa ingresada ya existe.");
 		empresas.insertar(empresa);
-		repositorio.insertar(empresa);
+		RepoEmpresasBD.getInstance().insertar(empresa);
 		
 		this.setHabilitaCarga(false);
 	}

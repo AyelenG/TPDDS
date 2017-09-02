@@ -32,16 +32,15 @@ public class CargaNuevaCuentaViewModel {
 	}
 
 	public void cargarCuenta() {
-		RepoCuentas cuentas = RepoCuentas.getInstance();
-		RepoCuentasBD repo = new RepoCuentasBD();
-		if (cuentas.existeElemento(cuenta))
+		RepoCuentas repositorioCuentas = RepoCuentas.getInstance();
+		if (repositorioCuentas.existeElemento(cuenta))
 			throw new UserException("La cuenta ingresada ya existe.");
 		if (cuenta.getNombre().isEmpty()) {
 			throw new UserException("Complete el nombre de la Cuenta.");
 		}
-		cuentas.insertar(cuenta);
-		cuentas.guardar();
-		repo.insertar(cuenta);
+		repositorioCuentas.insertar(cuenta);
+		repositorioCuentas.guardar();
+		RepoCuentas.getInstance().insertar(cuenta);
 		this.setHabilitaCarga(false);
 		if (parentVM != null)
 			ObservableUtils.firePropertyChanged(this.parentVM, "cuentas");

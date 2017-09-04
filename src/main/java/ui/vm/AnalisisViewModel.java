@@ -16,6 +16,7 @@ import model.Empresa;
 import model.Indicador;
 import model.Periodo;
 import model.repositories.RepoEmpresas;
+import model.repositories.RepoEmpresasBD;
 import model.repositories.RepoIndicadores;
 
 @Observable
@@ -105,7 +106,7 @@ public class AnalisisViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return RepoEmpresas.getInstance().findAll();
+		return RepoEmpresasBD.getInstance().findAll();
 	}
 
 	public Empresa getEmpresaSeleccionada() {

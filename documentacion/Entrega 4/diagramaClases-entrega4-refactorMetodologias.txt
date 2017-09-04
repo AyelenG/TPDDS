@@ -1,0 +1,87 @@
+@startuml
+class Metodologia [[java:model.Metodologia]] {
+	-String nombre
+	-List<Condicion> condiciones
+	+List<Empresa> obtenerValidas(List<Empresa> empresas)
+	+List<Empresa> aplicar(List<Empresa> empresas)
+	+List<Empresa> obtenerFiltradas(List<Empresa> empresas)
+	+List<Empresa> obtenerOrdenadas(List<Empresa> empresas)
+	-int comparar(Empresa emp1, Empresa emp2)
+}
+
+abstract class Condicion [[java:model.condiciones.Condicion]] {
+	+{abstract}boolean esValida(Empresa emp)
+	+{abstract}boolean convieneInvertirEn(Empresa emp)
+	+{abstract}int comparar(Empresa emp1, Empresa emp2)
+}
+
+abstract class CondicionConfigurable [[java:model.condiciones.CondicionConfigurable]] {
+	#String nombre
+	#Comparador comparador
+	#String nombreIndicador
+	#Integer cantidadAnios
+	#Indicador obtenerIndicador(String nombreIndicador)
+	+boolean esValida(Empresa emp)
+}
+Condicion <|-- CondicionConfigurable
+
+class CondicionNoTaxativaConfigurable [[java:model.condiciones.notaxativas.CondicionNoTaxativaConfigurable]] {
+	-Integer peso
+	+int comparar(Empresa emp1, Empresa emp2)
+	+boolean convieneInvertirEn(Empresa emp)
+}
+CondicionConfigurable <|-- CondicionNoTaxativaConfigurable
+
+class CondicionTaxativaConfigurable [[java:model.condiciones.taxativas.CondicionTaxativaConfigurable]] {
+	-TipoCondicionTaxativa tipo
+	-BigDecimal valorDeReferencia
+	+int comparar(Empresa emp1, Empresa emp2)
+	+boolean convieneInvertirEn(Empresa emp)
+}
+CondicionConfigurable <|-- CondicionTaxativaConfigurable
+
+class Longevidad [[java:model.condiciones.combinadas.Longevidad]] {
+	+boolean convieneInvertirEn(Empresa emp)
+	+int comparar(Empresa emp1, Empresa emp2)
+	+boolean esValida(Empresa emp)
+}
+Condicion <|-- Longevidad
+
+interface Comparador [[java:model.condiciones.Comparador]] {
+	int aplicar(BigDecimal valor1, BigDecimal valor2)
+}
+class Mayor [[java:model.condiciones.Mayor]] {
+}
+Comparador <|.. Mayor
+class Menor [[java:model.condiciones.Menor]] {
+}
+interface Comparador [[java:model.condiciones.Comparador]] {
+}
+Comparador <|.. Menor
+
+CondicionConfigurable --> Comparador : contiene
+
+interface TipoCondicionTaxativa [[java:model.condiciones.taxativas.TipoCondicionTaxativa]] {
+	boolean aplicar(Empresa emp, CondicionTaxativaConfigurable condicion, Indicador indicador)
+}
+class Simple [[java:model.condiciones.taxativas.Simple]] {
+}
+TipoCondicionTaxativa <|.. Simple
+class Sumatoria [[java:model.condiciones.taxativas.Sumatoria]] {
+}
+TipoCondicionTaxativa <|.. Sumatoria
+class Promedio [[java:model.condiciones.taxativas.Promedio]] {
+}
+TipoCondicionTaxativa <|.. Promedio
+class Mediana [[java:model.condiciones.taxativas.Mediana]] {
+}
+TipoCondicionTaxativa <|.. Mediana
+class Tendencia [[java:model.condiciones.taxativas.Tendencia]] {
+}
+TipoCondicionTaxativa <|.. Tendencia
+
+CondicionTaxativaConfigurable --> TipoCondicionTaxativa : contiene
+
+Metodologia --> "*" Condicion : contiene
+
+@enduml

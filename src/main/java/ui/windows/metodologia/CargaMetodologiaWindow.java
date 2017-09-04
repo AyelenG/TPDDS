@@ -14,9 +14,7 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import ui.vm.metodologia.CargaMetodologiaViewModel;
-import ui.vm.metodologia.auxiliares.CondicionCombinadaVM;
-import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
-import ui.vm.metodologia.auxiliares.CondicionTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionVM;
 
 @SuppressWarnings("serial")
 public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewModel> {
@@ -36,7 +34,7 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 				.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel).setCaption("Borrar Condicion No Taxativa").onClick(() -> this.getModelObject().borrarCondicionNoTaxativa())
 		.bindEnabledToProperty("habilitaCarga");
-		new Button(actionsPanel).setCaption("Borrar Condicion Combinada").onClick(() -> this.getModelObject().borrarCondicionCombinada())
+		new Button(actionsPanel).setCaption("Borrar Condicion Primitiva").onClick(() -> this.getModelObject().borrarCondicionPrimitiva())
 		.bindEnabledToProperty("habilitaCarga");
 		new Button(actionsPanel).setCaption("Limpiar Todo").onClick(() -> this.getModelObject().limpiarTodo())
 				.bindEnabledToProperty("habilitaCarga");
@@ -69,10 +67,10 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 		
 		new Label(taxativasPanel).setText("     Condiciones Taxativas       ").setFontSize(15);
 		
-		Table<CondicionTaxativaVM> tablaCondicionesT = new Table<>(taxativasPanel, CondicionTaxativaVM.class);
+		Table<CondicionVM> tablaCondicionesT = new Table<>(taxativasPanel, CondicionVM.class);
 		tablaCondicionesT.setNumberVisibleRows(15).bindItemsToProperty("condicionesT");
 		tablaCondicionesT.bindSelectionToProperty("condicionTSeleccionada");
-		Column<CondicionTaxativaVM> columnaT = new Column<>(tablaCondicionesT);
+		Column<CondicionVM> columnaT = new Column<>(tablaCondicionesT);
 		columnaT.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
 
 		//no taxativas
@@ -81,23 +79,23 @@ public class CargaMetodologiaWindow extends SimpleWindow<CargaMetodologiaViewMod
 		
 		new Label(noTaxativasPanel).setText("     Condiciones No Taxativas    ").setFontSize(15);
 		
-		Table<CondicionNoTaxativaVM> tablaCondicionesNT = new Table<>(noTaxativasPanel, CondicionNoTaxativaVM.class);
+		Table<CondicionVM> tablaCondicionesNT = new Table<>(noTaxativasPanel, CondicionVM.class);
 		tablaCondicionesNT.setNumberVisibleRows(15).bindItemsToProperty("condicionesNT");
 		tablaCondicionesNT.bindSelectionToProperty("condicionNTSeleccionada");
-		Column<CondicionNoTaxativaVM> columnaNT = new Column<>(tablaCondicionesNT);
+		Column<CondicionVM> columnaNT = new Column<>(tablaCondicionesNT);
 		columnaNT.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
 		
 		//combinadas
 		Panel combinadasPanel = new Panel(tablasPanel);
 		combinadasPanel.setLayout(new VerticalLayout());
 		
-		new Label(combinadasPanel).setText("   Condiciones Combinadas      ").setFontSize(15);
+		new Label(combinadasPanel).setText("   Condiciones Primitivas      ").setFontSize(15);
 		
-		Table<CondicionCombinadaVM> tablaCondicionesComb = new Table<>(combinadasPanel, CondicionCombinadaVM.class);
-		tablaCondicionesComb.setNumberVisibleRows(15).bindItemsToProperty("condicionesComb");
-		tablaCondicionesComb.bindSelectionToProperty("condicionCombSeleccionada");
-		Column<CondicionCombinadaVM> columnaComb = new Column<>(tablaCondicionesComb);
-		columnaComb.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
+		Table<CondicionVM> tablaCondicionesPrim = new Table<>(combinadasPanel, CondicionVM.class);
+		tablaCondicionesPrim.setNumberVisibleRows(15).bindItemsToProperty("condicionesPrim");
+		tablaCondicionesPrim.bindSelectionToProperty("condicionPrimSeleccionada");
+		Column<CondicionVM> columnaPrim = new Column<>(tablaCondicionesPrim);
+		columnaPrim.setTitle("Nombre/Descripcion").setFixedSize(300).bindContentsToProperty("titulo");
 
 		Label labelExito = new Label(mainPanel);
 		labelExito.setForeground(Color.GREEN);

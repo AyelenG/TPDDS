@@ -1,6 +1,6 @@
 [ {
   "nombre" : "Prueba",
-  "condicionesNT" : [ {
+  "condiciones" : [ {
     "nombre" : "Max.TEST - 3 años",
     "comparador" : "Mayor",
     "nombreIndicador" : "Test",
@@ -12,8 +12,7 @@
     "nombreIndicador" : "Test",
     "cantidadAnios" : 4,
     "peso" : 20
-  } ],
-  "condicionesT" : [ {
+  }, {
     "nombre" : "Promedio TEST - 5 años > 50",
     "comparador" : "Mayor",
     "nombreIndicador" : "Test",
@@ -27,18 +26,16 @@
     "cantidadAnios" : 2,
     "tipo" : "Simple",
     "valorDeReferencia" : 120
-  } ],
-  "condicionesComb" : [ "Longevidad" ]
+  }, "Longevidad" ]
 }, {
   "nombre" : "Metodologia Blanca Vitale ",
-  "condicionesNT" : [ {
+  "condiciones" : [ {
     "nombre" : "Max. INDI - 4 años",
     "comparador" : "Mayor",
     "nombreIndicador" : "INDI",
     "cantidadAnios" : 4,
     "peso" : 10
-  } ],
-  "condicionesT" : [ {
+  }, {
     "nombre" : "PAPA < 500 - 3 años",
     "comparador" : "Menor",
     "nombreIndicador" : "PAPA",
@@ -52,18 +49,16 @@
     "cantidadAnios" : 2,
     "tipo" : "Sumatoria",
     "valorDeReferencia" : 100
-  } ],
-  "condicionesComb" : [ ]
+  } ]
 }, {
   "nombre" : "Metodologia Datos Reales",
-  "condicionesNT" : [ {
+  "condiciones" : [ {
     "nombre" : "Min. Gastos de Explot. a 4 años",
     "comparador" : "Menor",
     "nombreIndicador" : "TOTAL GASTOS DE EXPLOTACION",
     "cantidadAnios" : 4,
     "peso" : 10
-  } ],
-  "condicionesT" : [ {
+  }, {
     "nombre" : "Promedio - Beneficio Bruto > 40K a 3 años ",
     "comparador" : "Mayor",
     "nombreIndicador" : "BENEFICIO BRUTO",
@@ -77,6 +72,8 @@
     "cantidadAnios" : 3,
     "tipo" : "Tendencia",
     "valorDeReferencia" : null
-  } ],
-  "condicionesComb" : [ ]
+  } ]
+}, {
+  "nombre" : "Solo Longevidad",
+  "condiciones" : [ "Longevidad" ]
 } ]

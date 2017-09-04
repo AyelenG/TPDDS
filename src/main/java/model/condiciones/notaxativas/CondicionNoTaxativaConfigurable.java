@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
@@ -14,8 +15,9 @@ import model.condiciones.CondicionConfigurable;
 import utils.UtilsListas;
 
 @Observable
+@JsonDeserialize(as = CondicionNoTaxativaConfigurable.class)
 @JsonIgnoreProperties({ "changeSupport" })
-public class CondicionNoTaxativaConfigurable extends CondicionConfigurable implements CondicionNoTaxativa {
+public class CondicionNoTaxativaConfigurable extends CondicionConfigurable{
 
 	private Integer peso;
 
@@ -52,6 +54,12 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable imple
 		return this.comparador.aplicar(sumEmp1, sumEmp2) * peso;
 	}
 
+	@Override
+	public boolean convieneInvertirEn(Empresa emp) {
+		//devuelve el elemento neutro para no influir
+		return true;
+	}
+	
 	public Integer getPeso() {
 		return peso;
 	}
@@ -59,5 +67,6 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable imple
 	public void setPeso(Integer peso) {
 		this.peso = peso;
 	}
+
 	
 }

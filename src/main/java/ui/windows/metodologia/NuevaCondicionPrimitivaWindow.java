@@ -7,9 +7,7 @@ import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import model.condiciones.combinadas.CondicionCombinada;
-import model.condiciones.notaxativas.CondicionNoTaxativa;
-import model.condiciones.taxativas.CondicionTaxativa;
+import model.condiciones.Condicion;
 import ui.vm.metodologia.CargaMetodologiaViewModel;
 import ui.vm.metodologia.NuevaCondicionPrimitivaViewModel;
 
@@ -23,14 +21,8 @@ public class NuevaCondicionPrimitivaWindow  extends SimpleWindow<NuevaCondicionP
 	@Override
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel)
-		.setCaption("Agregar Condicion Taxativa")
-		.onClick(()-> this.getModelObject().cargarCondicionT());
-		new Button(actionsPanel)
-		.setCaption("Agregar Condicion No Taxativa")
-		.onClick(()-> this.getModelObject().cargarCondicionNT());
-		new Button(actionsPanel)
-		.setCaption("Agregar Condicion Combinada")
-		.onClick(()-> this.getModelObject().cargarCondicionComb());
+		.setCaption("Agregar Condicion Primitiva")
+		.onClick(()-> this.getModelObject().cargarCondicionPrim());
 		new Button(actionsPanel)
 		.setCaption("Cerrar")
 		.onClick(() -> this.close());
@@ -42,24 +34,10 @@ public class NuevaCondicionPrimitivaWindow  extends SimpleWindow<NuevaCondicionP
 		this.setTitle("Agregar Condicion Primitiva");
 		new Label(mainPanel).setHeight(20).setWidth(200);
 		
-		new Label(mainPanel).setText("Elija una condicion primitiva combinada:").setFontSize(14);
-		Selector<CondicionCombinada> selectorCondComb = new Selector<CondicionCombinada>(mainPanel).allowNull(true);
-		selectorCondComb.bindItemsToProperty("condicionesComb");
-		selectorCondComb.bindValueToProperty("condicionCombSeleccionada");
-		
-		new Label(mainPanel).setHeight(20).setWidth(200);
-		
-		new Label(mainPanel).setText("Elija una condicion primitiva taxativa:").setFontSize(14);
-		Selector<CondicionTaxativa> selectorCondT = new Selector<CondicionTaxativa>(mainPanel).allowNull(true);
-		selectorCondT.bindItemsToProperty("condicionesT");
-		selectorCondT.bindValueToProperty("condicionTSeleccionada");
-		
-		new Label(mainPanel).setHeight(20).setWidth(200);
-		
-		new Label(mainPanel).setText("Elija una condicion primitiva no taxativa:").setFontSize(14);
-		Selector<CondicionNoTaxativa> selectorCondNT = new Selector<CondicionNoTaxativa>(mainPanel).allowNull(true);
-		selectorCondNT.bindItemsToProperty("condicionesNT");
-		selectorCondNT.bindValueToProperty("condicionNTSeleccionada");
+		new Label(mainPanel).setText("Elija una condicion primitiva:").setFontSize(14);
+		Selector<Condicion> selectorPrim = new Selector<Condicion>(mainPanel).allowNull(true);
+		selectorPrim.bindItemsToProperty("condicionesPrim");
+		selectorPrim.bindValueToProperty("condicionPrimSeleccionada");
 		
 		new Label(mainPanel).setHeight(20).setWidth(200);
 	}

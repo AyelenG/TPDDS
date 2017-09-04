@@ -13,7 +13,7 @@ import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.repositories.RepoIndicadores;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
-import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionVM;
 
 @Observable
 public class NuevaCondicionNoTaxativaViewModel {
@@ -85,7 +85,7 @@ public class NuevaCondicionNoTaxativaViewModel {
 		nueva.setCantidadAnios(anios);
 		nueva.setPeso(peso);
 
-		parentVM.getCondicionesNT().add(new CondicionNoTaxativaVM(nueva.getNombre(), nueva));
+		parentVM.getCondicionesNT().add(new CondicionVM(nueva.getNombre(), nueva));
 		this.setHabilitaCarga(false);
 		// ObservableUtils.firePropertyChanged(this.parentVM, "condicionesNT");
 

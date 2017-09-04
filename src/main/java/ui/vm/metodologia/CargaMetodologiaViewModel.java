@@ -9,23 +9,22 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Metodologia;
+import model.condiciones.Condicion;
 import model.repositories.RepoMetodologias;
-import ui.vm.metodologia.auxiliares.CondicionCombinadaVM;
-import ui.vm.metodologia.auxiliares.CondicionNoTaxativaVM;
-import ui.vm.metodologia.auxiliares.CondicionTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionVM;
 
 @Observable
 public class CargaMetodologiaViewModel {
 
 	private Metodologia metodologia = new Metodologia();
 
-	private List<CondicionTaxativaVM> condicionesT = new LinkedList<>();
-	private List<CondicionNoTaxativaVM> condicionesNT = new LinkedList<>();
-	private List<CondicionCombinadaVM> condicionesComb = new LinkedList<>();
+	private List<CondicionVM> condicionesT = new LinkedList<>();
+	private List<CondicionVM> condicionesNT = new LinkedList<>();
+	private List<CondicionVM> condicionesPrim = new LinkedList<>();
 
-	private CondicionTaxativaVM condicionTSeleccionada;
-	private CondicionNoTaxativaVM condicionNTSeleccionada;
-	private CondicionCombinadaVM condicionCombSeleccionada;
+	private CondicionVM condicionTSeleccionada;
+	private CondicionVM condicionNTSeleccionada;
+	private CondicionVM condicionPrimSeleccionada;
 
 	private boolean habilitaCarga = true;
 
@@ -38,11 +37,11 @@ public class CargaMetodologiaViewModel {
 		this.setMetodologia(new Metodologia());
 		this.condicionesT.clear();
 		this.condicionesNT.clear();
-		this.condicionesComb.clear();
+		this.condicionesPrim.clear();
 		//no hace falta esto para que se actualize
 		// ObservableUtils.firePropertyChanged(this, "condicionesT");
 		// ObservableUtils.firePropertyChanged(this, "condicionesNT");
-		// ObservableUtils.firePropertyChanged(this, "condicionesComb");
+		// ObservableUtils.firePropertyChanged(this, "condicionesPrim");
 	}
 
 	public void cargarMetodologia() {
@@ -52,12 +51,12 @@ public class CargaMetodologiaViewModel {
 			throw new UserException("La Metodología ingresada ya existe.");
 		}
 
-		metodologia.setCondicionesT(condicionesT.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
-		metodologia
-				.setCondicionesNT(condicionesNT.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
-		metodologia.setCondicionesComb(
-				condicionesComb.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
-
+		List<Condicion> condiciones = new LinkedList<>();
+		condiciones.addAll(condicionesT.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
+		condiciones.addAll(condicionesNT.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
+		condiciones.addAll(condicionesPrim.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
+		metodologia.setCondiciones(condiciones);
+		
 		RepoMetodologias.getInstance().agregarElemento(metodologia);
 		RepoMetodologias.getInstance().guardar();
 		this.setHabilitaCarga(false);
@@ -77,11 +76,11 @@ public class CargaMetodologiaViewModel {
 			throw new UserException("Debe seleccionar una condicion no taxativa para borrar");
 	}
 
-	public void borrarCondicionCombinada() {
-		if (condicionCombSeleccionada != null)
-			this.condicionesComb.remove(condicionCombSeleccionada);
+	public void borrarCondicionPrimitiva() {
+		if (condicionPrimSeleccionada != null)
+			this.condicionesPrim.remove(condicionPrimSeleccionada);
 		else
-			throw new UserException("Debe seleccionar una condicion combinada para borrar");
+			throw new UserException("Debe seleccionar una condicion primitiva para borrar");
 	}
 
 	public Metodologia getMetodologia() {
@@ -105,52 +104,52 @@ public class CargaMetodologiaViewModel {
 		return !habilitaCarga;
 	}
 
-	public List<CondicionTaxativaVM> getCondicionesT() {
+	public List<CondicionVM> getCondicionesT() {
 		return condicionesT;
 	}
 
-	public void setCondicionesT(List<CondicionTaxativaVM> condicionesT) {
+	public void setCondicionesT(List<CondicionVM> condicionesT) {
 		this.condicionesT = condicionesT;
 	}
 
-	public List<CondicionNoTaxativaVM> getCondicionesNT() {
+	public List<CondicionVM> getCondicionesNT() {
 		return condicionesNT;
 	}
 
-	public void setCondicionesNT(List<CondicionNoTaxativaVM> condicionesNT) {
+	public void setCondicionesNT(List<CondicionVM> condicionesNT) {
 		this.condicionesNT = condicionesNT;
 	}
 
-	public List<CondicionCombinadaVM> getCondicionesComb() {
-		return condicionesComb;
+	public List<CondicionVM> getCondicionesPrim() {
+		return condicionesPrim;
 	}
 
-	public void setCondicionesComb(List<CondicionCombinadaVM> condicionesComb) {
-		this.condicionesComb = condicionesComb;
+	public void setCondicionesPrim(List<CondicionVM> condicionesPrim) {
+		this.condicionesPrim = condicionesPrim;
 	}
 
-	public CondicionTaxativaVM getCondicionTSeleccionada() {
+	public CondicionVM getCondicionTSeleccionada() {
 		return condicionTSeleccionada;
 	}
 
-	public void setCondicionTSeleccionada(CondicionTaxativaVM condicionTSeleccionada) {
+	public void setCondicionTSeleccionada(CondicionVM condicionTSeleccionada) {
 		this.condicionTSeleccionada = condicionTSeleccionada;
 	}
 
-	public CondicionNoTaxativaVM getCondicionNTSeleccionada() {
+	public CondicionVM getCondicionNTSeleccionada() {
 		return condicionNTSeleccionada;
 	}
 
-	public void setCondicionNTSeleccionada(CondicionNoTaxativaVM condicionNTSeleccionada) {
+	public void setCondicionNTSeleccionada(CondicionVM condicionNTSeleccionada) {
 		this.condicionNTSeleccionada = condicionNTSeleccionada;
 	}
 
-	public CondicionCombinadaVM getCondicionCombSeleccionada() {
-		return condicionCombSeleccionada;
+	public CondicionVM getCondicionPrimSeleccionada() {
+		return condicionPrimSeleccionada;
 	}
 
-	public void setCondicionCombSeleccionada(CondicionCombinadaVM condicionCombSeleccionada) {
-		this.condicionCombSeleccionada = condicionCombSeleccionada;
+	public void setCondicionPrimSeleccionada(CondicionVM condicionPrimSeleccionada) {
+		this.condicionPrimSeleccionada = condicionPrimSeleccionada;
 	}
 
 }

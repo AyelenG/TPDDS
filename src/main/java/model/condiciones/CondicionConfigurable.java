@@ -9,7 +9,7 @@ import model.Indicador;
 import model.Periodo;
 import model.repositories.RepoIndicadores;
 
-public abstract class CondicionConfigurable {
+public abstract class CondicionConfigurable extends Condicion{
 
 	protected String nombre = "";
 

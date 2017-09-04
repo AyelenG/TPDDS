@@ -19,7 +19,7 @@ import model.condiciones.taxativas.Sumatoria;
 import model.condiciones.taxativas.Tendencia;
 import model.repositories.RepoIndicadores;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
-import ui.vm.metodologia.auxiliares.CondicionTaxativaVM;
+import ui.vm.metodologia.auxiliares.CondicionVM;
 import ui.vm.metodologia.auxiliares.TipoCondicionVM;
 
 @Observable
@@ -103,7 +103,7 @@ public class NuevaCondicionTaxativaViewModel {
 		nueva.setCantidadAnios(anios);
 		nueva.setValorDeReferencia(valorDeRef);
 
-		parentVM.getCondicionesT().add(new CondicionTaxativaVM(nueva.getNombre(), nueva));
+		parentVM.getCondicionesT().add(new CondicionVM(nueva.getNombre(), nueva));
 		this.setHabilitaCarga(false);
 		// ObservableUtils.firePropertyChanged(this.parentVM, "condicionesT");
 	}

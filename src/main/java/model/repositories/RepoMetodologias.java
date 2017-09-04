@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import model.Metodologia;
+import model.condiciones.Condicion;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
-import model.condiciones.combinadas.CondicionCombinada;
-import model.condiciones.combinadas.Longevidad;
-import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
-import model.condiciones.taxativas.CondicionTaxativa;
+import model.condiciones.primitivas.Longevidad;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.Tendencia;
 import model.data.HandlerArchivoJSON;
@@ -25,20 +23,16 @@ public class RepoMetodologias extends Repositorio<Metodologia> {
 	private final List<Metodologia> metodologiasPredefinidas = new LinkedList<>();
 
 	{
-		List<CondicionNoTaxativa> condicionesNT = new LinkedList<>(); //peso 5 ambas condiciones
-		condicionesNT.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, new Mayor(),
+		List<Condicion> condiciones = new LinkedList<>(); 
+		condiciones.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, new Mayor(),
 				"Retorno sobre capital total", 10));
-		condicionesNT.add(new CondicionNoTaxativaConfigurable("Min. Nv.Deuda - 1 año", 5, new Menor(),
+		condiciones.add(new CondicionNoTaxativaConfigurable("Min. Nv.Deuda - 1 año", 5, new Menor(),
 				"Nivel de deuda", 1));
-
-		List<CondicionTaxativa> condicionesT = new LinkedList<>();
-		condicionesT.add(new CondicionTaxativaConfigurable("Margen Creciente - 10 años > 50", new Mayor(),
+		condiciones.add(new CondicionTaxativaConfigurable("Margen Creciente - 10 años > 50", new Mayor(),
 				new Tendencia(),"Margen", 10, null));
-
-		List<CondicionCombinada> condicionesComb = new LinkedList<>();
-		condicionesComb.add(new Longevidad());
+		condiciones.add(new Longevidad());
 		
-		Metodologia warrenBuffet = new Metodologia("Warren-Buffet", condicionesNT, condicionesT, condicionesComb);
+		Metodologia warrenBuffet = new Metodologia("Warren-Buffet", condiciones);
 		metodologiasPredefinidas.add(warrenBuffet);
 	}
 

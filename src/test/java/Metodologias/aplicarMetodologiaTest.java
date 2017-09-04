@@ -3,7 +3,6 @@ package Metodologias;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,13 +15,11 @@ import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
 import model.Periodo;
+import model.condiciones.Condicion;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
-import model.condiciones.combinadas.CondicionCombinada;
-import model.condiciones.combinadas.Longevidad;
-import model.condiciones.notaxativas.CondicionNoTaxativa;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
-import model.condiciones.taxativas.CondicionTaxativa;
+import model.condiciones.primitivas.Longevidad;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.Mediana;
 import model.condiciones.taxativas.Promedio;
@@ -70,37 +67,35 @@ public class aplicarMetodologiaTest {
 		empresa.agregarCuenta(new Periodo(1989), new CuentaEmpresa("EBITDA", BigDecimal.valueOf(32.8)));
 		empresas.agregarElemento(empresa);
 
-		List<CondicionNoTaxativa> condicionesNT = new LinkedList<>();
-		condicionesNT.add(new CondicionNoTaxativaConfigurable("Max.TEST - 3 años", 10, new Mayor(), "Test", 3));
-		condicionesNT.add(new CondicionNoTaxativaConfigurable("Min.TEST - 4 años", 20, new Menor(), "Test", 4));
-		List<CondicionTaxativa> condicionesT = new LinkedList<>();
-		condicionesT.add(new CondicionTaxativaConfigurable("Promedio TEST - 5 años > 50", new Mayor(), new Promedio(),
+		List<Condicion> condiciones = new LinkedList<>();
+		condiciones.add(new CondicionNoTaxativaConfigurable("Max.TEST - 3 años", 10, new Mayor(), "Test", 3));
+		condiciones.add(new CondicionNoTaxativaConfigurable("Min.TEST - 4 años", 20, new Menor(), "Test", 4));
+		condiciones.add(new CondicionTaxativaConfigurable("Promedio TEST - 5 años > 50", new Mayor(), new Promedio(),
 				"Test", 5, BigDecimal.valueOf(50)));
-		condicionesT.add(new CondicionTaxativaConfigurable("Simple TEST - 2 años < 120", new Menor(), new Simple(),
+		condiciones.add(new CondicionTaxativaConfigurable("Simple TEST - 2 años < 120", new Menor(), new Simple(),
 				"Test", 2, BigDecimal.valueOf(120)));
+		condiciones.add(new Longevidad());
 
-		List<CondicionCombinada> condicionesComb = Arrays.asList(new Longevidad());
-
-		metodologias.agregarElemento(new Metodologia("Prueba", condicionesNT, condicionesT, condicionesComb));
+		metodologias.agregarElemento(new Metodologia("Prueba", condiciones));
 	}
 
 	@Test
 	public void verificarCondicionTaxativaSimple() {
-		CondicionTaxativa cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondicionesT().get(1);
+		Condicion cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondiciones().get(3);
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
 		assertTrue(cond.convieneInvertirEn(ibm));
 	}
 
 	@Test
 	public void verificarCondicionTaxativaPromedio() {
-		CondicionTaxativa cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondicionesT().get(0);
+		Condicion cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondiciones().get(2);
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
 		assertFalse(cond.convieneInvertirEn(apple));
 	}
 
 	@Test
 	public void verificarCondicionTaxativaTendencia() {
-		CondicionTaxativa cond = new CondicionTaxativaConfigurable("Creciente TEST - 4 años", new Mayor(),
+		Condicion cond = new CondicionTaxativaConfigurable("Creciente TEST - 4 años", new Mayor(),
 				new Tendencia(), "Test", 4, null);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		assertTrue(cond.convieneInvertirEn(facebook));
@@ -108,7 +103,7 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarCondicionTaxativaMediana() {
-		CondicionTaxativa cond = new CondicionTaxativaConfigurable("Mediana TEST - 5 años < 30.91", new Menor(),
+		Condicion cond = new CondicionTaxativaConfigurable("Mediana TEST - 5 años < 30.91", new Menor(),
 				new Mediana(), "Test", 5, BigDecimal.valueOf(30.91));
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
 		assertTrue(cond.convieneInvertirEn(apple));
@@ -116,7 +111,7 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarCondicionNoTaxativa1() {
-		CondicionNoTaxativa cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondicionesNT().get(0);
+		Condicion cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondiciones().get(0);
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		assertEquals(10, cond.comparar(ibm, facebook));
@@ -124,7 +119,7 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarCondicionNoTaxativa2() {
-		CondicionNoTaxativa cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondicionesNT().get(1);
+		Condicion cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondiciones().get(1);
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		assertEquals(-20, cond.comparar(ibm, facebook));
@@ -132,7 +127,7 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarLongevidadFiltro() {
-		CondicionCombinada cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondicionesComb().get(0);
+		Condicion cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondiciones().get(4);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
 		assertTrue(cond.convieneInvertirEn(facebook));
@@ -141,7 +136,7 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarLongevidadOrden() {
-		CondicionCombinada cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondicionesComb().get(0);
+		Condicion cond = metodologias.buscarElemento(new Metodologia("Prueba")).getCondiciones().get(4);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
 		assertEquals(15, cond.comparar(ibm, facebook));

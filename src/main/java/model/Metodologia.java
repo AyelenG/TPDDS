@@ -7,9 +7,7 @@ import java.util.stream.Collectors;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
-import model.condiciones.combinadas.CondicionCombinada;
-import model.condiciones.notaxativas.CondicionNoTaxativa;
-import model.condiciones.taxativas.CondicionTaxativa;
+import model.condiciones.Condicion;
 
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
@@ -17,10 +15,8 @@ public class Metodologia {
 
 	private String nombre = "";
 
-	private List<CondicionNoTaxativa> condicionesNT = new LinkedList<>();
-	private List<CondicionTaxativa> condicionesT = new LinkedList<>();
-	private List<CondicionCombinada> condicionesComb = new LinkedList<>();
-
+	private List<Condicion> condiciones = new LinkedList<>();
+	
 	public Metodologia() {
 	}
 
@@ -28,12 +24,10 @@ public class Metodologia {
 		this.setNombre(nombre);
 	}
 
-	public Metodologia(String nombre, List<CondicionNoTaxativa> condicionesNT, List<CondicionTaxativa> condicionesT,
-			List<CondicionCombinada> condicionesComb) {
+
+	public Metodologia(String nombre, List<Condicion> condiciones) {
 		this.setNombre(nombre);
-		this.setCondicionesNT(condicionesNT);
-		this.setCondicionesT(condicionesT);
-		this.setCondicionesComb(condicionesComb);
+		this.setCondiciones(condiciones);
 	}
 
 	/**
@@ -44,16 +38,10 @@ public class Metodologia {
 	 * @return lista de empresas de salida
 	 */
 	public List<Empresa> obtenerValidas(List<Empresa> empresas) {
-		List<Empresa> empresasValidas1 = new LinkedList<>();
-		List<Empresa> empresasValidas2 = new LinkedList<>();
 		List<Empresa> empresasValidas = new LinkedList<>();
 
-		empresasValidas1.addAll(empresas.stream().filter(e -> condicionesT.stream().allMatch(c -> c.esValida(e)))
-				.collect(Collectors.toList()));
-		empresasValidas2.addAll(empresasValidas1.stream()
-				.filter(e -> condicionesNT.stream().allMatch(c -> c.esValida(e))).collect(Collectors.toList()));
-		empresasValidas.addAll(empresasValidas2.stream()
-				.filter(e -> condicionesComb.stream().allMatch(c -> c.esValida(e))).collect(Collectors.toList()));
+		empresasValidas.addAll(empresas.stream()
+				.filter(e -> condiciones.stream().allMatch(c -> c.esValida(e))).collect(Collectors.toList()));
 		return empresasValidas;
 	}
 
@@ -74,11 +62,9 @@ public class Metodologia {
 		// lista resultante
 		List<Empresa> empresasFiltradas = empresas;
 
-		// uno las condiciones taxativas con las combinadas (ambas comparten
-		// interfaz)
-		List<CondicionTaxativa> condiciones = new LinkedList<>();
-		condiciones.addAll(condicionesT);
-		condiciones.addAll(condicionesComb);
+		// uno todas las condiciones, las taxativas y combinadas 
+		//tienen el metodo convieneInvertir con logica, 
+		//las no taxativas simplemente devuelven true para no afectar
 
 		empresasFiltradas = empresasFiltradas.stream()
 				.filter(emp -> condiciones.stream().allMatch(cond -> cond.convieneInvertirEn(emp)))
@@ -92,23 +78,15 @@ public class Metodologia {
 	}
 
 	private int comparar(Empresa emp1, Empresa emp2) {
-		// comparar por las condicionesNT y por las condicionesComb y devolver
-		// 1, -1 o 0
-		// este metodo se usa en obtenerOrdenadas
+		// compara por todas las condiciones, las no taxativas y combinadas devuelven
+		// 1 o -1 multiplicado por el peso de la condicion segun que empresa gane
+		// o 0 si son iguales
+		// las taxativas no influyen en la comparacion, devuelven siempre 0
 		int puntajeEmp1 = 0;
 		int puntajeEmp2 = 0;
 		int r;
 
-		// uno las condiciones no taxativas con las combinadas (ambas comparten
-		// interfaz)
-		// List<CondicionNoTaxativa> condiciones =
-		// Stream.concat(condicionesNT.stream(), condicionesComb.stream())
-		// .collect(Collectors.toList());
-		List<CondicionNoTaxativa> condiciones = new LinkedList<>();
-		condiciones.addAll(condicionesNT);
-		condiciones.addAll(condicionesComb);
-
-		for (CondicionNoTaxativa cond : condiciones) {
+		for (Condicion cond : condiciones) {
 			r = cond.comparar(emp1, emp2);
 			if (r >= 0)
 				puntajeEmp1 += r;
@@ -133,27 +111,11 @@ public class Metodologia {
 		this.nombre = nombre;
 	}
 
-	public List<CondicionNoTaxativa> getCondicionesNT() {
-		return condicionesNT;
+	public List<Condicion> getCondiciones() {
+		return condiciones;
 	}
 
-	public void setCondicionesNT(List<CondicionNoTaxativa> condicionesNT) {
-		this.condicionesNT = condicionesNT;
-	}
-
-	public List<CondicionTaxativa> getCondicionesT() {
-		return condicionesT;
-	}
-
-	public void setCondicionesT(List<CondicionTaxativa> condicionesT) {
-		this.condicionesT = condicionesT;
-	}
-
-	public List<CondicionCombinada> getCondicionesComb() {
-		return condicionesComb;
-	}
-
-	public void setCondicionesComb(List<CondicionCombinada> condicionesComb) {
-		this.condicionesComb = condicionesComb;
+	public void setCondiciones(List<Condicion> condiciones) {
+		this.condiciones = condiciones;
 	}
 }

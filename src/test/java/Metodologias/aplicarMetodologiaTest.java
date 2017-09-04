@@ -149,7 +149,7 @@ public class aplicarMetodologiaTest {
 		empresasFiltradas.add(empresas.buscarElemento(new Empresa("FCB", "Facebook")));
 		empresasFiltradas.add(empresas.buscarElemento(new Empresa("IBM", "IBM")));
 		assertEquals(empresasFiltradas,
-				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerFiltradas(empresas.getElementos()));
+				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerFiltradas(empresas.findAll()));
 	}
 
 	@Test
@@ -159,7 +159,7 @@ public class aplicarMetodologiaTest {
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("APL", "Apple")));
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("FCB", "Facebook")));
 		assertEquals(empresasOrdenadas,
-				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerOrdenadas(empresas.getElementos()));
+				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerOrdenadas(empresas.findAll()));
 	}
 
 	@Test
@@ -176,7 +176,7 @@ public class aplicarMetodologiaTest {
 		empresasValidas.add(empresas.buscarElemento(new Empresa("APL", "Apple")));
 		empresasValidas.add(empresas.buscarElemento(new Empresa("IBM", "IBM")));
 		assertEquals(empresasValidas,
-				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerValidas(empresas.getElementos()));
+				metodologias.buscarElemento(new Metodologia("Prueba")).obtenerValidas(empresas.findAll()));
 	}
 
 	@Test
@@ -185,7 +185,9 @@ public class aplicarMetodologiaTest {
 		List<Empresa> empresasOrdenadas = new LinkedList<>();
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("IBM", "IBM")));
 		empresasOrdenadas.add(empresas.buscarElemento(new Empresa("FCB", "Facebook")));
-		assertEquals(empresasOrdenadas, prueba.aplicar(prueba.obtenerValidas(empresas.getElementos())));
+		assertEquals(empresasOrdenadas,
+				prueba.aplicar(prueba.obtenerValidas(empresas.findAll())));
+
 	}
 
 	@After

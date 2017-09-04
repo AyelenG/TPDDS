@@ -108,7 +108,7 @@ public class NuevaCondicionNoTaxativaViewModel {
 	}
 
 	public List<Indicador> getIndicadores() {
-		return indicadores.getElementos();
+		return indicadores.findAll();
 	}
 
 	public void setIndicadores(RepoIndicadores indicadores) {

@@ -59,7 +59,7 @@ public class PersistenciaTest {
 	public void persistirTodasLasEmpresas() {
 		tx = entityManager.getTransaction();
 		tx.begin();
-		empresas.getElementos().forEach(empresa -> entityManager.persist(empresa));
+		empresas.findAll().forEach(empresa -> entityManager.persist(empresa));
 		tx.commit();
 		
 		System.out.println(entityManager.find(Empresa.class, new Long(1)));

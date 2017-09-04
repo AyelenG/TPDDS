@@ -48,12 +48,12 @@ public class RepoIndicadores extends RepoArchivo<Indicador> {
 	}
 
 	public List<Indicador> getIndicadoresDeUsuario() {
-		return this.getElementos().stream().filter(i -> !indicadoresPredefinidos.contains(i))
+		return this.findAll().stream().filter(i -> !indicadoresPredefinidos.contains(i))
 				.collect(Collectors.toList());
 	}
 
 	public void borrarIndicadoresDeUsuario() {
-		this.getElementos().removeIf(i -> !indicadoresPredefinidos.contains(i));
+		this.findAll().removeIf(i -> !indicadoresPredefinidos.contains(i));
 	}
 
 }

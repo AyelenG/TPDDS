@@ -82,7 +82,7 @@ public class AnalisisViewModel {
 		this.indicadoresConValor.clear();
 		this.indicadoresSinValor.clear();
 		if (this.getPeriodoSeleccionado() != null) {
-			this.agregarIndicadoresDePeriodo(indiceIndicadores.getElementos());
+			this.agregarIndicadoresDePeriodo(indiceIndicadores.findAll());
 			ObservableUtils.firePropertyChanged(this, "indicadoresConValor");
 			ObservableUtils.firePropertyChanged(this, "indicadoresSinValor");
 		}
@@ -105,7 +105,7 @@ public class AnalisisViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return RepoEmpresas.getInstance().getElementos();
+		return RepoEmpresas.getInstance().findAll();
 	}
 
 	public Empresa getEmpresaSeleccionada() {

@@ -64,12 +64,12 @@ public class RepoMetodologias extends RepoArchivo<Metodologia> {
 	}
 
 	public List<Metodologia> getMetodologiasDeUsuario() {
-		return this.getElementos().stream().filter(m -> !metodologiasPredefinidas.contains(m))
+		return this.findAll().stream().filter(m -> !metodologiasPredefinidas.contains(m))
 				.collect(Collectors.toList());
 	}
 
 	public void borrarMetodologiasDeUsuario() {
-		this.getElementos().removeIf(i -> !metodologiasPredefinidas.contains(i));
+		this.findAll().removeIf(i -> !metodologiasPredefinidas.contains(i));
 	}
 
 }

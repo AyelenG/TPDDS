@@ -9,4 +9,5 @@ public interface Repositorio<T>{
 	
 	void insertar(T elemento);
 	void insertarVarios(List<T> elementos);
+	List<T> findAll();
 }

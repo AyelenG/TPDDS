@@ -21,7 +21,7 @@ public abstract class RepoArchivo<T> implements Repositorio<T>{
         this.claseDelTipoGenerico = claseDelTipoGenerico;
     }*/
 	
-	public List<T> getElementos() {
+	public List<T> findAll() {
 		return elementos;
 	}
 

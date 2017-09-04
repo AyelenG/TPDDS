@@ -21,12 +21,12 @@ public class AnalisisMetodologiaViewModel {
 	private List<Empresa> empresasDeseables = new LinkedList<>();
 	private List<Empresa> empresasNoDeseables = new LinkedList<>();
 
-	private List<Empresa> empresas = RepoEmpresas.getInstance().getElementos();
+	private List<Empresa> empresas = RepoEmpresas.getInstance().findAll();
 
 	private boolean botonAnalizar = false;
 
 	public List<Metodologia> getMetodologias() {
-		return RepoMetodologias.getInstance().getElementos();
+		return RepoMetodologias.getInstance().findAll();
 	}
 
 	public Metodologia getMetodologiaSeleccionada() {

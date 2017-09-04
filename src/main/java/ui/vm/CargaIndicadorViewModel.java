@@ -112,7 +112,7 @@ public class CargaIndicadorViewModel {
 	}
 
 	public List<Cuenta> getCuentas() {
-		return cuentas.getElementos();
+		return cuentas.findAll();
 	}
 
 	public void setCuentas(RepoCuentas cuentas) {
@@ -120,7 +120,7 @@ public class CargaIndicadorViewModel {
 	}
 
 	public List<Indicador> getIndicadores() {
-		return indicadores.getElementos();
+		return indicadores.findAll();
 	}
 
 	public void setIndicadores(RepoIndicadores indicadores) {

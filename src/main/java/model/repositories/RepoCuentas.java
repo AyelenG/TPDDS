@@ -43,7 +43,7 @@ public class RepoCuentas extends RepoArchivo<Cuenta> {
 
 	/* Guardado en archivo JSON */
 	public void guardar() {
-		new HandlerArchivoJSON(RUTA).<Cuenta>save(this.getElementos());	
+		new HandlerArchivoJSON(RUTA).<Cuenta>save(this.findAll());	
 	}	
 	
 

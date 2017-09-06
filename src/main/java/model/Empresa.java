@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,10 +16,6 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
-import model.repositories.RepoCuentas;
-import model.repositories.RepoEmpresas;
 
 @Entity
 @Observable
@@ -31,12 +25,14 @@ public class Empresa {
 	@Id
 	@GeneratedValue
 	private long id;
-	@Column(unique=true)
+	
+	@Column(unique=true, length = 10, nullable=false)
 	private String symbol;
+	@Column(length = 50, nullable=false)
 	private String nombre;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "empr_id")
+	@JoinColumn(name = "empr_id", nullable = false)
 	private List<Periodo> periodos = new LinkedList<>();
 
 	public Empresa() {

@@ -8,4 +8,14 @@
   "nombre" : "FREE CASH FLOW"
 }, {
   "nombre" : "INGRESOS BRUTOS"
+}, {
+  "nombre" : "INGRESO NETO EN OPERACIONES CONTINUAS"
+}, {
+  "nombre" : "INGRESO NETO EN OPERACIONES DISCONTINUAS"
+}, {
+  "nombre" : "DIVIDENDOS"
+}, {
+  "nombre" : "CAPITAL TOTAL"
+}, {
+  "nombre" : "ROE"
 } ]

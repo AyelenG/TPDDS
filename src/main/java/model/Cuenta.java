@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,7 +9,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
 @Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Cuenta {
@@ -17,6 +17,7 @@ public class Cuenta {
 	@GeneratedValue
 	private long id;
 	
+	@Column(unique=true, length = 50, nullable=false)
 	private String nombre = "";
 	
 	public Cuenta() {

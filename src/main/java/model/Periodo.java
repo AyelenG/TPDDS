@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,10 +23,12 @@ public class Periodo implements Comparable<Periodo> {
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	@Column(nullable=false)
 	private Integer anio;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "peri_id")
+	@JoinColumn(name = "peri_id", nullable = false)
 	private List<CuentaEmpresa> cuentas = new LinkedList<>();
 
 	public Periodo() {

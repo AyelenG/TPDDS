@@ -16,6 +16,7 @@ import model.Empresa;
 import model.Periodo;
 import model.data.HandlerArchivo;
 import model.data.HandlerArchivoJSON;
+import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
 
 public class PersistenciaTest {
@@ -32,7 +33,8 @@ public class PersistenciaTest {
 
 	@Before
 	public void inicio() {
-		//entityManager.createStoredProcedureQuery("limpiarTablas").execute();
+//		entityManager.createStoredProcedureQuery("limpiar_tablas").execute();
+		RepoCuentas.getInstance().cargar();
 		empresas.insertarVarios(loader.loadEmpresas());
 	}
 
@@ -62,12 +64,18 @@ public class PersistenciaTest {
 		empresas.findAll().forEach(empresa -> entityManager.persist(empresa));
 		tx.commit();
 		
-		System.out.println(entityManager.find(Empresa.class, new Long(1)));
+		System.out.println(entityManager.find(Empresa.class, new Long(2))); //imprimo 2da empresa
+//		tx.rollback();
 	}
 
 //	@Test
-//	public void obtenerUnaEmpresa() {
-//		System.out.println(entityManager.find(Empresa.class, new Long(1)));
+//	public void obtenerUnaEmpresaYModificarla() {
+//		tx = entityManager.getTransaction();
+//		Empresa empresa = entityManager.find(Empresa.class, new Long(1));
+//		System.out.println(empresa);
+//		tx.begin();
+//		empresa.agregarCuenta(new Periodo(2016), new CuentaEmpresa("Fulanito", BigDecimal.valueOf(10.5)));
+//		tx.commit();
 //	}
 
 	

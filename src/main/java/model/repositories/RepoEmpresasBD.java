@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Empresa;
+import model.data.HandlerArchivo;
 import model.data.HandlerArchivoJSON;
 
 public class RepoEmpresasBD extends RepoBD<Empresa> {
@@ -26,9 +27,9 @@ public class RepoEmpresasBD extends RepoBD<Empresa> {
 		return this.entityManager.createQuery("from Empresa").getResultList();
 	}
 	
-	public void cargarBDDesdeArchivo() {		
+	public void cargarBDDesdeArchivo(HandlerArchivo handler) {		
 		EntityTransaction tx = entityManager.getTransaction();
-		List<Empresa> empresas = new HandlerArchivoJSON("data/CuentasPrueba.json").<Empresa>load(Empresa.class);
+		List<Empresa> empresas = handler.loadEmpresas();
 		tx.begin();
 		empresas.forEach(empresa -> entityManager.persist(empresa));
 		tx.commit();

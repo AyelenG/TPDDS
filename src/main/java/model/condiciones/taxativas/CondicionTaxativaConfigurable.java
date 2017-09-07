@@ -2,6 +2,9 @@ package model.condiciones.taxativas;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.uqbar.commons.utils.Observable;
@@ -11,12 +14,15 @@ import model.Indicador;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
 
+@Entity
 @Observable
 @JsonDeserialize(as = CondicionTaxativaConfigurable.class)
 @JsonIgnoreProperties({ "changeSupport" })
-public class CondicionTaxativaConfigurable extends CondicionConfigurable{
+public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 
+	@Convert(converter = TipoCondicionTaxativaConverter.class)
 	private TipoCondicionTaxativa tipo;
+	
 	private BigDecimal valorDeReferencia;
 
 	public CondicionTaxativaConfigurable() {

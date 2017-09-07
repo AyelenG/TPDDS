@@ -3,6 +3,8 @@ package model.condiciones.notaxativas;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.uqbar.commons.utils.Observable;
@@ -14,10 +16,11 @@ import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
 import utils.UtilsListas;
 
+@Entity
 @Observable
 @JsonDeserialize(as = CondicionNoTaxativaConfigurable.class)
 @JsonIgnoreProperties({ "changeSupport" })
-public class CondicionNoTaxativaConfigurable extends CondicionConfigurable{
+public class CondicionNoTaxativaConfigurable extends CondicionConfigurable {
 
 	private Integer peso;
 

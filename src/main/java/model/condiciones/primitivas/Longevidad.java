@@ -1,10 +1,13 @@
 package model.condiciones.primitivas;
 
+import javax.persistence.Entity;
+
 import org.codehaus.jackson.annotate.JsonValue;
 
 import model.Empresa;
 import model.condiciones.Condicion;
 
+@Entity
 public class Longevidad extends Condicion {
 
 	@Override

@@ -2,6 +2,9 @@ package model.condiciones;
 
 import java.util.List;
 
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+
 import exceptions.NoSePuedeAplicarException;
 import exceptions.NoSePuedeEvaluarException;
 import model.Empresa;
@@ -9,10 +12,12 @@ import model.Indicador;
 import model.Periodo;
 import model.repositories.RepoIndicadores;
 
-public abstract class CondicionConfigurable extends Condicion{
+@Entity
+public abstract class CondicionConfigurable extends Condicion {
 
 	protected String nombre = "";
 
+	@Convert(converter = ComparadorConverter.class)
 	protected Comparador comparador;
 	protected String nombreIndicador;
 	protected Integer cantidadAnios;

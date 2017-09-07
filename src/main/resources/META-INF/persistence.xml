@@ -12,6 +12,12 @@
     	<class>model.Periodo</class>
     	<class>model.Cuenta</class>
     	<class>model.CuentaEmpresa</class>
+		<class>model.Metodologia</class>
+		
+		<class>model.condiciones.Condicion</class>
+		<class>model.condiciones.CondicionConfigurable</class>
+		<class>model.condiciones.CondicionTaxativaConfigurable</class>
+		<class>model.condiciones.CondicionNoTaxativaConfigurable</class>
     	 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

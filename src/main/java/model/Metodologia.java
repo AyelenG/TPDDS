@@ -4,17 +4,34 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
 import model.condiciones.Condicion;
 
+@Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Metodologia {
 
+	@Id
+	@GeneratedValue
+	private long id;
+	
+	@Column(length = 50, nullable=false)
 	private String nombre = "";
 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "meto_id")
 	private List<Condicion> condiciones = new LinkedList<>();
 	
 	public Metodologia() {

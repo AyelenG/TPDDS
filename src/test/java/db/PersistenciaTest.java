@@ -1,5 +1,7 @@
 package db;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
@@ -7,6 +9,7 @@ import javax.persistence.EntityTransaction;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
@@ -19,7 +22,7 @@ import model.data.HandlerArchivoJSON;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
 
-public class PersistenciaTest {
+public class PersistenciaTest{
 	private EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
 	private EntityTransaction tx;
 	
@@ -36,6 +39,12 @@ public class PersistenciaTest {
 //		entityManager.createStoredProcedureQuery("limpiar_tablas").execute();
 		RepoCuentas.getInstance().cargar();
 		empresas.insertarVarios(loader.loadEmpresas());
+		
+		tx = entityManager.getTransaction();
+		tx.begin();
+		empresas.findAll().forEach(empresa -> entityManager.persist(empresa));
+		tx.commit();
+				
 	}
 
 //	@Test
@@ -58,16 +67,11 @@ public class PersistenciaTest {
 //	}
 	
 	@Test
-	public void persistirTodasLasEmpresas() {
-		tx = entityManager.getTransaction();
-		tx.begin();
-		empresas.findAll().forEach(empresa -> entityManager.persist(empresa));
-		tx.commit();
-		
-		System.out.println(entityManager.find(Empresa.class, new Long(2))); //imprimo 2da empresa
-//		tx.rollback();
+	public void segundaEmpresaPersistidaGoogle() {
+	
+		assertEquals("Google", entityManager.find(Empresa.class, 2l).getNombre());
 	}
-
+	
 //	@Test
 //	public void obtenerUnaEmpresaYModificarla() {
 //		tx = entityManager.getTransaction();

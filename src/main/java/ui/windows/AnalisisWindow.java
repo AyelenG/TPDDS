@@ -43,7 +43,7 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 		Panel indicadoresPanel1 = new Panel(indicadoresPanel);
 		Panel indicadoresPanel2 = new Panel(indicadoresPanel);
 		indicadoresPanel1.setLayout(new ColumnLayout(2));
-		indicadoresPanel2.setLayout(new HorizontalLayout()); // no funcionan las
+		indicadoresPanel2.setLayout(new HorizontalLayout()).setWidth(10); // no funcionan las
 																// tablas en
 																// columnas
 
@@ -65,7 +65,7 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 		new Label(consultaPanel).setHeight(20);
 		new Label(consultaPanel).setText("Cuentas").setFontSize(12);
 		Table<CuentaEmpresa> tablaCuentas = new Table<>(consultaPanel, CuentaEmpresa.class);
-		tablaCuentas.setNumberVisibleRows(10).bindItemsToProperty("cuentasSeleccionadas");
+		tablaCuentas.setNumberVisibleRows(8).bindItemsToProperty("cuentasSeleccionadas");
 		Column<CuentaEmpresa> columnaNombre = new Column<CuentaEmpresa>(tablaCuentas);
 		columnaNombre.setFont(10).setTitle("Nombre").setFixedSize(300).bindContentsToProperty("nombre");
 		Column<CuentaEmpresa> columnaValor = new Column<CuentaEmpresa>(tablaCuentas);
@@ -77,7 +77,7 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 
 		Table<AnalisisViewModel.IndicadorVM> tablaIndicadoresConValor = new Table<>(indicadoresPanel2,
 				AnalisisViewModel.IndicadorVM.class);
-		tablaIndicadoresConValor.setNumberVisibleRows(10).bindItemsToProperty("indicadoresConValor");
+		tablaIndicadoresConValor.setNumberVisibleRows(5).bindItemsToProperty("indicadoresConValor");
 		Column<AnalisisViewModel.IndicadorVM> columnaNombreIndicadorConValor = new Column<>(tablaIndicadoresConValor);
 		columnaNombreIndicadorConValor.setFont(9).setTitle("Nombre").setFixedSize(200).bindContentsToProperty("nombre");
 		Column<AnalisisViewModel.IndicadorVM> columnaValorIndicador = new Column<>(tablaIndicadoresConValor);
@@ -85,14 +85,13 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 
 		Table<AnalisisViewModel.IndicadorVM> tablaIndicadoresSinValor = new Table<>(indicadoresPanel2,
 				AnalisisViewModel.IndicadorVM.class);
-		tablaIndicadoresSinValor.setNumberVisibleRows(10).bindItemsToProperty("indicadoresSinValor");
+		tablaIndicadoresSinValor.setNumberVisibleRows(5).bindItemsToProperty("indicadoresSinValor");
 		Column<AnalisisViewModel.IndicadorVM> columnaNombreIndicadorSinValor = new Column<>(tablaIndicadoresSinValor);
 		columnaNombreIndicadorSinValor.setFont(9).setTitle("Nombre").setFixedSize(200).bindContentsToProperty("nombre");
 		Column<AnalisisViewModel.IndicadorVM> columnaMensajeIndicador = new Column<>(tablaIndicadoresSinValor);
 		columnaMensajeIndicador.setFont(9).setTitle("Error").setFixedSize(500).bindContentsToProperty("mensaje");
-		
 		new Label(mainPanel);
-		new Label(mainPanel).setText("Montos en Millones de USD");
+		new Label(mainPanel).setText("Montos en Millones de USD").setFontSize(9);
 	}
 
 }

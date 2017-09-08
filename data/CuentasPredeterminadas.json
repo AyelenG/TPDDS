@@ -1,13 +1,9 @@
 [ {
-  "nombre" : "FDS"
-}, {
-  "nombre" : "PEPE"
-}, {
   "nombre" : "EBITDA"
 }, {
-  "nombre" : "FREE CASH FLOW"
+  "nombre" : "FDS"
 }, {
-  "nombre" : "INGRESOS BRUTOS"
+  "nombre" : "ROE"
 }, {
   "nombre" : "INGRESO NETO EN OPERACIONES CONTINUAS"
 }, {
@@ -17,5 +13,7 @@
 }, {
   "nombre" : "CAPITAL TOTAL"
 }, {
-  "nombre" : "ROE"
+  "nombre" : "FREE CASH FLOW"
+}, {
+  "nombre" : "INGRESOS BRUTOS"
 } ]

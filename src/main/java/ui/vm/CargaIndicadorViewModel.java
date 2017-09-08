@@ -10,13 +10,13 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
 import model.Indicador;
-import model.repositories.RepoCuentas;
+import model.repositories.RepoCuentasBD;
 import model.repositories.RepoIndicadores;
 
 @Observable
 public class CargaIndicadorViewModel {
 
-	private RepoCuentas cuentas = RepoCuentas.getInstance();
+	private RepoCuentasBD cuentas = RepoCuentasBD.getInstance();
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private String ingresado = "";
 	private List<String> tokens = new LinkedList<>();
@@ -73,10 +73,6 @@ public class CargaIndicadorViewModel {
 			throw new UserException("El indicador ingresado ya existe.");
 		if (ingresado.isEmpty())
 			throw new UserException("Ingrese una formula para el indicador.");
-		/*if (new AnalizadorSintactico(ingresado).chequear() == false) {
-			// this.limpiarTodo();
-			throw new UserException("Sintaxis de formula incorrecta.");
-		}*/
 		
 		this.indicadorNuevo.setFormula(ingresado);
 		//esto setea la formula, la parsea y verifica si es correcta
@@ -115,7 +111,7 @@ public class CargaIndicadorViewModel {
 		return cuentas.findAll();
 	}
 
-	public void setCuentas(RepoCuentas cuentas) {
+	public void setCuentas(RepoCuentasBD cuentas) {
 		this.cuentas = cuentas;
 	}
 

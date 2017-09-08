@@ -15,7 +15,6 @@ import model.CuentaEmpresa;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
-import model.repositories.RepoEmpresas;
 import model.repositories.RepoEmpresasBD;
 import model.repositories.RepoIndicadores;
 

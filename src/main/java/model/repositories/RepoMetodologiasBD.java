@@ -25,17 +25,6 @@ public class RepoMetodologiasBD extends RepoBD<Metodologia> {
 		return instance;
 	}
 	
-	@Override
-	public boolean sonIguales(Metodologia m1, Metodologia m2) {
-		return m1.getNombre().equals(m2.getNombre());
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Metodologia> findAll(){					
-		return this.entityManager.createQuery("from Metodologia").getResultList();
-	}
-	
 	public void cargarWarrenBuffet() {
 		List<Condicion> condiciones = new LinkedList<>(); 
 		condiciones.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, new Mayor(),
@@ -50,6 +39,26 @@ public class RepoMetodologiasBD extends RepoBD<Metodologia> {
 	
 	public void cargarBDDesdeArchivo() {
 		this.insertarVarios(new HandlerArchivoJSON("data/Metodologias.json").<Metodologia>load(Metodologia.class));
+	}
+
+	@Override
+	protected String valorDeBusqueda(Metodologia elemento) {
+		return elemento.getNombre();
+	}
+
+	@Override
+	protected String campoDeBusqueda() {
+		return "nombre";
+	}
+
+	@Override
+	protected Class<Metodologia> getEntityClass() {
+		return Metodologia.class;
+	}
+
+	@Override
+	protected String getEntityName() {
+		return "Metodologia";
 	}
 
 }

@@ -2,6 +2,8 @@ package model.repositories;
 
 import java.util.List;
 
+import javax.persistence.EntityTransaction;
+
 import model.Empresa;
 import model.data.HandlerArchivoJSON;
 
@@ -18,18 +20,42 @@ public class RepoEmpresasBD extends RepoBD<Empresa> {
 	}
 	
 	@Override
-	public boolean sonIguales(Empresa e1, Empresa e2) {
-		return e1.getNombre().equals(e2.getSymbol());
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Empresa> findAll(){					
-		return this.entityManager.createQuery("from Empresa").getResultList();
+	public void insertarVarios(List<Empresa> empresas){
+
+		for (Empresa empresa : empresas) {
+			if (!existeElemento(empresa))
+				this.insertar(empresa);
+			else{
+				EntityTransaction tx = entityManager.getTransaction();
+				tx.begin();
+				this.buscarElemento(empresa).agregarPeriodos(empresa.getPeriodos());
+				tx.commit();
+			}
+		}
 	}
 	
 	public void cargarBDDesdeArchivo() {
 		this.insertarVarios(new HandlerArchivoJSON("data/Empresas.json").<Empresa>load(Empresa.class));
+	}
+
+	@Override
+	protected String valorDeBusqueda(Empresa elemento) {
+		return elemento.getSymbol();
+	}
+
+	@Override
+	protected String campoDeBusqueda() {
+		return "symbol";
+	}
+
+	@Override
+	protected Class<Empresa> getEntityClass() {
+		return Empresa.class;
+	}
+
+	@Override
+	protected String getEntityName() {
+		return "Empresa";
 	}
 
 }

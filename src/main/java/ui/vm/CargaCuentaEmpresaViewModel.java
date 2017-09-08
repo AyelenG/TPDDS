@@ -13,9 +13,7 @@ import model.Cuenta;
 import model.CuentaEmpresa;
 import model.Empresa;
 import model.Periodo;
-import model.repositories.RepoCuentas;
 import model.repositories.RepoCuentasBD;
-import model.repositories.RepoEmpresas;
 import model.repositories.RepoEmpresasBD;
 
 @Observable

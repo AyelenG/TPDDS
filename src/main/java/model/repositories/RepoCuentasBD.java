@@ -14,19 +14,28 @@ public class RepoCuentasBD extends RepoBD<Cuenta>{
 	public static RepoCuentasBD getInstance() {
 		return instance;
 	}
-	
-	@Override
-	public boolean sonIguales(Cuenta c1, Cuenta c2) {
-		return c1.getNombre().equals(c2.getNombre());
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Cuenta> findAll(){					
-		return this.entityManager.createQuery("from Cuenta").getResultList();
-	}
 
 	public void cargarBDDesdeArchivo() {
 		this.insertarVarios(new HandlerArchivoJSON("data/CuentasPredeterminadas.json").<Cuenta>load(Cuenta.class));
+	}
+
+	@Override
+	protected String valorDeBusqueda(Cuenta elemento) {
+		return elemento.getNombre();
+	}
+
+	@Override
+	protected String campoDeBusqueda() {
+		return "nombre";
+	}
+
+	@Override
+	protected Class<Cuenta> getEntityClass() {
+		return Cuenta.class;
+	}
+
+	@Override
+	protected String getEntityName() {
+		return "Cuenta";
 	}
 }

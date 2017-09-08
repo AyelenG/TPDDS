@@ -9,9 +9,7 @@ public interface Repositorio<T> {
 	void insertarVarios(List<T> elementos);
 	
 	boolean existeElemento(T elemento);
-	
-	boolean sonIguales(T elemento1, T elemento2);
-	
+		
 	List<T> findAll();
 	
 }

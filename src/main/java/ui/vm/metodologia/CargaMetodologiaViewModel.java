@@ -10,7 +10,6 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Metodologia;
 import model.condiciones.Condicion;
-import model.repositories.RepoMetodologias;
 import model.repositories.RepoMetodologiasBD;
 import ui.vm.metodologia.auxiliares.CondicionVM;
 
@@ -46,9 +45,10 @@ public class CargaMetodologiaViewModel {
 	}
 
 	public void cargarMetodologia() {
+		RepoMetodologiasBD metodologias = RepoMetodologiasBD.getInstance();
 		if (metodologia.getNombre().isEmpty())
 			throw new UserException("Complete el nombre de la Metodología.");
-		if (RepoMetodologiasBD.getInstance().existeElemento(metodologia)) {
+		if (metodologias.existeElemento(metodologia)) {
 			throw new UserException("La Metodología ingresada ya existe.");
 		}
 
@@ -58,9 +58,7 @@ public class CargaMetodologiaViewModel {
 		condiciones.addAll(condicionesPrim.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
 		metodologia.setCondiciones(condiciones);
 		
-		RepoMetodologiasBD.getInstance().insertar(metodologia);
-//		RepoMetodologias.getInstance().insertar(metodologia);
-//		RepoMetodologias.getInstance().guardar();
+		metodologias.insertar(metodologia);
 		this.setHabilitaCarga(false);
 	}
 

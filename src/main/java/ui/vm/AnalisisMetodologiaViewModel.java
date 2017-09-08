@@ -10,8 +10,7 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
 import model.Metodologia;
-import model.repositories.RepoEmpresas;
-import model.repositories.RepoMetodologias;
+import model.repositories.RepoEmpresasBD;
 import model.repositories.RepoMetodologiasBD;
 
 @Observable
@@ -22,7 +21,7 @@ public class AnalisisMetodologiaViewModel {
 	private List<Empresa> empresasDeseables = new LinkedList<>();
 	private List<Empresa> empresasNoDeseables = new LinkedList<>();
 
-	private List<Empresa> empresas = RepoEmpresas.getInstance().findAll();
+	private List<Empresa> empresas = RepoEmpresasBD.getInstance().findAll();
 
 	private boolean botonAnalizar = false;
 

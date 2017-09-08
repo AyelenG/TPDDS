@@ -54,4 +54,6 @@ public abstract class RepoArchivo<T> implements Repositorio<T> {
 		this.elementos.clear();
 	}
 	
+	protected abstract boolean sonIguales(T elemento1, T elemento2);
+
 }

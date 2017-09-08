@@ -1,15 +1,10 @@
 package ui.vm;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Cuenta;
-import model.repositories.RepoCuentas;
 import model.repositories.RepoCuentasBD;
 
 @Observable
@@ -32,15 +27,13 @@ public class CargaNuevaCuentaViewModel {
 	}
 
 	public void cargarCuenta() {
-		RepoCuentas repositorioCuentas = RepoCuentas.getInstance();
-		if (repositorioCuentas.existeElemento(cuenta))
+		RepoCuentasBD cuentas = RepoCuentasBD.getInstance();
+		if (cuentas.existeElemento(cuenta))
 			throw new UserException("La cuenta ingresada ya existe.");
 		if (cuenta.getNombre().isEmpty()) {
 			throw new UserException("Complete el nombre de la Cuenta.");
 		}
-		repositorioCuentas.insertar(cuenta);
-		repositorioCuentas.guardar();
-		RepoCuentas.getInstance().insertar(cuenta);
+		cuentas.insertar(cuenta);
 		this.setHabilitaCarga(false);
 		if (parentVM != null)
 			ObservableUtils.firePropertyChanged(this.parentVM, "cuentas");

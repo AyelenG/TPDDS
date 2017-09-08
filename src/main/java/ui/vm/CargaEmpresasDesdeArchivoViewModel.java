@@ -11,8 +11,6 @@ import org.uqbar.commons.utils.Observable;
 import model.Empresa;
 import model.data.HandlerArchivoCSV;
 import model.data.HandlerArchivoJSON;
-import model.repositories.RepoCuentas;
-import model.repositories.RepoEmpresas;
 import model.repositories.RepoEmpresasBD;
 
 @Observable
@@ -38,15 +36,7 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		else
 			throw new UserException("El archivo no tiena la extensión correcta");
 		
-		/* En este llamado ya esta chequeado los repetidos en el modelo */
 		RepoEmpresasBD.getInstance().insertarVarios(empresas);
-		
-		/* Agrega las cuentas nuevas al Repositorio de Cuentas Predeterminadas */
-//		RepoCuentas.getInstance().agregarDesdeEmpresas(empresas);
-//		RepoCuentas.getInstance().guardar();
-		/*--NO HACE FALTA YA QUE AL CARGAR EL JSON DE EMPRESAS 
-		EL SETTER DE LAS CUENTAS DE EMPRESA ACTUALIZA EL REPO DE CUENTAS--*/
-
 
 		this.setHabilitaSelector(false);
 		this.setBotonCargarCuentas(false);

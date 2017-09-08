@@ -2,48 +2,29 @@ package db;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import model.Cuenta;
-import model.CuentaEmpresa;
 import model.Empresa;
-import model.Periodo;
 import model.data.HandlerArchivo;
 import model.data.HandlerArchivoJSON;
-import model.repositories.RepoCuentas;
-import model.repositories.RepoEmpresas;
+import model.repositories.RepoEmpresasBD;
 
 public class PersistenciaTest{
 	private EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
-	private EntityTransaction tx;
 	
-	private Empresa empresa;
-	private Periodo periodo;
-	private CuentaEmpresa cuentaEmpresa;
-	private Cuenta cuenta;
-	
-	private RepoEmpresas empresas = RepoEmpresas.getInstance();
+	private RepoEmpresasBD repoEmpresas = RepoEmpresasBD.getInstance();
 	private HandlerArchivo loader = new HandlerArchivoJSON("data/CuentasPrueba.json");
 
 	@Before
 	public void inicio() {
 //		entityManager.createStoredProcedureQuery("limpiar_tablas").execute();
-		RepoCuentas.getInstance().cargar();
-		empresas.insertarVarios(loader.loadEmpresas());
-		
-		tx = entityManager.getTransaction();
-		tx.begin();
-		empresas.findAll().forEach(empresa -> entityManager.persist(empresa));
-		tx.commit();
+		repoEmpresas.insertarVarios(loader.loadEmpresas());
 				
 	}
 
@@ -72,6 +53,23 @@ public class PersistenciaTest{
 		assertEquals("Google", entityManager.find(Empresa.class, 2l).getNombre());
 	}
 	
+	@Test
+	public void buscarFacebook() {
+		Empresa facebook = entityManager.find(Empresa.class, 1l);
+		assertEquals(facebook, repoEmpresas.buscarElemento(new Empresa("FB","Facebook")));
+	}
+	
+	@Test
+	public void buscarIBMDevuelveNull() {
+		assertEquals(null, repoEmpresas.buscarElemento(new Empresa("IBM","IBM")));
+	}
+	
+	@Test
+	public void obtenerTodasLasEmpresas() {
+		assertEquals(2, repoEmpresas.findAll().size());
+		assertEquals("Facebook", repoEmpresas.findAll().get(0).getNombre());
+		assertEquals("GOOGL", repoEmpresas.findAll().get(1).getSymbol());
+	}
 //	@Test
 //	public void obtenerUnaEmpresaYModificarla() {
 //		tx = entityManager.getTransaction();
@@ -109,6 +107,5 @@ public class PersistenciaTest{
 	@After
 	public void limpiar() {
 		entityManager.clear();
-		empresas.borrarElementos();
 	}
 }

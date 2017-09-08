@@ -3,16 +3,7 @@ package model.repositories;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
-import model.Cuenta;
-import model.Empresa;
-import model.data.HandlerArchivoJSON;
-
-public abstract class RepoArchivo<T> implements Repositorio<T>{
+public abstract class RepoArchivo<T> implements Repositorio<T> {
 	
 	//final Class<T> claseDelTipoGenerico;
 	private List<T> elementos = new LinkedList<>();
@@ -61,9 +52,6 @@ public abstract class RepoArchivo<T> implements Repositorio<T>{
 	
 	public void borrarElementos(){
 		this.elementos.clear();
-	}	
-
-
+	}
 	
-	public abstract boolean sonIguales(T e1, T e2);
 }

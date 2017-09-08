@@ -12,6 +12,7 @@ import model.Empresa;
 import model.Metodologia;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoMetodologias;
+import model.repositories.RepoMetodologiasBD;
 
 @Observable
 public class AnalisisMetodologiaViewModel {
@@ -26,7 +27,7 @@ public class AnalisisMetodologiaViewModel {
 	private boolean botonAnalizar = false;
 
 	public List<Metodologia> getMetodologias() {
-		return RepoMetodologias.getInstance().findAll();
+		return RepoMetodologiasBD.getInstance().findAll();
 	}
 
 	public Metodologia getMetodologiaSeleccionada() {

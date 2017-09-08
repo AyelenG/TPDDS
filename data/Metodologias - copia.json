@@ -17,14 +17,14 @@
     "comparador" : "Mayor",
     "nombreIndicador" : "Test",
     "cantidadAnios" : 5,
-    "tipoTaxatividad" : "Promedio",
+    "tipo" : "Promedio",
     "valorDeReferencia" : 50
   }, {
     "nombre" : "Simple TEST - 2 años < 120",
     "comparador" : "Menor",
     "nombreIndicador" : "Test",
     "cantidadAnios" : 2,
-    "tipoTaxatividad" : "Simple",
+    "tipo" : "Simple",
     "valorDeReferencia" : 120
   }, "Longevidad" ]
 }, {
@@ -40,14 +40,14 @@
     "comparador" : "Menor",
     "nombreIndicador" : "PAPA",
     "cantidadAnios" : 3,
-    "tipoTaxatividad" : "Promedio",
+    "tipo" : "Promedio",
     "valorDeReferencia" : 500
   }, {
     "nombre" : "TEST > 100 - 2 años",
     "comparador" : "Mayor",
     "nombreIndicador" : "TEST",
     "cantidadAnios" : 2,
-    "tipoTaxatividad" : "Sumatoria",
+    "tipo" : "Sumatoria",
     "valorDeReferencia" : 100
   } ]
 }, {
@@ -63,14 +63,14 @@
     "comparador" : "Mayor",
     "nombreIndicador" : "BENEFICIO BRUTO",
     "cantidadAnios" : 3,
-    "tipoTaxatividad" : "Promedio",
+    "tipo" : "Promedio",
     "valorDeReferencia" : 40000
   }, {
     "nombre" : "Rtdo. Explotacion Creciente a 3 años",
     "comparador" : "Mayor",
     "nombreIndicador" : "RESULTADO DE EXPLOTACION",
     "cantidadAnios" : 3,
-    "tipoTaxatividad" : "Tendencia",
+    "tipo" : "Tendencia",
     "valorDeReferencia" : null
   } ]
 }, {

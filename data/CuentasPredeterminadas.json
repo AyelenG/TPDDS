@@ -1,19 +1,19 @@
 [ {
-  "nombre" : "EBITDA"
+  "nombre" : "INGRESOS"
 }, {
-  "nombre" : "FDS"
+  "nombre" : "OTROS INGRESOS DE EXPLOTACION"
 }, {
-  "nombre" : "ROE"
+  "nombre" : "CONSUMOS Y OTROS GASTOS EXTERNOS"
 }, {
-  "nombre" : "INGRESO NETO EN OPERACIONES CONTINUAS"
+  "nombre" : "GASTOS DE PERSONAL"
 }, {
-  "nombre" : "INGRESO NETO EN OPERACIONES DISCONTINUAS"
+  "nombre" : "INVESTIGACION Y DESARROLLO"
 }, {
-  "nombre" : "DIVIDENDOS"
+  "nombre" : "AMORTIZACIONES"
 }, {
-  "nombre" : "CAPITAL TOTAL"
+  "nombre" : "GASTOS FINANCIEROS NETO DE OPERACIONES"
 }, {
-  "nombre" : "FREE CASH FLOW"
+  "nombre" : "GASTOS EXTRAORDINARIOS"
 }, {
-  "nombre" : "INGRESOS BRUTOS"
+  "nombre" : "OTROS GASTOS DE EXPLOTACION"
 } ]

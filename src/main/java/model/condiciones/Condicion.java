@@ -14,7 +14,7 @@ import model.data.deserializadores.CondicionDeserializer;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_condicion")
+@DiscriminatorColumn(name = "clase_condicion")
 @JsonDeserialize(using = CondicionDeserializer.class)
 public abstract class Condicion {
 

@@ -97,7 +97,7 @@ public class NuevaCondicionTaxativaViewModel {
 				throw new UserException("Ingrese un valor de referencia valido");
 			}
 		}
-		nueva.setTipo(this.getTipoSeleccionado().getTipoCondicionTaxativa());
+		nueva.setTipoTaxatividad(this.getTipoSeleccionado().getTipoCondicionTaxativa());
 		nueva.setComparador(this.getComparadorSeleccionado().getComparador());
 		nueva.setNombreIndicador(this.getIndicadorSeleccionado().getNombre());
 		nueva.setCantidadAnios(anios);

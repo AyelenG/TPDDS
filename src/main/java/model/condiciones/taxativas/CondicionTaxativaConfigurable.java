@@ -21,7 +21,7 @@ import model.condiciones.CondicionConfigurable;
 public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 
 	@Convert(converter = TipoCondicionTaxativaConverter.class)
-	private TipoCondicionTaxativa tipo;
+	private TipoCondicionTaxativa tipoTaxatividad;
 	
 	private BigDecimal valorDeReferencia;
 
@@ -35,7 +35,7 @@ public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 	public CondicionTaxativaConfigurable(String nombre, Comparador comparador, TipoCondicionTaxativa tipo,
 			String nombreIndicador, Integer cantidadAnios, BigDecimal valorDeReferencia) {
 		super(nombre, comparador, nombreIndicador, cantidadAnios);
-		this.setTipo(tipo);
+		this.setTipoTaxatividad(tipo);
 		this.setValorDeReferencia(valorDeReferencia);
 	}
 
@@ -43,7 +43,7 @@ public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 	public boolean convieneInvertirEn(Empresa emp) {
 		// obtengo indicador desde repositorio
 		Indicador indicador = obtenerIndicador(nombreIndicador);
-		return tipo.aplicar(emp, this, indicador);
+		return tipoTaxatividad.aplicar(emp, this, indicador);
 
 	}
 	
@@ -53,12 +53,12 @@ public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 		return 0;
 	}
 
-	public TipoCondicionTaxativa getTipo() {
-		return tipo;
+	public TipoCondicionTaxativa getTipoTaxatividad() {
+		return tipoTaxatividad;
 	}
 
-	public void setTipo(TipoCondicionTaxativa tipo) {
-		this.tipo = tipo;
+	public void setTipoTaxatividad(TipoCondicionTaxativa tipoTaxatividad) {
+		this.tipoTaxatividad = tipoTaxatividad;
 	}
 
 	public BigDecimal getValorDeReferencia() {

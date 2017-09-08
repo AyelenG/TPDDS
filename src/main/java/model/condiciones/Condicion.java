@@ -1,5 +1,6 @@
 package model.condiciones;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,8 @@ import model.Empresa;
 import model.data.deserializadores.CondicionDeserializer;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_condicion")
 @JsonDeserialize(using = CondicionDeserializer.class)
 public abstract class Condicion {
 

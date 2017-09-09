@@ -11,7 +11,7 @@ import org.uqbar.commons.utils.Observable;
 import model.Empresa;
 import model.Metodologia;
 import model.repositories.RepoEmpresasBD;
-import model.repositories.RepoMetodologiasBD;
+import model.repositories.RepoMetodologias;
 
 @Observable
 public class AnalisisMetodologiaViewModel {
@@ -26,7 +26,7 @@ public class AnalisisMetodologiaViewModel {
 	private boolean botonAnalizar = false;
 
 	public List<Metodologia> getMetodologias() {
-		return RepoMetodologiasBD.getInstance().findAll();
+		return RepoMetodologias.getInstance().findAll();
 	}
 
 	public Metodologia getMetodologiaSeleccionada() {

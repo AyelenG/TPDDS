@@ -10,7 +10,7 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Metodologia;
 import model.condiciones.Condicion;
-import model.repositories.RepoMetodologiasBD;
+import model.repositories.RepoMetodologias;
 import ui.vm.metodologia.auxiliares.CondicionVM;
 
 @Observable
@@ -45,7 +45,7 @@ public class CargaMetodologiaViewModel {
 	}
 
 	public void cargarMetodologia() {
-		RepoMetodologiasBD metodologias = RepoMetodologiasBD.getInstance();
+		RepoMetodologias metodologias = RepoMetodologias.getInstance();
 		if (metodologia.getNombre().isEmpty())
 			throw new UserException("Complete el nombre de la Metodología.");
 		if (metodologias.existeElemento(metodologia)) {

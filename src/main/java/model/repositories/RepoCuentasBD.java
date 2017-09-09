@@ -1,7 +1,5 @@
 package model.repositories;
 
-import java.util.List;
-
 import model.Cuenta;
 import model.data.HandlerArchivoJSON;
 

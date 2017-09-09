@@ -20,7 +20,7 @@ public class ComparadorConverter implements AttributeConverter<Comparador, Strin
 		case "Menor":
 			return new Menor();
 		default:
-			throw new UserException("");
+			throw new UserException("Error en la base de Datos.");
 		}
 		
 	}

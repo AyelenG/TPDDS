@@ -80,7 +80,6 @@ public class CargaIndicadorViewModel {
 		//si no: lanza excepcion
 		
 		indicadores.insertar(indicadorNuevo);
-		indicadores.guardar();
 		this.setHabilitaCarga(false);
 		ObservableUtils.firePropertyChanged(this, "indicadores");
 

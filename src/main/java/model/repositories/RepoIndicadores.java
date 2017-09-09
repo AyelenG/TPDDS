@@ -1,59 +1,42 @@
 package model.repositories;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import model.Indicador;
 import model.data.HandlerArchivoJSON;
 
-public class RepoIndicadores extends RepoArchivo<Indicador> {
-
+public class RepoIndicadores extends RepoBD<Indicador> {
+	
 	private static final RepoIndicadores instance = new RepoIndicadores();
-
-	private final String RUTA = "data/Indicadores.json";
-
-	private final List<Indicador> indicadoresPredefinidos = Arrays.asList(
-			new Indicador("Ingreso Neto",
-					"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"),
-			new Indicador("Retorno sobre capital total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"),
-			new Indicador("Nivel de deuda", "[FDS] * [FDS]"),
-			new Indicador("Margen", "<PAPA> - [FDS]"));
-
+	
 	private RepoIndicadores() {
-		this.insertarVarios(indicadoresPredefinidos);
-	}
 
+	}
+	
 	public static RepoIndicadores getInstance() {
 		return instance;
 	}
+	
+	public void cargarBDDesdeArchivo() {
+		this.insertarVarios(new HandlerArchivoJSON("data/Indicadores.json").<Indicador>load(Indicador.class));
+	}
 
 	@Override
-	public boolean sonIguales(Indicador i1, Indicador i2) {
-		return i1.getNombre().equals(i2.getNombre());
+	protected String valorDeBusqueda(Indicador elemento) {
+		return elemento.getNombre();
 	}
 
-	/* Carga desde archivo JSON */
-	public void cargar() {
-		this.insertarVarios(new HandlerArchivoJSON(RUTA).<Indicador>load(Indicador.class));
+	@Override
+	protected String campoDeBusqueda() {
+		return "nombre";
 	}
 
-	/* Guardado en archivo JSON */
-	public void guardar() {
-		new HandlerArchivoJSON(RUTA).<Indicador>save(this.getIndicadoresDeUsuario());
+	@Override
+	protected Class<Indicador> getEntityClass() {
+		return Indicador.class;
 	}
 
-	public List<Indicador> getIndicadoresPredefinidos() {
-		return indicadoresPredefinidos;
-	}
-
-	public List<Indicador> getIndicadoresDeUsuario() {
-		return this.findAll().stream().filter(i -> !indicadoresPredefinidos.contains(i))
-				.collect(Collectors.toList());
-	}
-
-	public void borrarIndicadoresDeUsuario() {
-		this.findAll().removeIf(i -> !indicadoresPredefinidos.contains(i));
+	@Override
+	protected String getEntityName() {
+		return "Indicador";
 	}
 
 }

@@ -2,16 +2,17 @@ package application;
 
 import model.repositories.RepoCuentasBD;
 import model.repositories.RepoEmpresasBD;
-import model.repositories.RepoMetodologiasBD;
+import model.repositories.RepoIndicadores;
+import model.repositories.RepoMetodologias;
 
 public class InicializarBDVaciaApplication {
 
 	public static void main(String[] args) {
 		RepoCuentasBD.getInstance().cargarBDDesdeArchivo();
 		RepoEmpresasBD.getInstance().cargarBDDesdeArchivo();
-		RepoMetodologiasBD.getInstance().cargarWarrenBuffet();
-		RepoMetodologiasBD.getInstance().cargarBDDesdeArchivo();
-//		RepoIndicadoresBD.getInstance().cargarBDDesdeArchivo();
+		RepoMetodologias.getInstance().cargarWarrenBuffet();
+		RepoMetodologias.getInstance().cargarBDDesdeArchivo();
+		RepoIndicadores.getInstance().cargarBDDesdeArchivo();
 	}
 
 }

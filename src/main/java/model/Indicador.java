@@ -2,6 +2,11 @@ package model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
@@ -12,15 +17,23 @@ import model.evaluador.operaciones.*;
 import model.parser.ExpresionBuilder;
 import model.repositories.RepoIndicadores;
 
+@Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport", "expresion" })
 public class Indicador {
 
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	private String nombre = "";
 	private String formula = "";
+	
+	@Transient
 	private Expresion expresion;
 
 	public Indicador() {
+		
 	}
 
 	public Indicador(String nombre) {
@@ -51,7 +64,6 @@ public class Indicador {
 
 	public void setFormula(String formula) {
 		this.formula = formula;
-		this.setExpresion(new ExpresionBuilder(formula).build());
 	}
 
 	public Expresion getExpresion() {
@@ -63,7 +75,9 @@ public class Indicador {
 	}
 
 	public BigDecimal evaluar(Periodo periodo) {
-		return expresion.getValor(periodo, RepoIndicadores.getInstance());
+		if (this.getExpresion() == null)
+			this.setExpresion(new ExpresionBuilder(this.getFormula()).build());
+		return this.getExpresion().getValor(periodo, RepoIndicadores.getInstance());
 	}
 
 	public String generarFormula(){
@@ -102,7 +116,6 @@ public class Indicador {
 					this.generarArbol(((Operacion) expresion).getOpDer()) + ")";
 		}
 		return s;
-	}
-	
+	}	
 
 }

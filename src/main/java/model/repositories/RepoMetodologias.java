@@ -2,7 +2,6 @@ package model.repositories;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import model.Metodologia;
 import model.condiciones.Condicion;
@@ -14,15 +13,19 @@ import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.Tendencia;
 import model.data.HandlerArchivoJSON;
 
-public class RepoMetodologias extends RepoArchivo<Metodologia> {
-
+public class RepoMetodologias extends RepoBD<Metodologia> {
+	
 	private static final RepoMetodologias instance = new RepoMetodologias();
 
-	private final String RUTA = "data/Metodologias.json";
-
-	private final List<Metodologia> metodologiasPredefinidas = new LinkedList<>();
-
-	{
+	private RepoMetodologias() {
+	
+	}
+	
+	public static RepoMetodologias getInstance() {
+		return instance;
+	}
+	
+	public void cargarWarrenBuffet() {
 		List<Condicion> condiciones = new LinkedList<>(); 
 		condiciones.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, new Mayor(),
 				"Retorno sobre capital total", 10));
@@ -30,46 +33,32 @@ public class RepoMetodologias extends RepoArchivo<Metodologia> {
 				"Nivel de deuda", 1));
 		condiciones.add(new CondicionTaxativaConfigurable("Margen Creciente - 10 años > 50", new Mayor(),
 				new Tendencia(),"Margen", 10, null));
-		condiciones.add(new Longevidad());
-		
-		Metodologia warrenBuffet = new Metodologia("Warren-Buffet", condiciones);
-		metodologiasPredefinidas.add(warrenBuffet);
+		condiciones.add(new Longevidad());		
+		this.insertar(new Metodologia("Warren-Buffet", condiciones));
 	}
-
-	private RepoMetodologias() {
-		this.insertarVarios(metodologiasPredefinidas);
-	}
-
-	public static RepoMetodologias getInstance() {
-		return instance;
+	
+	public void cargarBDDesdeArchivo() {
+		this.insertarVarios(new HandlerArchivoJSON("data/Metodologias.json").<Metodologia>load(Metodologia.class));
 	}
 
 	@Override
-	public boolean sonIguales(Metodologia m1, Metodologia m2) {
-		return m1.getNombre().equals(m2.getNombre());
+	protected String valorDeBusqueda(Metodologia elemento) {
+		return elemento.getNombre();
 	}
 
-	/* Carga desde archivo JSON */
-	public void cargar() {
-		this.insertarVarios(new HandlerArchivoJSON(RUTA).<Metodologia>load(Metodologia.class));
+	@Override
+	protected String campoDeBusqueda() {
+		return "nombre";
 	}
 
-	/* Guardado en archivo JSON */
-	public void guardar() {
-		new HandlerArchivoJSON(RUTA).<Metodologia>save(this.getMetodologiasDeUsuario());
+	@Override
+	protected Class<Metodologia> getEntityClass() {
+		return Metodologia.class;
 	}
 
-	public List<Metodologia> getIndicadoresPredefinidos() {
-		return metodologiasPredefinidas;
-	}
-
-	public List<Metodologia> getMetodologiasDeUsuario() {
-		return this.findAll().stream().filter(m -> !metodologiasPredefinidas.contains(m))
-				.collect(Collectors.toList());
-	}
-
-	public void borrarMetodologiasDeUsuario() {
-		this.findAll().removeIf(i -> !metodologiasPredefinidas.contains(i));
+	@Override
+	protected String getEntityName() {
+		return "Metodologia";
 	}
 
 }

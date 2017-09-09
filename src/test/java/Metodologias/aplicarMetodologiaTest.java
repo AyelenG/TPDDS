@@ -192,8 +192,8 @@ public class aplicarMetodologiaTest {
 
 	@After
 	public void limpiar() {
-		metodologias.borrarMetodologiasDeUsuario();
+//		metodologias.borrarMetodologiasDeUsuario();
 		empresas.borrarElementos();
-		indicadores.borrarIndicadoresDeUsuario();
+//		indicadores.borrarIndicadoresDeUsuario();
 	}
 }

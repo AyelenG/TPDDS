@@ -5,7 +5,7 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
-import model.repositories.RepoCuentasBD;
+import model.repositories.RepoCuentas;
 
 @Observable
 public class CargaNuevaCuentaViewModel {
@@ -27,7 +27,7 @@ public class CargaNuevaCuentaViewModel {
 	}
 
 	public void cargarCuenta() {
-		RepoCuentasBD cuentas = RepoCuentasBD.getInstance();
+		RepoCuentas cuentas = RepoCuentas.getInstance();
 		if (cuentas.existeElemento(cuenta))
 			throw new UserException("La cuenta ingresada ya existe.");
 		if (cuenta.getNombre().isEmpty()) {

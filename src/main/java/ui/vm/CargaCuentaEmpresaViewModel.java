@@ -13,8 +13,8 @@ import model.Cuenta;
 import model.CuentaEmpresa;
 import model.Empresa;
 import model.Periodo;
-import model.repositories.RepoCuentasBD;
-import model.repositories.RepoEmpresasBD;
+import model.repositories.RepoCuentas;
+import model.repositories.RepoEmpresas;
 
 @Observable
 public class CargaCuentaEmpresaViewModel {
@@ -60,7 +60,7 @@ public class CargaCuentaEmpresaViewModel {
 			throw new UserException("Debe ingresar un valor válido.");
 		}		
 		empresaSeleccionada.agregarCuenta(new Periodo(anio), new CuentaEmpresa(cuentaSeleccionada.getNombre(), valor));
-		RepoEmpresasBD.getInstance().insertar(empresaSeleccionada);
+		RepoEmpresas.getInstance().insertar(empresaSeleccionada);
 		this.setHabilitaCarga(false);
 		
 		/**
@@ -99,11 +99,11 @@ public class CargaCuentaEmpresaViewModel {
 	}
 
 	public List<Empresa> getEmpresas() {
-		return RepoEmpresasBD.getInstance().findAll();
+		return RepoEmpresas.getInstance().findAll();
 	}
 	
 	public List<Cuenta> getCuentas() {
-		return RepoCuentasBD.getInstance().findAll();
+		return RepoCuentas.getInstance().findAll();
 	}
 
 	public Cuenta getCuentaSeleccionada() {

@@ -10,13 +10,13 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
 import model.Indicador;
-import model.repositories.RepoCuentasBD;
+import model.repositories.RepoCuentas;
 import model.repositories.RepoIndicadores;
 
 @Observable
 public class CargaIndicadorViewModel {
 
-	private RepoCuentasBD cuentas = RepoCuentasBD.getInstance();
+	private RepoCuentas cuentas = RepoCuentas.getInstance();
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private String ingresado = "";
 	private List<String> tokens = new LinkedList<>();
@@ -110,7 +110,7 @@ public class CargaIndicadorViewModel {
 		return cuentas.findAll();
 	}
 
-	public void setCuentas(RepoCuentasBD cuentas) {
+	public void setCuentas(RepoCuentas cuentas) {
 		this.cuentas = cuentas;
 	}
 

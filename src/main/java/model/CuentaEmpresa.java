@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
-import model.repositories.RepoCuentasBD;
+import model.repositories.RepoCuentas;
 
 @Entity
 @Observable
@@ -57,10 +57,10 @@ public class CuentaEmpresa{
 	}
 
 	public void setCuenta(Cuenta cuenta) {
-		RepoCuentasBD repoCuentas = RepoCuentasBD.getInstance();
+		RepoCuentas repoCuentas = RepoCuentas.getInstance();
 		Cuenta cuentaEncontrada = repoCuentas.buscarElemento(cuenta);
 		if(cuentaEncontrada == null){
-			RepoCuentasBD.getInstance().insertar(cuenta);
+			RepoCuentas.getInstance().insertar(cuenta);
 			this.cuenta = cuenta;
 		}
 		else

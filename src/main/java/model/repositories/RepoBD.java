@@ -53,7 +53,7 @@ public abstract class RepoBD<T> implements Repositorio<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> findAll(){
+	public List<T> findAll() {
 		return this.entityManager.createQuery("from " + this.getEntityName() + " e order by e.id asc").getResultList();
 	}
 

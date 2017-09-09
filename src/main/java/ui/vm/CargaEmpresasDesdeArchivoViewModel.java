@@ -11,7 +11,7 @@ import org.uqbar.commons.utils.Observable;
 import model.Empresa;
 import model.data.HandlerArchivoCSV;
 import model.data.HandlerArchivoJSON;
-import model.repositories.RepoEmpresasBD;
+import model.repositories.RepoEmpresas;
 
 @Observable
 public class CargaEmpresasDesdeArchivoViewModel {
@@ -36,7 +36,7 @@ public class CargaEmpresasDesdeArchivoViewModel {
 		else
 			throw new UserException("El archivo no tiena la extensión correcta");
 		
-		RepoEmpresasBD.getInstance().insertarVarios(empresas);
+		RepoEmpresas.getInstance().insertarVarios(empresas);
 
 		this.setHabilitaSelector(false);
 		this.setBotonCargarCuentas(false);

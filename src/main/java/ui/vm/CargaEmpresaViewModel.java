@@ -5,7 +5,7 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
-import model.repositories.RepoEmpresasBD;
+import model.repositories.RepoEmpresas;
 
 @Observable
 public class CargaEmpresaViewModel {
@@ -19,7 +19,7 @@ public class CargaEmpresaViewModel {
 	}
 
 	public void cargarEmpresa() {
-		RepoEmpresasBD empresas = RepoEmpresasBD.getInstance();
+		RepoEmpresas empresas = RepoEmpresas.getInstance();
 		if (empresa.getSymbol().isEmpty() || empresa.getNombre().isEmpty())
 			throw new UserException("Complete los datos de la empresa.");
 		if (empresas.existeElemento(empresa))

@@ -13,12 +13,12 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import model.Empresa;
 import model.data.HandlerArchivo;
 import model.data.HandlerArchivoJSON;
-import model.repositories.RepoEmpresasBD;
+import model.repositories.RepoEmpresas;
 
 public class PersistenciaTest{
 	private EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
 	
-	private RepoEmpresasBD repoEmpresas = RepoEmpresasBD.getInstance();
+	private RepoEmpresas repoEmpresas = RepoEmpresas.getInstance();
 	private HandlerArchivo loader = new HandlerArchivoJSON("data/CuentasPrueba.json");
 
 	@Before

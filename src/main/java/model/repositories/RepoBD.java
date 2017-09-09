@@ -29,6 +29,10 @@ public abstract class RepoBD<T> implements Repositorio<T> {
 		elementos.forEach(_elemento -> entityManager.persist(_elemento));
 		tx.commit();
 	}
+	
+	public T get(long id){
+		return entityManager.find(this.getEntityClass(), id);
+	}
 
 	public T buscarElemento(T elemento) {
 		Class<T> entityClass = this.getEntityClass();

@@ -31,7 +31,7 @@ public class Metodologia {
 	private String nombre = "";
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "meto_id")
+	@JoinColumn(name = "meto_id", nullable = false)
 	private List<Condicion> condiciones = new LinkedList<>();
 	
 	public Metodologia() {

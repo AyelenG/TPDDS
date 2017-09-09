@@ -2,6 +2,7 @@ package model.condiciones;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 
@@ -15,10 +16,12 @@ import model.repositories.RepoIndicadores;
 @Entity
 public abstract class CondicionConfigurable extends Condicion {
 
+	@Column(length = 50)
 	protected String nombre = "";
 
 	@Convert(converter = ComparadorConverter.class)
 	protected Comparador comparador;
+	@Column(length = 50)
 	protected String nombreIndicador;
 	protected Integer cantidadAnios;
 

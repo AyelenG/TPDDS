@@ -2,6 +2,7 @@ package model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,7 +27,9 @@ public class Indicador {
 	@GeneratedValue
 	private long id;
 	
+	@Column(length = 50, unique = true, nullable=false)
 	private String nombre = "";
+	@Column(nullable=false)
 	private String formula = "";
 	
 	@Transient

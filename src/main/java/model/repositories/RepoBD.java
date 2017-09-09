@@ -13,7 +13,10 @@ import javax.persistence.criteria.Root;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 public abstract class RepoBD<T> implements Repositorio<T> {
-
+	
+	// yo lo haria así
+	// protected nombreClase; <--- a esto se le asigna un valor en el constructor de cada clase hija
+	// ejemplo: constructor(){ this.nombreClase = "Empresa" }
 	protected EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 
 	public void insertar(T elemento) {
@@ -60,6 +63,13 @@ public abstract class RepoBD<T> implements Repositorio<T> {
 	public List<T> findAll() {
 		return this.entityManager.createQuery("from " + this.getEntityName() + " e order by e.id asc").getResultList();
 	}
+	
+	/*
+	 public List<T> findAll(){
+	 	return this.entityManager.createQuery("from " + this.nombreClase + bla bla).getResultList();
+	 } 
+	 
+	 * */
 
 	protected abstract Class<T> getEntityClass();
 	

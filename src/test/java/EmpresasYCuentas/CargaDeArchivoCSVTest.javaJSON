@@ -3,8 +3,8 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.CuentaEmpresa;
@@ -12,29 +12,30 @@ import model.Empresa;
 import model.Periodo;
 import model.data.HandlerArchivo;
 import model.data.HandlerArchivoCSV;
+import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
 
 public class CargaDeArchivoCSVTest {
 	private Empresa empresa;
-	private RepoEmpresas empresas = RepoEmpresas.getInstance();
-	private HandlerArchivo loader = new HandlerArchivoCSV("data/PruebaCuentas.csv");
+	private static RepoEmpresas empresas = RepoEmpresas.getInstance();
+	private static HandlerArchivo loader = new HandlerArchivoCSV("data/PruebaCuentas.csv");
 	private BigDecimal valorCuenta = new BigDecimal(100);
 	private Periodo periodo;
 
-	@Before
-	public void inicio() {
+	@BeforeClass
+	public static void inicio() {
 		empresas.insertarVarios(loader.loadEmpresas());
 	}
 
 	@Test
 	public void verificarPrimerEmpresa() {
-		empresa = empresas.get(0);
+		empresa = empresas.get(1l);
 		assertEquals("FB",empresa.getSymbol());
 	}
 
 	@Test
 	public void verificarPeriodosDeLaSegundaEmpresa() {
-		empresa = empresas.get(1);
+		empresa = empresas.get(2l);
 		assertEquals(empresa.getPeriodos().size(), 1);
 	}
 
@@ -46,29 +47,30 @@ public class CargaDeArchivoCSVTest {
 
 	@Test
 	public void siLaCuentaYaExisteNoLaDuplica() {
-		empresa = empresas.get(0);
+		empresa = empresas.get(1l);
 		empresa.getPeriodos().get(0).agregarCuenta(new CuentaEmpresa("EBITDA"));
 		assertEquals(empresa.getPeriodos().get(0).getCuentas().size(), 2);
 	}
 
 	@Test
 	public void siLaCuentaYaExisteEnUnPeriodoCambiaElValor() {
-		empresa = empresas.get(0);
+		empresa = empresas.get(1l);
 		empresa.getPeriodos().get(0).agregarCuenta(new CuentaEmpresa("EBITDA", valorCuenta));
 		assertEquals(empresa.getPeriodos().get(0).getCuentas().get(0).getValor(), valorCuenta);
 	}
 
 	@Test
 	public void verificarQueAgreguePeriodoSiNoExiste() {
-		empresa = empresas.get(0);
+		empresa = empresas.get(1l);
 		periodo = new Periodo(2015);
 		empresa.agregarPeriodo(periodo);
 		assertEquals(empresa.getPeriodos().size(), 3);
 	}
 	
-	@After
-	public void limpiar() {
-		empresas.borrarElementos();
+	@AfterClass
+	public static void limpiar() {
+		empresas.clean();
+		RepoCuentas.getInstance().clean();
 	}
 
 }

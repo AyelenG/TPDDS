@@ -31,7 +31,7 @@ public class Empresa {
 	@Column(length = 50, nullable=false)
 	private String nombre;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "empr_id", nullable = false)
 	private List<Periodo> periodos = new LinkedList<>();
 

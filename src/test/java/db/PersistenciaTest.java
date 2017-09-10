@@ -23,7 +23,6 @@ public class PersistenciaTest{
 
 	@Before
 	public void inicio() {
-//		entityManager.createStoredProcedureQuery("limpiar_tablas").execute();
 		repoEmpresas.insertarVarios(loader.loadEmpresas());
 				
 	}
@@ -47,17 +46,17 @@ public class PersistenciaTest{
 //		System.out.println(entityManager.find(Empresa.class, new Long(1)));
 //	}
 	
-	@Test
-	public void segundaEmpresaPersistidaGoogle() {
-	
-		assertEquals("Google", entityManager.find(Empresa.class, 2l).getNombre());
-	}
-	
-	@Test
-	public void buscarFacebook() {
-		Empresa facebook = entityManager.find(Empresa.class, 1l);
-		assertEquals(facebook, repoEmpresas.buscarElemento(new Empresa("FB","Facebook")));
-	}
+//	@Test
+//	public void segundaEmpresaPersistidaGoogle() {
+//	
+//		assertEquals("Google", entityManager.find(Empresa.class, 2l).getNombre());
+//	}
+//	
+//	@Test
+//	public void buscarFacebook() {
+//		Empresa facebook = entityManager.find(Empresa.class, 1l);
+//		assertEquals(facebook, repoEmpresas.buscarElemento(new Empresa("FB","Facebook")));
+//	}
 	
 	@Test
 	public void buscarIBMDevuelveNull() {
@@ -106,6 +105,6 @@ public class PersistenciaTest{
 	
 	@After
 	public void limpiar() {
-		entityManager.clear();
+		repoEmpresas.clean();
 	}
 }

@@ -70,6 +70,19 @@ public abstract class RepoBD<T> implements Repositorio<T> {
 	 } 
 	 
 	 * */
+	public void borrarElemento(T elemento){
+		EntityTransaction tx = entityManager.getTransaction();
+		tx.begin();
+		this.entityManager.remove(elemento);
+		tx.commit();
+	}
+	
+	public void clean(){
+		EntityTransaction tx = entityManager.getTransaction();
+		tx.begin();
+		this.findAll().forEach(e->entityManager.remove(e));
+		tx.commit();
+	}
 
 	protected abstract Class<T> getEntityClass();
 	

@@ -27,7 +27,7 @@ public class Periodo implements Comparable<Periodo> {
 	@Column(nullable=false)
 	private Integer anio;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "peri_id", nullable = false)
 	private List<CuentaEmpresa> cuentas = new LinkedList<>();
 

@@ -88,7 +88,7 @@ public class Empresa {
 	 * Agrega una cuenta en el periodo correspondiente, si no existe el periodo
 	 * en la empresa lo agrega
 	 */
-	public void agregarCuenta(Periodo periodo, CuentaEmpresa cuenta) {
+	public void agregarCuenta(Periodo periodo, CuentaPeriodo cuenta) {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
 		
 		

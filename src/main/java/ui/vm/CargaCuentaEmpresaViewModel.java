@@ -10,7 +10,7 @@ import org.uqbar.commons.utils.Observable;
 
 
 import model.Cuenta;
-import model.CuentaEmpresa;
+import model.CuentaPeriodo;
 import model.Empresa;
 import model.Periodo;
 import model.repositories.RepoCuentas;
@@ -59,7 +59,7 @@ public class CargaCuentaEmpresaViewModel {
 		} catch (NumberFormatException e) {
 			throw new UserException("Debe ingresar un valor válido.");
 		}		
-		empresaSeleccionada.agregarCuenta(new Periodo(anio), new CuentaEmpresa(cuentaSeleccionada.getNombre(), valor));
+		empresaSeleccionada.agregarCuenta(new Periodo(anio), new CuentaPeriodo(cuentaSeleccionada.getNombre(), valor));
 		RepoEmpresas.getInstance().insertar(empresaSeleccionada);
 		this.setHabilitaCarga(false);
 		

@@ -12,11 +12,12 @@ import javax.persistence.criteria.Root;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import model.data.HandlerArchivoJSON;
+
 public abstract class RepoBD<T> implements Repositorio<T> {
-	
-	// yo lo haria así
-	// protected nombreClase; <--- a esto se le asigna un valor en el constructor de cada clase hija
-	// ejemplo: constructor(){ this.nombreClase = "Empresa" }
+
+	protected Class<T> entidad;
+
 	protected EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 
 	public void insertar(T elemento) {
@@ -33,17 +34,21 @@ public abstract class RepoBD<T> implements Repositorio<T> {
 		tx.commit();
 	}
 	
-	public T get(long id){
-		return entityManager.find(this.getEntityClass(), id);
+	public void migrarDesdeJSON() {
+		this.insertarVarios(new HandlerArchivoJSON("data/"
+					+ entidad.getSimpleName() + ".json").<T>load(entidad));
+	}
+	
+	public T get(long id) {
+		return entityManager.find(entidad, id);
 	}
 
 	public T buscarElemento(T elemento) {
-		Class<T> entityClass = this.getEntityClass();
 		String campoDeBusqueda = this.campoDeBusqueda();
 		String valorDeBusqueda = this.valorDeBusqueda(elemento);
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<T> criteria = builder.createQuery(entityClass);
-		Root<T> from = criteria.from(entityClass);
+		CriteriaQuery<T> criteria = builder.createQuery(entidad);
+		Root<T> from = criteria.from(entidad);
 		criteria.select(from);
 		criteria.where(builder.equal(from.get(campoDeBusqueda), valorDeBusqueda));
 		TypedQuery<T> typed = entityManager.createQuery(criteria);
@@ -61,35 +66,27 @@ public abstract class RepoBD<T> implements Repositorio<T> {
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
-		return this.entityManager.createQuery("from " + this.getEntityName() + " e order by e.id asc").getResultList();
+		return this.entityManager.createQuery("from " + entidad.getSimpleName() + " e order by e.id asc").getResultList();
 	}
-	
-	/*
-	 public List<T> findAll(){
-	 	return this.entityManager.createQuery("from " + this.nombreClase + bla bla).getResultList();
-	 } 
-	 
-	 * */
-	public void borrarElemento(T elemento){
+
+	public void borrarElemento(T elemento) {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
 		this.entityManager.remove(elemento);
 		tx.commit();
 	}
 	
-	public void clean(){
+	public void clean() {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
-		this.findAll().forEach(e->entityManager.remove(e));
+		this.findAll().forEach(_elemento -> entityManager.remove(_elemento));
 		tx.commit();
 	}
 
-	protected abstract Class<T> getEntityClass();
-	
-	protected abstract String getEntityName();
-	
-	protected abstract String valorDeBusqueda(T elemento);
+	protected String campoDeBusqueda() {
+		return "nombre";
+	}
 
-	protected abstract String campoDeBusqueda();
+	protected abstract String valorDeBusqueda(T elemento);
 
 }

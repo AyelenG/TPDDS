@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.runner.RunWith;
 
-import model.CuentaEmpresa;
+import model.CuentaPeriodo;
 import model.Periodo;
 
 import org.junit.experimental.theories.*;
@@ -31,7 +31,7 @@ public class SumatoriaTest {
 	Periodo periodo1 = new Periodo();
 	Periodo periodo2 = new Periodo();
 	Periodo periodo3 = new Periodo();
-	CuentaEmpresa cuenta = new CuentaEmpresa("ROE", new BigDecimal(5));
+	CuentaPeriodo cuenta = new CuentaPeriodo("ROE", new BigDecimal(5));
 	periodo1.agregarCuenta(cuenta);
 	periodo2.agregarCuenta(cuenta);
 	periodo3.agregarCuenta(cuenta);
@@ -48,7 +48,7 @@ public class SumatoriaTest {
 	Periodo periodo1 = new Periodo();
 	Periodo periodo2 = new Periodo();
 	Periodo periodo3 = new Periodo();
-	CuentaEmpresa cuenta = new CuentaEmpresa("ROE", new BigDecimal(5));
+	CuentaPeriodo cuenta = new CuentaPeriodo("ROE", new BigDecimal(5));
 	periodo1.agregarCuenta(cuenta);
 	periodo2.agregarCuenta(cuenta);
 	periodo3.agregarCuenta(cuenta);

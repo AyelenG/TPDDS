@@ -11,14 +11,13 @@ import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.condiciones.primitivas.Longevidad;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.Tendencia;
-import model.data.HandlerArchivoJSON;
 
 public class RepoMetodologias extends RepoBD<Metodologia> {
 	
 	private static final RepoMetodologias instance = new RepoMetodologias();
 
 	private RepoMetodologias() {
-	
+		this.entidad = Metodologia.class;
 	}
 	
 	public static RepoMetodologias getInstance() {
@@ -37,28 +36,9 @@ public class RepoMetodologias extends RepoBD<Metodologia> {
 		this.insertar(new Metodologia("Warren-Buffet", condiciones));
 	}
 	
-	public void cargarBDDesdeArchivo() {
-		this.insertarVarios(new HandlerArchivoJSON("data/Metodologias.json").<Metodologia>load(Metodologia.class));
-	}
-
 	@Override
 	protected String valorDeBusqueda(Metodologia elemento) {
 		return elemento.getNombre();
-	}
-
-	@Override
-	protected String campoDeBusqueda() {
-		return "nombre";
-	}
-
-	@Override
-	protected Class<Metodologia> getEntityClass() {
-		return Metodologia.class;
-	}
-
-	@Override
-	protected String getEntityName() {
-		return "Metodologia";
 	}
 
 }

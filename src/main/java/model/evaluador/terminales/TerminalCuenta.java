@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import exceptions.NoSePuedeEvaluarException;
 import model.Cuenta;
-import model.CuentaEmpresa;
+import model.CuentaPeriodo;
 import model.Periodo;
 import model.evaluador.Expresion;
 import model.repositories.RepoIndicadores;
@@ -19,7 +19,7 @@ public class TerminalCuenta implements Expresion {
 
 	@Override
 	public BigDecimal getValor(Periodo periodo, RepoIndicadores indiceIndicadores) {
-		CuentaEmpresa cuenta = periodo.buscarCuenta(new Cuenta(nombreCuenta));
+		CuentaPeriodo cuenta = periodo.buscarCuenta(new Cuenta(nombreCuenta));
 		if (cuenta == null)
 			throw new NoSePuedeEvaluarException(
 					"No existe cuenta [" + nombreCuenta + "] en el periodo." + " No puede evaluarse el indicador.");

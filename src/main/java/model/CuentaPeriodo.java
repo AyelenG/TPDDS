@@ -19,7 +19,7 @@ import model.repositories.RepoCuentas;
 @Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
-public class CuentaEmpresa{
+public class CuentaPeriodo {
 
 	@Id
 	@GeneratedValue
@@ -32,14 +32,15 @@ public class CuentaEmpresa{
 	@Column(nullable=false)
 	private BigDecimal valor;
 
-	public CuentaEmpresa() {
+	public CuentaPeriodo() {
+
 	}
 
-	public CuentaEmpresa(String nombre) {
+	public CuentaPeriodo(String nombre) {
 		this.setCuenta(new Cuenta(nombre));
 	}
 
-	public CuentaEmpresa(String nombre, BigDecimal valor) {
+	public CuentaPeriodo(String nombre, BigDecimal valor) {
 		this.setCuenta(new Cuenta(nombre));
 		this.setValor(valor);
 	}

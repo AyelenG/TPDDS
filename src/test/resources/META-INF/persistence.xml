@@ -11,7 +11,7 @@
 		<class>model.Empresa</class>
     	<class>model.Periodo</class>
     	<class>model.Cuenta</class>
-    	<class>model.CuentaEmpresa</class>
+    	<class>model.CuentaPeriodo</class>
 		<class>model.Indicador</class>
 		<class>model.Metodologia</class>
 	

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 import exceptions.NoSePuedeEvaluarException;
 import model.Cuenta;
-import model.CuentaEmpresa;
+import model.CuentaPeriodo;
 import model.Indicador;
 import model.Periodo;
 import model.repositories.RepoCuentas;
@@ -28,10 +28,10 @@ public class EvaluadorTest {
 	public static void inicio() {
 		indicadores.insertar(new Indicador("Ingreso Neto", "[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"));
 		indicadores.insertar(new Indicador("Retorno Sobre Capital Total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"));
-		periodo.agregarCuenta(new CuentaEmpresa("Ingreso neto en operaciones continuas", new BigDecimal(5)));
-		periodo.agregarCuenta(new CuentaEmpresa("Ingreso neto en operaciones discontinuas", new BigDecimal(3)));
-		periodo.agregarCuenta(new CuentaEmpresa("Dividendos", new BigDecimal(2.5)));
-		periodo.agregarCuenta(new CuentaEmpresa("Capital total", new BigDecimal(-2.75)));
+		periodo.agregarCuenta(new CuentaPeriodo("Ingreso neto en operaciones continuas", new BigDecimal(5)));
+		periodo.agregarCuenta(new CuentaPeriodo("Ingreso neto en operaciones discontinuas", new BigDecimal(3)));
+		periodo.agregarCuenta(new CuentaPeriodo("Dividendos", new BigDecimal(2.5)));
+		periodo.agregarCuenta(new CuentaPeriodo("Capital total", new BigDecimal(-2.75)));
 		pairs[0] = new Pair(indicadores.buscarElemento(new Indicador("Ingreso Neto")), 8);
 		pairs[1] = new Pair(indicadores.buscarElemento(new Indicador("Retorno Sobre Capital Total")), -2);
 	}

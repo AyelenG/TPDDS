@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import exceptions.ArchivoConErroresException;
-import model.CuentaEmpresa;
+import model.CuentaPeriodo;
 import model.Empresa;
 import model.Periodo;
 
@@ -78,7 +78,7 @@ public class HandlerArchivoCSV extends HandlerArchivo {
 			throw new ArchivoConErroresException(e);
 		}
 		Periodo periodo = new Periodo(anio);
-		periodo.agregarCuenta(new CuentaEmpresa(nombreCuenta, valor));
+		periodo.agregarCuenta(new CuentaPeriodo(nombreCuenta, valor));
 		return periodo;
 	}
 

@@ -29,7 +29,7 @@ public class Periodo implements Comparable<Periodo> {
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "peri_id", nullable = false)
-	private List<CuentaEmpresa> cuentas = new LinkedList<>();
+	private List<CuentaPeriodo> cuentas = new LinkedList<>();
 
 	public Periodo() {
 		
@@ -39,19 +39,19 @@ public class Periodo implements Comparable<Periodo> {
 		this.setAnio(anio);
 	}
 
-	public void agregarCuentas(List<CuentaEmpresa> cuentas) {
-		for (CuentaEmpresa cuenta : cuentas)
+	public void agregarCuentas(List<CuentaPeriodo> cuentas) {
+		for (CuentaPeriodo cuenta : cuentas)
 			this.agregarCuenta(cuenta);
 	}
 
-	public void agregarCuenta(CuentaEmpresa cuentaEmpresa) {
+	public void agregarCuenta(CuentaPeriodo cuentaEmpresa) {
 		if (!existeCuenta(cuentaEmpresa.getCuenta()))
 			cuentas.add(cuentaEmpresa);
 		else
 			this.buscarCuenta(cuentaEmpresa.getCuenta()).setValor(cuentaEmpresa.getValor());
 	}
 
-	public CuentaEmpresa buscarCuenta(Cuenta cuenta) {
+	public CuentaPeriodo buscarCuenta(Cuenta cuenta) {
 		return cuentas.stream().filter(_cuenta -> _cuenta.esIgual(cuenta)).findFirst().orElse(null);
 	}
 
@@ -81,11 +81,11 @@ public class Periodo implements Comparable<Periodo> {
 		this.anio = anio;
 	}
 	
-	public List<CuentaEmpresa> getCuentas() {
+	public List<CuentaPeriodo> getCuentas() {
 		return cuentas;
 	}
 
-	public void setCuentas(List<CuentaEmpresa> cuentas) {
+	public void setCuentas(List<CuentaPeriodo> cuentas) {
 		this.cuentas = cuentas;
 	}
 

@@ -8,11 +8,11 @@ import model.repositories.RepoMetodologias;
 public class InicializarBDVaciaApplication {
 
 	public static void main(String[] args) {
-		RepoCuentas.getInstance().cargarBDDesdeArchivo();
-		RepoEmpresas.getInstance().cargarBDDesdeArchivo();
+		RepoCuentas.getInstance().migrarDesdeJSON();
+		RepoEmpresas.getInstance().migrarDesdeJSON();
 		RepoMetodologias.getInstance().cargarWarrenBuffet();
-		RepoMetodologias.getInstance().cargarBDDesdeArchivo();
-		RepoIndicadores.getInstance().cargarBDDesdeArchivo();
+		RepoMetodologias.getInstance().migrarDesdeJSON();
+		RepoIndicadores.getInstance().migrarDesdeJSON();
 	}
 
 }

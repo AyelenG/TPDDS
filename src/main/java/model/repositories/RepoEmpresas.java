@@ -5,14 +5,13 @@ import java.util.List;
 import javax.persistence.EntityTransaction;
 
 import model.Empresa;
-import model.data.HandlerArchivoJSON;
 
 public class RepoEmpresas extends RepoBD<Empresa> {
 	
 	private static final RepoEmpresas instance = new RepoEmpresas();
 	
 	private RepoEmpresas() {
-
+		this.entidad = Empresa.class;
 	}
 	
 	public static RepoEmpresas getInstance() {
@@ -34,9 +33,6 @@ public class RepoEmpresas extends RepoBD<Empresa> {
 		}
 	}
 	
-	public void cargarBDDesdeArchivo() {
-		this.insertarVarios(new HandlerArchivoJSON("data/Empresas.json").<Empresa>load(Empresa.class));
-	}
 
 	@Override
 	protected String valorDeBusqueda(Empresa elemento) {
@@ -47,15 +43,5 @@ public class RepoEmpresas extends RepoBD<Empresa> {
 	protected String campoDeBusqueda() {
 		return "symbol";
 	}
-
-	@Override
-	protected Class<Empresa> getEntityClass() {
-		return Empresa.class;
-	}
-
-	@Override
-	protected String getEntityName() {
-		return "Empresa";
-	}
-
+	
 }

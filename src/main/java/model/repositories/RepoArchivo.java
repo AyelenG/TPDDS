@@ -50,7 +50,7 @@ public abstract class RepoArchivo<T> implements Repositorio<T> {
 		return this.elementos.stream().anyMatch(_e -> this.sonIguales(_e,e));
 	}
 	
-	public void borrarElementos(){
+	public void clean(){
 		this.elementos.clear();
 	}
 	

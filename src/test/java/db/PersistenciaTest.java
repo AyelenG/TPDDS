@@ -21,7 +21,7 @@ public class PersistenciaTest extends AbstractPersistenceTest implements WithGlo
 	private EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
 	
 	private RepoEmpresas repoEmpresas = RepoEmpresas.getInstance();
-	private HandlerArchivo loader = new HandlerArchivoJSON("data/Cuenta.json");
+	private HandlerArchivo loader = new HandlerArchivoJSON("data/back/CuentasPrueba.json");
 
 	@Before
 	public void inicio() {

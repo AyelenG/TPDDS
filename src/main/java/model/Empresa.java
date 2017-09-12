@@ -98,6 +98,7 @@ public class Empresa {
 		return !empresas.contains(this);
 	}
 	
+	@Override
 	public String toString() {
 		return getSymbol() + " - " + getNombre();
 	}

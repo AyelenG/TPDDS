@@ -27,7 +27,7 @@ public class Metodologia {
 	@GeneratedValue
 	private long id;
 	
-	@Column(length = 50, nullable=false)
+	@Column(length = 50, nullable=false, unique=true)
 	private String nombre = "";
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

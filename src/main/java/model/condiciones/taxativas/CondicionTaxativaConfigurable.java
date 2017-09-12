@@ -2,6 +2,7 @@ package model.condiciones.taxativas;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 
@@ -21,6 +22,7 @@ import model.condiciones.CondicionConfigurable;
 public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 
 	@Convert(converter = TipoCondicionTaxativaConverter.class)
+	@Column(length = 50)
 	private TipoCondicionTaxativa tipoTaxatividad;
 	
 	private BigDecimal valorDeReferencia;

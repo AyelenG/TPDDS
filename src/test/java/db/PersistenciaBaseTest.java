@@ -66,6 +66,7 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 		periodos.add(p2013);
 		empresa.agregarPeriodos(periodos);
 		entityManager.persist(empresa);
+		@SuppressWarnings("unchecked")
 		List<Periodo> perEncontrados = (List<Periodo>) entityManager.createQuery("FROM Periodo").getResultList();
 		assertEquals(perEncontrados.size(),2);
 	}
@@ -100,10 +101,11 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 		
 		Metodologia metodologiaBuscada = entityManager.find(Metodologia.class, 1l);
 		assertEquals(metodologiaBuscada.getCondiciones().size(), 2);
+	
+		CondicionTaxativaConfigurable condT = (CondicionTaxativaConfigurable) metodologiaBuscada.getCondiciones().get(1);
+		assertEquals(BigDecimal.valueOf(50),condT.getValorDeReferencia());
 		
 	}
-	
-	
 	
 	@After
 	public void after(){

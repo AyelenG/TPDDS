@@ -26,7 +26,7 @@ public class TipoCondicionTaxativaConverter implements AttributeConverter<TipoCo
 		case "Sumatoria":
 			return new Sumatoria();
 		case "Tendencia":
-			return new Sumatoria();
+			return new Tendencia();
 		default:
 			throw new UserException("Error en la base de Datos.");
 		}

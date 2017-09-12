@@ -20,6 +20,7 @@ public abstract class CondicionConfigurable extends Condicion {
 	protected String nombre = "";
 
 	@Convert(converter = ComparadorConverter.class)
+	@Column(length = 50)
 	protected Comparador comparador;
 	@Column(length = 50)
 	protected String nombreIndicador;

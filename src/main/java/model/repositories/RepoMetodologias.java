@@ -24,7 +24,7 @@ public class RepoMetodologias extends RepoBD<Metodologia> {
 		return instance;
 	}
 	
-	public void cargarWarrenBuffet() {
+	public void cargarPredefinidas() {
 		List<Condicion> condiciones = new LinkedList<>(); 
 		condiciones.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, new Mayor(),
 				"Retorno sobre capital total", 10));

@@ -1,4 +1,4 @@
-package db;
+/*package db;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,17 +9,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import model.Empresa;
 import model.data.HandlerArchivo;
 import model.data.HandlerArchivoJSON;
 import model.repositories.RepoEmpresas;
 
-public class PersistenciaTest{
+public class PersistenciaTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
 	private EntityManager entityManager = PerThreadEntityManagers.getEntityManager(); 
 	
 	private RepoEmpresas repoEmpresas = RepoEmpresas.getInstance();
-	private HandlerArchivo loader = new HandlerArchivoJSON("data/CuentasPrueba.json");
+	private HandlerArchivo loader = new HandlerArchivoJSON("data/Cuenta.json");
 
 	@Before
 	public void inicio() {
@@ -107,4 +109,4 @@ public class PersistenciaTest{
 	public void limpiar() {
 		repoEmpresas.clean();
 	}
-}
+}*/

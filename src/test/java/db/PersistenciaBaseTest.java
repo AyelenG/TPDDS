@@ -29,7 +29,7 @@ import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.Promedio;
 
 
-public class PersistenciaHSQLDBTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
+public class PersistenciaBaseTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
 	private EntityManager entityManager; 
 	
 	private Empresa empresa;

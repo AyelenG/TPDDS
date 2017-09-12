@@ -1,0 +1,16 @@
+@startuml
+
+left to right direction
+
+actor Usuario
+node AplicacionDesktop
+node ORM
+database Data
+file DataEmpresas
+
+Usuario <--> AplicacionDesktop
+AplicacionDesktop <-- DataEmpresas
+AplicacionDesktop <--> ORM
+ORM <--> Data
+
+@enduml

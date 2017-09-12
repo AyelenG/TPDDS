@@ -1,0 +1,78 @@
+@startuml
+
+interface Repositorio<T> [[java:model.repositories.Repositorio]] {
+	void insertar(T elemento)
+	void insertarVarios(List<T> elementos)
+	T buscarElemento(T elemento)
+	boolean existeElemento(T elemento)
+	List<T> findAll()
+	void borrarElemento(T elemento)
+	void clean()
+}
+
+abstract class RepoBD<T> [[java:model.repositories.RepoBD]] {
+	#Class<T> entidad
+	#EntityManager entityManager
+	+void insertar(T elemento)
+	+void insertarVarios(List<T> elementos)
+	+T get(long id)
+	+T buscarElemento(T elemento)
+	+boolean existeElemento(T elemento)
+	+List<T> findAll()
+	+void borrarElemento(T elemento)
+	+void clean()
+	+void migrarDesdeJSON()
+	#String campoDeBusqueda()
+	#{abstract}String valorDeBusqueda(T elemento)
+}
+Repositorio <|.. RepoBD
+
+abstract class RepoArchivo<T> [[java:model.repositories.RepoArchivo]] {
+	-List<T> elementos
+	+List<T> findAll()
+	+void setElementos(List<T> elementos)
+	+T get(int i)
+	+int indexOf(T e)
+	+int size()
+	+void insertarVarios(List<T> elementos)
+	+void insertar(T e)
+	+T buscarElemento(T e)
+	+boolean existeElemento(T e)
+	+void clean()
+	#{abstract}boolean sonIguales(T elemento1, T elemento2)
+}
+Repositorio <|.. RepoArchivo
+
+class RepoCuentas [[java:model.repositories.RepoCuentas]] {
+	-{static}RepoCuentas instance
+	#String valorDeBusqueda(Cuenta elemento)
+}
+
+RepoBD <|-- RepoCuentas
+
+class RepoEmpresas [[java:model.repositories.RepoEmpresas]] {
+	-{static}RepoEmpresas instance
+	+void insertarVarios(List<Empresa> empresas)
+	#String valorDeBusqueda(Empresa elemento)
+	#String campoDeBusqueda()
+}
+
+RepoBD <|-- RepoEmpresas
+
+class RepoIndicadores [[java:model.repositories.RepoIndicadores]] {
+	-{static}RepoIndicadores instance
+	+void cargarPredefinidos()
+	#String valorDeBusqueda(Indicador elemento)
+}
+
+RepoBD <|-- RepoIndicadores
+
+class RepoMetodologias [[java:model.repositories.RepoMetodologias]] {
+	-{static}RepoMetodologias instance
+	+void cargarPredefinidas()
+	#String valorDeBusqueda(Metodologia elemento)
+}
+
+RepoBD <|-- RepoMetodologias
+
+@enduml

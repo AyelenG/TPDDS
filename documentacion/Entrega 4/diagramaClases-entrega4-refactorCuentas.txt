@@ -1,0 +1,41 @@
+@startuml
+class Empresa [[java:model.Empresa]] {
+	-String symbol
+	-String nombre
+	-List<Periodo> periodos
+	+Periodo buscarPeriodoYAgregar(Periodo periodo)
+	+void agregarPeriodos(List<Periodo> periodos)
+	+void agregarPeriodo(Periodo periodo)
+	+Periodo buscarPeriodo(Periodo periodo)
+	+boolean existePeriodo(Periodo periodo)
+	+void agregarCuenta(Periodo periodo, CuentaEmpresa cuenta)
+	+List<Periodo> getUltimosNAnios(int n)
+	+int antiguedad()
+}
+
+class Periodo [[java:model.Periodo]] {
+	-Integer anio
+	-List<CuentaEmpresa> cuentas
+	+void agregarCuentas(List<CuentaEmpresa> cuentas)
+	+void agregarCuenta(CuentaEmpresa cuenta)
+	+CuentaEmpresa buscarCuenta(Cuenta cuenta)
+	+boolean existeCuenta(Cuenta cuenta)
+	+boolean esIgual(Periodo periodo)
+}
+
+class Cuenta [[java:model.Cuenta]] {
+	-String nombre
+}
+
+class CuentaPeriodo [[java:model.CuentaPeriodo]] {
+	-Cuenta cuenta
+	-BigDecimal valor
+	+boolean esIgual(Cuenta cuenta)
+	+String getNombre()
+}
+
+CuentaPeriodo --> Cuenta : contiene
+Empresa --> "*" Periodo : contiene
+Periodo --> "*" CuentaPeriodo : contiene
+
+@enduml

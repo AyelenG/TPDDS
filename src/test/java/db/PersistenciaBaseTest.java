@@ -7,13 +7,10 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
@@ -30,7 +27,6 @@ import model.condiciones.taxativas.Promedio;
 
 
 public class PersistenciaBaseTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
-	private EntityManager entityManager; 
 	
 	private Empresa empresa;
 	private Metodologia metodologia;
@@ -39,7 +35,6 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 	
 	@Before
 	public void init(){
-		entityManager = PerThreadEntityManagers.getEntityManager();
 		empresa = new Empresa();
 		
 		beginTransaction();
@@ -50,8 +45,8 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 	public void persistirEmpresa(){
 		empresa.setNombre("Google");
 		empresa.setSymbol("GOOGL");
-		entityManager.persist(empresa);
-		Empresa empresaBuscada = (Empresa) entityManager.createQuery("from Empresa").getSingleResult();
+		entityManager().persist(empresa);
+		Empresa empresaBuscada = (Empresa) entityManager().createQuery("from Empresa").getSingleResult();
 		assertEquals("Google",empresaBuscada.getNombre());
 	}
 	
@@ -65,9 +60,9 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 		periodos.add(p2012);
 		periodos.add(p2013);
 		empresa.agregarPeriodos(periodos);
-		entityManager.persist(empresa);
+		entityManager().persist(empresa);
 		@SuppressWarnings("unchecked")
-		List<Periodo> perEncontrados = (List<Periodo>) entityManager.createQuery("FROM Periodo").getResultList();
+		List<Periodo> perEncontrados = (List<Periodo>) entityManager().createQuery("FROM Periodo").getResultList();
 		assertEquals(perEncontrados.size(),2);
 	}
 	
@@ -87,7 +82,7 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 	public void persistirCuentas(){
 		Cuenta cuenta = new Cuenta("Ingresos");
 		persist(cuenta);
-		Cuenta cuentaBuscada = (Cuenta) entityManager.createQuery("from Cuenta").getSingleResult();
+		Cuenta cuentaBuscada = (Cuenta) entityManager().createQuery("from Cuenta").getSingleResult();
 		assertEquals(cuentaBuscada.getNombre(), cuenta.getNombre());
 	}
 	@Test
@@ -99,7 +94,7 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 		metodologia=new Metodologia("Prueba", condiciones);
 		persist(metodologia);
 		
-		Metodologia metodologiaBuscada = entityManager.find(Metodologia.class, 1l);
+		Metodologia metodologiaBuscada = entityManager().find(Metodologia.class, 1l);
 		assertEquals(metodologiaBuscada.getCondiciones().size(), 2);
 	
 		CondicionTaxativaConfigurable condT = (CondicionTaxativaConfigurable) metodologiaBuscada.getCondiciones().get(1);

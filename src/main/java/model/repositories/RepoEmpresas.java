@@ -2,8 +2,6 @@ package model.repositories;
 
 import java.util.List;
 
-import javax.persistence.EntityTransaction;
-
 import model.Empresa;
 
 public class RepoEmpresas extends RepoBD<Empresa> {
@@ -20,17 +18,16 @@ public class RepoEmpresas extends RepoBD<Empresa> {
 	
 	@Override
 	public void insertarVarios(List<Empresa> empresas) {
-
-		for (Empresa empresa : empresas) {
-			if (!existeElemento(empresa))
-				this.insertar(empresa);
-			else {
-				EntityTransaction tx = entityManager.getTransaction();
-				tx.begin();
-				this.buscarElemento(empresa).agregarPeriodos(empresa.getPeriodos());
-				tx.commit();
-			}
-		}
+		this.withTransaction(() -> {
+				for (Empresa empresa : empresas) {
+					if (!existeElemento(empresa))
+						entityManager().persist(empresa);
+					else {
+						this.buscarElemento(empresa).agregarPeriodos(empresa.getPeriodos());
+					}
+				}
+									});
+		
 	}
 	
 

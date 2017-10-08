@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class NoSePuedeEvaluarException extends RuntimeException {
 
 	private String mensaje;

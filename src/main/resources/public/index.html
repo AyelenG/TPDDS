@@ -1,20 +1,30 @@
 <html>
+<head>
+	<title>Login</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="css/login.css" type="text/css"/>
+</head>
 <body>
-	<h1>¿Dónde Invierto? v1.0</h1>
-
-	<ul>
-		<li><a href="./analisis"> Análisis </a></li>
-	</ul>
+	<div class="container">
+		<div id="login-box">
+			<div class="logo">
+				<img src="images/login.jpg" class="mw-100"/>
+				<h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+			</div>
+			<div class="controls">
+				<form action="/login" method="GET">
+				<input type="text" name="nombre" placeholder="Nombre de Usuario" class="form-control" />
+				<input type="password" name="pass" placeholder="Contraseña" class="form-control" />
+				<button class="btn btn-default btn-block btn-custom">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
 	
-	<h2> Desarrolladores </h2>
-	<ul>
-		<li> Ayelen Guimarey </li>
-		<li> Carolina González </li>
-		<li> Damián Cohen </li>
-		<li> Gerónimo Corti </li>
-		<li> Juan Pablo Bulbulian </li>
-	</ul>
-	<h3>DDS - 2017 - JM - Grupo 12</h3>
-
+	<!-- Javascript no se porque no funciona Spark no lo mapea -->	
+	<script src="/bootstrap-4.0.0-beta-dist/js/bootstrap.min.js"></script>	
+	<script src="/js/particles.js"></script>
+	
 </body>
 </html>

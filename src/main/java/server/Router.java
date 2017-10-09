@@ -1,9 +1,11 @@
 package server;
 
-import spark.Spark;
+import static spark.Spark.*;
+
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 import controllers.AnalisisController;
+import controllers.HomeController;
 import controllers.LoginController;
 
 public class Router {
@@ -13,11 +15,14 @@ public class Router {
 				.create()
 				.withDefaultHelpers()
 				.build();
-
-		Spark.staticFiles.location("/public");
-
-		Spark.get("/login", LoginController::showLogin, engine);
-		Spark.get("/analisis", AnalisisController::showResultado, engine);
+		
+		staticFiles.location("/public");
+		
+		//redirect.get("/","/home"); si no esta index.html, uso /home como index
+		
+		get("/home",HomeController::showHome,engine);
+		get("/login", LoginController::showLogin, engine);
+		get("/analisis", AnalisisController::showResultado, engine);
 		
 	}
 

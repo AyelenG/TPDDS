@@ -1,12 +1,7 @@
-<html>
-<head>
-	<title>Login</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" type="text/css"/>
+{{#partial "head"}}
 	<link rel="stylesheet" href="css/login.css" type="text/css"/>
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-</head>
-<body>
+{{/partial}}
+{{#partial "content" }}
 	<div class="container">
 		<div id="login-box">
 			<div class="logo">
@@ -22,9 +17,5 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Fondo animado -->
-	<div id="particles-js"></div>
-	<script type="text/javascript" src="js/particles.min.js"></script>
-</body>
-</html>
+{{/partial}}
+{{> base.hbs}}

@@ -1,7 +1,9 @@
+<html>
 {{#partial "head"}}
 	<link rel="stylesheet" href="css/login.css" type="text/css"/>
 {{/partial}}
-{{#partial "content" }}
+<body>
+{{#partial "main" }}
 	<div class="container">
 		<div id="login-box">
 			<div class="logo">
@@ -14,13 +16,13 @@
 			</div>
 			<div class="controls">
 				<form action="/" method="POST">
-				<input type="text" name="nombre" placeholder="Nombre de Usuario" class="form-control" />
-				<input type="password" name="pass" placeholder="Contraseña" class="form-control" />
+				<input class="form-control" type="text" name="nombre" placeholder="Nombre de Usuario" required/>
+				<input class="form-control" type="password" name="pass" placeholder="Contraseña" required/>
 				<button class="btn btn-default btn-block btn-custom">Login</button>
 				</form>
 			</div>
 			<div>
-				{{#if autenticado = false}}
+				{{#if autentificacionFallida}}
 			    	<p class="alert alert-warning">Usuario o Contraseña Incorrecta!</p>
 			    {{/if}}
 			</div>
@@ -30,4 +32,7 @@
 	<div id="particles-js"></div>
 	<script type="text/javascript" src="js/particles.min.js"></script>
 {{/partial}}
-{{> base.hbs}}
+</body>
+</html>
+{{> head.hbs}}
+{{> main.hbs}}

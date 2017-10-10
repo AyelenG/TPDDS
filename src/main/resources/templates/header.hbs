@@ -1,0 +1,20 @@
+<header>
+    <nav>
+        <ul id="menu">
+            {{#if usuario.nombre }}
+                <li>
+				    <form method="POST" action="/logout">
+				        <button id="login">Log Out</button>
+				    </form>
+                </li>
+            {{else}}
+                <li>
+				    <form method="GET" action="/">
+				        <button id="login">Log In</button>
+				    </form>
+                </li>
+            {{/if}}
+        </ul>
+    </nav>
+	{{#block "header"}}{{/block}}
+</header>

@@ -20,6 +20,7 @@ public class Router {
 		
 		get("/", LoginController::handleLoginGet, engine);
 		post("/", LoginController::handleLoginPost, engine);
+		get("/logout", LoginController.handleLogoutPost);
 		get("/home", HomeController::showHome, engine);
 		get("/analisis", AnalisisController::showResultado, engine);
 		

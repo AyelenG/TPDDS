@@ -6,6 +6,7 @@ import java.util.List;
 
 import model.Indicador;
 import model.Metodologia;
+import model.Usuario;
 import model.condiciones.Condicion;
 import model.condiciones.Mayor;
 import model.condiciones.Menor;
@@ -19,6 +20,7 @@ import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadores;
 import model.repositories.RepoMetodologias;
+import model.repositories.RepoUsuarios;
 
 public class Bootstrap {
 
@@ -38,6 +40,7 @@ public class Bootstrap {
 	private void initPredefinidos() {
 		initIndicadoresP();
 		initMetodologiasP();
+		initUsuariosP();
 	}
 
 	private void initMetodologiasP() {
@@ -61,4 +64,12 @@ public class Bootstrap {
 				new Indicador("Retorno sobre capital total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"),
 				new Indicador("Nivel de deuda", "[FDS] * [FDS]"), new Indicador("Margen", "<PAPA> - [FDS]")));
 	}
+	
+	private void initUsuariosP() {
+		RepoUsuarios.getInstance().insertarVarios(Arrays.asList(
+				new Usuario("admin", "admin"),
+				new Usuario("juan", "juan"),
+				new Usuario("maria", "maria")));
+	}
+
 }

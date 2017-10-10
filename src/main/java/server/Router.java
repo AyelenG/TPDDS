@@ -18,10 +18,9 @@ public class Router {
 		
 		staticFiles.location("/public");
 		
-		//redirect.get("/","/home"); si no esta index.html, uso /home como index
-		
-		get("/home",HomeController::showHome,engine);
-		get("/login", LoginController::showLogin, engine);
+		get("/", LoginController::handleLoginGet, engine);
+		post("/", LoginController::handleLoginPost, engine);
+		get("/home", HomeController::showHome, engine);
 		get("/analisis", AnalisisController::showResultado, engine);
 		
 	}

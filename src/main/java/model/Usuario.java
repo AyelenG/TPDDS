@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import model.repositories.RepoUsuarios;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class Usuario {
@@ -15,10 +16,10 @@ public class Usuario {
 	private long id;
 	
 	@Column(unique=true, length = 50, nullable=false)
-	private String nombre = "";
+	@Getter @Setter private String nombre = "";
 	
 	@Column(length = 50, nullable=false)
-	private String pass = "";
+	@Getter @Setter private String pass = "";
 	
 	public Usuario() {
 		
@@ -26,34 +27,6 @@ public class Usuario {
 	
 	public Usuario(String nombre, String pass) {
 		this.nombre = nombre;
-		this.pass = pass;
-	}
-
-	private boolean chequeoNombre() {		
-		return RepoUsuarios.getInstance().existeElemento(this);
-	}
-
-	public boolean chequeoPassword() {		
-		if (this.chequeoNombre()) {
-			Usuario existente = RepoUsuarios.getInstance().buscarElemento(this);
-			return existente.getPass().equals(this.pass);
-		}
-		return false;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
 		this.pass = pass;
 	}
 

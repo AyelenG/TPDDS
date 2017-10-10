@@ -51,19 +51,19 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>4.12</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.2.8</version>
 		</dependency>
-		
+
 		<!-- WEB -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.21</version>
+			<version>1.7.25</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sparkjava</groupId>
@@ -90,7 +90,15 @@
 			<artifactId>handlebars-humanize</artifactId>
 			<version>4.0.6</version>
 		</dependency>
-		
+
+		<!-- Lombok -->		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

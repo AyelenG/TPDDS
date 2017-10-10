@@ -1,21 +1,20 @@
-{{#partial "head"}}
-	<link rel="stylesheet" href="css/login.css" type="text/css"/>
-{{/partial}}
 {{#partial "content" }}
-	<div class="container">
-		<div id="login-box">
-			<div class="logo">
-				<img src="images/login.jpg" class="mw-100"/>
-				<h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
-			</div>
-			<div class="controls">
-				<form action="/login" method="GET">
-				<input type="text" name="nombre" placeholder="Nombre de Usuario" class="form-control" />
-				<input type="password" name="pass" placeholder="Contraseña" class="form-control" />
-				<button class="btn btn-default btn-block btn-custom">Login</button>
-				</form>
-			</div>
-		</div>
+Usuario {{usuario.nombre}} con contraseña {{usuario.pass}}
+	<div>
+		<h1>¿Dónde Invierto? v1.0</h1>
+		<ul>
+			<li><a href="./analisis"> Análisis </a></li>
+		</ul>
+		
+		<h2> Desarrolladores </h2>
+		<ul>
+			<li> Ayelen Guimarey </li>
+			<li> Carolina González </li>
+			<li> Damián Cohen </li>
+			<li> Gerónimo Corti </li>
+			<li> Juan Pablo Bulbulian </li>
+		</ul>
+		<h3>DDS - 2017 - JM - Grupo 12</h3>
 	</div>
 {{/partial}}
 {{> base.hbs}}

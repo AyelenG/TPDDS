@@ -11,9 +11,9 @@ import javax.persistence.Transient;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.evaluador.Expresion;
-import model.evaluador.terminales.*;
-import model.evaluador.operaciones.*;
 
 import model.parser.ExpresionBuilder;
 import model.repositories.RepoIndicadores;
@@ -28,12 +28,12 @@ public class Indicador {
 	private long id;
 	
 	@Column(length = 50, unique = true, nullable=false)
-	private String nombre = "";
+	@Getter private String nombre = "";
 	@Column(nullable=false)
-	private String formula = "";
+	@Getter @Setter private String formula = "";
 	
 	@Transient
-	private Expresion expresion;
+	@Getter @Setter private Expresion expresion;
 
 	public Indicador() {
 		
@@ -53,28 +53,8 @@ public class Indicador {
 		return this.getNombre();
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre.toUpperCase();
-	}
-
-	public String getFormula() {
-		return formula;
-	}
-
-	public void setFormula(String formula) {
-		this.formula = formula;
-	}
-
-	public Expresion getExpresion() {
-		return expresion;
-	}
-
-	public void setExpresion(Expresion expresion) {
-		this.expresion = expresion;
 	}
 
 	public BigDecimal evaluar(Periodo periodo) {
@@ -82,43 +62,4 @@ public class Indicador {
 			this.setExpresion(new ExpresionBuilder(this.getFormula()).build());
 		return this.getExpresion().getValor(periodo, RepoIndicadores.getInstance());
 	}
-
-	public String generarFormula(){
-		return this.generarArbol(this.getExpresion());
-	}
-	
-	private String generarArbol(Expresion expresion){
-		String s = "";
-		String op = "";
-		
-		if(expresion instanceof TerminalLiteral){
-			s += ((TerminalLiteral) expresion).getLiteral();
-		}
-		else if(expresion instanceof TerminalCuenta){
-			s += ((TerminalCuenta) expresion).getNombreCuenta();
-		}
-		else if(expresion instanceof TerminalIndicador){
-			s += ((TerminalIndicador) expresion).getNombreIndicador();
-		}
-		else{
-			if(expresion instanceof Suma){
-				op = " + ";
-			}
-			else if(expresion instanceof Resta){
-				op = " - ";
-			}
-			else if(expresion instanceof Multiplicacion){
-				op = " * ";
-			}
-			else if(expresion instanceof Division){
-				op = " / ";
-			}
-			
-			s += "(" + this.generarArbol(((Operacion) expresion).getOpIzq()) 
-					+ op +
-					this.generarArbol(((Operacion) expresion).getOpDer()) + ")";
-		}
-		return s;
-	}	
-
 }

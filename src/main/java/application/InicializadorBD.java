@@ -2,6 +2,8 @@ package application;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import application.bootstrap.Bootstrap;
+
 public class InicializadorBD {
 
 	public static void main(String[] args) {

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 
 import exceptions.NoSePuedeAplicarException;
 import exceptions.NoSePuedeEvaluarException;
+import lombok.Getter;
+import lombok.Setter;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
@@ -17,14 +19,14 @@ import model.repositories.RepoIndicadores;
 public abstract class CondicionConfigurable extends Condicion {
 
 	@Column(length = 50)
-	protected String nombre = "";
+	@Getter @Setter protected String nombre = "";
 
 	@Convert(converter = ComparadorConverter.class)
 	@Column(length = 50)
-	protected Comparador comparador;
+	@Getter @Setter protected Comparador comparador;
 	@Column(length = 50)
-	protected String nombreIndicador;
-	protected Integer cantidadAnios;
+	@Getter @Setter protected String nombreIndicador;
+	@Getter @Setter protected Integer cantidadAnios;
 
 	public CondicionConfigurable() {
 	}
@@ -68,37 +70,4 @@ public abstract class CondicionConfigurable extends Condicion {
 		}
 		return true;
 	}
-		
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Comparador getComparador() {
-		return comparador;
-	}
-
-	public void setComparador(Comparador comparador) {
-		this.comparador = comparador;
-	}
-
-	public String getNombreIndicador() {
-		return nombreIndicador;
-	}
-
-	public void setNombreIndicador(String nombreIndicador) {
-		this.nombreIndicador = nombreIndicador;
-	}
-
-	public Integer getCantidadAnios() {
-		return cantidadAnios;
-	}
-
-	public void setCantidadAnios(Integer cantidadAnios) {
-		this.cantidadAnios = cantidadAnios;
-	}
-
 }

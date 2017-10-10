@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.condiciones.Condicion;
 
 @Entity
@@ -28,11 +30,11 @@ public class Metodologia {
 	private long id;
 	
 	@Column(length = 50, nullable=false, unique=true)
-	private String nombre = "";
+	@Getter @Setter private String nombre = "";
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "meto_id", nullable = false)
-	private List<Condicion> condiciones = new LinkedList<>();
+	@Getter @Setter private List<Condicion> condiciones = new LinkedList<>();
 	
 	public Metodologia() {
 	}
@@ -118,21 +120,5 @@ public class Metodologia {
 	@Override
 	public String toString() {
 		return this.getNombre();
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public List<Condicion> getCondiciones() {
-		return condiciones;
-	}
-
-	public void setCondiciones(List<Condicion> condiciones) {
-		this.condiciones = condiciones;
 	}
 }

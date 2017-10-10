@@ -5,16 +5,12 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.runner.RunWith;
-
 import model.CuentaPeriodo;
 import model.Periodo;
 
-import org.junit.experimental.theories.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-@RunWith(Theories.class)
 public class SumatoriaTest {
 	
 	@Test

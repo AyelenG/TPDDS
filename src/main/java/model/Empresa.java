@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
@@ -27,13 +30,13 @@ public class Empresa {
 	private long id;
 	
 	@Column(unique=true, length = 10, nullable=false)
-	private String symbol;
+	@Getter private String symbol;
 	@Column(length = 50, nullable=false)
-	private String nombre;
+	@Getter @Setter private String nombre;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "empr_id", nullable = false)
-	private List<Periodo> periodos = new LinkedList<>();
+	@Getter @Setter private List<Periodo> periodos = new LinkedList<>();
 
 	public Empresa() {
 		this.setSymbol(new String());
@@ -102,32 +105,8 @@ public class Empresa {
 	public String toString() {
 		return getSymbol() + " - " + getNombre();
 	}
-
-	public String getSymbol() {
-		return symbol;
-	}
 	
 	public void setSymbol(String symbol) {
 		this.symbol = symbol.toUpperCase();
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public List<Periodo> getPeriodos() {
-		return periodos;
-	}
-
-	public void setPeriodos(List<Periodo> periodos) {
-		this.periodos = periodos;
-	}
-
-	public long getId() {
-		return id;
 	}
 }

@@ -1,6 +1,6 @@
 package Indicadores;
 import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 import org.junit.experimental.theories.*;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
@@ -16,7 +16,7 @@ import model.Periodo;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoIndicadores;
 
-@RunWith(Theories.class)
+//@RunWith(Theories.class)
 public class EvaluadorTest {
 
 	private static Periodo periodo = new Periodo();
@@ -82,10 +82,10 @@ public class EvaluadorTest {
 		new Indicador("8", "5/0").evaluar(null);
 	}
 
-	@Theory
-	public void verificarEvaluacion(Pair pair) {
-		assertEquals(pair.valor, pair.ind.evaluar(periodo).doubleValue(), 0);
-	}
+//	@Theory
+//	public void verificarEvaluacion(Pair pair) {
+//		assertEquals(pair.valor, pair.ind.evaluar(periodo).doubleValue(), 0);
+//	}
 
 	@AfterClass
 	public static void clean(){

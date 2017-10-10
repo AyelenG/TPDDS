@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.repositories.RepoCuentas;
 
 @Entity
@@ -27,10 +29,10 @@ public class CuentaPeriodo {
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cta_id", nullable = false)
-	private Cuenta cuenta;
+	@Getter private Cuenta cuenta;
 	
 	@Column(nullable=false)
-	private BigDecimal valor;
+	@Getter @Setter private BigDecimal valor;
 
 	public CuentaPeriodo() {
 
@@ -52,10 +54,6 @@ public class CuentaPeriodo {
 	public String getNombre(){
 		return this.cuenta.getNombre();
 	}
-	
-	public Cuenta getCuenta(){
-		return cuenta;
-	}
 
 	public void setCuenta(Cuenta cuenta) {
 		RepoCuentas repoCuentas = RepoCuentas.getInstance();
@@ -66,14 +64,6 @@ public class CuentaPeriodo {
 		}
 		else
 			this.cuenta = cuentaEncontrada;
-	}
-	
-	public BigDecimal getValor() {
-		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
 	}
 
 }

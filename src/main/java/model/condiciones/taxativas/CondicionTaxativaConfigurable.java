@@ -10,6 +10,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.uqbar.commons.utils.Observable;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.Empresa;
 import model.Indicador;
 import model.condiciones.Comparador;
@@ -23,9 +25,9 @@ public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 
 	@Convert(converter = TipoCondicionTaxativaConverter.class)
 	@Column(length = 50)
-	private TipoCondicionTaxativa tipoTaxatividad;
+	@Getter @Setter private TipoCondicionTaxativa tipoTaxatividad;
 	
-	private BigDecimal valorDeReferencia;
+	@Getter @Setter private BigDecimal valorDeReferencia;
 
 	public CondicionTaxativaConfigurable() {
 	}
@@ -54,21 +56,4 @@ public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 		//devuelve el elemento neutro para no influir
 		return 0;
 	}
-
-	public TipoCondicionTaxativa getTipoTaxatividad() {
-		return tipoTaxatividad;
-	}
-
-	public void setTipoTaxatividad(TipoCondicionTaxativa tipoTaxatividad) {
-		this.tipoTaxatividad = tipoTaxatividad;
-	}
-
-	public BigDecimal getValorDeReferencia() {
-		return valorDeReferencia;
-	}
-
-	public void setValorDeReferencia(BigDecimal valorDeReferencia) {
-		this.valorDeReferencia = valorDeReferencia;
-	}
-
 }

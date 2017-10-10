@@ -9,6 +9,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.uqbar.commons.utils.Observable;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
@@ -22,7 +24,7 @@ import utils.UtilsListas;
 @JsonIgnoreProperties({ "changeSupport" })
 public class CondicionNoTaxativaConfigurable extends CondicionConfigurable {
 
-	private Integer peso;
+	@Getter @Setter private Integer peso;
 
 	public CondicionNoTaxativaConfigurable() {
 	}
@@ -62,14 +64,4 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable {
 		//devuelve el elemento neutro para no influir
 		return true;
 	}
-	
-	public Integer getPeso() {
-		return peso;
-	}
-
-	public void setPeso(Integer peso) {
-		this.peso = peso;
-	}
-
-	
 }

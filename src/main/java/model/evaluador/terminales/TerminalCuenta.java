@@ -3,6 +3,7 @@ package model.evaluador.terminales;
 import java.math.BigDecimal;
 
 import exceptions.NoSePuedeEvaluarException;
+import lombok.Getter;
 import model.Cuenta;
 import model.CuentaPeriodo;
 import model.Periodo;
@@ -11,7 +12,7 @@ import model.repositories.RepoIndicadores;
 
 public class TerminalCuenta implements Expresion {
 
-	private String nombreCuenta;
+	@Getter private String nombreCuenta;
 
 	public TerminalCuenta(String nombreCuenta) {
 		this.nombreCuenta = nombreCuenta.replace("]", "").replace("[", "");
@@ -26,10 +27,4 @@ public class TerminalCuenta implements Expresion {
 		return cuenta.getValor();
 
 	}
-	
-	
-	public String getNombreCuenta(){
-		return nombreCuenta;
-	}
-
 }

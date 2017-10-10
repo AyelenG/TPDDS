@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
@@ -25,11 +28,11 @@ public class Periodo implements Comparable<Periodo> {
 	private long id;
 	
 	@Column(nullable=false)
-	private Integer anio;
+	@Getter @Setter private Integer anio;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "peri_id", nullable = false)
-	private List<CuentaPeriodo> cuentas = new LinkedList<>();
+	@Getter @Setter private List<CuentaPeriodo> cuentas = new LinkedList<>();
 
 	public Periodo() {
 		
@@ -72,21 +75,4 @@ public class Periodo implements Comparable<Periodo> {
 	public int compareTo(Periodo o) {
 		return this.getAnio() - o.getAnio();
 	}
-
-	public Integer getAnio() {
-		return anio;
-	}
-
-	public void setAnio(Integer anio) {
-		this.anio = anio;
-	}
-	
-	public List<CuentaPeriodo> getCuentas() {
-		return cuentas;
-	}
-
-	public void setCuentas(List<CuentaPeriodo> cuentas) {
-		this.cuentas = cuentas;
-	}
-
 }

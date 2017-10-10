@@ -19,4 +19,8 @@ public class RepoUsuarios extends RepoBD<Usuario> {
 		return elemento.getNombre();
 	}
 
+	public Usuario getAdmin() {
+		return this.buscarElemento(new Usuario("admin"));
+	}
+
 }

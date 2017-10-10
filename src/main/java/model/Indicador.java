@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -35,8 +38,11 @@ public class Indicador {
 	@Transient
 	@Getter @Setter private Expresion expresion;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = true)
+	@Getter @Setter private Usuario user;
+	
 	public Indicador() {
-		
 	}
 
 	public Indicador(String nombre) {
@@ -46,6 +52,12 @@ public class Indicador {
 	public Indicador(String nombre, String formula) {
 		this.setNombre(nombre);
 		this.setFormula(formula);
+	}
+
+	public Indicador(String nombre, String formula, Usuario user) {
+		this.setNombre(nombre);
+		this.setFormula(formula);
+		this.setUser(user);
 	}
 
 	@Override

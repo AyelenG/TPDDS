@@ -11,6 +11,7 @@ import org.uqbar.commons.utils.Observable;
 import model.Metodologia;
 import model.condiciones.Condicion;
 import model.repositories.RepoMetodologias;
+import model.repositories.RepoUsuarios;
 import ui.vm.metodologia.auxiliares.CondicionVM;
 
 @Observable
@@ -58,6 +59,7 @@ public class CargaMetodologiaViewModel {
 		condiciones.addAll(condicionesPrim.stream().map(cvm -> cvm.getCondicion()).collect(Collectors.toList()));
 		metodologia.setCondiciones(condiciones);
 		
+		metodologia.setUser(RepoUsuarios.getInstance().getAdmin());
 		metodologias.insertar(metodologia);
 		this.setHabilitaCarga(false);
 	}

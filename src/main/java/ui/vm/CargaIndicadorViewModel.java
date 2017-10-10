@@ -12,6 +12,7 @@ import model.Cuenta;
 import model.Indicador;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoUsuarios;
 
 @Observable
 public class CargaIndicadorViewModel {
@@ -79,6 +80,7 @@ public class CargaIndicadorViewModel {
 		//si OK: construye los objetos para evaluarla y los guarda en el indicador
 		//si no: lanza excepcion
 		
+		indicadorNuevo.setUser(RepoUsuarios.getInstance().getAdmin());
 		indicadores.insertar(indicadorNuevo);
 		this.setHabilitaCarga(false);
 		ObservableUtils.firePropertyChanged(this, "indicadores");

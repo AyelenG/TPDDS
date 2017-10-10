@@ -19,4 +19,14 @@ public class RepoCuentas extends RepoBD<Cuenta> {
 		return elemento.getNombre();
 	}
 
+	public Cuenta buscarOInsertar(Cuenta cuenta) {
+		Cuenta cuentaEncontrada = this.buscarElemento(cuenta);
+		if(cuentaEncontrada == null){
+			RepoCuentas.getInstance().insertar(cuenta);
+			return cuenta;
+		}
+		else
+			return cuentaEncontrada;		
+	}
+
 }

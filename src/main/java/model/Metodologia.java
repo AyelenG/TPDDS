@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -36,19 +37,24 @@ public class Metodologia {
 	@JoinColumn(name = "meto_id", nullable = false)
 	@Getter @Setter private List<Condicion> condiciones = new LinkedList<>();
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = true)
+	@Getter @Setter private Usuario user;
+	
 	public Metodologia() {
 	}
-
-	public Metodologia(String nombre) {
-		this.setNombre(nombre);
-	}
-
 
 	public Metodologia(String nombre, List<Condicion> condiciones) {
 		this.setNombre(nombre);
 		this.setCondiciones(condiciones);
 	}
-
+	
+	public Metodologia(String nombre, List<Condicion> condiciones, Usuario user) {
+		this.setNombre(nombre);
+		this.setCondiciones(condiciones);
+		this.setUser(user);
+	}
+	
 	/**
 	 * Retorna las listas validas para aplicar la metodologia
 	 * 

@@ -3,6 +3,7 @@ package application.bootstrap;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import model.Indicador;
 import model.Metodologia;
@@ -26,24 +27,37 @@ public class Bootstrap {
 
 	public void init() {
 		this.initPredefinidos();
-		this.initFromJSON(RepoCuentas.getInstance());
-		this.initFromJSON(RepoEmpresas.getInstance());
-		this.initFromJSON(RepoIndicadores.getInstance());
-		this.initFromJSON(RepoMetodologias.getInstance());
+		Usuario admin = RepoUsuarios.getInstance().getAdmin(); 
+		this.initFromJSON(RepoCuentas.getInstance(),null);
+		this.initFromJSON(RepoEmpresas.getInstance(),null);
+		this.initFromJSON(RepoIndicadores.getInstance(),(ind) -> ind.setUser(admin));
+		this.initFromJSON(RepoMetodologias.getInstance(),(met) -> met.setUser(admin));
 	}
 
-	private <T> void initFromJSON(RepoBD<T> repo) {
+	private <T> List<T> getFromJSON(Class<T> entidad) {
+		return new HandlerArchivoJSON("data/" + entidad.getSimpleName() + ".json").<T>load(entidad);	
+	}
+
+	private <T> void initFromList(RepoBD<T> repo,List<T> elements){
+		repo.insertarVarios(elements);
+	}
+	
+	private <T> void initFromJSON(RepoBD<T> repo, Consumer<T> modif) {
 		Class<T> entidad = repo.getEntidad();
-		repo.insertarVarios(new HandlerArchivoJSON("data/" + entidad.getSimpleName() + ".json").<T>load(entidad));
+		List<T> list = getFromJSON(entidad);
+		if(modif != null)
+			list.forEach(modif);
+		this.initFromList(repo,list);
 	}
 
 	private void initPredefinidos() {
+		initUsuariosP();
 		initIndicadoresP();
 		initMetodologiasP();
-		initUsuariosP();
 	}
 
 	private void initMetodologiasP() {
+		Usuario admin = RepoUsuarios.getInstance().getAdmin();
 		RepoBD<Metodologia> repo = RepoMetodologias.getInstance();
 		List<Condicion> condiciones = new LinkedList<>();
 		condiciones.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, new Mayor(),
@@ -53,16 +67,25 @@ public class Bootstrap {
 		condiciones.add(new CondicionTaxativaConfigurable("Margen Creciente - 10 años > 50", new Mayor(),
 				new Tendencia(), "Margen", 10, null));
 		condiciones.add(new Longevidad());
-		repo.insertar(new Metodologia("Warren-Buffet", condiciones));
+		repo.insertar(new Metodologia("Warren-Buffet", condiciones, admin));
 
 	}
 
 	private void initIndicadoresP() {
+		Usuario admin = RepoUsuarios.getInstance().getAdmin();
 		RepoIndicadores.getInstance().insertarVarios(Arrays.asList(
 				new Indicador("Ingreso Neto",
-						"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"),
-				new Indicador("Retorno sobre capital total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"),
-				new Indicador("Nivel de deuda", "[FDS] * [FDS]"), new Indicador("Margen", "<PAPA> - [FDS]")));
+						"[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]",
+						 admin),
+				new Indicador("Retorno sobre capital total",
+							"(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]",
+							admin),
+				new Indicador("Nivel de deuda",
+							"[FDS] * [FDS]",
+							admin),
+				new Indicador("Margen", 
+							"<PAPA> - [FDS]",
+							admin)));
 	}
 	
 	private void initUsuariosP() {

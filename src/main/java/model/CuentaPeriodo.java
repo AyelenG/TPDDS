@@ -57,13 +57,7 @@ public class CuentaPeriodo {
 
 	public void setCuenta(Cuenta cuenta) {
 		RepoCuentas repoCuentas = RepoCuentas.getInstance();
-		Cuenta cuentaEncontrada = repoCuentas.buscarElemento(cuenta);
-		if(cuentaEncontrada == null){
-			RepoCuentas.getInstance().insertar(cuenta);
-			this.cuenta = cuenta;
-		}
-		else
-			this.cuenta = cuentaEncontrada;
+		this.cuenta = repoCuentas.buscarOInsertar(cuenta);
 	}
 
 }

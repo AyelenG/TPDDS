@@ -18,10 +18,12 @@ public class Router {
 		
 		staticFiles.location("/public");
 		
-		get("/", LoginController::handleLoginGet, engine);
-		post("/", LoginController::handleLoginPost, engine);
-		get("/logout", LoginController.handleLogoutPost);
-		get("/home", HomeController::showHome, engine);
+		redirect.get("/", "/login"); 
+		
+		get("/login", LoginController::handleLoginGet, engine);
+		post("/login", LoginController::handleLoginPost);
+		get("/home", HomeController::showHome, engine);	
+		post("/logout", LoginController.handleLogoutPost);
 		get("/analisis", AnalisisController::showResultado, engine);
 		
 	}

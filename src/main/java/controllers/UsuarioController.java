@@ -5,17 +5,14 @@ import model.repositories.RepoUsuarios;
 
 public class UsuarioController {
     
-	public static Usuario usuarioActual;
-	
 	public static boolean autenticar(Usuario usuario) {
         if (usuario.getNombre().isEmpty() || usuario.getPass().isEmpty())
             return false;
-        usuarioActual = RepoUsuarios.getInstance().buscarElemento(usuario);
-        if (usuarioActual == null)
+        Usuario usuarioEncontrado = RepoUsuarios.getInstance().buscarElemento(usuario);
+        if (usuarioEncontrado == null)
         	return false;
-        if (usuario.getPass().equals(usuarioActual.getPass()))
+        if (usuario.getPass().equals(usuarioEncontrado.getPass()))
         	return true;
-        usuarioActual = null;
     	return false;
     }
 

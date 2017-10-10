@@ -1,9 +1,8 @@
-<html>
-{{#partial "head"}}
+{{#partial "additional_head"}}
 	<link rel="stylesheet" href="css/login.css" type="text/css"/>
 {{/partial}}
-<body>
-{{#partial "main" }}
+
+{{#partial "additional_main" }}
 	<div class="container">
 		<div id="login-box">
 			<div class="logo">
@@ -15,24 +14,27 @@
 				<h2 class="logo-caption"><span class="tweak">L</span>ogin</h2>
 			</div>
 			<div class="controls">
-				<form action="/" method="POST">
+				<form action="/login" method="POST">
 				<input class="form-control" type="text" name="nombre" placeholder="Nombre de Usuario" required/>
 				<input class="form-control" type="password" name="pass" placeholder="Contraseña" required/>
 				<button class="btn btn-default btn-block btn-custom">Login</button>
 				</form>
 			</div>
+			{{#if autentificacionFallida}}
 			<div>
-				{{#if autentificacionFallida}}
-			    	<p class="alert alert-warning">Usuario o Contraseña Incorrecta!</p>
-			    {{/if}}
+				<p class="alert alert-warning">Usuario o Contraseña Incorrecta!</p>
 			</div>
+			{{/if}}
 		</div>
 	</div>
 	<!-- Fondo animado -->
 	<div id="particles-js"></div>
 	<script type="text/javascript" src="js/particles.min.js"></script>
 {{/partial}}
+
+<html>
+{{> head.hbs}}
+<body>
+{{> main.hbs}}
 </body>
 </html>
-{{> head.hbs}}
-{{> main.hbs}}

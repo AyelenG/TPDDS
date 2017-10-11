@@ -8,8 +8,7 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
-import model.condiciones.Mayor;
-import model.condiciones.Menor;
+import model.condiciones.Comparadores;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.repositories.RepoIndicadores;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
@@ -23,8 +22,9 @@ public class NuevaCondicionNoTaxativaViewModel {
 	private String peso = "";
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private Indicador indicadorSeleccionado;
-	private List<ComparadorVM> comparadores = Arrays.asList(new ComparadorVM(new Mayor()),
-			new ComparadorVM(new Menor()));
+	private List<ComparadorVM> comparadores = Arrays.asList(
+			new ComparadorVM(Comparadores.Mayor),
+			new ComparadorVM(Comparadores.Menor));
 	private ComparadorVM comparadorSeleccionado;
 	private String anios = "";
 	private boolean habilitaCarga = true;

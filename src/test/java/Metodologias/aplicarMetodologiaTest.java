@@ -15,19 +15,17 @@ import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
 import model.Periodo;
+import model.Usuario;
+import model.condiciones.Comparadores;
 import model.condiciones.Condicion;
-import model.condiciones.Mayor;
-import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.condiciones.primitivas.Longevidad;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
-import model.condiciones.taxativas.Mediana;
-import model.condiciones.taxativas.Promedio;
-import model.condiciones.taxativas.Simple;
-import model.condiciones.taxativas.Tendencia;
+import model.condiciones.taxativas.TiposCondicionTaxativa;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoUsuarios;
 
 public class aplicarMetodologiaTest {
 
@@ -37,7 +35,8 @@ public class aplicarMetodologiaTest {
 
 	@BeforeClass
 	public static void inicializarDatos() {
-		indicadores.insertar(new Indicador("TEST", "[EBITDA]"));
+		Usuario testUser = new Usuario("test","test");
+		indicadores.insertar(new Indicador("TEST", "[EBITDA]",testUser));
 
 		Empresa empresa;
 
@@ -68,15 +67,15 @@ public class aplicarMetodologiaTest {
 		empresas.insertar(empresa);
 
 		List<Condicion> condiciones = new LinkedList<>();
-		condiciones.add(new CondicionNoTaxativaConfigurable("Max.TEST - 3 años", 10, new Mayor(), "Test", 3));
-		condiciones.add(new CondicionNoTaxativaConfigurable("Min.TEST - 4 años", 20, new Menor(), "Test", 4));
-		condiciones.add(new CondicionTaxativaConfigurable("Promedio TEST - 5 años > 50", new Mayor(), new Promedio(),
+		condiciones.add(new CondicionNoTaxativaConfigurable("Max.TEST - 3 años", 10, Comparadores.Mayor, "Test", 3));
+		condiciones.add(new CondicionNoTaxativaConfigurable("Min.TEST - 4 años", 20, Comparadores.Menor, "Test", 4));
+		condiciones.add(new CondicionTaxativaConfigurable("Promedio TEST - 5 años > 50", Comparadores.Mayor, TiposCondicionTaxativa.Promedio,
 				"Test", 5, BigDecimal.valueOf(50)));
-		condiciones.add(new CondicionTaxativaConfigurable("Simple TEST - 2 años < 120", new Menor(), new Simple(),
+		condiciones.add(new CondicionTaxativaConfigurable("Simple TEST - 2 años < 120", Comparadores.Menor, TiposCondicionTaxativa.Simple,
 				"Test", 2, BigDecimal.valueOf(120)));
 		condiciones.add(new Longevidad());
 
-		metodologia = new Metodologia("Prueba", condiciones);
+		metodologia = new Metodologia("Prueba", condiciones, testUser);
 
 	}
 
@@ -96,7 +95,7 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarCondicionTaxativaTendencia() {
-		Condicion cond = new CondicionTaxativaConfigurable("Creciente TEST - 4 años", new Mayor(), new Tendencia(),
+		Condicion cond = new CondicionTaxativaConfigurable("Creciente TEST - 4 años", Comparadores.Mayor, TiposCondicionTaxativa.Tendencia,
 				"Test", 4, null);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		assertTrue(cond.convieneInvertirEn(facebook));
@@ -104,7 +103,7 @@ public class aplicarMetodologiaTest {
 
 	@Test
 	public void verificarCondicionTaxativaMediana() {
-		Condicion cond = new CondicionTaxativaConfigurable("Mediana TEST - 5 años < 30.91", new Menor(), new Mediana(),
+		Condicion cond = new CondicionTaxativaConfigurable("Mediana TEST - 5 años < 30.91", Comparadores.Menor, TiposCondicionTaxativa.Mediana,
 				"Test", 5, BigDecimal.valueOf(30.91));
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
 		assertTrue(cond.convieneInvertirEn(apple));
@@ -196,5 +195,6 @@ public class aplicarMetodologiaTest {
 		empresas.clean();
 		RepoCuentas.getInstance().clean();
 		indicadores.clean();
+		RepoUsuarios.getInstance().clean();
 	}
 }

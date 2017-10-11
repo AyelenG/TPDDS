@@ -9,12 +9,8 @@ import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.deser.std.StdDeserializer;
 
-import model.condiciones.taxativas.Mediana;
-import model.condiciones.taxativas.Promedio;
-import model.condiciones.taxativas.Simple;
-import model.condiciones.taxativas.Sumatoria;
-import model.condiciones.taxativas.Tendencia;
 import model.condiciones.taxativas.TipoCondicionTaxativa;
+import model.condiciones.taxativas.TiposCondicionTaxativa;
 
 public class TipoCondicionDeserializer extends StdDeserializer<TipoCondicionTaxativa> {
 
@@ -32,15 +28,15 @@ public class TipoCondicionDeserializer extends StdDeserializer<TipoCondicionTaxa
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
 		JsonNode root = mapper.readTree(jp);
 		if (root.toString().equals("\"Simple\"")) {
-			return new Simple();
+			return TiposCondicionTaxativa.Simple;
 		} else if (root.toString().equals("\"Promedio\"")) {
-			return new Promedio();
+			return TiposCondicionTaxativa.Promedio;
 		}else if (root.toString().equals("\"Mediana\"")) {
-			return new Mediana();
+			return TiposCondicionTaxativa.Mediana;
 		}else if (root.toString().equals("\"Sumatoria\"")) {
-			return new Sumatoria();
+			return TiposCondicionTaxativa.Sumatoria;
 		}else if (root.toString().equals("\"Tendencia\"")) {
-			return new Tendencia();
+			return TiposCondicionTaxativa.Tendencia;
 		}
 		return null;
 	}

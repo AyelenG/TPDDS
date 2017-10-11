@@ -13,6 +13,7 @@ import lombok.Setter;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.data.converters.ComparadorConverter;
 import model.repositories.RepoIndicadores;
 
 @Entity

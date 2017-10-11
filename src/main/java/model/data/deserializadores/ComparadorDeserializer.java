@@ -10,8 +10,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.deser.std.StdDeserializer;
 
 import model.condiciones.Comparador;
-import model.condiciones.Mayor;
-import model.condiciones.Menor;
+import model.condiciones.Comparadores;
 
 public class ComparadorDeserializer extends StdDeserializer<Comparador> {
 
@@ -29,9 +28,9 @@ public class ComparadorDeserializer extends StdDeserializer<Comparador> {
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
 		JsonNode root = mapper.readTree(jp);
 		if (root.toString().equals("\"Mayor\"")) {
-			return new Mayor();
+			return Comparadores.Mayor;
 		} else if (root.toString().equals("\"Menor\"")) {
-			return new Menor();
+			return Comparadores.Menor;
 		}
 		return null;
 	}

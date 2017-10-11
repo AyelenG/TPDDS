@@ -16,6 +16,7 @@ import model.Empresa;
 import model.Indicador;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
+import model.data.converters.TipoCondicionTaxativaConverter;
 
 @Entity
 @Observable

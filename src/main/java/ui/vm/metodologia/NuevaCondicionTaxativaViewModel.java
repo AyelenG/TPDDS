@@ -9,14 +9,9 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
-import model.condiciones.Mayor;
-import model.condiciones.Menor;
+import model.condiciones.Comparadores;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
-import model.condiciones.taxativas.Mediana;
-import model.condiciones.taxativas.Promedio;
-import model.condiciones.taxativas.Simple;
-import model.condiciones.taxativas.Sumatoria;
-import model.condiciones.taxativas.Tendencia;
+import model.condiciones.taxativas.TiposCondicionTaxativa;
 import model.repositories.RepoIndicadores;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
 import ui.vm.metodologia.auxiliares.CondicionVM;
@@ -27,15 +22,19 @@ public class NuevaCondicionTaxativaViewModel {
 
 	private CargaMetodologiaViewModel parentVM;
 	private CondicionTaxativaConfigurable nueva = new CondicionTaxativaConfigurable();
-	private List<TipoCondicionVM> tipos = Arrays.asList(new TipoCondicionVM(new Promedio()),
-			new TipoCondicionVM(new Simple()), new TipoCondicionVM(new Sumatoria()), new TipoCondicionVM(new Mediana()),
-			new TipoCondicionVM(new Tendencia()));
+	private List<TipoCondicionVM> tipos = Arrays.asList(
+			new TipoCondicionVM(TiposCondicionTaxativa.Promedio),
+			new TipoCondicionVM(TiposCondicionTaxativa.Simple), 
+			new TipoCondicionVM(TiposCondicionTaxativa.Sumatoria), 
+			new TipoCondicionVM(TiposCondicionTaxativa.Mediana),
+			new TipoCondicionVM(TiposCondicionTaxativa.Tendencia));
 	private TipoCondicionVM tipoSeleccionado;
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private Indicador indicadorSeleccionado;
 
-	private List<ComparadorVM> comparadores = Arrays.asList(new ComparadorVM(new Mayor()),
-			new ComparadorVM(new Menor()));
+	private List<ComparadorVM> comparadores = Arrays.asList(
+			new ComparadorVM(Comparadores.Mayor),
+			new ComparadorVM(Comparadores.Menor));
 	private ComparadorVM comparadorSeleccionado;
 
 	private String valorRef = "";

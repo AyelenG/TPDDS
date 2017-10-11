@@ -1,7 +1,7 @@
 package Indicadores;
 import static org.junit.Assert.*;
-//import org.junit.runner.RunWith;
 import org.junit.experimental.theories.*;
+//import org.junit.runner.RunWith;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import org.junit.Test;
@@ -13,12 +13,15 @@ import model.Cuenta;
 import model.CuentaPeriodo;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoUsuarios;
 
 //@RunWith(Theories.class)
 public class EvaluadorTest {
 
+	private static Usuario testUser = new Usuario("test","test");
 	private static Periodo periodo = new Periodo();
 	private static RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	// indicadores.get(0); //Ingreso Neto -- ING. NETO EN OP. CONTINUAS + ING. NETO EN OP. DISC.
@@ -26,8 +29,8 @@ public class EvaluadorTest {
 
 	@BeforeClass
 	public static void inicio() {
-		indicadores.insertar(new Indicador("Ingreso Neto", "[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]"));
-		indicadores.insertar(new Indicador("Retorno Sobre Capital Total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]"));
+		indicadores.insertar(new Indicador("Ingreso Neto", "[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]",testUser));
+		indicadores.insertar(new Indicador("Retorno Sobre Capital Total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]",testUser));
 		periodo.agregarCuenta(new CuentaPeriodo("Ingreso neto en operaciones continuas", new BigDecimal(5)));
 		periodo.agregarCuenta(new CuentaPeriodo("Ingreso neto en operaciones discontinuas", new BigDecimal(3)));
 		periodo.agregarCuenta(new CuentaPeriodo("Dividendos", new BigDecimal(2.5)));
@@ -72,7 +75,7 @@ public class EvaluadorTest {
 
 	@Test(expected = NoSePuedeEvaluarException.class)
 	public void mensajeDeErrorSiIndicadorInternoNoSePuedeCalcularPorqueNoTieneCuenta() {
-		Indicador ind = new Indicador("PAPA","[EBITDA]");
+		Indicador ind = new Indicador("PAPA","[EBITDA]",testUser);
 		indicadores.insertar(ind);
 		new Indicador("7", "8 * <PAPA>").evaluar(periodo);
 	}
@@ -83,7 +86,7 @@ public class EvaluadorTest {
 	}
 
 //	@Theory
-//	public void verificarEvaluacion(Pair pair) {
+//	public static void verificarEvaluacion(Pair pair) {
 //		assertEquals(pair.valor, pair.ind.evaluar(periodo).doubleValue(), 0);
 //	}
 
@@ -91,5 +94,6 @@ public class EvaluadorTest {
 	public static void clean(){
 		indicadores.clean();
 		RepoCuentas.getInstance().clean();
+		RepoUsuarios.getInstance().clean();
 	}
 }

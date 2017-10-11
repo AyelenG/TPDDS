@@ -18,29 +18,24 @@ import model.Cuenta;
 import model.Empresa;
 import model.Metodologia;
 import model.Periodo;
+import model.Usuario;
+import model.condiciones.Comparadores;
 import model.condiciones.Condicion;
-import model.condiciones.Mayor;
-import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
-import model.condiciones.taxativas.Promedio;
+import model.condiciones.taxativas.TiposCondicionTaxativa;
 
 
 public class PersistenciaBaseTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
 	
-	private Empresa empresa;
+	private Empresa empresa = new Empresa();
+	private Usuario user = new Usuario("test","test");
 	private Metodologia metodologia;
 
-	
-	
 	@Before
 	public void init(){
-		empresa = new Empresa();
-		
-		beginTransaction();
-		
-		
 	}
+	
 	@Test
 	public void persistirEmpresa(){
 		empresa.setNombre("Google");
@@ -88,10 +83,10 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 	@Test
 	public void persistirMetodologia(){
 		List<Condicion> condiciones = new LinkedList<>();
-		condiciones.add(new CondicionNoTaxativaConfigurable("Min.TEST - 4 años", 20, new Menor(), "Test", 4));
-		condiciones.add(new CondicionTaxativaConfigurable("Promedio TEST - 5 años > 50", new Mayor(), new Promedio(),
+		condiciones.add(new CondicionNoTaxativaConfigurable("Min.TEST - 4 años", 20, Comparadores.Menor, "Test", 4));
+		condiciones.add(new CondicionTaxativaConfigurable("Promedio TEST - 5 años > 50", Comparadores.Mayor, TiposCondicionTaxativa.Promedio,
 				"Test", 5, BigDecimal.valueOf(50)));
-		metodologia=new Metodologia("Prueba", condiciones);
+		metodologia=new Metodologia("Prueba", condiciones,user);
 		persist(metodologia);
 		
 		Metodologia metodologiaBuscada = entityManager().find(Metodologia.class, 1l);
@@ -104,7 +99,6 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 	
 	@After
 	public void after(){
-		rollbackTransaction();
 		
 	}
 	

@@ -8,13 +8,12 @@ import java.util.function.Consumer;
 import model.Indicador;
 import model.Metodologia;
 import model.Usuario;
+import model.condiciones.Comparadores;
 import model.condiciones.Condicion;
-import model.condiciones.Mayor;
-import model.condiciones.Menor;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.condiciones.primitivas.Longevidad;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
-import model.condiciones.taxativas.Tendencia;
+import model.condiciones.taxativas.TiposCondicionTaxativa;
 import model.data.HandlerArchivoJSON;
 import model.repositories.RepoBD;
 import model.repositories.RepoCuentas;
@@ -60,12 +59,12 @@ public class Bootstrap {
 		Usuario admin = RepoUsuarios.getInstance().getAdmin();
 		RepoBD<Metodologia> repo = RepoMetodologias.getInstance();
 		List<Condicion> condiciones = new LinkedList<>();
-		condiciones.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, new Mayor(),
+		condiciones.add(new CondicionNoTaxativaConfigurable("Max. ROE - 10 años", 5, Comparadores.Mayor,
 				"Retorno sobre capital total", 10));
 		condiciones
-				.add(new CondicionNoTaxativaConfigurable("Min. Nv.Deuda - 1 año", 5, new Menor(), "Nivel de deuda", 1));
-		condiciones.add(new CondicionTaxativaConfigurable("Margen Creciente - 10 años > 50", new Mayor(),
-				new Tendencia(), "Margen", 10, null));
+				.add(new CondicionNoTaxativaConfigurable("Min. Nv.Deuda - 1 año", 5, Comparadores.Menor, "Nivel de deuda", 1));
+		condiciones.add(new CondicionTaxativaConfigurable("Margen Creciente - 10 años > 50", Comparadores.Mayor,
+				TiposCondicionTaxativa.Tendencia, "Margen", 10, null));
 		condiciones.add(new Longevidad());
 		repo.insertar(new Metodologia("Warren-Buffet", condiciones, admin));
 

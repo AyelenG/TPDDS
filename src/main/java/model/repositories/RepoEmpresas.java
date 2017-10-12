@@ -1,5 +1,6 @@
 package model.repositories;
 
+import java.util.Arrays;
 import java.util.List;
 
 import model.Empresa;
@@ -30,15 +31,13 @@ public class RepoEmpresas extends RepoBD<Empresa> {
 		
 	}
 	
-
 	@Override
-	protected String valorDeBusqueda(Empresa elemento) {
-		return elemento.getSymbol();
-	}
-
-	@Override
-	protected String campoDeBusqueda() {
-		return "symbol";
+	protected List<String> camposDeBusqueda() {
+		return Arrays.asList("symbol");
 	}
 	
+	@Override
+	protected List<Object> valoresDeBusqueda(Empresa emp) {
+		return Arrays.asList(emp.getSymbol());
+	}
 }

@@ -25,7 +25,7 @@ public class Periodo implements Comparable<Periodo> {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	@Getter private long id;
 	
 	@Column(nullable=false)
 	@Getter @Setter private Integer anio;

@@ -7,8 +7,8 @@ import lombok.Getter;
 import model.Cuenta;
 import model.CuentaPeriodo;
 import model.Periodo;
+import model.Usuario;
 import model.evaluador.Expresion;
-import model.repositories.RepoIndicadores;
 
 public class TerminalCuenta implements Expresion {
 
@@ -19,7 +19,7 @@ public class TerminalCuenta implements Expresion {
 	}
 
 	@Override
-	public BigDecimal getValor(Periodo periodo, RepoIndicadores indiceIndicadores) {
+	public BigDecimal getValor(Periodo periodo, Usuario user) {
 		CuentaPeriodo cuenta = periodo.buscarCuenta(new Cuenta(nombreCuenta));
 		if (cuenta == null)
 			throw new NoSePuedeEvaluarException(

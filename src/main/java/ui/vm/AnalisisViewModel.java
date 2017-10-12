@@ -15,11 +15,14 @@ import model.CuentaPeriodo;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoUsuarios;
 
 @Observable
 public class AnalisisViewModel {
+	private Usuario admin = RepoUsuarios.getInstance().getAdmin();
 	private Empresa empresaSeleccionada;
 	private List<Periodo> periodosSeleccionados = new LinkedList<>();
 	private Periodo periodoSeleccionado;
@@ -82,7 +85,7 @@ public class AnalisisViewModel {
 		this.indicadoresConValor.clear();
 		this.indicadoresSinValor.clear();
 		if (this.getPeriodoSeleccionado() != null) {
-			this.agregarIndicadoresDePeriodo(indiceIndicadores.findAll());
+			this.agregarIndicadoresDePeriodo(indiceIndicadores.findAllBy("user",admin.getId()));
 			ObservableUtils.firePropertyChanged(this, "indicadoresConValor");
 			ObservableUtils.firePropertyChanged(this, "indicadoresSinValor");
 		}

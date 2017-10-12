@@ -8,15 +8,18 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
+import model.Usuario;
 import model.condiciones.Comparadores;
 import model.condiciones.notaxativas.CondicionNoTaxativaConfigurable;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoUsuarios;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
 import ui.vm.metodologia.auxiliares.CondicionVM;
 
 @Observable
 public class NuevaCondicionNoTaxativaViewModel {
 
+	private Usuario admin = RepoUsuarios.getInstance().getAdmin();
 	private CargaMetodologiaViewModel parentVM;
 	private CondicionNoTaxativaConfigurable nueva = new CondicionNoTaxativaConfigurable();
 	private String peso = "";
@@ -108,7 +111,7 @@ public class NuevaCondicionNoTaxativaViewModel {
 	}
 
 	public List<Indicador> getIndicadores() {
-		return indicadores.findAll();
+		return indicadores.findAllBy("user",admin.getId());
 	}
 
 	public void setIndicadores(RepoIndicadores indicadores) {

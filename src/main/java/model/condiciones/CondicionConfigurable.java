@@ -13,6 +13,7 @@ import lombok.Setter;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 import model.data.converters.ComparadorConverter;
 import model.repositories.RepoIndicadores;
 
@@ -43,8 +44,8 @@ public abstract class CondicionConfigurable extends Condicion {
 		this.setCantidadAnios(cantidadAnios);
 	}
 	
-	protected Indicador obtenerIndicador(String nombreIndicador) {
-		Indicador indicador = RepoIndicadores.getInstance().buscarElemento(new Indicador(nombreIndicador));
+	protected Indicador obtenerIndicador(String nombreIndicador,Usuario user) {
+		Indicador indicador = RepoIndicadores.getInstance().buscarElemento(new Indicador(nombreIndicador,"",user));
 		if (indicador == null) {
 			throw new NoSePuedeAplicarException("No se puede aplicar la metodologia - condicion '" + nombre
 					+ "' por falta de indicador <" + nombreIndicador + ">.");
@@ -52,9 +53,9 @@ public abstract class CondicionConfigurable extends Condicion {
 		return indicador;
 	}
 	
-	public boolean esValida(Empresa emp) {
+	public boolean esValida(Empresa emp, Usuario user) {
 		// obtengo indicador desde repositorio
-		Indicador indicador = obtenerIndicador(nombreIndicador);
+		Indicador indicador = obtenerIndicador(nombreIndicador,user);
 
 		// obtengo los periodos de los ultimos N anios de la empresa
 		List<Periodo> ultimosNAnios = emp.getUltimosNAnios(cantidadAnios);

@@ -1,5 +1,8 @@
 package model.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import model.Usuario;
 
 public class RepoUsuarios extends RepoBD<Usuario> {
@@ -15,8 +18,8 @@ public class RepoUsuarios extends RepoBD<Usuario> {
 	}
 
 	@Override
-	protected String valorDeBusqueda(Usuario elemento) {
-		return elemento.getNombre();
+	protected List<Object> valoresDeBusqueda(Usuario elemento) {
+		return Arrays.asList(elemento.getNombre());
 	}
 
 	public Usuario getAdmin() {

@@ -1,5 +1,8 @@
 package model.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import model.Cuenta;
 
 public class RepoCuentas extends RepoBD<Cuenta> {
@@ -15,14 +18,14 @@ public class RepoCuentas extends RepoBD<Cuenta> {
 	}
 
 	@Override
-	protected String valorDeBusqueda(Cuenta elemento) {
-		return elemento.getNombre();
+	protected List<Object> valoresDeBusqueda(Cuenta cuenta) {
+		return Arrays.asList(cuenta.getNombre());
 	}
 
 	public Cuenta buscarOInsertar(Cuenta cuenta) {
 		Cuenta cuentaEncontrada = this.buscarElemento(cuenta);
 		if(cuentaEncontrada == null){
-			RepoCuentas.getInstance().insertar(cuenta);
+			this.insertar(cuenta);
 			return cuenta;
 		}
 		else

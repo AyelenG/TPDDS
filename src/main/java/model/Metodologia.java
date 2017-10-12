@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.uqbar.commons.utils.Observable;
@@ -22,15 +24,18 @@ import lombok.Setter;
 import model.condiciones.Condicion;
 
 @Entity
+@Table(
+		uniqueConstraints = {@UniqueConstraint(columnNames={"nombre", "user_id"})}
+		)
 @Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Metodologia {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	@Getter private long id;
 	
-	@Column(length = 50, nullable=false, unique=true)
+	@Column(length = 50, nullable=false)
 	@Getter @Setter private String nombre = "";
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -66,7 +71,7 @@ public class Metodologia {
 		List<Empresa> empresasValidas = new LinkedList<>();
 
 		empresasValidas.addAll(empresas.stream()
-				.filter(e -> condiciones.stream().allMatch(c -> c.esValida(e))).collect(Collectors.toList()));
+				.filter(e -> condiciones.stream().allMatch(c -> c.esValida(e,user))).collect(Collectors.toList()));
 		return empresasValidas;
 	}
 
@@ -92,7 +97,7 @@ public class Metodologia {
 		//las no taxativas simplemente devuelven true para no afectar
 
 		empresasFiltradas = empresasFiltradas.stream()
-				.filter(emp -> condiciones.stream().allMatch(cond -> cond.convieneInvertirEn(emp)))
+				.filter(emp -> condiciones.stream().allMatch(cond -> cond.convieneInvertirEn(emp,this.getUser())))
 				.collect(Collectors.toList());
 		return empresasFiltradas;
 	}
@@ -112,7 +117,7 @@ public class Metodologia {
 		int r;
 
 		for (Condicion cond : condiciones) {
-			r = cond.comparar(emp1, emp2);
+			r = cond.comparar(emp1, emp2,this.getUser());
 			if (r >= 0)
 				puntajeEmp1 += r;
 			else

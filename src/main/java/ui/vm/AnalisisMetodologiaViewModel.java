@@ -10,11 +10,14 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
 import model.Metodologia;
+import model.Usuario;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoMetodologias;
+import model.repositories.RepoUsuarios;
 
 @Observable
 public class AnalisisMetodologiaViewModel {
+	private Usuario admin = RepoUsuarios.getInstance().getAdmin();
 	private Metodologia metodologiaSeleccionada;
 
 	private List<Empresa> empresasInvalidas = new LinkedList<>();
@@ -26,7 +29,7 @@ public class AnalisisMetodologiaViewModel {
 	private boolean botonAnalizar = false;
 
 	public List<Metodologia> getMetodologias() {
-		return RepoMetodologias.getInstance().findAll();
+		return RepoMetodologias.getInstance().findAllBy("user",admin.getId());
 	}
 
 	public Metodologia getMetodologiaSeleccionada() {

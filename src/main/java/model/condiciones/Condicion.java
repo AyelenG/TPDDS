@@ -9,7 +9,9 @@ import javax.persistence.InheritanceType;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
+import lombok.Getter;
 import model.Empresa;
+import model.Usuario;
 import model.data.deserializadores.CondicionDeserializer;
 
 @Entity
@@ -20,12 +22,12 @@ public abstract class Condicion {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	@Getter private long id;
 	
-	public abstract boolean esValida(Empresa emp);
+	public abstract boolean esValida(Empresa emp, Usuario user);
 	
-	public abstract boolean convieneInvertirEn(Empresa emp);
+	public abstract boolean convieneInvertirEn(Empresa emp, Usuario user);
 
-	public abstract int comparar(Empresa emp1, Empresa emp2);
+	public abstract int comparar(Empresa emp1, Empresa emp2, Usuario user);
 
 }

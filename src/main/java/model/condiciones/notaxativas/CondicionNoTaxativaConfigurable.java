@@ -14,6 +14,7 @@ import lombok.Setter;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
 import utils.UtilsListas;
@@ -40,13 +41,13 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable {
 	}
 
 	@Override
-	public int comparar(Empresa emp1, Empresa emp2) {
+	public int comparar(Empresa emp1, Empresa emp2, Usuario user) {
 		// compara 2 empresas a traves de los ultimos N anios, --POR SUMATORIA--
 		// devuelve el peso si la mejor es la emp1, devuelve -peso si es emp2 y
 		// 0 si son iguales
 
 		// obtengo indicador desde repositorio
-		Indicador indicador = obtenerIndicador(nombreIndicador);
+		Indicador indicador = obtenerIndicador(nombreIndicador,user);
 
 		// obtengo los periodos de los ultimos N anios de cada empresa
 		List<Periodo> ultimosNAnios1 = emp1.getUltimosNAnios(cantidadAnios);
@@ -60,7 +61,7 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable {
 	}
 
 	@Override
-	public boolean convieneInvertirEn(Empresa emp) {
+	public boolean convieneInvertirEn(Empresa emp, Usuario user) {
 		//devuelve el elemento neutro para no influir
 		return true;
 	}

@@ -6,6 +6,7 @@ import exceptions.NoSePuedeEvaluarException;
 import lombok.Getter;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 import model.evaluador.Expresion;
 import model.repositories.RepoIndicadores;
 
@@ -18,8 +19,9 @@ public class TerminalIndicador implements Expresion {
 	}
 
 	@Override
-	public BigDecimal getValor(Periodo periodo, RepoIndicadores indiceIndicadores) {
-		Indicador indicador = indiceIndicadores.buscarElemento(new Indicador(nombreIndicador));
+	public BigDecimal getValor(Periodo periodo, Usuario user) {
+		RepoIndicadores repo = RepoIndicadores.getInstance();
+		Indicador indicador = repo.buscarElemento(new Indicador(nombreIndicador,"",user));
 		if (indicador == null)
 			throw new NoSePuedeEvaluarException
 			("No existe indicador <" + nombreIndicador + "> en el sistema");

@@ -35,8 +35,8 @@ public class EvaluadorTest {
 		periodo.agregarCuenta(new CuentaPeriodo("Ingreso neto en operaciones discontinuas", new BigDecimal(3)));
 		periodo.agregarCuenta(new CuentaPeriodo("Dividendos", new BigDecimal(2.5)));
 		periodo.agregarCuenta(new CuentaPeriodo("Capital total", new BigDecimal(-2.75)));
-		pairs[0] = new Pair(indicadores.buscarElemento(new Indicador("Ingreso Neto")), 8);
-		pairs[1] = new Pair(indicadores.buscarElemento(new Indicador("Retorno Sobre Capital Total")), -2);
+		pairs[0] = new Pair(indicadores.buscarElemento(new Indicador("Ingreso Neto","",testUser)), 8);
+		pairs[1] = new Pair(indicadores.buscarElemento(new Indicador("Retorno Sobre Capital Total","",testUser)), -2);
 	}
 
 	static class Pair {
@@ -85,8 +85,18 @@ public class EvaluadorTest {
 		new Indicador("8", "5/0").evaluar(null);
 	}
 
+	@Test
+	public void verificarEvaluacion1(){
+		assertEquals(pairs[0].valor, pairs[0].ind.evaluar(periodo).doubleValue(), 0);
+	}
+	
+	@Test
+	public void verificarEvaluacion2(){
+		assertEquals(pairs[1].valor, pairs[1].ind.evaluar(periodo).doubleValue(), 0);
+	}
+	
 //	@Theory
-//	public static void verificarEvaluacion(Pair pair) {
+//	public void verificarEvaluacion(Pair pair) {
 //		assertEquals(pair.valor, pair.ind.evaluar(periodo).doubleValue(), 0);
 //	}
 

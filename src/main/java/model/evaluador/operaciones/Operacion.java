@@ -3,8 +3,8 @@ package model.evaluador.operaciones;
 import java.math.BigDecimal;
 
 import model.Periodo;
+import model.Usuario;
 import model.evaluador.Expresion;
-import model.repositories.RepoIndicadores;
 
 public abstract class Operacion implements Expresion {
 
@@ -17,8 +17,8 @@ public abstract class Operacion implements Expresion {
 	}
 
 	@Override
-	public BigDecimal getValor(Periodo periodo, RepoIndicadores indiceIndicadores) {
-		return this.calcular(opIzq.getValor(periodo, indiceIndicadores), opDer.getValor(periodo, indiceIndicadores));
+	public BigDecimal getValor(Periodo periodo, Usuario user) {
+		return this.calcular(opIzq.getValor(periodo, user), opDer.getValor(periodo, user));
 	}
 
 	protected abstract BigDecimal calcular(BigDecimal opIzq, BigDecimal opDer);

@@ -9,10 +9,12 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
+import model.Usuario;
 import model.condiciones.Comparadores;
 import model.condiciones.taxativas.CondicionTaxativaConfigurable;
 import model.condiciones.taxativas.TiposCondicionTaxativa;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoUsuarios;
 import ui.vm.metodologia.auxiliares.ComparadorVM;
 import ui.vm.metodologia.auxiliares.CondicionVM;
 import ui.vm.metodologia.auxiliares.TipoCondicionVM;
@@ -20,6 +22,7 @@ import ui.vm.metodologia.auxiliares.TipoCondicionVM;
 @Observable
 public class NuevaCondicionTaxativaViewModel {
 
+	private Usuario admin = RepoUsuarios.getInstance().getAdmin();
 	private CargaMetodologiaViewModel parentVM;
 	private CondicionTaxativaConfigurable nueva = new CondicionTaxativaConfigurable();
 	private List<TipoCondicionVM> tipos = Arrays.asList(
@@ -142,7 +145,7 @@ public class NuevaCondicionTaxativaViewModel {
 	}
 
 	public List<Indicador> getIndicadores() {
-		return indicadores.findAll();
+		return indicadores.findAllBy("user",admin.getId());
 	}
 
 	public void setIndicadores(RepoIndicadores indicadores) {

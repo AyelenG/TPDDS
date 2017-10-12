@@ -3,8 +3,8 @@ package model.evaluador.terminales;
 import java.math.BigDecimal;
 
 import model.Periodo;
+import model.Usuario;
 import model.evaluador.Expresion;
-import model.repositories.RepoIndicadores;
 
 public class TerminalLiteral implements Expresion {
 
@@ -15,7 +15,7 @@ public class TerminalLiteral implements Expresion {
 	}
 
 	@Override
-	public BigDecimal getValor(Periodo periodo, RepoIndicadores indicadores) {
+	public BigDecimal getValor(Periodo periodo, Usuario indicadores) {
 		return literal;
 	}
 	

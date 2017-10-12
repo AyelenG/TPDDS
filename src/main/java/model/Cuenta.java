@@ -17,7 +17,7 @@ public class Cuenta {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	@Getter private long id;
 	
 	@Column(unique=true, length = 50, nullable=false)
 	@Getter private String nombre = "";

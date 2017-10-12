@@ -25,7 +25,7 @@ public class CuentaPeriodo {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	@Getter private long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cta_id", nullable = false)

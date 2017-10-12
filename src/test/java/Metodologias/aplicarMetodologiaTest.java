@@ -83,14 +83,14 @@ public class aplicarMetodologiaTest {
 	public void verificarCondicionTaxativaSimple() {
 		Condicion cond = metodologia.getCondiciones().get(3);
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
-		assertTrue(cond.convieneInvertirEn(ibm));
+		assertTrue(cond.convieneInvertirEn(ibm,metodologia.getUser()));
 	}
 
 	@Test
 	public void verificarCondicionTaxativaPromedio() {
 		Condicion cond = metodologia.getCondiciones().get(2);
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
-		assertFalse(cond.convieneInvertirEn(apple));
+		assertFalse(cond.convieneInvertirEn(apple,metodologia.getUser()));
 	}
 
 	@Test
@@ -98,7 +98,7 @@ public class aplicarMetodologiaTest {
 		Condicion cond = new CondicionTaxativaConfigurable("Creciente TEST - 4 años", Comparadores.Mayor, TiposCondicionTaxativa.Tendencia,
 				"Test", 4, null);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
-		assertTrue(cond.convieneInvertirEn(facebook));
+		assertTrue(cond.convieneInvertirEn(facebook,metodologia.getUser()));
 	}
 
 	@Test
@@ -106,7 +106,7 @@ public class aplicarMetodologiaTest {
 		Condicion cond = new CondicionTaxativaConfigurable("Mediana TEST - 5 años < 30.91", Comparadores.Menor, TiposCondicionTaxativa.Mediana,
 				"Test", 5, BigDecimal.valueOf(30.91));
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
-		assertTrue(cond.convieneInvertirEn(apple));
+		assertTrue(cond.convieneInvertirEn(apple,metodologia.getUser()));
 	}
 
 	@Test
@@ -114,7 +114,7 @@ public class aplicarMetodologiaTest {
 		Condicion cond = metodologia.getCondiciones().get(0);
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
-		assertEquals(10, cond.comparar(ibm, facebook));
+		assertEquals(10, cond.comparar(ibm, facebook,metodologia.getUser()));
 	}
 
 	@Test
@@ -122,7 +122,7 @@ public class aplicarMetodologiaTest {
 		Condicion cond = metodologia.getCondiciones().get(1);
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
-		assertEquals(-20, cond.comparar(ibm, facebook));
+		assertEquals(-20, cond.comparar(ibm, facebook, metodologia.getUser()));
 	}
 
 	@Test
@@ -130,8 +130,8 @@ public class aplicarMetodologiaTest {
 		Condicion cond = metodologia.getCondiciones().get(4);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		Empresa apple = empresas.buscarElemento(new Empresa("APL", "Apple"));
-		assertTrue(cond.convieneInvertirEn(facebook));
-		assertFalse(cond.convieneInvertirEn(apple));
+		assertTrue(cond.convieneInvertirEn(facebook,metodologia.getUser()));
+		assertFalse(cond.convieneInvertirEn(apple,metodologia.getUser()));
 	}
 
 	@Test
@@ -139,7 +139,7 @@ public class aplicarMetodologiaTest {
 		Condicion cond = metodologia.getCondiciones().get(4);
 		Empresa facebook = empresas.buscarElemento(new Empresa("FCB", "Facebook"));
 		Empresa ibm = empresas.buscarElemento(new Empresa("IBM", "IBM"));
-		assertEquals(15, cond.comparar(ibm, facebook));
+		assertEquals(15, cond.comparar(ibm, facebook,metodologia.getUser()));
 	}
 
 	@Test

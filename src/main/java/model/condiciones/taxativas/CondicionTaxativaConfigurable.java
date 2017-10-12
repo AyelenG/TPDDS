@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 import model.Empresa;
 import model.Indicador;
+import model.Usuario;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
 import model.data.converters.TipoCondicionTaxativaConverter;
@@ -45,15 +46,15 @@ public class CondicionTaxativaConfigurable extends CondicionConfigurable {
 	}
 
 	@Override
-	public boolean convieneInvertirEn(Empresa emp) {
+	public boolean convieneInvertirEn(Empresa emp, Usuario user) {
 		// obtengo indicador desde repositorio
-		Indicador indicador = obtenerIndicador(nombreIndicador);
+		Indicador indicador = obtenerIndicador(nombreIndicador,user);
 		return tipoTaxatividad.aplicar(emp, this, indicador);
 
 	}
 	
 	@Override
-	public int comparar(Empresa emp1, Empresa emp2) {
+	public int comparar(Empresa emp1, Empresa emp2, Usuario user) {
 		//devuelve el elemento neutro para no influir
 		return 0;
 	}

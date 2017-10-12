@@ -27,7 +27,7 @@ public class Empresa {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	@Getter private long id;
 	
 	@Column(unique=true, length = 10, nullable=false)
 	@Getter private String symbol;

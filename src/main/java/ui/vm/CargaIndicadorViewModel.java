@@ -10,6 +10,8 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Cuenta;
 import model.Indicador;
+import model.Usuario;
+import model.parser.ExpresionBuilder;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoIndicadores;
 import model.repositories.RepoUsuarios;
@@ -17,6 +19,7 @@ import model.repositories.RepoUsuarios;
 @Observable
 public class CargaIndicadorViewModel {
 
+	private Usuario admin = RepoUsuarios.getInstance().getAdmin();
 	private RepoCuentas cuentas = RepoCuentas.getInstance();
 	private RepoIndicadores indicadores = RepoIndicadores.getInstance();
 	private String ingresado = "";
@@ -75,12 +78,11 @@ public class CargaIndicadorViewModel {
 		if (ingresado.isEmpty())
 			throw new UserException("Ingrese una formula para el indicador.");
 		
-		this.indicadorNuevo.setFormula(ingresado);
-		//esto setea la formula, la parsea y verifica si es correcta
-		//si OK: construye los objetos para evaluarla y los guarda en el indicador
-		//si no: lanza excepcion
+		this.indicadorNuevo.setExpresion(new ExpresionBuilder(ingresado).build());
+		//si falla el build la formula es incorrecta y se lanza una excepcion
 		
-		indicadorNuevo.setUser(RepoUsuarios.getInstance().getAdmin());
+		this.indicadorNuevo.setFormula(ingresado);
+		indicadorNuevo.setUser(admin);
 		indicadores.insertar(indicadorNuevo);
 		this.setHabilitaCarga(false);
 		ObservableUtils.firePropertyChanged(this, "indicadores");
@@ -117,7 +119,7 @@ public class CargaIndicadorViewModel {
 	}
 
 	public List<Indicador> getIndicadores() {
-		return indicadores.findAll();
+		return indicadores.findAllBy("user",admin.getId());
 	}
 
 	public void setIndicadores(RepoIndicadores indicadores) {

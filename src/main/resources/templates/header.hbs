@@ -1,21 +1,25 @@
+{{#partial "additional_head"}}
+	<link rel="stylesheet" href="css/botonSignUp.css" type="text/css"/>
+{{/partial}}
+
 <header>
-    <nav>
-        <ul id="menu">
-            {{#if usuario.nombre }}
-                <li>
-                 <!-- se puede cambiar por links <a> con class btn para no tener que hacer forms -->
-				    <form method="POST" action="/logout">
-				        <button id="login">Log Out</button>
-				    </form>
-                </li>
-            {{else}}
-                <li>
-				    <form method="GET" action="/login">
-				        <button id="login">Log In</button>
-				    </form>
-                </li>
-            {{/if}}
-        </ul>
-    </nav>
+    <nav class="navbar navbar-dark bg-dark navbar-expand">
+			<ul class="col-8 navbar-nav">
+				<li class="nav-item"><a class="nav-link navbar-brand" href="/home" title="">¿Dónde invierto?</a></li>
+				<li class="nav-item"><a class="nav-link" href="/empresas" title="">Empresas</a></li>
+				<li class="nav-item"><a class="nav-link" href="/indicador/carga" title="">Indicadores</a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="" title="" id="navbarDropdownMenuLink" data-toggle="dropdown">Análisis</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/analisis/indicadores">Indicadores</a>
+						<a class="dropdown-item" href="/analisis/metodologias">Metodologías</a>
+					</div>
+				</li>
+			</ul>
+			<ul class="col-4 navbar-nav justify-content-end">
+				<li class="nav-item"><a class="nav-link" href="/login" title="">Sign in</a></li>
+				<li class="nav-item"><a class="nav-link nuestroBoton" href="/signup" title="">Sign up</a></li>
+			</ul>
+	</nav>
 	{{#block "additional_header"}}{{/block}}
 </header>

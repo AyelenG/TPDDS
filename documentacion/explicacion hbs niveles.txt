@@ -1,0 +1,45 @@
+La estructura que vamos a usar, es de 3 niveles.
+
+# 1er Nivel: base.hbs
+  <!DOCTYPE html>
+   <html5>
+       <head>
+         //aca irian todos los css o vínculos que utilizan todas las vistas`
+         {{#block "cuerpo"}}{{/block}}
+       </head>
+       <body>
+           {% block body %}{% endblock %}
+           {% block javascripts %}{% endblock %}
+       </body>
+  </html5>
+
+#2do Nivel: layout.hbs
+
+  {{#partial "cuerpo"}}
+
+    <nav>
+        //el nav
+    </nav>
+
+    {{#block "contenido"}}{{/block}}
+
+    <footer>
+       //el footer
+    </footer>
+
+  {{/partial}}
+
+#3ro Nivel: loquesea.hbs
+  {{#partial "estilos"}}
+      //en caso de que quieran agregar estilos particulares, se agregan aca
+  {{/partial}}
+
+  {{#partial "contenido"}}
+     //el contenido que está entre el nav y el footer
+  {{/partial}}
+
+  {{#partial "javascript"}}
+      //en caso de querer agregar javascript particular a la página, se agrega aca
+  {{/partial}}
+
+Todos deberían trabajar en el 3er nivel, ya que lo otro está hecho. Siempre lo que está adentro del "partial" se mete adentro del block del padre (del nivel superior, puede ser el abuelo también, como en el caso de los estilos)

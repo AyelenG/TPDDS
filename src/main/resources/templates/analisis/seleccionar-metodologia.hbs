@@ -1,0 +1,31 @@
+{{#partial "extra_estilos"}}
+{{/partial}}
+
+{{#partial "contenido"}}
+<div id="container">
+	<div class="text-center"> 
+		<h1>Analisis con metodologías</h1>
+		<h2>Deje que tomen las decisiones por ud!</h2>
+		<br>
+		<h3>Elija la metodología que desea aplicar</h3>
+	</div>
+	<!-- Formulario para seleccionar metodologia -->
+	<div class="col-md-6 mx-auto">
+		<form action="/analisis/metodologias" method="post">
+			<div class="form-group">
+			<!-- combo box -->
+				<select name="metodologia" class="form-control" required>
+				<option value="" disabled selected hidden>Por favor elija una...</option>
+				{{#each metodologias}}
+				  <option value = "{{id}}">{{nombre}}</option>
+				{{/each}}
+				</select>
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary btn-lg">Analizar</button>
+			</div>
+		</form>
+	</div>
+</div>
+{{/partial}}
+{{>layout.hbs}}

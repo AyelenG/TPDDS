@@ -33,8 +33,9 @@ public class LoginController {
     }
     
     public static Object handleLoginPost(Request request, Response response) {
-    	Usuario usuario = new Usuario(request.queryParams("nombre"), request.queryParams("pass"));
-        if (UsuarioController.autenticar(usuario)) {        
+        Usuario usuario = UsuarioController.autenticar
+        		(request.queryParams("nombre"),request.queryParams("pass"));
+    	if (usuario != null) {        
             request.session().attribute("currentUser", usuario);
 	        response.redirect("/home");  
             return null;

@@ -25,7 +25,8 @@ public class Router {
 		post("/login", LoginController::handleLoginPost);
 		get("/home", HomeController::showHome, engine);	
 		post("/logout", LoginController.handleLogoutPost);
-		get("/analisis", AnalisisController::showResultado, engine);
+		get("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaGet, engine);
+		post("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaPost);
 		get("/indicador/carga", IndicadorController::cargaIndicador, engine);
 		
 	}

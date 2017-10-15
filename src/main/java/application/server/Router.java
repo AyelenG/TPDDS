@@ -19,17 +19,36 @@ public class Router {
 		
 		staticFiles.location("/public");
 		
-		redirect.get("/", "/login"); 
+		redirect.get("/", "/home"); 
+		
+		before((request, response) -> {
+			if (request.session().attribute("currentUser") == null 
+					&& isPublic(request.pathInfo()) == false) {
+				response.redirect("/login");
+			}
+		});
+		
+//		after((request, response) -> {
+//		    PerThreadEntityManagers.getEntityManager().clear();
+//		});
+//lo dejo comentado porque tira cosas en la consola
+		
+		get("/home", HomeController::showHome, engine);	
 		
 		get("/login", LoginController::handleLoginGet, engine);
 		post("/login", LoginController::handleLoginPost);
-		get("/home", HomeController::showHome, engine);	
 		post("/logout", LoginController.handleLogoutPost);
+		
 		get("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaGet, engine);
 		post("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaPost);
 		get("/analisis/metodologias/metodologia/:id",AnalisisController::handleAnalisisMetodologia,engine);
+		
 		get("/indicador/carga", IndicadorController::cargaIndicador, engine);
 		
+	}
+
+	private static boolean isPublic(String pathInfo) {
+		return pathInfo.equals("/") || pathInfo.equals("/home") || pathInfo.equals("/login");
 	}
 
 }

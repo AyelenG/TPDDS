@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import exceptions.NoSePuedeAplicarException;
 import model.Empresa;
 import model.Metodologia;
 import model.Usuario;
@@ -32,24 +33,30 @@ public class AnalisisController {
 	public static ModelAndView handleAnalisisMetodologia(Request req, Response res) {
 		Metodologia metodologia = RepoMetodologias.getInstance()
 				.get(Long.parseLong(req.params("id")));
-		List<Empresa> empresas = RepoEmpresas.getInstance().findAll();
-		
-		List<Empresa> validas = metodologia.obtenerValidas(empresas);
-		List<Empresa> invalidas = metodologia.obtenerInvalidas(empresas);
-		List<Empresa> deseables = metodologia.aplicar(validas);
-		List<Empresa> noDeseables = metodologia.obtenerNoDeseables(validas);
-
 		Map<String, Object> model = new HashMap<>();
-		model.put("metodologia", metodologia);
-		if(!deseables.isEmpty()){
-			Empresa mejor = deseables.get(0);
-			model.put("mejor", mejor);
-			deseables.remove(mejor);
+		List<Empresa> empresas = RepoEmpresas.getInstance().findAll();	
+		List<Empresa> validas = null;
+		List<Empresa> invalidas = null;
+		List<Empresa> deseables = null;
+		List<Empresa> noDeseables = null;
+		try{
+			validas = metodologia.obtenerValidas(empresas);
+			invalidas = metodologia.obtenerInvalidas(empresas);
+			deseables = metodologia.aplicar(validas);
+			noDeseables = metodologia.obtenerNoDeseables(validas);
+			if(!deseables.isEmpty()){
+				Empresa mejor = deseables.get(0);
+				model.put("mejor", mejor);
+				deseables.remove(mejor);
+			}
+			model.put("deseables", deseables);
+			model.put("indeseables", noDeseables);
+			model.put("invalidas", invalidas);
 		}
-		model.put("deseables", deseables);
-		model.put("indeseables", noDeseables);
-		model.put("invalidas", invalidas);
+		catch(NoSePuedeAplicarException e){
+			model.put("error", e.getMessage());
+		}
+		model.put("metodologia", metodologia);
 		return new ModelAndView(model, "analisis/analizar-metodologia.hbs");
 	}
-	
 }

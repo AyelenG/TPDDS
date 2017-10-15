@@ -6,6 +6,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 import controllers.AnalisisController;
 import controllers.HomeController;
+import controllers.IndicadorController;
 import controllers.LoginController;
 
 public class Router {
@@ -25,6 +26,7 @@ public class Router {
 		get("/home", HomeController::showHome, engine);	
 		post("/logout", LoginController.handleLogoutPost);
 		get("/analisis", AnalisisController::showResultado, engine);
+		get("/indicador/carga", IndicadorController::cargaIndicador, engine);
 		
 	}
 

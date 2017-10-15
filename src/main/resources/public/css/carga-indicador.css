@@ -1,0 +1,158 @@
+/* Reset de pantalla */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	
+	/* Fuente Global */
+	font: bold 18px Tahoma, sans-serif;
+}
+
+
+
+/* Sombra para efecto 3D */
+#calculator {
+	width: 1000px;
+	height: auto;
+	
+	margin: 100px auto;
+	padding: 20px;
+	
+	background: #808080;
+	background: linear-gradient(#808080, #cccccc);
+	border-radius: 3px;
+	box-shadow: 0px 4px #808080, 0px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Inset shadow on the screen to create indent */
+.screen {
+	height: 40px;
+	float: auto;
+	padding: 5px;
+	
+	background: #666666;
+	border-radius: 3px;
+	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
+	
+	/* Typography */
+	font: 12px Tahoma;
+	line-height: 30px;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: right;
+	letter-spacing: 1px;
+}
+
+.combos {
+	height: 90px;
+	width: auto;
+	float: auto;
+	padding: 20px 20px;
+}
+
+.combos select.cuentas, select.indicadores {
+	height: 30px;
+	width: 900px;	
+	margin: 0 0 10px 0;
+	
+	background: #666666;
+	border-radius: 3px;
+	
+		/* Typography */	
+	font: 18px Tahoma;
+	line-height: 30px;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: right;
+	letter-spacing: 1px;
+}
+
+.keys {
+	width: 400px;
+	padding: 20px 0px;
+	margin: auto;
+}
+
+.keys, .screen {overflow: hidden;}
+
+/* Applying same to the keys */
+.keys span {
+	float: left;
+	position: relative;	
+	
+	cursor: pointer;
+	
+	width: 70px;
+	height: 40px;
+	
+	background: white;
+	border-radius: 3px;
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+	
+	margin: 0 10px 15px 0;
+	
+	color: #888;
+	line-height: 40px;
+	text-align: center;
+	
+	/* prevent selection of text inside keys */
+	user-select: none;
+	
+	/* Smoothing out hover and active states using css3 transitions */
+	transition: all 0.2s ease;
+}
+
+/* style different type of keys (operators/evaluate/clear) differently */
+.keys span.operator {
+	background: #666666;
+	color: #cccccc;
+}
+
+.keys span.eval {
+	width: 110px;
+	background: #f1ff92;
+	box-shadow: 0px 4px #9da853;
+	color: #888e5f;
+}
+
+.keys span.clear {
+	width: 110px;
+	background: #ff9fa8;
+	box-shadow: 0px 4px #ff7c87;
+	color: white;
+}
+
+/* Some hover effects */
+.keys span:hover {
+	background: #9c89f6;
+	box-shadow: 0px 4px #6b54d3;
+	color: white;
+}
+
+.keys span.eval:hover {
+	background: #abb850;
+	box-shadow: 0px 4px #717a33;
+	color: #ffffff;
+}
+
+.keys span.clear:hover {
+	background: #f68991;
+	box-shadow: 0px 4px #d3545d;
+	color: white;
+}
+
+/* Simulating "pressed" effect on active state of the keys by removing the box-shadow and moving the keys down a bit */
+.keys span:active {
+	box-shadow: 0px 0px #6b54d3;
+	top: 4px;
+}
+
+.keys span.eval:active {
+	box-shadow: 0px 0px #717a33;
+	top: 4px;
+}
+
+.keys span.clear:active {
+	top: 4px;
+	box-shadow: 0px 0px #d3545d;
+}

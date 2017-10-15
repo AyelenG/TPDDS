@@ -36,8 +36,6 @@ public class LoginController {
     	Usuario usuario = new Usuario(request.queryParams("nombre"), request.queryParams("pass"));
         if (UsuarioController.autenticar(usuario)) {        
             request.session().attribute("currentUser", usuario);
-//	          if (request.queryParams("loginRedirect") != null)
-//	        	  response.redirect(request.queryParams("loginRedirect"));
 	        response.redirect("/home");  
             return null;
         }
@@ -47,18 +45,8 @@ public class LoginController {
     
     public static Route handleLogoutPost = (Request request, Response response) -> {
     	request.session().removeAttribute("currentUser");
-//        request.session().attribute("loggedOut", true);
         response.redirect("/");
         return null;
     };
-
-//    // El origen del request (request.pathInfo()) se salva en la sesión
-//    // el usuario es redirigido despues del login
-//    public static void chequearUsuarioLogueado(Request request, Response response) {
-//        if (request.session().attribute("currentUser") == null) {
-//            request.session().attribute("loginRedirect", request.pathInfo());
-//            response.redirect("/");
-//        }
-//    };
     
 }

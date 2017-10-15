@@ -30,7 +30,7 @@ La estructura que vamos a usar, es de 3 niveles.
   {{/partial}}
 
 #3ro Nivel: loquesea.hbs
-  {{#partial "estilos"}}
+  {{#partial "extra_estilos"}}
       //en caso de que quieran agregar estilos particulares, se agregan aca
   {{/partial}}
 

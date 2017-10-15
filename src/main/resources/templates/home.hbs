@@ -1,6 +1,12 @@
+<!-- esto no funciona porque layout redefine el partial "estilos" 
 {{#partial "estilos"}}
 	<link rel="stylesheet" type="text/css" href="../css/home.css">
-{{/partial}}
+{{/partial}} 
+corrijo poniendo otro nombre -->
+{{#partial "extra_estilos"}}
+	<link rel="stylesheet" type="text/css" href="../css/home.css">
+{{/partial}} 
+<!-- (igual home.css no existe mas asi que tampoco va esto) -->
 
 {{#partial "contenido" }}
 	<div class="container">

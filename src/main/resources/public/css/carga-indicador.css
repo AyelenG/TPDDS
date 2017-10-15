@@ -14,6 +14,7 @@
 
 /* Inset shadow on the screen to create indent */
 .screen {
+	height: 40px;
 	float: auto;
 	padding: 5px;
 	
@@ -46,7 +47,7 @@
 	background: #666666;
 	border-radius: 3px;
 	
-		/* Typography */	
+	/* Fuente */
 	font: 18px Tahoma;
 	line-height: 30px;
 	color: white;

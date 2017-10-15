@@ -1,8 +1,8 @@
 {{#partial "contenido"}}
 	{{#if cargaFallida}}
-	<h2 class="logo">La formula ingresada es incorrecta.</h2>
+	<p class="alert alert-warning">La formula ingresada es incorrecta.</p>
 	{{else}}
-	<h2 class="logo">Indicador cargado satisfactoriamente.</h2>
+	<p class="alert alert-success">Indicador cargado satisfactoriamente.</p>
 	{{/if}}
 {{/partial}}
 {{>layout.hbs}}

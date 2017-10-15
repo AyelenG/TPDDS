@@ -21,14 +21,14 @@ public class Usuario {
 	@Column(length = 50, nullable=false)
 	@Getter @Setter private String pass = "";
 	
-	public Usuario(){
-		
+	public Usuario() {
+
 	}
-	
+
 	public Usuario(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public Usuario(String nombre, String pass) {
 		this.nombre = nombre;
 		this.pass = pass;
@@ -68,6 +68,4 @@ public class Usuario {
 		return true;
 	}
 
-	
-	
 }

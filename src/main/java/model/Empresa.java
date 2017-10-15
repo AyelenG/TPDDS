@@ -83,7 +83,7 @@ public class Empresa {
 					.collect(Collectors.toList());
 	}
 
-	public int antiguedad(){
+	public int antiguedad() {
 		Periodo primerPeriodo = this.getPeriodos().stream().sorted().collect(Collectors.toList()).get(0);
 		return LocalDate.now().getYear() - primerPeriodo.getAnio();
 	}
@@ -93,20 +93,19 @@ public class Empresa {
 	 */
 	public void agregarCuenta(Periodo periodo, CuentaPeriodo cuenta) {
 		this.buscarPeriodoYAgregar(periodo).agregarCuenta(cuenta);
-		
-		
 	}
 
-	public boolean noEstaEn(List<Empresa> empresas){
+	public boolean noEstaEn(List<Empresa> empresas) {
 		return !empresas.contains(this);
 	}
-	
+
 	@Override
 	public String toString() {
 		return getSymbol() + " - " + getNombre();
 	}
-	
+
 	public void setSymbol(String symbol) {
 		this.symbol = symbol.toUpperCase();
 	}
+
 }

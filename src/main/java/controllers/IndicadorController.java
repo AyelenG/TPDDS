@@ -3,6 +3,8 @@ package controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import exceptions.FormulaIndicadorIncorrectaException;
 import model.Indicador;
 import model.Usuario;
@@ -24,12 +26,13 @@ public class IndicadorController {
 		return new ModelAndView(model, "/indicador/carga.hbs");
 	}
 	
-	public static ModelAndView verificacion(Request request, Response response) {		
+	public static ModelAndView verificacion(Request request, Response response) {
     	Usuario currentUser = request.session().attribute("currentUser");
     	Indicador indicador = new Indicador(request.queryParams("nombreIndicador"));
-		Map<String, Object> model = new HashMap<>();
-		model.put("usuario", currentUser);
-    	String formula = request.queryParams("nombreIndicador");
+    	Map<String, Object> model = new HashMap<>();
+    	String formula = StringEscapeUtils.unescapeHtml(request.queryParams("formula"));
+    	System.out.println(indicador.getNombre());
+		System.out.println(formula);
     	try {
     		new ExpresionBuilder(formula).build();
     	}
@@ -37,10 +40,9 @@ public class IndicadorController {
     		model.put("cargaFallida", true);
     		return new ModelAndView(model, "/indicador/verificacion.hbs");
     	}
-		model.put("cargaExitosa", true);
 		indicador.setFormula(formula);
 		indicador.setUser(currentUser);
-		RepoIndicadores.getInstance().insertar(indicador);
+//		RepoIndicadores.getInstance().insertar(indicador);
 		return new ModelAndView(model, "/indicador/verificacion.hbs");
 	}
 }

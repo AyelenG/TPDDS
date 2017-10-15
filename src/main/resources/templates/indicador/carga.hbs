@@ -3,8 +3,8 @@
 {{/partial}}
 {{#partial "contenido"}}
 <div id="carga">
-	<form action="/indicador/verificacion" method="POST">
-	<input class="form-control" type="text" name="nombreIndicador" placeholder="Nombre del nuevo Indicador a cargar" required/>
+	<form name="cargaForm" action="/indicador/verificacion" method="POST">
+	<input class="form-control" type="text" name="nombreIndicador" placeholder="Nombre del nuevo Indicador a cargar"/>
 	<br/>
 	<!-- display -->
 	<div class="screen"></div>

@@ -47,6 +47,7 @@ public class Metodologia {
 	@Getter @Setter private Usuario user;
 	
 	public Metodologia() {
+
 	}
 
 	public Metodologia(String nombre, List<Condicion> condiciones) {
@@ -142,4 +143,5 @@ public class Metodologia {
 	public String toString() {
 		return this.getNombre();
 	}
+
 }

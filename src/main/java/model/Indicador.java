@@ -48,6 +48,7 @@ public class Indicador {
 	@Getter @Setter private Usuario user;
 	
 	public Indicador() {
+
 	}
 
 	public Indicador(String nombre) {
@@ -79,4 +80,5 @@ public class Indicador {
 			this.setExpresion(new ExpresionBuilder(this.getFormula()).build());
 		return this.getExpresion().getValor(periodo, this.getUser());
 	}
+
 }

@@ -50,7 +50,7 @@ public class CuentaPeriodo {
 	public boolean esIgual(Cuenta cuenta) {
 		return this.getNombre().equals(cuenta.getNombre());
 	}
-	
+
 	public String getNombre(){
 		return this.cuenta.getNombre();
 	}

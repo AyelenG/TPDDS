@@ -29,9 +29,22 @@ for(var i = 0; i < keys.length; i++) {
 			// Final thing left to do is checking the last character of the equation. If it's an operator or a decimal, remove it
 			if(operators.indexOf(lastChar) > -1 || lastChar == '.')
 				equation = equation.replace(/.$/, '');
+
 			
-			if(equation)
-				input.innerHTML = eval(equation);
+//			if(equation)
+//				input.innerHTML = eval(equation);
+			if(equation) {
+				if(document.cargaForm.nombreIndicador.value == '')
+					alert("Debe completar el nombre del Indicador.");
+				else  {
+					var hiddenField = document.createElement("input");
+		            hiddenField.setAttribute("name", "formula");
+		            hiddenField.setAttribute("value", equation);
+		            document.cargaForm.appendChild(hiddenField);
+		            document.cargaForm.submit();
+				}
+			}
+				
 				
 			decimalAdded = false;
 		}

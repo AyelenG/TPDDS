@@ -18,10 +18,10 @@ public class Cuenta {
 	@Id
 	@GeneratedValue
 	@Getter private long id;
-	
+
 	@Column(unique=true, length = 50, nullable=false)
 	@Getter private String nombre = "";
-	
+
 	public Cuenta() {
 		
 	}
@@ -37,4 +37,5 @@ public class Cuenta {
 	public void setNombre(String nombre) {
 		this.nombre = nombre.toUpperCase();
 	}
+
 }

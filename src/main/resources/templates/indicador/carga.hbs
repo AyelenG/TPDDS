@@ -11,13 +11,15 @@
 	<div class="combos">
 		<!-- Cuentas e Indicadores -->
 		<select class="cuentas">
+			<option disabled selected>Seleccione una cuenta...</option>
 		{{#each cuentas}}
-		  <option>{{nombre}}</option>
+			<option>{{nombre}}</option>
 		{{/each}}
 		</select>		
 		<select class="indicadores">
+			<option disabled selected>Seleccione un indicador...</option>
 		{{#each indicadores}}
-		  <option>{{nombre}}</option>
+			<option>{{nombre}}</option>
 		{{/each}}
 		</select>
 	</div>
@@ -48,15 +50,14 @@
 {{/partial}}
 {{#partial "javascript"}}
 <script>
-    $(".cuentas").click(function() {
+    $(".cuentas").change(function() {
 		var str = $("div.screen").text() + "[" + $(".cuentas option:selected").text() + "]";
 		$("div.screen").text( str )});
 </script>
 <script>
     $(".indicadores").change(function() {
 		var str = $("div.screen").text() + "<" + $(".indicadores option:selected").text() + ">";
-		$("div.screen").text( str );
-	}).trigger( "change" );
+		$("div.screen").text( str )});
 </script>
 
 <script src="/js/carga-indicador.js" type="text/javascript"></script>

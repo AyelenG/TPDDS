@@ -1,15 +1,3 @@
-/* Reset de pantalla */
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	
-	/* Fuente Global */
-	font: bold 18px Tahoma, sans-serif;
-}
-
-
-
 /* Sombra para efecto 3D */
 #calculator {
 	width: 1000px;
@@ -48,6 +36,7 @@
 	width: auto;
 	float: auto;
 	padding: 20px 20px;
+	font: 18px Tahoma, sans-serif;
 }
 
 .combos select.cuentas, select.indicadores {
@@ -71,6 +60,7 @@
 	width: 400px;
 	padding: 20px 0px;
 	margin: auto;
+	font: bold 18px Tahoma, sans-serif;
 }
 
 .keys, .screen {overflow: hidden;}

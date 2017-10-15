@@ -1,9 +1,12 @@
 package controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import exceptions.FormulaIndicadorIncorrectaException;
+import model.Indicador;
+import model.Usuario;
+import model.parser.ExpresionBuilder;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoIndicadores;
 import spark.ModelAndView;
@@ -12,11 +15,32 @@ import spark.Response;
 
 public class IndicadorController {
 	
-	@SuppressWarnings("rawtypes")
-	public static ModelAndView cargaIndicador(Request req, Response res) {		
-		Map<String, List> model = new HashMap<>();
+	public static ModelAndView carga(Request request, Response response) {		
+    	Usuario currentUser = request.session().attribute("currentUser");
+		Map<String, Object> model = new HashMap<>();
+		model.put("usuario", currentUser);
 		model.put("cuentas", RepoCuentas.getInstance().findAll());
-		model.put("indicadores", RepoIndicadores.getInstance().findAll());
+		model.put("indicadores", RepoIndicadores.getInstance().findAllBy("user", currentUser.getId()));
 		return new ModelAndView(model, "/indicador/carga.hbs");
+	}
+	
+	public static ModelAndView verificacion(Request request, Response response) {		
+    	Usuario currentUser = request.session().attribute("currentUser");
+    	Indicador indicador = new Indicador(request.queryParams("nombreIndicador"));
+		Map<String, Object> model = new HashMap<>();
+		model.put("usuario", currentUser);
+    	String formula = request.queryParams("nombreIndicador");
+    	try {
+    		new ExpresionBuilder(formula).build();
+    	}
+    	catch (FormulaIndicadorIncorrectaException e) {
+    		model.put("cargaFallida", true);
+    		return new ModelAndView(model, "/indicador/verificacion.hbs");
+    	}
+		model.put("cargaExitosa", true);
+		indicador.setFormula(formula);
+		indicador.setUser(currentUser);
+		RepoIndicadores.getInstance().insertar(indicador);
+		return new ModelAndView(model, "/indicador/verificacion.hbs");
 	}
 }

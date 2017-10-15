@@ -1,9 +1,9 @@
 /* Sombra para efecto 3D */
-#calculator {
+#carga {
 	width: 1000px;
 	height: auto;
 	
-	margin: 100px auto;
+	margin: 50px auto;
 	padding: 20px;
 	
 	background: #808080;
@@ -14,7 +14,6 @@
 
 /* Inset shadow on the screen to create indent */
 .screen {
-	height: 40px;
 	float: auto;
 	padding: 5px;
 	
@@ -22,7 +21,7 @@
 	border-radius: 3px;
 	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
 	
-	/* Typography */
+	/* Fuente */
 	font: 12px Tahoma;
 	line-height: 30px;
 	color: white;

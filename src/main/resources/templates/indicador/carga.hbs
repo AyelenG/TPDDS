@@ -2,8 +2,11 @@
 <link rel="stylesheet" href="/css/carga-indicador.css"/>
 {{/partial}}
 {{#partial "contenido"}}
-<div id="calculator">
-	<!-- Pantalla -->
+<div id="carga">
+	<form action="/indicador/verificacion" method="POST">
+	<input class="form-control" type="text" name="nombreIndicador" placeholder="Nombre del nuevo Indicador a cargar" required/>
+	<br/>
+	<!-- display -->
 	<div class="screen"></div>
 	<div class="combos">
 		<!-- Cuentas e Indicadores -->
@@ -40,9 +43,10 @@
 		<span class="clear">Limpiar</span>
 		<span class="eval">Cargar</span>
 	</div>
+	</form>
 </div>
-
-
+{{/partial}}
+{{#partial "javascript"}}
 <script>
     $(".cuentas").click(function() {
 		var str = $("div.screen").text() + "[" + $(".cuentas option:selected").text() + "]";
@@ -55,7 +59,7 @@
 	}).trigger( "change" );
 </script>
 
-<script src="../js/carga-indicador.js" type="text/javascript"></script>
+<script src="/js/carga-indicador.js" type="text/javascript"></script>
 {{/partial}}
 {{>base.hbs}}
 {{>layout.hbs}}

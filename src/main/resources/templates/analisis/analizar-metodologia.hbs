@@ -1,0 +1,93 @@
+{{#partial "extra_estilos"}}
+{{/partial}}
+
+{{#partial "contenido"}}
+<div class="container">
+	<div class="text-center"> 
+		<h1>Analisis con metodologías</h1>
+		<h2>{{metodologia.nombre}}</h2>
+		<br>
+		<h3>Resultados</h3>
+	</div>
+	<div class="row text-center">
+		<div class="col-md-4">
+			<h4>Empresas Deseables</h4>
+		</div>
+		<div class="col-md-4">
+			<h4>Empresas No Deseables</h4>
+		</div>
+		<div class="col-md-4">
+			<h4>Empresas Invalidas <small>(faltan datos)</small></h4>
+		</div>
+	</div>
+	<!-- Tablas de resultados -->
+	<div class="row">
+		<div class="col-md-4">
+			<table class="table table-bordered">
+				<thead>
+			      <tr class="table-success">
+			        <th>Symbol</th>
+			        <th>Nombre Completo</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	{{#with mejor}}
+			     	<tr class="table-active">
+				        <td>{{symbol}}</td>
+				        <td>{{nombre}}</td>
+			     	</tr>
+			     	{{/with}}	
+			     	{{#each deseables}}
+			      	<tr>
+				        <td>{{symbol}}</td>
+				        <td>{{nombre}}</td>
+			      	</tr>	
+			    	{{/each}}
+			    </tbody>
+			</table>
+		</div>
+		<div class="col-md-4">
+			<table class="table table-bordered">
+				<thead>
+			      <tr class="table-warning">
+			        <th>Symbol</th>
+			        <th>Nombre Completo</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+				    {{#each indeseables}}
+				      <tr>
+				        <td>{{symbol}}</td>
+				        <td>{{nombre}}</td>
+				      </tr>
+				    {{/each}}	
+			    </tbody>
+			</table>
+		</div>
+		<div class="col-md-4">
+			<table class="table table-bordered">
+				<thead>
+			      <tr class="table-danger">
+			        <th>Symbol</th>
+			        <th>Nombre Completo</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			   	 	{{#each invalidas}}
+			      	<tr>
+				        <td>{{symbol}}</td>
+				        <td>{{nombre}}</td>
+			     	 </tr>
+			     	 {{/each}}	
+			    </tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="text-center">
+		<a href="/analisis/metodologias" class="btn btn-secondary btn-lg">Otra metodología</a>
+	</div>
+	<br>
+</div>
+{{/partial}}
+{{>layout.hbs}}

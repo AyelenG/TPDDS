@@ -74,6 +74,11 @@ public class Metodologia {
 				.filter(e -> condiciones.stream().allMatch(c -> c.esValida(e,user))).collect(Collectors.toList()));
 		return empresasValidas;
 	}
+	
+	public List<Empresa> obtenerInvalidas(List<Empresa> empresas) {
+		List<Empresa> validas = this.obtenerValidas(empresas);
+		return empresas.stream().filter(e->e.noEstaEn(validas)).collect(Collectors.toList());
+	}
 
 	/**
 	 * Aplica la metodologia a la lista de empresas de entrada y devuelve la
@@ -85,6 +90,11 @@ public class Metodologia {
 	 */
 	public List<Empresa> aplicar(List<Empresa> empresas) {
 		return this.obtenerOrdenadas(this.obtenerFiltradas(empresas));
+	}
+	
+	public List<Empresa> obtenerNoDeseables(List<Empresa> empresas){
+		List<Empresa> deseables = this.aplicar(empresas);
+		return empresas.stream().filter(emp -> emp.noEstaEn(deseables)).collect(Collectors.toList());
 	}
 
 	public List<Empresa> obtenerFiltradas(List<Empresa> empresas) {

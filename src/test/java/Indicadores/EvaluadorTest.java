@@ -24,11 +24,13 @@ public class EvaluadorTest {
 	private static Usuario testUser = new Usuario("test","test");
 	private static Periodo periodo = new Periodo();
 	private static RepoIndicadores indicadores = RepoIndicadores.getInstance();
+	private static RepoUsuarios usuarios = RepoUsuarios.getInstance();
 	// indicadores.get(0); //Ingreso Neto -- ING. NETO EN OP. CONTINUAS + ING. NETO EN OP. DISC.
 	// indicadores.get(1); //Retorno Sobre Capital Total -- (ING. NETO - DIVIDENDOS) / CAP. TOTAL
 
 	@BeforeClass
 	public static void inicio() {
+		usuarios.insertar(testUser);
 		indicadores.insertar(new Indicador("Ingreso Neto", "[INGRESO NETO EN OPERACIONES CONTINUAS] + [INGRESO NETO EN OPERACIONES DISCONTINUAS]",testUser));
 		indicadores.insertar(new Indicador("Retorno Sobre Capital Total", "(<INGRESO NETO> - [DIVIDENDOS]) / [CAPITAL TOTAL]",testUser));
 		periodo.agregarCuenta(new CuentaPeriodo("Ingreso neto en operaciones continuas", new BigDecimal(5)));
@@ -104,6 +106,6 @@ public class EvaluadorTest {
 	public static void clean(){
 		indicadores.clean();
 		RepoCuentas.getInstance().clean();
-		RepoUsuarios.getInstance().clean();
+		usuarios.clean();
 	}
 }

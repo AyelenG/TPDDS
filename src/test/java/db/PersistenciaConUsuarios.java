@@ -31,12 +31,14 @@ public class PersistenciaConUsuarios extends AbstractPersistenceTest implements 
 		juan = new Usuario("juan","juan");
 		user = juan;
 		
+		entityManager().persist(user);
 		ind = new Indicador("TestJuan1","1+2",user);
 		persist(ind);
 		ind = new Indicador("TestJuan2","1+2",user);
 		persist(ind);
 		
 		user = new Usuario("pepe","pepe");
+		entityManager().persist(user);
 		
 		ind = new Indicador("TestPepe1","1+2",user);
 		persist(ind);

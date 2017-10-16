@@ -42,7 +42,7 @@ public class Metodologia {
 	@JoinColumn(name = "meto_id", nullable = false)
 	@Getter @Setter private List<Condicion> condiciones = new LinkedList<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	@Getter @Setter private Usuario user;
 	

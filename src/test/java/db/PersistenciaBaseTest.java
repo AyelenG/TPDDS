@@ -34,6 +34,7 @@ public class PersistenciaBaseTest extends AbstractPersistenceTest implements Wit
 
 	@Before
 	public void init(){
+		entityManager().persist(user);
 	}
 	
 	@Test

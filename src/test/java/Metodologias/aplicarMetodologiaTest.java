@@ -32,10 +32,12 @@ public class aplicarMetodologiaTest {
 	private static Metodologia metodologia;
 	private static RepoEmpresas empresas = RepoEmpresas.getInstance();
 	private static RepoIndicadores indicadores = RepoIndicadores.getInstance();
+	private static RepoUsuarios usuarios = RepoUsuarios.getInstance();
 
 	@BeforeClass
 	public static void inicializarDatos() {
 		Usuario testUser = new Usuario("test","test");
+		usuarios.insertar(testUser);
 		indicadores.insertar(new Indicador("TEST", "[EBITDA]",testUser));
 
 		Empresa empresa;
@@ -195,6 +197,6 @@ public class aplicarMetodologiaTest {
 		empresas.clean();
 		RepoCuentas.getInstance().clean();
 		indicadores.clean();
-		RepoUsuarios.getInstance().clean();
+		usuarios.clean();
 	}
 }

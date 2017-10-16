@@ -2,7 +2,6 @@ package model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,7 +42,7 @@ public class Indicador {
 	@Transient
 	@Getter @Setter private Expresion expresion;
 
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	@Getter @Setter private Usuario user;
 	

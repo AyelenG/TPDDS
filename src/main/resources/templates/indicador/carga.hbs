@@ -5,6 +5,7 @@
 <div id="carga">
 	<form name="cargaForm" action="/indicador/verificacion" method="POST">
 	<input class="form-control" type="text" name="nombreIndicador" placeholder="Nombre del nuevo Indicador a cargar"/>
+	</form>
 	<br/>
 	<!-- display -->
 	<div class="screen"></div>
@@ -39,27 +40,15 @@
 		<span class="operator">+</span>
 		<span class="operator">-</span>
 		<span class="operator">x</span>
-		<span class="operator">÷</span>
+		<span class="operator">/</span>
 		<span class="operator">(</span>
 		<span class="operator">)</span>
 		<span class="clear">Limpiar</span>
 		<span class="eval">Cargar</span>
 	</div>
-	</form>
 </div>
 {{/partial}}
 {{#partial "javascript"}}
-<script>
-    $(".cuentas").change(function() {
-		var str = $("div.screen").text() + "[" + $(".cuentas option:selected").text() + "]";
-		$("div.screen").text( str )});
-</script>
-<script>
-    $(".indicadores").change(function() {
-		var str = $("div.screen").text() + "<" + $(".indicadores option:selected").text() + ">";
-		$("div.screen").text( str )});
-</script>
-
 <script src="/js/carga-indicador.js" type="text/javascript"></script>
 {{/partial}}
 {{>base.hbs}}

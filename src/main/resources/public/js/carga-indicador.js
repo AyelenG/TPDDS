@@ -1,9 +1,15 @@
-// Get all the keys from document
+/* En keys guardo todos los componentes <span> */
 var keys = document.querySelectorAll('#carga span');
-var operators = ['+', '-', 'x', '�'];
+var operators = ['+', '-', 'x', '/'];
 var decimalAdded = false;
 
-// Add onclick event to all the keys and perform operations
+/* Carga de valores de Cuentas e Indicadores en el display */
+$(".cuentas").change(function() {$(".screen").text($("div.screen").text() + "[" + $(".cuentas option:selected").text() + "]")});
+$(".cuentas").focus(function() {this.selectedIndex=0; this.blur()});
+$(".indicadores").change(function() {$(".screen").text($("div.screen").text() + "<" + $(".indicadores option:selected").text() + ">")});
+$(".indicadores").focus(function() {this.selectedIndex=0; this.blur()});
+
+/* Recorro todas las y monitoreo el evento onclick */
 for(var i = 0; i < keys.length; i++) {
 	keys[i].onclick = function(e) {
 		// Get the input and button values
@@ -24,7 +30,7 @@ for(var i = 0; i < keys.length; i++) {
 			var lastChar = equation[equation.length - 1];
 			
 			// Replace all instances of x and � with * and / respectively. This can be done easily using regex and the 'g' tag which will replace all instances of the matched character/substring
-			equation = equation.replace(/x/g, '*').replace(/�/g, '/');
+			equation = equation.replace(/x/g, '*');
 			
 			// Final thing left to do is checking the last character of the equation. If it's an operator or a decimal, remove it
 			if(operators.indexOf(lastChar) > -1 || lastChar == '.')
@@ -34,18 +40,22 @@ for(var i = 0; i < keys.length; i++) {
 //			if(equation)
 //				input.innerHTML = eval(equation);
 			if(equation) {
-				if(document.cargaForm.nombreIndicador.value == '')
+				var nombreIndicador = document.cargaForm.nombreIndicador.value.toUpperCase();
+				if(nombreIndicador == '')
 					alert("Debe completar el nombre del Indicador.");
+				else if ($('.indicadores > option').get().some(o => o.value == nombreIndicador))
+					alert("Ya existe un Indicador con ese nombre.");
 				else  {
 					var hiddenField = document.createElement("input");
-		            hiddenField.setAttribute("name", "formula");
+					hiddenField.setAttribute("type", "hidden");
+					hiddenField.setAttribute("name", "formula");
 		            hiddenField.setAttribute("value", equation);
 		            document.cargaForm.appendChild(hiddenField);
 		            document.cargaForm.submit();
 				}
 			}
-				
-				
+			else
+				alert("Debe completar la formula del Indicador.");				
 			decimalAdded = false;
 		}
 		
@@ -61,13 +71,14 @@ for(var i = 0; i < keys.length; i++) {
 			// Operator is clicked
 			// Get the last character from the equation
 			var lastChar = inputVal[inputVal.length - 1];
-			
+			if(btnVal == '-') 
+				btnVal += ' ';
 			// Only add operator if input is not empty and there is no operator at the last
 			if(inputVal != '' && operators.indexOf(lastChar) == -1) 
 				input.innerHTML += btnVal;
 			
 			// Allow minus if the string is empty
-			else if(inputVal == '' && btnVal == '-') 
+			else if(inputVal == '' && btnVal == '- ') 
 				input.innerHTML += btnVal;
 			
 			// Replace the last operator (if exists) with the newly pressed operator
@@ -86,12 +97,10 @@ for(var i = 0; i < keys.length; i++) {
 				decimalAdded = true;
 			}
 		}
-		
+
 		// if any other key is pressed, just append it
-		else {
+		else
 			input.innerHTML += btnVal;
-		}
-		
 		// prevent page jumps
 		e.preventDefault();
 	} 

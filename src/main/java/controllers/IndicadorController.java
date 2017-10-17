@@ -35,12 +35,13 @@ public class IndicadorController {
     	}
     	catch (FormulaIndicadorIncorrectaException e) {
     		model.put("cargaFallida", true);
-    		return new ModelAndView(model, "/indicador/verificacion.hbs");
+    		return new ModelAndView(model, "/indicador/carga.hbs");
     	}
 		indicador.setFormula(formula);
 		indicador.setUser(currentUser);
 		RepoIndicadores.getInstance().insertar(indicador);
-		return new ModelAndView(model, "/indicador/verificacion.hbs");
+		model.put("cargaExitosa", true);
+		return new ModelAndView(model, "/indicador/carga.hbs");
 	}
 
 }

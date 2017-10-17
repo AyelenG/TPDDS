@@ -44,7 +44,7 @@ public class Router {
 		get("/analisis/metodologias/metodologia/:id",AnalisisController::handleAnalisisMetodologia,engine);
 		
 		get("/indicador/carga", IndicadorController::carga, engine);
-		post("/indicador/verificacion", IndicadorController::verificacion, engine);
+		post("/indicador/carga", IndicadorController::verificacion, engine);
 		
 	}
 

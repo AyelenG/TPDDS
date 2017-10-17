@@ -4,10 +4,10 @@ var operators = ['+', '-', 'x', '/'];
 var decimalAdded = false;
 
 /* Carga de valores de Cuentas e Indicadores en el display */
-$(".cuentas").change(function() {$(".screen").text($("div.screen").text() + "[" + $(".cuentas option:selected").text() + "]")});
-$(".cuentas").focus(function() {this.selectedIndex=0; this.blur()});
-$(".indicadores").change(function() {$(".screen").text($("div.screen").text() + "<" + $(".indicadores option:selected").text() + ">")});
-$(".indicadores").focus(function() {this.selectedIndex=0; this.blur()});
+$(".cuentas").change(function() {$(".screen").text($("div.screen").text() + "[" + $(".cuentas option:selected").text() + "]"); this.blur();});
+$(".cuentas").focusout(function() {this.selectedIndex=0;});
+$(".indicadores").change(function() {$(".screen").text($("div.screen").text() + "<" + $(".indicadores option:selected").text() + ">"); this.blur();});
+$(".indicadores").focusout(function() {this.selectedIndex=0; });
 
 /* Recorro todas las y monitoreo el evento onclick */
 for(var i = 0; i < keys.length; i++) {
@@ -18,18 +18,16 @@ for(var i = 0; i < keys.length; i++) {
 		var btnVal = this.innerHTML;
 		
 		// Now, just append the key values (btnValue) to the input string and finally use javascript's eval function to get the result
-		// If clear key is pressed, erase everything
 		if(btnVal == 'Limpiar') {
 			input.innerHTML = '';
 			decimalAdded = false;
 		}
-		
-		// If eval key is pressed, calculate and display the result
+ 
 		else if(btnVal == 'Cargar') {
 			var equation = inputVal;
 			var lastChar = equation[equation.length - 1];
 			
-			// Replace all instances of x and � with * and / respectively. This can be done easily using regex and the 'g' tag which will replace all instances of the matched character/substring
+			// Replace all instances of x with *. This can be done easily using regex and the 'g' tag which will replace all instances of the matched character/substring
 			equation = equation.replace(/x/g, '*');
 			
 			// Final thing left to do is checking the last character of the equation. If it's an operator or a decimal, remove it

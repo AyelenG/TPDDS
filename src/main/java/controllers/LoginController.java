@@ -38,7 +38,7 @@ public class LoginController {
         		(request.queryParams("nombre"),request.queryParams("pass"));
     	if (usuario != null) {        
             request.session().attribute("currentUser", usuario);
-	        response.redirect("/home");  
+	        response.redirect("/home/usuario");  
             return null;
         }
     	response.redirect("/login?authError");

@@ -1,5 +1,5 @@
 .nuestroBoton {
-	border: 1px solid rgba(255, 255, 255, .5);
+	border: 1px solid white;
 	border-radius: 10px;
 	text-decoration: none;
 	transition-duration: 0.5s;
@@ -7,10 +7,23 @@
 
 .nuestroBoton:hover {
 	background-color: rgba(255, 255, 255, .5);
+	border: 1px solid white;
 	text-decoration: none;
 	transition-duration: 0.5s;
 }
 
 .seccion{
-	padding: 100px 0;
+	padding: 150px 0px;
+}
+
+.texto h2{
+	margin: 40px 0px;
+}
+
+.texto p{
+	margin: 40px 0px;
+}
+
+.texto a{
+	margin: 40px 0px;
 }

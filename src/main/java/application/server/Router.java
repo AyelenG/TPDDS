@@ -34,6 +34,7 @@ public class Router {
 //lo dejo comentado porque tira cosas en la consola
 		
 		get("/home", HomeController::showHome, engine);	
+		get("/home/usuario", HomeController::showHomeLog,engine);
 		
 		get("/login", LoginController::handleLoginGet, engine);
 		post("/login", LoginController::handleLoginPost);

@@ -61,6 +61,11 @@ public class AnalisisController {
 	}
 	
 	public static ModelAndView handleSeleccionarEmpresaPeriodo(Request req, Response res) {
+		String empresa = req.queryParams("empresa");
+		String periodo = req.queryParams("periodo");
+		if(empresa != null && periodo != null){
+			res.redirect("/analisis/indicadores/" + empresa +"/" + periodo);
+		}
 		List<Empresa> empresas = RepoEmpresas.getInstance().findAll();		
 		Map<String, Object> model = new HashMap<>();		 	
 		model.put("empresas", empresas);

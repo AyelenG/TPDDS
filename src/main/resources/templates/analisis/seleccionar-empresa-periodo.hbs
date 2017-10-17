@@ -12,7 +12,7 @@
 		<form action="/analisis/indicadores" method="get">
 			<div class="form-group">
     			<label for="exampleFormControlSelect1">Seleccione empresa.</label>
-	    			<select class="form-control empresas" id="empresa">
+	    			<select name="empresa" class="form-control empresas" id="empresa">
 	     				<option>Seleccione alguna opción</option>
 	     				{{#each empresas}}
 	      				<option value="{{id}}">{{nombre}} - {{symbol}}</option>
@@ -20,7 +20,7 @@
 	   				 </select>
 	   			<label for="exampleFormControlSelect1">Seleccione periodo.</label>
 	    			<select class="form-control" id="periodos">
-	     				<option>Seleccione alguna opción</option>
+	     				<option>Elija una empresa primero</option>
 	   				 </select>
  				 </div>
 			<div class="text-center">

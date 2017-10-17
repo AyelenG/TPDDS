@@ -59,4 +59,13 @@ public class AnalisisController {
 		model.put("metodologia", metodologia);
 		return new ModelAndView(model, "analisis/analizar-metodologia.hbs");
 	}
+	
+	public static ModelAndView handleSeleccionarEmpresaPeriodo(Request req, Response res) {
+		List<Empresa> empresas = RepoEmpresas.getInstance().findAll();		
+		Map<String, Object> model = new HashMap<>();		 	
+		model.put("empresas", empresas);
+		
+		return new ModelAndView(model, "analisis/seleccionar-empresa-periodo.hbs");
+	}
+	
 }

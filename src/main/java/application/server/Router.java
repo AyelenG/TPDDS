@@ -8,6 +8,7 @@ import controllers.AnalisisController;
 import controllers.HomeController;
 import controllers.IndicadorController;
 import controllers.LoginController;
+import controllers.BuscadorController;
 
 public class Router {
 
@@ -43,10 +44,12 @@ public class Router {
 		get("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaGet, engine);
 		post("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaPost);
 		get("/analisis/metodologias/metodologia/:id",AnalisisController::handleAnalisisMetodologia,engine);
+		get("/analisis/indicadores", AnalisisController::handleSeleccionarEmpresaPeriodo,engine);
 		
 		get("/indicador/carga", IndicadorController::carga, engine);
 		post("/indicador/carga", IndicadorController::verificacion, engine);
 		
+		get("/periodos", BuscadorController::periodos,engine);
 	}
 
 	private static boolean isPublic(String pathInfo) {

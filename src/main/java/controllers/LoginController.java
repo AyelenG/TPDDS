@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.Usuario;
+import model.repositories.RepoUsuarios;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -30,15 +31,15 @@ public class LoginController {
     	Map<String, Object> model = new HashMap<>();
     	if(request.queryParams("authError") != null)
     		model.put("autentificacionFallida", true);
-    	return new ModelAndView(model, "login.hbs");
+    	return new ModelAndView(model, "/login.hbs");
     }
     
     public static Object handleLoginPost(Request request, Response response) {
-        Usuario usuario = UsuarioController.autenticar
+        Usuario usuario = RepoUsuarios.getInstance().autenticar
         		(request.queryParams("nombre"),request.queryParams("pass"));
     	if (usuario != null) {        
             request.session().attribute("currentUser", usuario);
-	        response.redirect("/home/usuario");  
+	        response.redirect("/home");  
             return null;
         }
     	response.redirect("/login?authError");

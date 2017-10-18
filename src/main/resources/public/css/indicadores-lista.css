@@ -1,0 +1,11 @@
+.text-center {
+	padding: 30px
+}
+
+.cabecera {
+	background-color: silver
+}
+
+.cabecera .nombre {
+	width: 30%
+}

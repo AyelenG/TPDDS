@@ -10,14 +10,14 @@ import spark.Response;
 
 public class HomeController {
 
-public static ModelAndView showHome(Request req, Response res) {		
-		return new ModelAndView(null, "home.hbs");
+	public static ModelAndView showHome(Request req, Response res) {	
+		Map<String,Object> model = new HashMap<>();
+		Usuario currentUser = req.session().attribute("currentUser");
+		if(currentUser == null)
+			return new ModelAndView(null, "/home.hbs");
+		else{
+			model.put("usuario", currentUser);
+			return new ModelAndView(model, "/homeLog.hbs");
+		}	
 	}
-
-public static ModelAndView showHomeLog(Request req, Response res) {
-	Map<String,Object> model = new HashMap<>();
-	Usuario currentUser = req.session().attribute("currentUser");
-	model.put("usuario", currentUser);
-	return new ModelAndView(model, "homeLog.hbs");
-}
 }

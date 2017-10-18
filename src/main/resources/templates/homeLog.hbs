@@ -1,14 +1,15 @@
 {{#partial "extra_estilos"}}
 	<link rel="stylesheet" type="text/css" href="/css/homeLog.css">
+	<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre" rel="stylesheet">
 {{/partial}} 
 <!-- (igual home.css no existe mas asi que tampoco va) -->
 
 {{#partial "contenido" }}
-	<section class="fondo">
-		<div class="">
-			<h2>¡¡Bienvenido {{nombre}}!!</h2>
-			<a href="/empresas" title="">Empezar ya</a>
+	<div class="fondo">
+		<div class ="relativo">										
+			<h2>¡Bienvenido/a {{usuario.nombre}}!</h2>
+			<a href="/empresas" title="">Empezar</a>
 		</div>
-	</section>
+	</div>
 {{/partial}}
 {{>layout.hbs}}

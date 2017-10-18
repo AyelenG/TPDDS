@@ -1,0 +1,66 @@
+{{#partial "extra_estilos"}}
+<link rel="stylesheet" href="/css/evaluar-indicadores.css"/>
+{{/partial}}
+
+{{#partial "contenido"}}
+<div class="container">
+	<div class="text-center"> 
+		<h1>Analisis de indicadores</h1>
+		<h2>{{empresa.symbol}} - {{empresa.nombre}}</h2>
+		<h3>{{periodo.anio}}</h2>
+		<br>
+	</div>
+	<div class="row text-center">
+		<div class="col-md-6">
+			<h4>Indicadores evaluados</h4>
+		</div>
+		<div class="col-md-6">
+			<h4>Indicadores no evaluados</h4>
+		</div>
+	</div>
+	<!-- Tablas de indicadores -->
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table table-bordered">
+				<thead>
+			      <tr class="table-success">
+			        <th>Nombre</th>
+			        <th>Valor (en millones de U$D)</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			     	{{#each indicadoresOK}}
+			      	<tr>
+				        <td>{{nombre}}</td>
+				        <td class="valor">{{valor}}</td>
+			      	</tr>	
+			    	{{/each}}
+			    </tbody>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table table-bordered">
+				<thead>
+			      <tr class="table-danger">
+			        <th>Nombre</th>
+			        <th>Error</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			   	 	{{#each indicadoresError}}
+			      	<tr>
+				        <td>{{nombre}}</td>
+				        <td>{{mensaje}}</td>
+			     	 </tr>
+			     	 {{/each}}	
+			    </tbody>
+			</table>
+		</div>
+	</div>
+	<div class="text-center">
+		<a href="/analisis/indicadores" class="btn btn-secondary btn-lg">Otra empresa/periodo</a>
+	</div>
+	<br>
+</div>
+{{/partial}}
+{{>layout.hbs}}

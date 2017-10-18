@@ -1,4 +1,5 @@
 {{#partial "extra_estilos"}}
+<link rel="stylesheet" href="/css/seleccionar-metodologia.css"/>
 {{/partial}}
 
 {{#partial "contenido"}}
@@ -11,7 +12,7 @@
 	</div>
 	<!-- Formulario para seleccionar metodologia -->
 	<div class="col-md-6 mx-auto">
-		<form action="/analisis/metodologias" method="post">
+		<form action="/analisis/metodologias" method="get">
 			<div class="form-group">
 			<!-- combo box -->
 				<select name="metodologia" class="form-control" required>
@@ -22,7 +23,7 @@
 				</select>
 			</div>
 			<div class="text-center">
-				<button type="submit" class="btn btn-default btn-lg">Analizar</button>
+				<button type="submit" class="btn btn-secondary btn-lg">Analizar</button>
 			</div>
 		</form>
 	</div>

@@ -7,8 +7,9 @@ import spark.utils.HandlebarsTemplateEngineBuilder;
 import controllers.AnalisisController;
 import controllers.EmpresasController;
 import controllers.HomeController;
-import controllers.IndicadorController;
+import controllers.IndicadoresController;
 import controllers.LoginController;
+import controllers.BuscadorController;
 
 public class Router {
 
@@ -35,22 +36,29 @@ public class Router {
 //lo dejo comentado porque tira cosas en la consola
 		
 		get("/home", HomeController::showHome, engine);	
-		get("/home/usuario", HomeController::showHomeLog,engine);
 		
 		get("/login", LoginController::handleLoginGet, engine);
 		post("/login", LoginController::handleLoginPost);
-		post("/logout", LoginController.handleLogoutPost);
+		get("/logout", LoginController.handleLogoutPost);
 		
 		get("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaGet, engine);
-		post("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaPost);
 		get("/analisis/metodologias/metodologia/:id",AnalisisController::handleAnalisisMetodologia,engine);
 		
-		get("/indicador/carga", IndicadorController::carga, engine);
-		post("/indicador/carga", IndicadorController::verificacion, engine);
+		get("/analisis/indicadores", AnalisisController::handleSeleccionarEmpresaPeriodo,engine);
 		
+
 		get("empresas", EmpresasController::handleEmpresas, engine);
 		//get("empresas/:id/cuentas", EmpresasController::handleCuentas, engine);
 		
+
+		get("/analisis/indicadores/:empresa/:periodo", AnalisisController::handleEvaluarIndicadores,engine);
+		
+		get("/indicadores", IndicadoresController::lista, engine);
+		get("/indicadores/carga", IndicadoresController::carga, engine);
+		post("/indicadores/carga", IndicadoresController::verificacion, engine);
+		
+		get("/periodos", BuscadorController::periodos,engine);
+
 	}
 
 	private static boolean isPublic(String pathInfo) {

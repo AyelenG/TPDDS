@@ -115,7 +115,9 @@ body{
     display: -webkit-flex;
     flex-direction: column;
     -webkit-flex-direction: column;
-    height: 100%;
+    position: relative;
+ 	min-height: 100%;
+ 	padding-bottom: 348px;
 }
 
 .content{
@@ -125,6 +127,11 @@ body{
 }
 
 #myFooter{
-   flex: 0 0 auto;
-   -webkit-flex: 0 0 auto;
+	flex: 0 0 auto;
+   	-webkit-flex: 0 0 auto;  
+	position: absolute;
+	left: 0;
+	bottom: 0;
+ 	height: 348px;
+ 	width: 100%;
 }

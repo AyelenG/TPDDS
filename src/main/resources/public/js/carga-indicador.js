@@ -2,41 +2,51 @@
 var keys = document.querySelectorAll('#carga span');
 var operators = ['+', '-', 'x', '/'];
 var decimalAdded = false;
+var parentesis = 0;
+var tokens = [];
 
 /* Carga de valores de Cuentas e Indicadores en el display */
-$(".cuentas").change(function() {$(".screen").text($("div.screen").text() + "[" + $(".cuentas option:selected").text() + "]"); this.blur();});
+$(".cuentas").change(function() {
+	tokens.push("[" + $(".cuentas option:selected").text() + "]");
+	$(".screen").text(tokens.join('')); this.blur();});
 $(".cuentas").focusout(function() {this.selectedIndex=0;});
-$(".indicadores").change(function() {$(".screen").text($("div.screen").text() + "<" + $(".indicadores option:selected").text() + ">"); this.blur();});
+$(".indicadores").change(function() {
+	tokens.push("<" + $(".indicadores option:selected").text() + ">");
+	$(".screen").text(tokens.join('')); this.blur();});
 $(".indicadores").focusout(function() {this.selectedIndex=0; });
 
 /* Recorro todas las y monitoreo el evento onclick */
 for(var i = 0; i < keys.length; i++) {
 	keys[i].onclick = function(e) {
-		// Get the input and button values
-		var input = document.querySelector('.screen');
-		var inputVal = input.innerHTML;
+		/* Obtengo el valor del botón presionado */
 		var btnVal = this.innerHTML;
+		/* Obtengo el ultimo token */
+		var ultimo = tokens[tokens.length-1];
 		
-		// Now, just append the key values (btnValue) to the input string and finally use javascript's eval function to get the result
 		if(btnVal == 'Limpiar') {
-			input.innerHTML = '';
+			tokens = [];
+			decimalAdded = false;
+		}
+		
+		/* Botón < para borrar el último token */
+		else if(btnVal == '&lt;') {
+			tokens.pop();
 			decimalAdded = false;
 		}
  
 		else if(btnVal == 'Cargar') {
-			var equation = inputVal;
-			var lastChar = equation[equation.length - 1];
+			var equation = tokens.join('');
 			
-			// Replace all instances of x with *. This can be done easily using regex and the 'g' tag which will replace all instances of the matched character/substring
+			/* Reemplazo las 'x' por '*'. Utilizo la expresión regular y la 'g' reemplaza todas las apariciones */
 			equation = equation.replace(/x/g, '*');
 			
-			// Final thing left to do is checking the last character of the equation. If it's an operator or a decimal, remove it
-			if(operators.indexOf(lastChar) > -1 || lastChar == '.')
-				equation = equation.replace(/.$/, '');
-
+			/* Reemplazo los '-' por '- ' para que no rompa el parser */
+			equation = equation.replace(/-/g, '- ');
 			
-//			if(equation)
-//				input.innerHTML = eval(equation);
+			/* Remuevo el ultimo caracter de la formula si es un operador o un . decimal */
+			if(operators.indexOf(ultimo) > -1 || ultimo == '.')
+				equation = equation.replace(/.$/, '');
+			
 			if(equation) {
 				var nombreIndicador = document.cargaForm.nombreIndicador.value.toUpperCase();
 				if(nombreIndicador == '')
@@ -57,49 +67,63 @@ for(var i = 0; i < keys.length; i++) {
 			decimalAdded = false;
 		}
 		
-		// Basic functionality of the calculator is complete. But there are some problems like 
-		// 1. No two operators should be added consecutively.
-		// 2. The equation shouldn't start from an operator except minus
-		// 3. not more than 1 decimal should be there in a number
+		/* Chequeos adicionales */ 
+		// 1. No se pueden agregar dos operadores seguidos.
+		// 2. La formula no puede empezar con un operador, salvo el signo '-'
+		// 3. No se puede agregar mas de un . decimal a un numero
 		
-		// We'll fix these issues using some simple checks
-		
-		// indexOf works only in IE9+
+		/* Operadores */
 		else if(operators.indexOf(btnVal) > -1) {
-			// Operator is clicked
-			// Get the last character from the equation
-			var lastChar = inputVal[inputVal.length - 1];
-			if(btnVal == '-') 
-				btnVal += ' ';
-			// Only add operator if input is not empty and there is no operator at the last
-			if(inputVal != '' && operators.indexOf(lastChar) == -1) 
-				input.innerHTML += btnVal;
+
+			var formulaVacia = tokens.length == 0 || ultimo == '(';
+			var ultimoEsOperador = operators.indexOf(ultimo) > -1;
+
+			/* Solo agrego operador si la cadena no esta vacia y el ultimo elemento no es un operador */
+			if(!formulaVacia && !ultimoEsOperador)
+				tokens.push(btnVal);
 			
-			// Allow minus if the string is empty
-			else if(inputVal == '' && btnVal == '- ') 
-				input.innerHTML += btnVal;
+			/* Permito el signo negativo si la cadena esta vacia */
+			else if(formulaVacia && btnVal == '-')
+				tokens.push(btnVal);
 			
-			// Replace the last operator (if exists) with the newly pressed operator
-			if(operators.indexOf(lastChar) > -1 && inputVal.length > 1) {
-				// Here, '.' matches any character while $ denotes the end of string, so anything (will be an operator in this case) at the end of string will get replaced by new operator
-				input.innerHTML = inputVal.replace(/.$/, btnVal);
+			/* Si el ultimo elemento es un operador lo reemplazo por el nuevo */
+			if(!formulaVacia && ultimoEsOperador) {
+				tokens.pop();
+				tokens.push(btnVal);
 			}
 			
-			decimalAdded =false;
+			decimalAdded = false;
 		}
 		
-		// Now only the decimal problem is left. We can solve it easily using a flag 'decimalAdded' which we'll set once the decimal is added and prevent more decimals to be added once it's set. It will be reset when an operator, eval or clear key is pressed.
+		/* Solo dejo ingresar un punto decimal por numero utilizando un flag */
 		else if(btnVal == '.') {
 			if(!decimalAdded) {
-				input.innerHTML += btnVal;
+				tokens.push(btnVal);
 				decimalAdded = true;
 			}
 		}
+		
+		/* No permito cerrar parentesis que no hayan sido abiertos */
+		else if(btnVal == '(') {
+			tokens.push(btnVal);
+			parentesis++;
+		}
 
-		// if any other key is pressed, just append it
+		else if(btnVal == ')') {
+			if (parentesis > 0) {
+				tokens.push(btnVal);
+				parentesis--;
+			}
+		}
+		
+		/* Se agrega cualquier otro token */
 		else
-			input.innerHTML += btnVal;
-		// prevent page jumps
+			tokens.push(btnVal);
+		
+		/* Agrego los tokens como un String en el display */
+		$(".screen").text(tokens.join(''));
+		
+		/* Previene los saltos de pagina */
 		e.preventDefault();
 	} 
 }

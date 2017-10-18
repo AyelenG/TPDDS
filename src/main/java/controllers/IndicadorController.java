@@ -22,6 +22,7 @@ public class IndicadorController {
 		Map<String, Object> model = new HashMap<>();
 		model.put("cuentas", RepoCuentas.getInstance().findAll());
 		model.put("indicadores", RepoIndicadores.getInstance().findAllBy("user", currentUser.getId()));
+		model.put("usuario", currentUser);
 		return new ModelAndView(model, "/indicador/carga.hbs");
 	}
 	
@@ -29,6 +30,7 @@ public class IndicadorController {
     	Usuario currentUser = request.session().attribute("currentUser");
     	Indicador indicador = new Indicador(request.queryParams("nombreIndicador"));
     	Map<String, Object> model = new HashMap<>();
+    	model.put("usuario", currentUser);
     	String formula = StringEscapeUtils.unescapeHtml(request.queryParams("formula"));
     	try {
     		new ExpresionBuilder(formula).build();

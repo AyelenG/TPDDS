@@ -45,6 +45,8 @@ public class Router {
 		
 		get("/analisis/indicadores", AnalisisController::handleSeleccionarEmpresaPeriodo,engine);
 		
+		get("/analisis/indicadores/:empresa/:periodo", AnalisisController::handleEvaluarIndicadores,engine);
+		
 		get("/indicadores", IndicadoresController::lista, engine);
 		get("/indicadores/carga", IndicadoresController::carga, engine);
 		post("/indicadores/carga", IndicadoresController::verificacion, engine);

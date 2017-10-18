@@ -17,17 +17,15 @@ import spark.Response;
 public class AnalisisController {
 
 	public static ModelAndView handleSeleccionarMetodologiaGet(Request req, Response res) {
+		if(req.queryParams("metodologia") != null){
+			String idMetodologiaSeleccionada = req.queryParams("metodologia");		
+			res.redirect("/analisis/metodologias/metodologia/" + idMetodologiaSeleccionada);
+		}
 		Usuario user = req.session().attribute("currentUser");
 		Map<String, List<Metodologia>> model = new HashMap<>();
 		List<Metodologia> metodologiasDeUser = RepoMetodologias.getInstance().findAllBy("user", user.getId());
 		model.put("metodologias", metodologiasDeUser);
 		return new ModelAndView(model, "analisis/seleccionar-metodologia.hbs");
-	}
-	
-	public static Object handleSeleccionarMetodologiaPost(Request req, Response res) {
-		String idMetodologiaSeleccionada = req.queryParams("metodologia");		
-		res.redirect("/analisis/metodologias/metodologia/" + idMetodologiaSeleccionada);
-		return null;
 	}
 	
 	public static ModelAndView handleAnalisisMetodologia(Request req, Response res) {

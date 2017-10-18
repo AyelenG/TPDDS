@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import exceptions.NoSePuedeAplicarException;
 import model.Empresa;
 import model.Periodo;
 import model.repositories.RepoEmpresas;
@@ -21,7 +20,7 @@ public class BuscadorController {
 		Empresa empresa = RepoEmpresas.getInstance().get(id);
 		List<Periodo> periodos = empresa.getPeriodos();
 		model.put("periodos", periodos);
-				return new ModelAndView(model, "periodos.hbs");
+		return new ModelAndView(model, "/periodos.hbs");
 	}
 
 }

@@ -1,0 +1,43 @@
+{{#partial "extra_estilos"}}
+<link rel="stylesheet" href="/css/indicadores-lista.css"/>
+{{/partial}}
+{{#partial "contenido"}}
+<div class="container">
+	<div class="text-center"> 
+		<h1>Indicadores disponibles</h1>
+		<br>
+	</div>
+	{{#if indicadores}}
+	<!-- Listado-->
+	<div class="row">
+		<div class="col-md-12 mx-auto">
+			<table class="table table-bordered">
+				<thead>
+			      <tr class="cabecera">
+			        <th class="nombre">Nombre</th>
+			        <th class="fromula">Formula</th>
+			      </tr>
+			    </thead>
+			    <tbody>	
+			     	{{#each indicadores}}
+			      	<tr>
+				        <td>{{nombre}}</td>
+				        <td>{{formula}}</td>
+			      	</tr>	
+			    	{{/each}}
+			    </tbody>
+			</table>
+		</div>
+	</div>
+	{{else}}
+		<div class="alert alert-warning">
+			No hay indicadores disponibles.
+		</div>
+	{{/if}}
+	<div class="text-center">
+		<a href="/indicadores/carga" class="btn btn-secondary btn-lg">Cargar Nuevo</a>
+	</div>
+	<br>
+</div>
+{{/partial}}
+{{>layout.hbs}}

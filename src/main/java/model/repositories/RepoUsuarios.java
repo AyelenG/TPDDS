@@ -25,5 +25,15 @@ public class RepoUsuarios extends RepoBD<Usuario> {
 	public Usuario getAdmin() {
 		return this.buscarElemento(new Usuario("admin"));
 	}
-
+	
+	public Usuario autenticar(String nombre, String pass) {
+        if (nombre.isEmpty() || pass.isEmpty())
+            return null;
+        Usuario usuarioEncontrado = this.buscarElemento(new Usuario(nombre));
+        if (usuarioEncontrado == null)
+        	return null;
+        if (pass.equals(usuarioEncontrado.getPass()))
+        	return usuarioEncontrado;
+    	return null;
+    }
 }

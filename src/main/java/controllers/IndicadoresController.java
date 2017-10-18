@@ -15,35 +15,40 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class IndicadorController {
+public class IndicadoresController {
 	
 	public static ModelAndView carga(Request request, Response response) {
     	Usuario currentUser = request.session().attribute("currentUser");
 		Map<String, Object> model = new HashMap<>();
 		model.put("cuentas", RepoCuentas.getInstance().findAll());
 		model.put("indicadores", RepoIndicadores.getInstance().findAllBy("user", currentUser.getId()));
-		model.put("usuario", currentUser);
-		return new ModelAndView(model, "/indicador/carga.hbs");
+		return new ModelAndView(model, "/indicadores/carga.hbs");
 	}
 	
 	public static ModelAndView verificacion(Request request, Response response) {
     	Usuario currentUser = request.session().attribute("currentUser");
     	Indicador indicador = new Indicador(request.queryParams("nombreIndicador"));
     	Map<String, Object> model = new HashMap<>();
-    	model.put("usuario", currentUser);
     	String formula = StringEscapeUtils.unescapeHtml(request.queryParams("formula"));
     	try {
     		new ExpresionBuilder(formula).build();
     	}
     	catch (FormulaIndicadorIncorrectaException e) {
     		model.put("cargaFallida", true);
-    		return new ModelAndView(model, "/indicador/carga.hbs");
+    		return new ModelAndView(model, "/indicadores/carga.hbs");
     	}
 		indicador.setFormula(formula);
 		indicador.setUser(currentUser);
 		RepoIndicadores.getInstance().insertar(indicador);
 		model.put("cargaExitosa", true);
-		return new ModelAndView(model, "/indicador/carga.hbs");
+		return new ModelAndView(model, "/indicadores/carga.hbs");
+	}
+	
+	public static ModelAndView lista(Request request, Response response) {
+    	Usuario currentUser = request.session().attribute("currentUser");
+		Map<String, Object> model = new HashMap<>();
+		model.put("indicadores", RepoIndicadores.getInstance().findAllBy("user", currentUser.getId()));
+		return new ModelAndView(model, "/indicadores/lista.hbs");
 	}
 
 }

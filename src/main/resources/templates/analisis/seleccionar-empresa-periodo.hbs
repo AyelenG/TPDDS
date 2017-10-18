@@ -7,20 +7,20 @@
 		<h1>Analisis de indicadores</h1>		
 		<h4>Elija la empresa y el periodo que desea aplicar</h4>
 	</div>
-	<!-- Formulario para seleccionar metodologia -->
+	<!-- Formulario para seleccionar empresa y periodo -->
 	<div class="col-md-6 mx-auto">
 		<form action="/analisis/indicadores" method="get">
 			<div class="form-group">
-    			<label for="exampleFormControlSelect1">Seleccione empresa.</label>
-	    			<select name="empresa" class="form-control empresas" id="empresa">
-	     				<option>Seleccione alguna opción</option>
+    			<label for="empresa">Seleccione empresa.</label>
+	    			<select name="empresa" class="form-control empresas" id="empresa" required>
+	     				<option value="" disabled selected hidden>Seleccione alguna opción</option>
 	     				{{#each empresas}}
 	      				<option value="{{id}}">{{nombre}} - {{symbol}}</option>
 	     				{{/each}}
 	   				 </select>
-	   			<label for="exampleFormControlSelect1">Seleccione periodo.</label>
+	   			<label for="periodos">Seleccione periodo.</label>
 	    			<select class="form-control" id="periodos">
-	     				<option>Elija una empresa primero</option>
+	     				<option disabled selected hidden>Elija una empresa primero</option>
 	   				 </select>
  				 </div>
 			<div class="text-center">

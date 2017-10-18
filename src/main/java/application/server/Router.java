@@ -5,6 +5,7 @@ import static spark.Spark.*;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 import controllers.AnalisisController;
+import controllers.EmpresasController;
 import controllers.HomeController;
 import controllers.IndicadorController;
 import controllers.LoginController;
@@ -46,6 +47,9 @@ public class Router {
 		
 		get("/indicador/carga", IndicadorController::carga, engine);
 		post("/indicador/carga", IndicadorController::verificacion, engine);
+		
+		get("empresas", EmpresasController::handleEmpresas, engine);
+		//get("empresas/:id/cuentas", EmpresasController::handleCuentas, engine);
 		
 	}
 

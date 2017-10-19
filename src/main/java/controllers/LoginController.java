@@ -24,7 +24,6 @@ public class LoginController {
     	//si ya esta logueado el usuario en esta sesion voy a la home
     	Usuario currentUser = request.session().attribute("currentUser");
     	if( currentUser != null){
-    		System.out.println(currentUser.getNombre());
     		response.redirect("/home");
     	}
     	//si tengo un parametro authError muestra la pantalla con el alert-message
@@ -46,7 +45,7 @@ public class LoginController {
     	return null;
     }
     
-    public static Route handleLogoutPost = (Request request, Response response) -> {
+    public static Route handleLogout = (Request request, Response response) -> {
     	request.session().removeAttribute("currentUser");
         response.redirect("/");
         return null;

@@ -1,10 +1,11 @@
 {{#partial "extra_estilos"}}
+<link rel="stylesheet" href="/css/main.css"/>
 {{/partial}}
 
 {{#partial "contenido"}}
 <div class="container">
 	<div class="text-center"> 
-		<h1>{{empresa.nombre}}</h1>		
+		<h1>{{empresa.symbol}} - {{empresa.nombre}}</h1>		
 		<h4>Elija periodo:</h4>
 	</div>
 	<!-- Formulario para seleccionar empresa y periodo -->
@@ -12,7 +13,7 @@
 		<form action="" method="get">
 			<div class="form-group">
     			<label for="periodo">Seleccione periodo.</label>
-	    			<select name="periodo" class="form-control" required>
+	    			<select name="periodo" class="form-control" id="periodo" required>
 	     				<option value="" disabled selected hidden>Seleccione alguna opción</option>
 	     				{{#each periodos}}
 	      				<option value="{{anio}}">{{anio}}</option>

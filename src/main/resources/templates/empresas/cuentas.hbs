@@ -1,10 +1,10 @@
 {{#partial "extra_estilos"}}
-
 {{/partial}}
 {{#partial "contenido"}}
 <div class="container">
 	<div class="text-center">
-		<h1>Cuentas</h1>		
+		<h1>Cuentas</h1>
+		<h2>{{empresa.nombre}} ({{empresa.symbol}}) - {{anio}}</h2>		
 	</div>
 	
 	<!-- Listado-->
@@ -14,7 +14,7 @@
 				<thead>
 			      <tr class="cabecera">
 			        <th class="nombre">Nombre</th>
-			        <th class="valor">Valor</th>
+			        <th class="valor">Valor (en U$D millones)</th>
 			      </tr>
 			    </thead>
 			    <tbody>	

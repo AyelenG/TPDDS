@@ -15,7 +15,7 @@
      <tr>
      	<th></th>
         <th>Nombre</th>
-        <th></th>        
+        <th></th>
      </tr>
      {{#each empresas}}
      <tr>
@@ -23,8 +23,9 @@
        	<td>{{nombre}}</td>
        	<td>
        		<div class="text-center">
-       	<a href="/empresas/{{id}}" class="btn btn-secondary btn-sm">Cuentas</a></td>
-     		</div>
+       			<a href="/empresas/cuentas/{{id}}" class="btn btn-secondary btn-sm">Cuentas</a>
+       		</div>
+       	</td>	
      </tr>
      {{/each}}
   </table>	   

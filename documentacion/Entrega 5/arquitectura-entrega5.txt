@@ -1,0 +1,51 @@
+@startuml
+
+left to right direction
+
+actor Usuario
+
+
+package Cliente{
+	node Presentacion{
+		[NavegadorWeb] -up- () "CSS"
+		[NavegadorWeb] -down- () "JavaScript"
+
+	}
+}
+
+
+package Server{
+	node Modelo{
+		[AplicacionJava] - () "Spark"
+	}
+
+	cloud ORM{
+		() "Hibernate"
+	}
+
+	database Persistencia{
+		[BD] - () "MySQL"
+		file DataEmpresas
+	}
+
+	Hibernate <-- [AplicacionJava]
+	Hibernate --> [BD]
+
+	DataEmpresas --> [AplicacionJava]
+}
+
+
+cloud Web{
+	() "HTTP"
+	() "HTML"
+}
+
+[NavegadorWeb] <-left- HTML 
+[AplicacionJava] -left-> HTML
+[NavegadorWeb] -right-> HTTP 
+[AplicacionJava] <-right- HTTP
+
+
+Usuario <---> Cliente
+
+@enduml

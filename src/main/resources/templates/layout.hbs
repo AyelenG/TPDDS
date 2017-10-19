@@ -1,26 +1,31 @@
 {{#partial "estilos"}}
-		<link rel="stylesheet" href="/css/footer.css" type="text/css">
+		<link rel="stylesheet" href="/css/layout.css" type="text/css">
 		{{#block "extra_estilos"}}{{/block}}
 {{/partial}}
 
 {{#partial "cuerpo"}}
 <header>
-    <nav class="navbar navbar-dark bg-dark navbar-expand">
-			<ul class="col-8 navbar-nav">
-				<li class="nav-item"><a class="nav-link navbar-brand text-white" href="/home" title="">¿Dónde invierto?</a></li>
-				<li class="nav-item"><a class="nav-link" href="/empresas" title="">Empresas</a></li>
-				<li class="nav-item"><a class="nav-link" href="/indicadores" title="">Indicadores</a></li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="" title="" id="navbarDropdownMenuLink" data-toggle="dropdown">Análisis</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/analisis/indicadores">Indicadores</a>
-						<a class="dropdown-item" href="/analisis/metodologias">Metodologías</a>
-					</div>
-				</li>
-			</ul>
-			<ul class="col-4 navbar-nav justify-content-end">
-				<li class="nav-item"><a class="nav-link btn btn-outline-secondary" href="/logout" title="">Sign out</a></li>
-			</ul>
+    <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg">
+	    <a class="navbar-brand" href="/home" title="">¿Dónde invierto?</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	  	</button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="col-8 navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/empresas" title="">Empresas</a></li>
+					<li class="nav-item"><a class="nav-link" href="/indicadores" title="">Indicadores</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="" title="" id="navbarDropdownMenuLink" data-toggle="dropdown">Análisis</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/analisis/indicadores">Indicadores</a>
+							<a class="dropdown-item" href="/analisis/metodologias">Metodologías</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="col-4 navbar-nav justify-content-end">
+					<li class="nav-item"><a class="nav-link btn btn-outline-secondary" href="/logout" title="">Sign out</a></li>
+				</ul>
+		</div>
 	</nav>
 </header>
 <main>

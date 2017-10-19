@@ -1,17 +1,16 @@
 {{#partial "extra_estilos"}}
-<link rel="stylesheet" href="/css/indicadores-lista.css"/>
-<link rel="stylesheet" href="/css/main.css"/>
+
 {{/partial}}
 {{#partial "contenido"}}
 <div class="container">
 	<div class="text-center">
-		<h1>Cuentas de {{empresa}} en {{anio}}</h1>		
+		<h1>Cuentas</h1>		
 	</div>
 	
 	<!-- Listado-->
 	<div class="row">
 		<div class="col-md-12 mx-auto">
-			<table class="table table-bordered">
+			<table class="table table-striped table-inverse">
 				<thead>
 			      <tr class="cabecera">
 			        <th class="nombre">Nombre</th>
@@ -31,7 +30,7 @@
 	</div>
 	
 	<div class="text-center">
-		<a href="/empresas/empresa/{{empresa}}" class="btn btn-secondary btn-lg">Otro periodo</a>
+		<a href="/empresas" class="btn btn-secondary btn-lg">Otra empresa</a>
 	</div>
 	<br>
 </div>

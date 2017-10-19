@@ -1,0 +1,33 @@
+{{#partial "extra_estilos"}}
+{{/partial}}
+
+{{#partial "contenido"}}
+<div class="container">
+	<div class="text-center"> 
+		<h1>{{empresa.nombre}}</h1>		
+		<h4>Elija periodo:</h4>
+	</div>
+	<!-- Formulario para seleccionar empresa y periodo -->
+	<div class="col-md-6 mx-auto">
+		<form action="/empresas/empresa" method="get">
+			<div class="form-group">
+    			<label for="periodo">Seleccione periodo.</label>
+	    			<select name="periodo" class="form-control" required>
+	     				<option value="" disabled selected hidden>Seleccione alguna opción</option>
+	     				{{#each periodos}}
+	      				<option value="{{id}}">{{anio}}</option>
+	     				{{/each}}
+	   				 </select>
+	   			
+ 				 </div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-default btn-lg">Ver</button>
+			</div>
+		</form>
+	</div>
+	<br>
+</div>
+
+{{/partial}}
+
+{{>layout.hbs}}

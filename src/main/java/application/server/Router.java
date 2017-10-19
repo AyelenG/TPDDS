@@ -47,8 +47,9 @@ public class Router {
 		get("/analisis/indicadores", AnalisisController::handleSeleccionarEmpresaPeriodo,engine);
 		
 
-		get("empresas", EmpresasController::handleEmpresas, engine);
-		//get("empresas/:id/cuentas", EmpresasController::handleCuentas, engine);
+		get("/empresas", EmpresasController::handleEmpresas, engine);
+		get("/empresas/:empresa", EmpresasController::handleSeleccionPeriodo, engine);
+		get("/empresas/:empresa/:periodo", EmpresasController::handleCuentas, engine);
 		
 
 		get("/analisis/indicadores/:empresa/:periodo", AnalisisController::handleEvaluarIndicadores,engine);

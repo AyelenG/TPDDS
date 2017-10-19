@@ -22,12 +22,25 @@ public class EmpresasController {
 		model.put("empresas", RepoEmpresas.getInstance().findAll());
 		return new ModelAndView(model, "empresa/empresas.hbs");
 	}
-	/*public static ModelAndView handleCuentas(Request req, Response res) {
+	public static ModelAndView handleSeleccionPeriodo(Request req, Response res){
 		Map<String, List<Periodo>> model = new HashMap<>();
-		Empresa empresaElegida = RepoEmpresas.getInstance().get(Long.parseLong(req.params("id")));
-		List<Periodo> periodos = empresaElegida.getPeriodos();
-		model.put("periodos", periodos);
+		Empresa empresa = RepoEmpresas.getInstance().get(Long.parseLong(req.params("empresa")));
+		
+		
+		model.put("periodos", empresa.getPeriodos());		
+		return new ModelAndView(model, "empresa/selector-periodo.hbs");
+		
+	}
+	public static ModelAndView handleCuentas(Request req, Response res) {
+		Map<String, List<CuentaPeriodo>> model = new HashMap<>();
+		Empresa empresaElegida = RepoEmpresas.getInstance().get(Long.parseLong(req.params("empresa")));
+		
+		Integer anio = Integer.valueOf(req.params("periodo"));
+		Periodo periodo = empresaElegida.buscarPeriodo(new Periodo(anio));
+		List<CuentaPeriodo> cuentas = periodo.getCuentas();
+		
+		model.put("cuentas", cuentas);
 		return new ModelAndView(model,  "empresa/cuentas.hbs");
 	}
-	*/
+	
 }

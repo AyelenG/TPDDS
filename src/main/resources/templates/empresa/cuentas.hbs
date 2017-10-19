@@ -1,0 +1,39 @@
+{{#partial "extra_estilos"}}
+<link rel="stylesheet" href="/css/indicadores-lista.css"/>
+<link rel="stylesheet" href="/css/main.css"/>
+{{/partial}}
+{{#partial "contenido"}}
+<div class="container">
+	<div class="text-center">
+		<h1>Cuentas de {{empresa}} en {{anio}}</h1>		
+	</div>
+	
+	<!-- Listado-->
+	<div class="row">
+		<div class="col-md-12 mx-auto">
+			<table class="table table-bordered">
+				<thead>
+			      <tr class="cabecera">
+			        <th class="nombre">Nombre</th>
+			        <th class="valor">Valor</th>
+			      </tr>
+			    </thead>
+			    <tbody>	
+			     	{{#each cuentas}}
+			      	<tr>
+				        <td>{{nombre}}</td>
+				        <td>{{valor}}</td>
+			      	</tr>	
+			    	{{/each}}
+			    </tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="text-center">
+		<a href="/empresas/empresa/{{empresa}}" class="btn btn-secondary btn-lg">Otro periodo</a>
+	</div>
+	<br>
+</div>
+{{/partial}}
+{{>layout.hbs}}

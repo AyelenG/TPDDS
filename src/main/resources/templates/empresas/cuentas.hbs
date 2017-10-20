@@ -1,10 +1,12 @@
 {{#partial "extra_estilos"}}
+<link rel="stylesheet" href="/css/main.css"/>
 {{/partial}}
 {{#partial "contenido"}}
 <div class="container">
 	<div class="text-center">
 		<h1>Cuentas</h1>
 		<h2>{{empresa.nombre}} ({{empresa.symbol}}) - {{anio}}</h2>		
+		<br>
 	</div>
 	
 	<!-- Listado-->
@@ -30,7 +32,8 @@
 	</div>
 	
 	<div class="text-center">
-		<a href="/empresas" class="btn btn-secondary btn-lg">Otra empresa</a>
+		<a href="/empresas/{{empresa.id}}" class="btn btn-outline-dark">Otro periodo</a>
+		<a href="/empresas" class="btn btn-secondary">Otra empresa</a>
 	</div>
 	<br>
 </div>

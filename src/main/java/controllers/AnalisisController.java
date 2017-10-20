@@ -68,7 +68,7 @@ public class AnalisisController {
 	public static ModelAndView handleSeleccionarMetodologia(Request req, Response res) {
 		if(req.queryParams("metodologia") != null){
 			String idMetodologiaSeleccionada = req.queryParams("metodologia");		
-			res.redirect("/analisis/metodologias/metodologia/" + idMetodologiaSeleccionada);
+			res.redirect("/analisis/metodologias/" + idMetodologiaSeleccionada);
 		}
 		Usuario user = req.session().attribute("currentUser");
 		Map<String, List<Metodologia>> model = new HashMap<>();

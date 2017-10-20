@@ -1,37 +1,37 @@
 {{#partial "extra_estilos"}}
+<link rel="stylesheet" href="/css/main.css"/>
 {{/partial}}
 
 {{#partial "contenido"}}
 
- 
-  <div class="panel panel-info">
-  <div class="panel-heading">
-  	<div class="text-center">
-    <h2 class = "text-default"> EMPRESAS </h2>
-    </div>
-  </div>
-  <div class="panel-body">
-    <table class="table table-bordered table-striped">
-     <tr>
-     	<th></th>
-        <th>Nombre</th>
-        <th></th>
-     </tr>
-     {{#each empresas}}
-     <tr>
-     	<td>{{symbol}}</td>
-       	<td>{{nombre}}</td>
-       	<td>
-       		<div class="text-center">
-       			<a href="/empresas/cuentas/{{id}}" class="btn btn-secondary btn-sm">Cuentas</a>
-       		</div>
-       	</td>	
-     </tr>
-     {{/each}}
-  </table>	   
-  </div>
-</div>   
-	
+<div class="container">
+	<div class="panel panel-info">
+	  <div class="panel-heading">
+	  	<div class="text-center">
+	    <h2 class = "text-default"> Empresas </h2>
+	    <br>
+	    </div>
+	  </div>
+	  <div class="panel-body">
+	    <table class="table table-bordered table-striped">
+	     <tr>
+	        <th>Nombre</th>
+	        <th></th>
+	     </tr>
+	     {{#each empresas}}
+	     <tr>
+	       	<td>{{symbol}} - {{nombre}}</td>
+	       	<td>
+	       		<div class="text-center">
+	       			<a href="/empresas/{{id}}" class="btn btn-secondary btn-sm">Cuentas</a>
+	       		</div>
+	       	</td>	
+	     </tr>
+	     {{/each}}
+	  </table>	   
+	  </div>
+	</div>   
+</div>
 
 {{/partial}}
 

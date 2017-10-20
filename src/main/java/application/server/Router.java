@@ -43,14 +43,14 @@ public class Router {
 		get("/logout", LoginController.handleLogout);
 		
 		get("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologia, engine);
-		get("/analisis/metodologias/metodologia/:id",AnalisisController::handleAnalisisMetodologia,engine);
+		get("/analisis/metodologias/:id",AnalisisController::handleAnalisisMetodologia,engine);
 		
 		get("/analisis/indicadores", AnalisisController::handleSeleccionarEmpresaPeriodo,engine);
 		get("/analisis/indicadores/:empresa/:periodo", AnalisisController::handleEvaluarIndicadores,engine);
 
 		get("/empresas", EmpresasController::handleEmpresas, engine);
-		get("/empresas/cuentas/:empresa", EmpresasController::handleSeleccionPeriodo, engine);
-		get("/empresas/cuentas/:empresa/:periodo", EmpresasController::handleCuentas, engine);
+		get("/empresas/:empresa", EmpresasController::handleSeleccionPeriodo, engine);
+		get("/empresas/:empresa/periodos/:periodo/cuentas", EmpresasController::handleCuentas, engine);
 
 		get("/indicadores", IndicadoresController::lista, engine);
 		get("/indicadores/carga", IndicadoresController::carga, engine);

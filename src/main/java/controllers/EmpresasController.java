@@ -26,7 +26,7 @@ public class EmpresasController {
 		Empresa empresa = RepoEmpresas.getInstance().get(Long.parseLong(req.params("empresa")));
 		
 		if(periodo!=null){
-			res.redirect(req.pathInfo() +"/" + periodo);
+			res.redirect(req.pathInfo() +"/periodos/" + periodo + "/cuentas");
 		}
 		model.put("periodos", empresa.getPeriodos());
 		model.put("empresa", empresa);

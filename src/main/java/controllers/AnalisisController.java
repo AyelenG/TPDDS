@@ -65,7 +65,7 @@ public class AnalisisController {
 		}
 	}
 
-	public static ModelAndView handleSeleccionarMetodologiaGet(Request req, Response res) {
+	public static ModelAndView handleSeleccionarMetodologia(Request req, Response res) {
 		if(req.queryParams("metodologia") != null){
 			String idMetodologiaSeleccionada = req.queryParams("metodologia");		
 			res.redirect("/analisis/metodologias/metodologia/" + idMetodologiaSeleccionada);

@@ -2,6 +2,8 @@ package application.server;
 
 import static spark.Spark.*;
 
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 import controllers.AnalisisController;
@@ -30,29 +32,26 @@ public class Router {
 			}
 		});
 		
-//		after((request, response) -> {
-//		    PerThreadEntityManagers.getEntityManager().clear();
-//		});
-//lo dejo comentado porque tira cosas en la consola
+		after((request, response) -> {
+		    PerThreadEntityManagers.getEntityManager().clear();
+		});
 		
 		get("/home", HomeController::showHome, engine);	
 		
 		get("/login", LoginController::handleLoginGet, engine);
 		post("/login", LoginController::handleLoginPost);
-		get("/logout", LoginController.handleLogoutPost);
+		get("/logout", LoginController.handleLogout);
 		
-		get("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologiaGet, engine);
+		get("/analisis/metodologias", AnalisisController::handleSeleccionarMetodologia, engine);
 		get("/analisis/metodologias/metodologia/:id",AnalisisController::handleAnalisisMetodologia,engine);
 		
 		get("/analisis/indicadores", AnalisisController::handleSeleccionarEmpresaPeriodo,engine);
-		
-
-		get("empresas", EmpresasController::handleEmpresas, engine);
-		//get("empresas/:id/cuentas", EmpresasController::handleCuentas, engine);
-		
-
 		get("/analisis/indicadores/:empresa/:periodo", AnalisisController::handleEvaluarIndicadores,engine);
-		
+
+		get("/empresas", EmpresasController::handleEmpresas, engine);
+		get("/empresas/cuentas/:empresa", EmpresasController::handleSeleccionPeriodo, engine);
+		get("/empresas/cuentas/:empresa/:periodo", EmpresasController::handleCuentas, engine);
+
 		get("/indicadores", IndicadoresController::lista, engine);
 		get("/indicadores/carga", IndicadoresController::carga, engine);
 		post("/indicadores/carga", IndicadoresController::verificacion, engine);

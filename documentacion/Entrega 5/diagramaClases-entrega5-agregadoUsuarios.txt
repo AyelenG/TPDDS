@@ -1,0 +1,33 @@
+@startuml
+class Metodologia [[java:model.Metodologia]] {
+	-long id
+	-String nombre
+	-List<Condicion> condiciones
+	-Usuario user
+	+List<Empresa> obtenerValidas(List<Empresa> empresas)
+	+List<Empresa> obtenerInvalidas(List<Empresa> empresas)
+	+List<Empresa> aplicar(List<Empresa> empresas)
+	+List<Empresa> obtenerNoDeseables(List<Empresa> empresas)
+	+List<Empresa> obtenerFiltradas(List<Empresa> empresas)
+	+List<Empresa> obtenerOrdenadas(List<Empresa> empresas)
+	-int comparar(Empresa emp1, Empresa emp2)
+}
+
+class Indicador [[java:model.Indicador]] {
+	-long id
+	-String nombre
+	-String formula
+	-Expresion expresion
+	-Usuario user
+	+BigDecimal evaluar(Periodo periodo)
+}
+
+class Usuario [[java:model.Usuario]] {
+	-long id
+	-String nombre
+	-String pass
+}
+
+Indicador--> "1" Usuario : contiene
+Metodologia--> "1" Usuario: contiene
+@enduml

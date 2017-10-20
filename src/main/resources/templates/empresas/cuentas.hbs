@@ -1,0 +1,38 @@
+{{#partial "extra_estilos"}}
+{{/partial}}
+{{#partial "contenido"}}
+<div class="container">
+	<div class="text-center">
+		<h1>Cuentas</h1>
+		<h2>{{empresa.nombre}} ({{empresa.symbol}}) - {{anio}}</h2>		
+	</div>
+	
+	<!-- Listado-->
+	<div class="row">
+		<div class="col-md-12 mx-auto">
+			<table class="table table-striped table-inverse">
+				<thead>
+			      <tr class="cabecera">
+			        <th class="nombre">Nombre</th>
+			        <th class="valor">Valor (en U$D millones)</th>
+			      </tr>
+			    </thead>
+			    <tbody>	
+			     	{{#each cuentas}}
+			      	<tr>
+				        <td>{{nombre}}</td>
+				        <td>{{valor}}</td>
+			      	</tr>	
+			    	{{/each}}
+			    </tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="text-center">
+		<a href="/empresas" class="btn btn-secondary btn-lg">Otra empresa</a>
+	</div>
+	<br>
+</div>
+{{/partial}}
+{{>layout.hbs}}

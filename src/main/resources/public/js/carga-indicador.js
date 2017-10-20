@@ -53,11 +53,7 @@ function accion(e) {
 			else if ($('.indicadores > option').get().some(o => o.value == nombreIndicador))
 				alert("Ya existe un Indicador con ese nombre.");
 			else  {
-				var hiddenField = document.createElement("input");
-				hiddenField.setAttribute("type", "hidden");
-				hiddenField.setAttribute("name", "formula");
-	            hiddenField.setAttribute("value", equation);
-	            document.cargaForm.appendChild(hiddenField);
+				document.cargaForm.formula.setAttribute("value", equation);
 	            document.cargaForm.submit();
 			}
 		}

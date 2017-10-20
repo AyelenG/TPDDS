@@ -10,7 +10,8 @@
 	{{else}}
 	<div id="carga">
 	<form name="cargaForm" action="/indicadores/carga" method="POST">
-	<input class="form-control" type="text" name="nombreIndicador" placeholder="Nombre del nuevo Indicador a cargar"/>
+	<input class="form-control" type="text" name="nombreIndicador" placeholder="Nombre del nuevo Indicador a cargar" required/>
+	<input type="hidden" name="formula"/>
 	</form>
 	<br/>
 	<!-- display -->

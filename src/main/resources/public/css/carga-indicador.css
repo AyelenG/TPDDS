@@ -12,7 +12,7 @@ main {
 	box-shadow: 0px 4px #808080, 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Inset shadow on the screen to create indent */
+/* Sombra del display */
 .screen {
 	height: 40px;
 	padding: 5px;
@@ -57,7 +57,7 @@ main {
 
 .keys, .screen {overflow: hidden;}
 
-/* Applying same to the keys */
+/* Teclas */
 .keys span {
 	float: left;
 	position: relative;
@@ -72,17 +72,28 @@ main {
 	line-height: 40px;
 	text-align: center;
 	
-	/* prevent selection of text inside keys */
+	/* previene la selección del texto dentro de las teclas */
 	user-select: none;
 	
-	/* Smoothing out hover and active states using css3 transitions */
+	/* suavizado usando transiciones de CSS3 */
 	transition: all 0.2s ease;
 }
 
-/* style different type of keys (operators/evaluate/clear) differently */
+/* Estilos para los diferentes tipos de teclas (operadores/cargar/limpiar) */
 .keys span.operator {
 	background: #666666;
 	color: #cccccc;
+}
+
+.keys span.clear {
+	width: 150px;
+	background: #ff9fa8;
+	box-shadow: 0px 4px #ff7c87;
+	color: white;
+}
+
+.keys span.clear.back {
+	width: 70px;
 }
 
 .keys span.eval {
@@ -92,14 +103,7 @@ main {
 	color: #888e5f;
 }
 
-.keys span.clear {
-	width: 110px;
-	background: #ff9fa8;
-	box-shadow: 0px 4px #ff7c87;
-	color: white;
-}
-
-/* Some hover effects */
+/* Efectos */
 .keys span:hover {
 	background: #9c89f6;
 	box-shadow: 0px 4px #6b54d3;
@@ -118,7 +122,7 @@ main {
 	color: white;
 }
 
-/* Simulating "pressed" effect on active state of the keys by removing the box-shadow and moving the keys down a bit */
+/* Simulado de efecto de apretado, remuevo la sombra y bajo el botón */
 .keys span:active {
 	box-shadow: 0px 0px #6b54d3;
 	top: 4px;

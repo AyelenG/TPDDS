@@ -48,17 +48,20 @@ function accion(e) {
 		
 		if(equation) {
 			var nombreIndicador = document.cargaForm.nombreIndicador.value.toUpperCase();
-			if(nombreIndicador == '')
-				alert("Debe completar el nombre del Indicador.");
+			if(nombreIndicador == '')				
+				$("#mensaje").text("Debe completar el nombre del Indicador.");
 			else if ($('.indicadores > option').get().some(o => o.value == nombreIndicador))
-				alert("Ya existe un Indicador con ese nombre.");
+				$("#mensaje").text("Ya existe un Indicador con ese nombre.");
 			else  {
 				document.cargaForm.formula.setAttribute("value", equation);
 	            document.cargaForm.submit();
+	            return;
 			}
 		}
 		else
-			alert("Debe completar la formula del Indicador.");				
+			$("#mensaje").text("Debe completar la formula del Indicador.");
+
+		$("#mensaje").fadeTo(2000, 500).slideUp(500, function(){$("#mensaje").slideUp(500)});
 		decimalAdded = false;
 	}
 	

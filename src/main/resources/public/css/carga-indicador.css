@@ -1,10 +1,9 @@
-/* Sombra para efecto 3D */
 main {
-	padding: 20px;
+	padding: 30px;
 }
 
+/* Sombra para efecto 3D */
 #carga {
-	margin: 30px auto;
 	padding: 20px;
 	background: #808080;
 	background: linear-gradient(#808080, #cccccc);
@@ -12,40 +11,39 @@ main {
 	box-shadow: 0px 4px #808080, 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Sombra del display */
+.combos, .keys, .screen {overflow: hidden;}
+
+/* Display */
 .screen {
 	height: 40px;
 	padding: 5px;
 	background: #666666;
 	border-radius: 3px;
 	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
-	
+
 	/* Fuente */
 	font: 12px Tahoma, sans-serif;
 	line-height: 30px;
 	color: white;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 	text-align: right;
-	letter-spacing: 1px;
 }
 
-.combos {	
+/* Selectores */
+.combos {
 	padding: 20px;
 }
 
 .combos select.cuentas, select.indicadores {
 	height: 30px;
-	margin: 0 0 10px 0;	
+	margin: 0 0 10px 0;
 	background: #666666;
 	border-radius: 3px;
 	
 	/* Fuente */
 	font: 18px Tahoma, sans-serif;
-	line-height: 30px;
 	color: white;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-	text-align: right;
-	letter-spacing: 1px;
 }
 
 .keys {
@@ -54,8 +52,6 @@ main {
 	margin: auto;
 	font: bold 18px Tahoma, sans-serif;
 }
-
-.keys, .screen {overflow: hidden;}
 
 /* Teclas */
 .keys span {

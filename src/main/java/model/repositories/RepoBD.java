@@ -15,11 +15,11 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 
-public abstract class RepoBD<T> implements Repositorio<T>, WithGlobalEntityManager, TransactionalOps{
+public abstract class RepoBD<T> implements Repositorio<T>, WithGlobalEntityManager, TransactionalOps {
 
 	protected Class<T> entidad;
 	
-	public Class<T> getEntidad(){
+	public Class<T> getEntidad() {
 		return entidad;
 	}
 	

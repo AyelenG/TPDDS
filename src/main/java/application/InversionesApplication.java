@@ -7,7 +7,6 @@ import ui.windows.InicioWindow;
 public class InversionesApplication extends Application {
 
 	public static void main(String[] args) {
-
 		new InversionesApplication().start();
 	}
 	

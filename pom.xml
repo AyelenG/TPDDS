@@ -125,7 +125,7 @@
 					<processTypes>
 						<!-- Comando de ejecución para Heroku -->
 						<!-- puede funcionar con o sin el .   -->
-						<web>java -jar /target/2017-jm-group-12-1.0-jar-with-dependencies.jar</web>
+						<web>java -jar target/2017-jm-group-12-1.0-jar-with-dependencies.jar</web>
 					</processTypes>
 				</configuration>
 			</plugin>

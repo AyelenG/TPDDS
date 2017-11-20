@@ -1,1 +1,1 @@
-web: java -jar target/2017-jm-group-12-1.0-jar-with-dependencies.jar
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* application.server.Server

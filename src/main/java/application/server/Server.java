@@ -16,7 +16,7 @@ public class Server {
 	
 	public static void main(String[] args) {
 		
-		agendarCargaCuentas(30 * DIA);
+		agendarCargaCuentas(1 * MINUTO);
 	    
 		Spark.port(getHerokuAssignedPort());
 		DebugScreen.enableDebugScreen();

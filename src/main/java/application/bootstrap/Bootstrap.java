@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import model.Indicador;
 import model.Metodologia;
 import model.Usuario;
@@ -17,18 +19,22 @@ import model.condiciones.taxativas.TiposCondicionTaxativa;
 import model.data.HandlerArchivoJSON;
 import model.repositories.RepoBD;
 import model.repositories.RepoCuentas;
-import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadores;
 import model.repositories.RepoMetodologias;
 import model.repositories.RepoUsuarios;
 
 public class Bootstrap {
+	
+	public static void main(String[] args) {
+		new Bootstrap().init();
+		PerThreadEntityManagers.closeEntityManager();
+		System.out.println("Migración terminada (usar boton de stop de Eclipse)");
+	}
 
 	public void init() {
 		this.initPredefinidos();
 		Usuario admin = RepoUsuarios.getInstance().getAdmin(); 
 		this.initFromJSON(RepoCuentas.getInstance(),null);
-		this.initFromJSON(RepoEmpresas.getInstance(),null);
 		this.initFromJSON(RepoIndicadores.getInstance(),(ind) -> ind.setUser(admin));
 		this.initFromJSON(RepoMetodologias.getInstance(),(met) -> met.setUser(admin));
 	}

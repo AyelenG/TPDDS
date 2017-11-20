@@ -31,6 +31,14 @@
 			<property name="hibernate.connection.url" value="jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10205857" />
 			<property name="hibernate.connection.username" value="sql10205857" />
 			<property name="hibernate.connection.password" value="1234" />
+
+<!-- local
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/grupo12" /> 
+            <property name="hibernate.connection.username" value="root" /> 
+            <property name="hibernate.connection.password" value="1234" /> 
+-->
+
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="use_sql_comments" value="true" />

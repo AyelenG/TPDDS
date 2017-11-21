@@ -12,11 +12,15 @@ import exceptions.NoSePuedeAplicarException;
 import exceptions.NoSePuedeEvaluarException;
 import model.Empresa;
 import model.Indicador;
+import model.IndicadorPeriodoConValor;
+import model.IndicadorPeriodoSinValor;
 import model.Metodologia;
 import model.Periodo;
 import model.Usuario;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoIndicadoresPeriodosConValor;
+import model.repositories.RepoIndicadoresPeriodosSinValor;
 import model.repositories.RepoMetodologias;
 import spark.ModelAndView;
 import spark.Request;
@@ -109,6 +113,25 @@ public class AnalisisController {
 	
 	public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
 		Usuario user = req.session().attribute("currentUser");
+		
+		long idEmpresa = Long.valueOf(req.params("empresa")).longValue();
+		Integer anio = Integer.valueOf(req.params("periodo"));
+		Empresa empresa = RepoEmpresas.getInstance().get(idEmpresa);
+		Periodo periodo = empresa.buscarPeriodo(new Periodo(anio));
+
+		List<IndicadorPeriodoConValor> indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance().getIndicadores(empresa, periodo, user.getId());
+		List<IndicadorPeriodoSinValor> indicadoresSinValor = RepoIndicadoresPeriodosSinValor.getInstance().getIndicadores(empresa, periodo, user.getId());
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("empresa",empresa);
+		model.put("periodo", periodo);
+		model.put("indicadoresOK", indicadoresConValor);
+		model.put("indicadoresError", indicadoresSinValor);
+		return new ModelAndView(model,"analisis/evaluar-indicadores.hbs");
+	}
+	
+	/*public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
+		Usuario user = req.session().attribute("currentUser");
 		List<Indicador> indicadores = RepoIndicadores.getInstance().findAllBy("user", user.getId());
 		long idEmpresa = Long.valueOf(req.params("empresa")).longValue();
 		Integer anio = Integer.valueOf(req.params("periodo"));
@@ -134,7 +157,7 @@ public class AnalisisController {
 		model.put("indicadoresOK", indicadoresConValor);
 		model.put("indicadoresError", indicadoresSinValor);
 		return new ModelAndView(model,"analisis/evaluar-indicadores.hbs");
-	}
+	}*/
 	
 	public static ModelAndView handleSeleccionarEmpresaPeriodo(Request req, Response res) {
 		String empresa = req.queryParams("empresa");

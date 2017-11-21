@@ -3,6 +3,7 @@ package model.repositories;
 import java.util.Arrays;
 import java.util.List;
 
+import model.Cuenta;
 import model.Indicador;
 import model.Usuario;
 
@@ -30,4 +31,5 @@ public class RepoIndicadores extends RepoBD<Indicador> {
 			user = RepoUsuarios.getInstance().getAdmin();
 		return Arrays.asList(ind.getNombre(),user);
 	}
+	
 }

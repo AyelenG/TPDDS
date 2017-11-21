@@ -68,4 +68,38 @@ public class PrecalculoIndicadores {
 		RepoIndicadoresPeriodosSinValor.getInstance().insertarVarios(indicadoresSinValor);
 	}
 	
+	public void precalcularNuevoIndicador(Indicador indicador){
+		BigDecimal valor;
+		List<Empresa> empresas = RepoEmpresas.getInstance().findAll();
+		List<IndicadorPeriodoConValor> indicadoresConValor = new LinkedList<>();
+		List<IndicadorPeriodoSinValor> indicadoresSinValor = new LinkedList<>();
+		
+		for (Empresa empresa : empresas) {
+			List<Periodo> periodos = empresa.getPeriodos();
+			
+			for (Periodo periodo : periodos) {
+					
+					IndicadorPeriodoConValor indicadorConValor = new IndicadorPeriodoConValor();
+					IndicadorPeriodoSinValor indicadorSinValor = new IndicadorPeriodoSinValor();
+					
+					try{
+						valor = indicador.evaluar(periodo);	
+						indicadorConValor.setIndicador(indicador);
+						indicadorConValor.setPeriodo(periodo);
+						indicadorConValor.setValor(valor);
+						indicadoresConValor.add(indicadorConValor);
+					}
+					catch(NoSePuedeEvaluarException e){
+						indicadorSinValor.setMensaje(e.getMensaje());
+						indicadorSinValor.setIndicador(indicador);
+						indicadorSinValor.setPeriodo(periodo);
+						indicadoresSinValor.add(indicadorSinValor);
+					}
+			}
+		}
+		
+		RepoIndicadoresPeriodosConValor.getInstance().insertarVarios(indicadoresConValor);
+		RepoIndicadoresPeriodosSinValor.getInstance().insertarVarios(indicadoresSinValor);
+	}
+	
 }

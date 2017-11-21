@@ -12,11 +12,13 @@ import exceptions.NoSePuedeAplicarException;
 import exceptions.NoSePuedeEvaluarException;
 import model.Empresa;
 import model.Indicador;
+import model.IndicadorPeriodo;
 import model.Metodologia;
 import model.Periodo;
 import model.Usuario;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoIndicadoresPeriodos;
 import model.repositories.RepoMetodologias;
 import spark.ModelAndView;
 import spark.Request;
@@ -108,26 +110,15 @@ public class AnalisisController {
 	}
 	
 	public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
-		Usuario user = req.session().attribute("currentUser");
-		List<Indicador> indicadores = RepoIndicadores.getInstance().findAllBy("user", user.getId());
+		Usuario user = req.session().attribute("currentUser");		
 		long idEmpresa = Long.valueOf(req.params("empresa")).longValue();
 		Integer anio = Integer.valueOf(req.params("periodo"));
 		Empresa empresa = RepoEmpresas.getInstance().get(idEmpresa);
 		Periodo periodo = empresa.buscarPeriodo(new Periodo(anio));
-		BigDecimal valor;
-		IndicadorVM indicadorACargar;
-		List<IndicadorVM> indicadoresConValor = new LinkedList<>();
-		List<IndicadorVM> indicadoresSinValor = new LinkedList<>();
-		for (Indicador indicador : indicadores) {
-			try {
-				valor = indicador.evaluar(periodo);
-				indicadorACargar = new IndicadorVM(indicador.getNombre(), valor);
-				indicadoresConValor.add(indicadorACargar);
-			} catch (NoSePuedeEvaluarException e) {
-				indicadorACargar = new IndicadorVM(indicador.getNombre(), e.getMensaje());
-				indicadoresSinValor.add(indicadorACargar);
-			}
-		}
+		
+		List<IndicadorPeriodo> indicadoresConValor = RepoIndicadoresPeriodos.getInstance().getIndicadoresConValor();
+		List<IndicadorPeriodo> indicadoresSinValor = RepoIndicadoresPeriodos.getInstance().getIndicadoresSinValor();
+				
 		Map<String, Object> model = new HashMap<>();
 		model.put("empresa",empresa);
 		model.put("periodo", periodo);

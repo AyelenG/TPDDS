@@ -21,5 +21,17 @@ private static final RepoIndicadoresPeriodos instance = new RepoIndicadoresPerio
 	protected List<Object> valoresDeBusqueda(IndicadorPeriodo indicador) {
 		return Arrays.asList(indicador.getId());			
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<IndicadorPeriodo> getIndicadoresConValor(){
+		return entityManager().createQuery("from " + entidad.getSimpleName() + " e where e.valor != NULL").getResultList();
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<IndicadorPeriodo> getIndicadoresSinValor(){
+		return entityManager().createQuery("from " + entidad.getSimpleName() + " e where e.valor = NULL").getResultList();
+		
+	}
 
 }

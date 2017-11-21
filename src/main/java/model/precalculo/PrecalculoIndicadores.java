@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
+import exceptions.NoSePuedeEvaluarException;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
@@ -31,20 +32,30 @@ public class PrecalculoIndicadores {
 			List<Empresa> empresas = RepoEmpresas.getInstance().findAll();
 			
 			for (Empresa empresa : empresas) {
-				
-				List<Periodo> periodos = RepoPeriodos.getInstance().findAllBy("empresa",empresa.getId());
+			
+				List<Periodo> periodos = empresa.getPeriodos();
 				
 				for (Periodo periodo : periodos) {	
 				
 					for (Indicador indicador : indicadores) {
 						
 						IndicadorPeriodo indicadorConValor = new IndicadorPeriodo();
-						valor = indicador.evaluar(periodo);
+						indicador.setUser(usuario);
 						indicadorConValor.setIndicador(indicador);
 						indicadorConValor.setPeriodo(periodo);
-						indicadorConValor.setValor(valor);
+						
+						try {
+							
+							valor = indicador.evaluar(periodo);							
+							indicadorConValor.setValor(valor);
+							
+						} catch (NoSePuedeEvaluarException e) {
+							
+							indicadorConValor.setValor(null);
+						}
+						
 						indicadoresConValor.add(indicadorConValor);
-					}					
+					}
 				}
 			}		
 		}

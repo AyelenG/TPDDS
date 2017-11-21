@@ -27,7 +27,7 @@ public class IndicadorPeriodo {
 	@ManyToOne (fetch = FetchType.LAZY)	
 	Indicador indicador;
 
-	@Column(nullable=false)
+	@Column
 	private BigDecimal valor;
 	
 	public IndicadorPeriodo(){

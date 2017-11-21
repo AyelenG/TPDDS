@@ -25,8 +25,9 @@ private static final RepoIndicadoresPeriodosConValor instance = new RepoIndicado
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<IndicadorPeriodoConValor> getIndicadores(Empresa empresa, Periodo periodo, long idUsuario){
-		return entityManager().createNativeQuery("SELECT e.* from " + entidad.getSimpleName() + " e JOIN Indicador i ON (e.indicador_id = i.id) JOIN Periodo p ON (e.periodo_id = p.id AND p.id = " + periodo.getId() + ") where i.user_id = " + idUsuario + "AND p.empr_id = " + empresa.getId()).getResultList();
+	public List<IndicadorPeriodoConValor> getIndicadores(Empresa empresa, Periodo periodo, long idUsuario){		
+		return entityManager().createNativeQuery("SELECT e.id, e.valor, e.indicador_id, e.periodo_id from indicadorperiodoconvalor e JOIN indicador i ON (e.indicador_id = i.id) JOIN periodo p ON (e.periodo_id = p.id AND p.id = " + periodo.getId() + ") where i.user_id = " + idUsuario + " AND p.empr_id = " + empresa.getId()).getResultList();
+		
 		
 	}
 

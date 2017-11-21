@@ -111,7 +111,7 @@ public class AnalisisController {
 		return new ModelAndView(model, "analisis/analizar-metodologia.hbs");
 	}
 	
-	public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
+	/*public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
 		Usuario user = req.session().attribute("currentUser");
 		
 		long idEmpresa = Long.valueOf(req.params("empresa")).longValue();
@@ -128,9 +128,9 @@ public class AnalisisController {
 		model.put("indicadoresOK", indicadoresConValor);
 		model.put("indicadoresError", indicadoresSinValor);
 		return new ModelAndView(model,"analisis/evaluar-indicadores.hbs");
-	}
+	}*/
 	
-	/*public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
+	public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
 		Usuario user = req.session().attribute("currentUser");
 		List<Indicador> indicadores = RepoIndicadores.getInstance().findAllBy("user", user.getId());
 		long idEmpresa = Long.valueOf(req.params("empresa")).longValue();
@@ -157,7 +157,7 @@ public class AnalisisController {
 		model.put("indicadoresOK", indicadoresConValor);
 		model.put("indicadoresError", indicadoresSinValor);
 		return new ModelAndView(model,"analisis/evaluar-indicadores.hbs");
-	}*/
+	}
 	
 	public static ModelAndView handleSeleccionarEmpresaPeriodo(Request req, Response res) {
 		String empresa = req.queryParams("empresa");

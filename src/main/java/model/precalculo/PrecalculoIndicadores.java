@@ -11,10 +11,11 @@ import model.Indicador;
 import model.Periodo;
 import model.Usuario;
 import model.repositories.RepoEmpresas;
-import model.IndicadorPeriodo;
+import model.IndicadorPeriodoConValor;
+import model.IndicadorPeriodoSinValor;
 import model.repositories.RepoIndicadores;
-import model.repositories.RepoIndicadoresPeriodos;
-import model.repositories.RepoPeriodos;
+import model.repositories.RepoIndicadoresPeriodosConValor;
+import model.repositories.RepoIndicadoresPeriodosSinValor;
 import model.repositories.RepoUsuarios;
 
 
@@ -23,7 +24,8 @@ public class PrecalculoIndicadores {
 	
 	public void precalcularIndicadores(){
 		BigDecimal valor;
-		List<IndicadorPeriodo> indicadoresConValor = new LinkedList<>();
+		List<IndicadorPeriodoConValor> indicadoresConValor = new LinkedList<>();
+		List<IndicadorPeriodoSinValor> indicadoresSinValor = new LinkedList<>();
 		
 		List<Usuario> usuarios = RepoUsuarios.getInstance().findAll();
 		for (Usuario usuario : usuarios) {
@@ -39,28 +41,31 @@ public class PrecalculoIndicadores {
 				
 					for (Indicador indicador : indicadores) {
 						
-						IndicadorPeriodo indicadorConValor = new IndicadorPeriodo();
-						indicador.setUser(usuario);
-						indicadorConValor.setIndicador(indicador);
-						indicadorConValor.setPeriodo(periodo);
+						IndicadorPeriodoConValor indicadorConValor = new IndicadorPeriodoConValor();
+						IndicadorPeriodoSinValor indicadorSinValor = new IndicadorPeriodoSinValor();
 						
 						try {
-							
-							valor = indicador.evaluar(periodo);							
+							valor = indicador.evaluar(periodo);	
+							indicadorConValor.setIndicador(indicador);
+							indicadorConValor.setPeriodo(periodo);
 							indicadorConValor.setValor(valor);
+							indicadoresConValor.add(indicadorConValor);
 							
 						} catch (NoSePuedeEvaluarException e) {
 							
-							indicadorConValor.setValor(null);
+							indicadorSinValor.setMensaje(e.getMensaje());
+							indicadorSinValor.setIndicador(indicador);
+							indicadorSinValor.setPeriodo(periodo);
+							indicadoresSinValor.add(indicadorSinValor);
 						}
 						
-						indicadoresConValor.add(indicadorConValor);
 					}
 				}
 			}		
 		}
 		
-		RepoIndicadoresPeriodos.getInstance().insertarVarios(indicadoresConValor);
+		RepoIndicadoresPeriodosConValor.getInstance().insertarVarios(indicadoresConValor);
+		RepoIndicadoresPeriodosSinValor.getInstance().insertarVarios(indicadoresSinValor);
 	}
 	
 }

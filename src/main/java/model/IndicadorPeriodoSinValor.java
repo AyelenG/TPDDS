@@ -1,21 +1,15 @@
 package model;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import lombok.Getter;
-import model.repositories.RepoCuentas;
 
 @Entity
-public class IndicadorPeriodo {
+public class IndicadorPeriodoSinValor {
 	
 	@Id
 	@GeneratedValue
@@ -27,10 +21,10 @@ public class IndicadorPeriodo {
 	@ManyToOne (fetch = FetchType.LAZY)	
 	Indicador indicador;
 
-	@Column
-	private BigDecimal valor;
+	@Column(length=250)
+	private String mensaje;
 	
-	public IndicadorPeriodo(){
+	public IndicadorPeriodoSinValor(){
 		
 	}
 
@@ -50,12 +44,12 @@ public class IndicadorPeriodo {
 		this.indicador = indicador;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
+	public String getMensaje() {
+		return mensaje;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 		
 	

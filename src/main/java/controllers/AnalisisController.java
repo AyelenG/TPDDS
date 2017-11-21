@@ -2,23 +2,21 @@ package controllers;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.uqbar.commons.utils.Observable;
 
 import exceptions.NoSePuedeAplicarException;
-import exceptions.NoSePuedeEvaluarException;
 import model.Empresa;
-import model.Indicador;
-import model.IndicadorPeriodo;
+import model.IndicadorPeriodoConValor;
+import model.IndicadorPeriodoSinValor;
 import model.Metodologia;
 import model.Periodo;
 import model.Usuario;
 import model.repositories.RepoEmpresas;
-import model.repositories.RepoIndicadores;
-import model.repositories.RepoIndicadoresPeriodos;
+import model.repositories.RepoIndicadoresPeriodosConValor;
+import model.repositories.RepoIndicadoresPeriodosSinValor;
 import model.repositories.RepoMetodologias;
 import spark.ModelAndView;
 import spark.Request;
@@ -116,8 +114,8 @@ public class AnalisisController {
 		Empresa empresa = RepoEmpresas.getInstance().get(idEmpresa);
 		Periodo periodo = empresa.buscarPeriodo(new Periodo(anio));
 		
-		List<IndicadorPeriodo> indicadoresConValor = RepoIndicadoresPeriodos.getInstance().getIndicadoresConValor();
-		List<IndicadorPeriodo> indicadoresSinValor = RepoIndicadoresPeriodos.getInstance().getIndicadoresSinValor();
+		List<IndicadorPeriodoConValor> indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance().getIndicadores(empresa, periodo, user.getId());
+		List<IndicadorPeriodoSinValor> indicadoresSinValor = RepoIndicadoresPeriodosSinValor.getInstance().getIndicadores(empresa, periodo, user.getId());
 				
 		Map<String, Object> model = new HashMap<>();
 		model.put("empresa",empresa);

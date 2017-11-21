@@ -14,7 +14,7 @@
     	<class>model.Cuenta</class>
     	<class>model.CuentaPeriodo</class>
 		<class>model.Indicador</class>
-		<class>model.IndicadorPeriodo</class>	
+		<class>model.IndicadorPeriodoConValor</class>	
 		<class>model.Metodologia</class>
 	
 		<class>model.condiciones.Condicion</class>		

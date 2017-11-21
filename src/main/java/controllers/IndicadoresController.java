@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringEscapeUtils;
-
 import exceptions.FormulaIndicadorIncorrectaException;
 import model.Indicador;
 import model.Usuario;
 import model.parser.ExpresionBuilder;
+import model.precalculo.PrecalculoIndicadores;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoIndicadores;
 import spark.ModelAndView;
@@ -40,6 +40,11 @@ public class IndicadoresController {
 		indicador.setFormula(formula);
 		indicador.setUser(currentUser);
 		RepoIndicadores.getInstance().insertar(indicador);
+		
+		PrecalculoIndicadores precalculo = new PrecalculoIndicadores();
+		precalculo.precalcularNuevoIndicador(indicador);
+		
+		
 		model.put("cargaExitosa", true);
 		return new ModelAndView(model, "/indicadores/carga.hbs");
 	}

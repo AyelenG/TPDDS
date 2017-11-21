@@ -10,8 +10,6 @@ import java.util.TimerTask;
 
 import org.apache.commons.net.ftp.FTPClient;
 
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
 import model.Empresa;
 import model.data.HandlerArchivoJSON;
 import model.repositories.RepoEmpresas;
@@ -64,7 +62,6 @@ public class CargaCuentasEmpresas extends TimerTask {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally{
-			PerThreadEntityManagers.closeEntityManager();
 			try {
 				desconectar();
 			} catch (IOException e) {

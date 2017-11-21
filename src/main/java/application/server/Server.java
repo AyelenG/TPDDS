@@ -11,12 +11,13 @@ public class Server {
 	//constantes de tiempo (en ms)
 	private static int SEGUNDO = 1000;
 	private static int MINUTO = 60 * SEGUNDO;
-	private static int HORA = MINUTO * 60;
-	private static int DIA = HORA * 24;
+	private static long HORA = MINUTO * 60;
+	@SuppressWarnings("unused")
+	private static long DIA = HORA * 24;
 	
 	public static void main(String[] args) {
 		
-		agendarCargaCuentas(1 * MINUTO);
+		agendarCargaCuentas(15 * MINUTO);
 	    
 		Spark.port(getHerokuAssignedPort());
 		DebugScreen.enableDebugScreen();
@@ -32,7 +33,7 @@ public class Server {
         return 9000;
     }
     
-    static void agendarCargaCuentas(int intervalo){
+    static void agendarCargaCuentas(long intervalo){
 	    Timer t = new Timer();
 	    CargaCuentasEmpresas tarea = new CargaCuentasEmpresas();
 	    t.scheduleAtFixedRate(tarea, 0, intervalo);

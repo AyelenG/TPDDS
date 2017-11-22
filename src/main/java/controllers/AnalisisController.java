@@ -1,19 +1,16 @@
 package controllers;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.uqbar.commons.utils.Observable;
-
 import exceptions.NoSePuedeAplicarException;
 import model.Empresa;
-import model.IndicadorPeriodoConValor;
-import model.IndicadorPeriodoSinValor;
 import model.Metodologia;
 import model.Periodo;
 import model.Usuario;
+import model.precalculo.IndicadorPeriodoConValor;
+import model.precalculo.IndicadorPeriodoSinValor;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadoresPeriodosConValor;
 import model.repositories.RepoIndicadoresPeriodosSinValor;
@@ -23,47 +20,6 @@ import spark.Request;
 import spark.Response;
 
 public class AnalisisController {
-	
-	@Observable
-	static class IndicadorVM {
-		private String nombre;
-		private BigDecimal valor;
-		private String mensaje;
-
-		public IndicadorVM(String nombre, BigDecimal valor) {
-			this.nombre = nombre;
-			this.valor = valor;
-		}
-
-		public IndicadorVM(String nombre, String mensaje) {
-			this.nombre = nombre;
-			this.mensaje = mensaje;
-		}
-
-		public String getNombre() {
-			return nombre;
-		}
-
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		public BigDecimal getValor() {
-			return valor;
-		}
-
-		public void setValor(BigDecimal valor) {
-			this.valor = valor;
-		}
-
-		public String getMensaje() {
-			return mensaje;
-		}
-
-		public void setMensaje(String mensaje) {
-			this.mensaje = mensaje;
-		}
-	}
 
 	public static ModelAndView handleSeleccionarMetodologia(Request req, Response res) {
 		if(req.queryParams("metodologia") != null){
@@ -115,8 +71,8 @@ public class AnalisisController {
 		Empresa empresa = RepoEmpresas.getInstance().get(idEmpresa);
 		Periodo periodo = empresa.buscarPeriodo(new Periodo(anio));
 
-		List<IndicadorPeriodoConValor> indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance().getIndicadores(empresa, periodo, user.getId());
-		List<IndicadorPeriodoSinValor> indicadoresSinValor = RepoIndicadoresPeriodosSinValor.getInstance().getIndicadores(empresa, periodo, user.getId());
+		List<IndicadorPeriodoConValor> indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance().findAllByUserYPeriodo(periodo, user);
+		List<IndicadorPeriodoSinValor> indicadoresSinValor = RepoIndicadoresPeriodosSinValor.getInstance().findAllByUserYPeriodo(periodo, user);
 		
 		Map<String, Object> model = new HashMap<>();
 		model.put("empresa",empresa);
@@ -125,35 +81,6 @@ public class AnalisisController {
 		model.put("indicadoresError", indicadoresSinValor);
 		return new ModelAndView(model,"analisis/evaluar-indicadores.hbs");
 	}
-	
-	/*public static ModelAndView handleEvaluarIndicadores(Request req, Response res){
-		Usuario user = req.session().attribute("currentUser");
-		List<Indicador> indicadores = RepoIndicadores.getInstance().findAllBy("user", user.getId());
-		long idEmpresa = Long.valueOf(req.params("empresa")).longValue();
-		Integer anio = Integer.valueOf(req.params("periodo"));
-		Empresa empresa = RepoEmpresas.getInstance().get(idEmpresa);
-		Periodo periodo = empresa.buscarPeriodo(new Periodo(anio));
-		BigDecimal valor;
-		IndicadorVM indicadorACargar;
-		List<IndicadorVM> indicadoresConValor = new LinkedList<>();
-		List<IndicadorVM> indicadoresSinValor = new LinkedList<>();
-		for (Indicador indicador : indicadores) {
-			try {
-				valor = indicador.evaluar(periodo);
-				indicadorACargar = new IndicadorVM(indicador.getNombre(), valor);
-				indicadoresConValor.add(indicadorACargar);
-			} catch (NoSePuedeEvaluarException e) {
-				indicadorACargar = new IndicadorVM(indicador.getNombre(), e.getMensaje());
-				indicadoresSinValor.add(indicadorACargar);
-			}
-		}
-		Map<String, Object> model = new HashMap<>();
-		model.put("empresa",empresa);
-		model.put("periodo", periodo);
-		model.put("indicadoresOK", indicadoresConValor);
-		model.put("indicadoresError", indicadoresSinValor);
-		return new ModelAndView(model,"analisis/evaluar-indicadores.hbs");
-	}*/
 	
 	public static ModelAndView handleSeleccionarEmpresaPeriodo(Request req, Response res) {
 		String empresa = req.queryParams("empresa");

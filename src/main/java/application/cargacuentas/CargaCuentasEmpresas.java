@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.SocketException;
 import java.util.List;
-import java.util.TimerTask;
 
 import org.apache.commons.net.ftp.FTPClient;
 
@@ -14,7 +13,7 @@ import model.Empresa;
 import model.data.HandlerArchivoJSON;
 import model.repositories.RepoEmpresas;
 
-public class CargaCuentasEmpresas extends TimerTask {
+public class CargaCuentasEmpresas {
 
 	private static FTPClient ftp;
 
@@ -52,8 +51,7 @@ public class CargaCuentasEmpresas extends TimerTask {
 		ftp.disconnect();
 	}
 
-	@Override
-	public void run(){
+	public void cargar(){
 		try {
 			conectar(ip, user, pass);
 			descargarArchivoFTP(rutaLocal, rutaFTP);

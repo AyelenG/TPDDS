@@ -1,4 +1,4 @@
-package model.precalculo;
+package application.precalculoindicadores;
 
 import java.math.BigDecimal;
 
@@ -10,23 +10,21 @@ import model.Empresa;
 import model.Indicador;
 import model.Periodo;
 import model.Usuario;
+import model.precalculo.IndicadorPeriodoConValor;
+import model.precalculo.IndicadorPeriodoSinValor;
 import model.repositories.RepoEmpresas;
-import model.IndicadorPeriodoConValor;
-import model.IndicadorPeriodoSinValor;
 import model.repositories.RepoIndicadores;
 import model.repositories.RepoIndicadoresPeriodosConValor;
 import model.repositories.RepoIndicadoresPeriodosSinValor;
 import model.repositories.RepoUsuarios;
 
-
-public class PrecalculoIndicadores {
-
+public class PrecalculoIndicadores{
 	
-	public void precalcularIndicadores(){
+	public void precalcularTodos(){
 		BigDecimal valor;
 		//borra toda la info de las tablas
-		RepoIndicadoresPeriodosConValor.getInstance().formatearTabla();
-		RepoIndicadoresPeriodosSinValor.getInstance().formatearTabla();
+		RepoIndicadoresPeriodosConValor.getInstance().clean();
+		RepoIndicadoresPeriodosSinValor.getInstance().clean();
 		List<IndicadorPeriodoConValor> indicadoresConValor = new LinkedList<>();
 		List<IndicadorPeriodoSinValor> indicadoresSinValor = new LinkedList<>();
 		
@@ -71,7 +69,7 @@ public class PrecalculoIndicadores {
 		RepoIndicadoresPeriodosSinValor.getInstance().insertarVarios(indicadoresSinValor);
 	}
 	
-	public void precalcularNuevoIndicador(Indicador indicador){
+	public void precalcularNuevo(Indicador indicador){
 		BigDecimal valor;
 		List<Empresa> empresas = RepoEmpresas.getInstance().findAll();
 		List<IndicadorPeriodoConValor> indicadoresConValor = new LinkedList<>();

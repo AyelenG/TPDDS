@@ -2,6 +2,7 @@ package model.condiciones.notaxativas;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.function.Function;
 
 import javax.persistence.Entity;
 
@@ -17,6 +18,8 @@ import model.Periodo;
 import model.Usuario;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
+import model.precalculo.IndicadorPeriodoConValor;
+import model.repositories.RepoIndicadoresPeriodosConValor;
 import utils.UtilsListas;
 
 @Entity
@@ -54,8 +57,10 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable {
 		List<Periodo> ultimosNAnios2 = emp2.getUltimosNAnios(cantidadAnios);
 
 		// obtengo la sumatoria de los valores de esos periodos
-		BigDecimal sumEmp1 = UtilsListas.sumatoria(ultimosNAnios1, p->indicador.evaluar(p));
-		BigDecimal sumEmp2 = UtilsListas.sumatoria(ultimosNAnios2, p->indicador.evaluar(p));
+		RepoIndicadoresPeriodosConValor indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance();
+		Function<Periodo,BigDecimal> f = p -> indicadoresConValor.buscarElemento(new IndicadorPeriodoConValor(p,indicador)).getValor();
+		BigDecimal sumEmp1 = UtilsListas.sumatoria(ultimosNAnios1, f);
+		BigDecimal sumEmp2 = UtilsListas.sumatoria(ultimosNAnios2, f);
 		
 		return this.comparador.aplicar(sumEmp1, sumEmp2) * peso;
 	}

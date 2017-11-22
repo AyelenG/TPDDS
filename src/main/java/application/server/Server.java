@@ -2,7 +2,6 @@ package application.server;
 
 import java.util.Timer;
 
-import application.cargacuentas.CargaCuentasEmpresas;
 import spark.Spark;
 import spark.debug.DebugScreen;
 
@@ -35,7 +34,7 @@ public class Server {
     
     static void agendarCargaCuentas(long intervalo){
 	    Timer t = new Timer();
-	    CargaCuentasEmpresas tarea = new CargaCuentasEmpresas();
+	    TareaBatch tarea = new TareaBatch();
 	    t.scheduleAtFixedRate(tarea, 0, intervalo);
     }
 

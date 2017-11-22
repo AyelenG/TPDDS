@@ -52,6 +52,10 @@ public class IndicadorPeriodoConValor {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+
+	public void setId(long id) {
+		this.id = id;		
+	}
 		
 	
 }

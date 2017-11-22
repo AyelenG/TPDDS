@@ -51,6 +51,10 @@ public class IndicadorPeriodoSinValor {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 		
 	
 }

@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.uqbar.commons.utils.Observable;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +19,6 @@ import model.condiciones.CondicionConfigurable;
 import model.data.converters.TipoCondicionTaxativaConverter;
 
 @Entity
-@Observable
 @JsonDeserialize(as = CondicionTaxativaConfigurable.class)
 @JsonIgnoreProperties({ "changeSupport" })
 public class CondicionTaxativaConfigurable extends CondicionConfigurable {

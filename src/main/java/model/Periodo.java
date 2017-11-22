@@ -13,13 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.uqbar.commons.utils.Observable;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Periodo implements Comparable<Periodo> {
 	

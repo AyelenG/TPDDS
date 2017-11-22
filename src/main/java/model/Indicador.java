@@ -14,7 +14,6 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.uqbar.commons.utils.Observable;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +25,6 @@ import model.parser.ExpresionBuilder;
 @Table(
 	uniqueConstraints = {@UniqueConstraint(columnNames={"nombre", "user_id"})}
 	)
-@Observable
 @JsonIgnoreProperties({ "changeSupport", "expresion" })
 public class Indicador {
 

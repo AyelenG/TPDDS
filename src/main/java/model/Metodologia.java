@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.uqbar.commons.utils.Observable;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +26,6 @@ import model.condiciones.Condicion;
 @Table(
 		uniqueConstraints = {@UniqueConstraint(columnNames={"nombre", "user_id"})}
 		)
-@Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Metodologia {
 

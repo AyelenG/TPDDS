@@ -12,14 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.uqbar.commons.utils.Observable;
 
 import lombok.Getter;
 import lombok.Setter;
 import model.repositories.RepoCuentas;
 
 @Entity
-@Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class CuentaPeriodo {
 

@@ -6,12 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.uqbar.commons.utils.Observable;
 
 import lombok.Getter;
 
 @Entity
-@Observable
 @JsonIgnoreProperties({ "changeSupport" })
 public class Cuenta {
 

@@ -1,6 +1,5 @@
 package application.cargacuentas;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,12 +37,10 @@ public class CargaCuentasEmpresas {
 			throws FileNotFoundException, IOException {
 		File tmpFile = File.createTempFile("CuentasEmpresas", ".json");
 		FileOutputStream fos = new FileOutputStream(tmpFile);
-		BufferedOutputStream buffOut = new BufferedOutputStream(fos);
-		if (ftp.retrieveFile(hostFile, buffOut))
+		if (ftp.retrieveFile(hostFile, fos))
 			System.out.println("Descarga correcta");
 		else
 			System.out.println("Error Descarga");
-		buffOut.close();
 		fos.close();
 		return tmpFile;
 	}

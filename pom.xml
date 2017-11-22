@@ -11,40 +11,30 @@
 	</properties>
 	
 	<dependencies>
-	
+		<!-- PERSISTENCIA -->
 		<!-- JPA Persistence Dependencies -->
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>jpa-java8-extras</artifactId>
 			<version>1.0-alpha-1</version>
 		</dependency>
-
 		<!-- MySQL driver jdbc -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.26</version>
 		</dependency>
-		
-		<!-- ARENA -->
-		<dependency>
-			<groupId>org.uqbar-project</groupId>
-			<artifactId>arena-jface</artifactId>
-			<version>3.6.1</version>
-		</dependency>
-
 		<!-- JACKSON -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		
-		<!-- JAVACC -->
+		<!-- FTP -->
 		<dependency>
-		    <groupId>net.java.dev.javacc</groupId>
-		    <artifactId>javacc</artifactId>
-		    <version>7.0.2</version>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.4</version>
 		</dependency>
 		
 		<!-- TESTING -->
@@ -66,7 +56,7 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.25</version>
 		</dependency>
-		<!-- Spark -->
+		<!-- SPARK -->
 		<!-- https://mvnrepository.com/artifact/com.sparkjava/spark-core -->
 		<dependency>
 			<groupId>com.sparkjava</groupId>
@@ -85,6 +75,7 @@
 			<artifactId>spark-debug-tools</artifactId>
 			<version>0.5</version>
 		</dependency>
+		<!-- HANDLEBARS -->
 		<!-- https://mvnrepository.com/artifact/com.github.jknack/handlebars-helpers -->
 		<dependency>
 			<groupId>com.github.jknack</groupId>
@@ -97,6 +88,8 @@
 			<artifactId>handlebars-humanize</artifactId>
 			<version>4.0.6</version>
 		</dependency>
+		
+		<!-- UTILIDADES -->
 		<!-- Lombok para getters y setters automaticos -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
@@ -105,18 +98,12 @@
 			<version>1.16.18</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
 		<!-- Para escapear caracteres HTML -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<!-- FTP -->
-		<dependency>
-			<groupId>commons-net</groupId>
-			<artifactId>commons-net</artifactId>
-			<version>3.4</version>
+  			<version>1.1</version>
 		</dependency>
 	</dependencies>
 

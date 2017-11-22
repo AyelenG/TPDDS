@@ -1,9 +1,7 @@
 package exceptions;
 
-import org.uqbar.commons.model.UserException;
-
 @SuppressWarnings("serial")
-public class NoSePuedeAplicarException extends UserException {
+public class NoSePuedeAplicarException extends RuntimeException {
 
 	public NoSePuedeAplicarException(String mensaje) {
 		super(mensaje);

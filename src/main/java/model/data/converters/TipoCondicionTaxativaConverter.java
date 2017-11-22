@@ -3,8 +3,6 @@ package model.data.converters;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import org.uqbar.commons.model.UserException;
-
 import model.condiciones.taxativas.TipoCondicionTaxativa;
 import model.condiciones.taxativas.TiposCondicionTaxativa;
 
@@ -31,7 +29,7 @@ public class TipoCondicionTaxativaConverter implements AttributeConverter<TipoCo
 		case "Tendencia":
 			return TiposCondicionTaxativa.Tendencia;
 		default:
-			throw new UserException("Error en la base de Datos.");
+			throw new RuntimeException("Error en la base de Datos.");
 		}
 
 	}

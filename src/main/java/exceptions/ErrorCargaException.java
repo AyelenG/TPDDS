@@ -1,9 +1,7 @@
 package exceptions;
 
-import org.uqbar.commons.model.UserException;
-
 @SuppressWarnings("serial")
-public class ErrorCargaException extends UserException {
+public class ErrorCargaException extends RuntimeException {
 	
 	public ErrorCargaException(Exception e){
 //		super(e.getMessage(),e);

@@ -3,7 +3,7 @@ package controllers;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import application.precalculoindicadores.PrecalculoIndicadores;
 import exceptions.FormulaIndicadorIncorrectaException;
@@ -30,7 +30,7 @@ public class IndicadoresController {
     	Usuario currentUser = request.session().attribute("currentUser");
     	Indicador indicador = new Indicador(request.queryParams("nombreIndicador"));
     	Map<String, Object> model = new HashMap<>();
-    	String formula = StringEscapeUtils.unescapeHtml(request.queryParams("formula"));
+    	String formula = StringEscapeUtils.unescapeHtml4(request.queryParams("formula"));
     	try {
     		new ExpresionBuilder(formula).build();
     	}

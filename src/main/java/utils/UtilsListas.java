@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.uqbar.commons.model.UserException;
-
 public class UtilsListas {
 	public static <T> BigDecimal sumatoria(List<T> list, Function<T,BigDecimal> f ){
 		return list.stream().map(f).reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -21,7 +19,7 @@ public class UtilsListas {
 	
 	public static <T> BigDecimal mediana(List<T> list, Function<T,BigDecimal> f ){
 		if(list.isEmpty())
-			throw new UserException("Lista vacía");
+			throw new RuntimeException("Lista vacía");
 		List<BigDecimal> valoresOrd = list.stream().map(f).sorted().collect(Collectors.toList());
 		return valoresOrd.get(valoresOrd.size() / 2);
 	}	

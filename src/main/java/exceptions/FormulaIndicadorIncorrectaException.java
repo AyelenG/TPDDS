@@ -1,9 +1,7 @@
 package exceptions;
 
-import org.uqbar.commons.model.UserException;
-
 @SuppressWarnings("serial")
-public class FormulaIndicadorIncorrectaException extends UserException {
+public class FormulaIndicadorIncorrectaException extends RuntimeException {
 
 	public FormulaIndicadorIncorrectaException(){
 		super("Sintaxis de formula incorrecta.");

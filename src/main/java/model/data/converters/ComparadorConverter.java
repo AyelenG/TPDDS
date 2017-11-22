@@ -2,8 +2,6 @@ package model.data.converters;
 
 import javax.persistence.AttributeConverter;
 
-import org.uqbar.commons.model.UserException;
-
 import model.condiciones.Comparador;
 import model.condiciones.Comparadores;
 
@@ -23,7 +21,7 @@ public class ComparadorConverter implements AttributeConverter<Comparador, Strin
 		case "Menor":
 			return Comparadores.Menor;
 		default:
-			throw new UserException("Error en la base de Datos.");
+			throw new RuntimeException("Error en la base de Datos.");
 		}
 		
 	}

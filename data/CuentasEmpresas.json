@@ -1,0 +1,1151 @@
+[
+	{
+		"symbol": "IBM",
+		"nombre": "International Business Machines",
+		"periodos": [
+			{
+				"anio": 2016,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 79919
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 41624
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 19640
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 5751
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 503
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 387
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 1038
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 277
+					}
+				]
+			},
+			{
+				"anio": 2015,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 81741
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 41057
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 19512
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 5247
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 304
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 31
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 587
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": -941
+					}
+				]
+			},
+			{
+				"anio": 2014,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 92793
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 46386
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 21385
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 5437
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 374
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 372
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 1472
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": -1877
+					}
+				]
+			},
+			{
+				"anio": 2013,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 98367
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 49683
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 22214
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 5743
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 370
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": -287
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 1031
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 191
+					}
+				]
+			}
+		]
+	},
+	{
+		"symbol": "GOOG",
+		"nombre": "Alphabet Inc",
+		"periodos": [
+			{
+				"anio": 2016,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 90272
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 35138
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 17470
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 13948
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2015,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 74989
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 28164
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 15183
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 12282
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2014,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 66001
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 25313
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 13982
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 9832
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 378
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2013,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 55519
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 21993
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 10986
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 7137
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			}
+		]
+	},
+	{
+		"symbol": "ORCL",
+		"nombre": "Oracle Corporation",
+		"periodos": [
+			{
+				"anio": 2016,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 37728
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 7469
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 9373
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 6159
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 1451
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 566
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2015,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 37047
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 38226
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 8732
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 5524
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 2149
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 418
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2014,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 38275
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 7236
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 8605
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 5151
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 2300
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 224
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			}			
+		]
+	},
+	{
+		"symbol": "MSFT",
+		"nombre": "Microsoft Corporation",
+		"periodos": [
+			{
+				"anio": 2016,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 85320
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 32780
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 19260
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 11988
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 1432
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2015,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 93580
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 33038
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 20324
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 12046
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 10194
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2014,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 86833
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 27078
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 20488
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 11381
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 233
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2013,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 77849
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 20385
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 20289
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 10411
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 208
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			}
+		]
+	},
+	{
+		"symbol": "AAPL",
+		"nombre": "Apple Inc",
+		"periodos": [
+			{
+				"anio": 2016,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 215639
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 131376
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 14194
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 10045
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2015,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 233715
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 140089
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 14329
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 8067
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2014,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 182795
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 112258
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 11993
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 6041
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2013,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 170910
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 106606
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 10830
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 4475
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			}
+		]
+	},
+	{
+		"symbol": "AMZN",
+		"nombre": "Amazon.com Inc",
+		"periodos": [
+			{
+				"anio": 2016,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 135987
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 88265
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 27284
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 16085
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 1716
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": -1549
+					}
+				]
+			},
+			{
+				"anio": 2015,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 107006
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 71651
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 20411
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 12540
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 1381
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": -1210
+					}
+				]
+			},
+			{
+				"anio": 2014,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 88988
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 62752
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 16650
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 9275
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 1146
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": -1013
+					}
+				]
+			},
+			{
+				"anio": 2013,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 74452
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 54181
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 12847
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 6565
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 753
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": -639
+					}
+				]
+			}
+		]
+	},
+	{
+		"symbol": "FB",
+		"nombre": "Facebook Inc",
+		"periodos": [
+			{
+				"anio": 2016,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 27638
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 3789
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 5503
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 5919
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2015,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 17928
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 2867
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 4020
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 4816
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2014,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 12466
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 2153
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 2653
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 2666
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			},
+			{
+				"anio": 2013,
+				"cuentas": [
+					{
+						"cuenta": {"nombre": "Ingresos"},
+						"valor": 7872
+					},
+					{
+						"cuenta": {"nombre": "Otros ingresos de explotacion"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Consumos y otros gastos externos"},
+						"valor": 1875
+					},
+					{
+						"cuenta": {"nombre": "Gastos de personal"},
+						"valor": 1778
+					},
+					{
+						"cuenta": {"nombre": "Investigacion y desarrollo"},
+						"valor": 1415
+					},
+					{
+						"cuenta": {"nombre": "Amortizaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos financieros Neto de Operaciones"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Gastos extraordinarios"},
+						"valor": 0
+					},
+					{
+						"cuenta": {"nombre": "Otros gastos de explotacion"},
+						"valor": 0
+					}
+				]
+			}
+		]
+	}
+]

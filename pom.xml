@@ -85,17 +85,20 @@
 			<artifactId>spark-debug-tools</artifactId>
 			<version>0.5</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.jknack/handlebars-helpers -->
 		<dependency>
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars-helpers</artifactId>
 			<version>4.0.6</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.jknack/handlebars-humanize -->
 		<dependency>
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars-humanize</artifactId>
 			<version>4.0.6</version>
 		</dependency>
 		<!-- Lombok para getters y setters automaticos -->
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -110,9 +113,9 @@
 		</dependency>
 		<!-- FTP -->
 		<dependency>
-    		<groupId>commons-net</groupId>
-		    <artifactId>commons-net</artifactId>
-		    <version>3.4</version>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.4</version>
 		</dependency>
 	</dependencies>
 
@@ -129,7 +132,7 @@
 					<appName>dds-donde-invierto</appName> 
 					<processTypes>
 						<!-- Comando de ejecución para Heroku -->
-						<!-- puede funcionar con o sin el .   -->
+						<!-- puede funcionar con o sin el ./   -->
 						<web>java -jar target/2017-jm-group-12-1.0-jar-with-dependencies.jar</web>
 					</processTypes>
 				</configuration>
@@ -146,17 +149,17 @@
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals><goal>copy-dependencies</goal></goals>
-                    </execution>
-                </executions>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals><goal>copy-dependencies</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

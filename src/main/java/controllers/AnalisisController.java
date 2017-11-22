@@ -2,23 +2,19 @@ package controllers;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.uqbar.commons.utils.Observable;
 
 import exceptions.NoSePuedeAplicarException;
-import exceptions.NoSePuedeEvaluarException;
 import model.Empresa;
-import model.Indicador;
 import model.IndicadorPeriodoConValor;
 import model.IndicadorPeriodoSinValor;
 import model.Metodologia;
 import model.Periodo;
 import model.Usuario;
 import model.repositories.RepoEmpresas;
-import model.repositories.RepoIndicadores;
 import model.repositories.RepoIndicadoresPeriodosConValor;
 import model.repositories.RepoIndicadoresPeriodosSinValor;
 import model.repositories.RepoMetodologias;

@@ -24,6 +24,9 @@ public class PrecalculoIndicadores {
 	
 	public void precalcularIndicadores(){
 		BigDecimal valor;
+		//borra toda la info de las tablas
+		RepoIndicadoresPeriodosConValor.getInstance().formatearTabla();
+		RepoIndicadoresPeriodosSinValor.getInstance().formatearTabla();
 		List<IndicadorPeriodoConValor> indicadoresConValor = new LinkedList<>();
 		List<IndicadorPeriodoSinValor> indicadoresSinValor = new LinkedList<>();
 		

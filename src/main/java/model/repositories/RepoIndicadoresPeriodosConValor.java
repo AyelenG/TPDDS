@@ -32,5 +32,12 @@ private static final RepoIndicadoresPeriodosConValor instance = new RepoIndicado
 		List<IndicadorPeriodoConValor> indicadoresConValor = constructor.construirIndicadoresConValor(indicadores);
 		return indicadoresConValor;
 	}
+	
+	public void formatearTabla(){
+		List<IndicadorPeriodoConValor> indicadores = this.findAll();
+		for (IndicadorPeriodoConValor indicador : indicadores) {
+			this.withTransaction(() -> entityManager().remove(indicador));
+		}
+	}
 
 }

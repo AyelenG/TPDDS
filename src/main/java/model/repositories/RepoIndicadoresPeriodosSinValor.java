@@ -32,4 +32,11 @@ private static final RepoIndicadoresPeriodosSinValor instance = new RepoIndicado
 		List<IndicadorPeriodoSinValor> indicadoresSinValor = constructor.construirIndicadoresSinValor(indicadores);
 		return indicadoresSinValor;
 	}
+	
+	public void formatearTabla(){
+		List<IndicadorPeriodoSinValor> indicadores = this.findAll();
+		for (IndicadorPeriodoSinValor indicador : indicadores) {
+			this.withTransaction(() -> entityManager().remove(indicador));
+		}
+	}
 }

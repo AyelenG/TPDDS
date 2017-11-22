@@ -13,12 +13,7 @@
     	<class>model.Periodo</class>
     	<class>model.Cuenta</class>
     	<class>model.CuentaPeriodo</class>
-    	
 		<class>model.Indicador</class>
-		<class>model.precalculo.IndicadorPrecalculado</class>
-		<class>model.IndicadorPeriodoConValor</class>
-		<class>model.IndicadorPeriodoSinValor</class>		
-
 		<class>model.Metodologia</class>
 	
 		<class>model.condiciones.Condicion</class>		
@@ -29,9 +24,9 @@
 		
         <properties> 
 			<property name="hibernate.archive.autodetection" value="class"/>
+
 			<property name ="hibernate.dialect" value ="org.hibernate.dialect.MySQL5Dialect"/>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			
 			<property name="hibernate.connection.url" value="jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10205857" />
 			<property name="hibernate.connection.username" value="sql10205857" />
 			<property name="hibernate.connection.password" value="1234" />

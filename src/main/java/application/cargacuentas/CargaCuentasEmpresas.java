@@ -1,6 +1,7 @@
 package application.cargacuentas;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,7 +18,6 @@ public class CargaCuentasEmpresas {
 
 	private static FTPClient ftp;
 
-	private static String rutaLocal = "data/CuentasEmpresas.json";
 	private static String rutaFTP = "/CuentasEmpresas.json";
 
 	private static String ip = "jpbulbulian.brickftp.com";
@@ -34,17 +34,18 @@ public class CargaCuentasEmpresas {
 			System.out.println("login Error");
 	}
 
-	public static void descargarArchivoFTP(String localFile, String hostFile)
+	public static File descargarArchivoFTP(String hostFile)
 			throws FileNotFoundException, IOException {
-		// fos = new FileOutputStream(localFile);
-		BufferedOutputStream buffOut = new BufferedOutputStream(new FileOutputStream(localFile));
+		File tmpFile = File.createTempFile("CuentasEmpresas", ".json");
+		FileOutputStream fos = new FileOutputStream(tmpFile);
+		BufferedOutputStream buffOut = new BufferedOutputStream(fos);
 		if (ftp.retrieveFile(hostFile, buffOut))
 			System.out.println("Descarga correcta");
 		else
 			System.out.println("Error Descarga");
-
 		buffOut.close();
-		// fos.close();
+		fos.close();
+		return tmpFile;
 	}
 
 	private static void desconectar() throws IOException {
@@ -54,8 +55,9 @@ public class CargaCuentasEmpresas {
 	public void cargar(){
 		try {
 			conectar(ip, user, pass);
-			descargarArchivoFTP(rutaLocal, rutaFTP);
-			List<Empresa> empresas = new HandlerArchivoJSON(rutaLocal).loadEmpresas();
+			File tmpFile = descargarArchivoFTP(rutaFTP);
+			List<Empresa> empresas = new HandlerArchivoJSON(tmpFile.getAbsolutePath()).loadEmpresas();
+			tmpFile.delete();
 			RepoEmpresas.getInstance().insertarVarios(empresas);
 		} catch (IOException e) {
 			e.printStackTrace();

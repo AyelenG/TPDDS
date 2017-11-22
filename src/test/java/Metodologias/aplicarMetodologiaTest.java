@@ -10,6 +10,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import application.precalculoindicadores.PrecalculoIndicadores;
 import model.CuentaPeriodo;
 import model.Empresa;
 import model.Indicador;
@@ -25,6 +26,8 @@ import model.condiciones.taxativas.TiposCondicionTaxativa;
 import model.repositories.RepoCuentas;
 import model.repositories.RepoEmpresas;
 import model.repositories.RepoIndicadores;
+import model.repositories.RepoIndicadoresPeriodosConValor;
+import model.repositories.RepoIndicadoresPeriodosSinValor;
 import model.repositories.RepoUsuarios;
 
 public class aplicarMetodologiaTest {
@@ -78,6 +81,8 @@ public class aplicarMetodologiaTest {
 		condiciones.add(new Longevidad());
 
 		metodologia = new Metodologia("Prueba", condiciones, testUser);
+		
+		new PrecalculoIndicadores().precalcularTodos();
 
 	}
 
@@ -194,9 +199,11 @@ public class aplicarMetodologiaTest {
 
 	@AfterClass
 	public static void limpiar() {
+		RepoIndicadoresPeriodosConValor.getInstance().clean();
+		RepoIndicadoresPeriodosSinValor.getInstance().clean();
+		indicadores.clean();
 		empresas.clean();
 		RepoCuentas.getInstance().clean();
-		indicadores.clean();
 		usuarios.clean();
 	}
 }

@@ -7,6 +7,7 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 
 import exceptions.NoSePuedeAplicarException;
+import exceptions.NoSePuedeEvaluarException;
 import lombok.Getter;
 import lombok.Setter;
 import model.Empresa;
@@ -14,9 +15,7 @@ import model.Indicador;
 import model.Periodo;
 import model.Usuario;
 import model.data.converters.ComparadorConverter;
-import model.precalculo.IndicadorPeriodoConValor;
 import model.repositories.RepoIndicadores;
-import model.repositories.RepoIndicadoresPeriodosConValor;
 
 @Entity
 public abstract class CondicionConfigurable extends Condicion {
@@ -65,10 +64,13 @@ public abstract class CondicionConfigurable extends Condicion {
 		if (cantPeriodosEmp != this.getCantidadAnios())
 			return false;
 		
-		RepoIndicadoresPeriodosConValor indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance();
 		for(Periodo p : ultimosNAnios){
-			if(indicadoresConValor.buscarElemento(new IndicadorPeriodoConValor(p,indicador)) == null) 
+			try{
+				indicador.getValor(p);
+			}
+			catch(NoSePuedeEvaluarException e){
 				return false;
+			}
 		}
 		return true;
 	}

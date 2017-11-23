@@ -17,8 +17,6 @@ import model.Periodo;
 import model.Usuario;
 import model.condiciones.Comparador;
 import model.condiciones.CondicionConfigurable;
-import model.precalculo.IndicadorPeriodoConValor;
-import model.repositories.RepoIndicadoresPeriodosConValor;
 import utils.UtilsListas;
 
 @Entity
@@ -55,8 +53,7 @@ public class CondicionNoTaxativaConfigurable extends CondicionConfigurable {
 		List<Periodo> ultimosNAnios2 = emp2.getUltimosNAnios(cantidadAnios);
 
 		// obtengo la sumatoria de los valores de esos periodos
-		RepoIndicadoresPeriodosConValor indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance();
-		Function<Periodo,BigDecimal> f = p -> indicadoresConValor.buscarElemento(new IndicadorPeriodoConValor(p,indicador)).getValor();
+		Function<Periodo,BigDecimal> f = p -> indicador.getValor(p);
 		BigDecimal sumEmp1 = UtilsListas.sumatoria(ultimosNAnios1, f);
 		BigDecimal sumEmp2 = UtilsListas.sumatoria(ultimosNAnios2, f);
 		

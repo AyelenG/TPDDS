@@ -15,11 +15,16 @@ import javax.persistence.UniqueConstraint;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import exceptions.NoSePuedeEvaluarException;
 import lombok.Getter;
 import lombok.Setter;
 import model.evaluador.Expresion;
 
 import model.parser.ExpresionBuilder;
+import model.precalculo.IndicadorPeriodoConValor;
+import model.precalculo.IndicadorPeriodoSinValor;
+import model.repositories.RepoIndicadoresPeriodosConValor;
+import model.repositories.RepoIndicadoresPeriodosSinValor;
 
 @Entity
 @Table(
@@ -76,6 +81,19 @@ public class Indicador {
 		if (this.getExpresion() == null)
 			this.setExpresion(new ExpresionBuilder(this.getFormula()).build());
 		return this.getExpresion().getValor(periodo, this.getUser());
+	}
+	
+	public BigDecimal getValor(Periodo periodo){
+		RepoIndicadoresPeriodosConValor indicadoresConValor = RepoIndicadoresPeriodosConValor.getInstance();
+		RepoIndicadoresPeriodosSinValor indicadoresSinValor = RepoIndicadoresPeriodosSinValor.getInstance();
+		IndicadorPeriodoConValor icv = indicadoresConValor.buscarElemento(new IndicadorPeriodoConValor(periodo,this));
+		if(icv != null){
+			return icv.getValor();
+		}
+		else{
+			IndicadorPeriodoSinValor isv = indicadoresSinValor.buscarElemento(new IndicadorPeriodoSinValor(periodo,this));
+			throw new NoSePuedeEvaluarException(isv.getMensaje());
+		}
 	}
 
 }

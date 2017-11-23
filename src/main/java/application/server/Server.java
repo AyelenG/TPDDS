@@ -16,7 +16,7 @@ public class Server {
 	
 	public static void main(String[] args) {
 		
-		agendarCargaCuentas(15 * MINUTO);
+		agendarTarea(15 * MINUTO);
 	    
 		Spark.port(getHerokuAssignedPort());
 		DebugScreen.enableDebugScreen();
@@ -32,7 +32,7 @@ public class Server {
         return 9000;
     }
     
-    static void agendarCargaCuentas(long intervalo){
+    static void agendarTarea(long intervalo){
 	    Timer t = new Timer();
 	    TareaBatch tarea = new TareaBatch();
 	    t.scheduleAtFixedRate(tarea, 0, intervalo);

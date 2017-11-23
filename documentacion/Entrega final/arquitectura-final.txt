@@ -1,0 +1,52 @@
+@startuml
+top to bottom direction
+
+actor Usuario
+
+
+package Cliente{
+	node Presentacion{
+		[NavegadorWeb] -up- () "CSS"
+		[NavegadorWeb] -down- () "JavaScript"
+
+	}
+}
+
+cloud Web{
+	() "HTML"
+	() "HTTP"
+}
+
+package Server-Heroku{
+	node Modelo{
+		[AplicacionJava] - () "Spark"
+	}
+
+	cloud ORM{
+		() "Hibernate"
+	}
+
+	database Persistencia{
+		[BD] - () "MySQL"
+	}
+
+	Hibernate <-- [AplicacionJava]
+	Hibernate --> [BD]
+
+}
+
+cloud FTP-Server{
+        file CuentasEmpresas.json
+}
+
+Usuario -left-> CuentasEmpresas.json
+
+CuentasEmpresas.json --> [AplicacionJava]
+
+[NavegadorWeb] <-left- HTML 
+[AplicacionJava] -left-> HTML
+[NavegadorWeb] -right-> HTTP 
+[AplicacionJava] <-right- HTTP
+
+Usuario <---> Cliente
+@enduml
